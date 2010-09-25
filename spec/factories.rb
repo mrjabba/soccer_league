@@ -10,3 +10,9 @@ Factory.sequence :email do |n|
   "person-#{n}@example.com"
 end
 
+Factory.define :player do |player|
+  player.firstname                  "Fred"
+  player.lastname                  "Flintstone"
+  player.position                  "Midfielder"
+end
+

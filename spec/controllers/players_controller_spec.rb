@@ -15,4 +15,99 @@ describe PlayersController do
     end
   end
 
+  describe "GET 'edit'" do
+    
+    before(:each) do
+      @player = Factory(:player)
+      test_sign_in(Factory(:user))
+    end
+    
+     it "should be successful" do
+      get :edit, :id => @player
+      response.should be_success
+    end
+    
+    it "should have the right title" do
+      get :edit, :id => @player
+      response.should have_selector("title", :content => "Edit player")
+    end
+    
+    
+  end
+  
+  describe "PUT 'update'" do
+    before(:each) do
+      @player = Factory(:player)
+      test_sign_in(Factory(:user))
+    end
+    
+    describe "failure" do
+      before(:each) do
+        @attr = { :firstname => "", :lastname => "", :position => ""}
+      end
+      
+      it "should render the 'edit' page" do
+        put :update, :id => @player, :player => @attr
+        response.should render_template('edit')        
+      end
+      
+      it "should have the right title" do
+        put :update, :id => @player, :player => @attr
+        response.should have_selector("title", :content => "Edit player")
+      end
+      
+    end
+    
+    describe "success" do
+      before(:each) do
+        @attr = { :firstname => "John", :lastname => "Doe", :position => "Defender"}
+      end
+      
+      it "should change the player's attributes" do
+        put :update, :id => @player, :player => @attr
+        player = assigns(:player)
+        @player.reload
+        @player.firstname.should  == player.firstname
+        @player.lastname.should  == player.lastname
+        @player.position.should  == player.position
+      end
+      
+      it "should redirect to the player show page" do
+        put :update, :id => @player, :player => @attr
+        response.should redirect_to(player_path(@player))
+      end
+      
+      it "should have a flash message" do
+        put :update, :id => @player, :player => @attr
+        flash[:success].should =~ /updated/
+      end
+      
+    end
+    
+     
+    
+  end
+  
+  describe "authentication of player edit/update pages" do
+
+    before(:each) do
+      @player = Factory(:player)
+    end
+
+    describe "for non-signed-in users" do
+
+      it "should deny access to 'edit'" do
+        get :edit, :id => @player
+        response.should redirect_to(signin_path)
+      end
+
+      it "should deny access to 'update'" do
+        put :update, :id => @player, :player => {}
+        response.should redirect_to(signin_path)
+      end
+    end
+  end  
+  
+  
+
 end

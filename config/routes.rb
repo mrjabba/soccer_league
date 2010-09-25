@@ -1,6 +1,7 @@
 SampleApp::Application.routes.draw do
 
 #  get "players/new"
+#  get "players/edit"
 
 #  get "teams/new"
 

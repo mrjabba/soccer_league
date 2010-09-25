@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def logo
-	base_logo = image_tag("logo.png", :alt => "Sample App", :class => "round") 
+	base_logo = image_tag("logo.png", :alt => "Soccer_League", :class => "round") 
 	if @logo.nil?
 		base_logo
 	end
@@ -10,7 +10,7 @@ module ApplicationHelper
 
   # Return a title on a per-page basis.
   def title
-    base_title = "Ruby on Rails Tutorial Sample App"
+    base_title = "Soccer_League Manager"
     if @title.nil?
       base_title
     else

@@ -1,4 +1,4 @@
-<h1>New player</h1>
+<h1>Edit player</h1>
 
 <%= form_for(@player) do |f| %>
   <%= render 'shared/error_messages_player', :object => f.object %>
@@ -15,7 +15,7 @@
     <%= f.text_field :position %>
   </div>
   <div class="actions">
-    <%= f.submit "Create" %>
+    <%= f.submit "Update" %>
   </div>
 <% end %>
 
