@@ -1,8 +1,5 @@
-== Welcome to Soccer League
+# Ruby on Rails Tutorial: sample application
 
-Soccer League is an app that will allow you to manage soccer leagues, including both team and player stats.
-
-== Getting Started
-
-TODO
-
+This is the sample application for
+[*Ruby on Rails Tutorial: Learn Rails by Example*](http://railstutorial.org/)
+by [Michael Hartl](http://michaelhartl.com/).
