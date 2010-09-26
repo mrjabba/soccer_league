@@ -1,12 +1,10 @@
 class PlayersController < ApplicationController
+#FIXME add create and new to authenticate
   before_filter :authenticate, :only => [:edit, :update]
-
-  
 
   def index
     @title = "All players"
     @players = Player.paginate(:page => params[:page])
-    #needs test
   end
 
   def show
@@ -30,7 +28,7 @@ class PlayersController < ApplicationController
   end
   
   def new
-    @title = "Players"
+    @title = "New Player"
     @player = Player.new
   end
   
@@ -41,7 +39,7 @@ class PlayersController < ApplicationController
       redirect_to @player
       #redirect_to user_path(@user)
     else 
-      @title = "Players"
+      @title = "New Player"
       render 'new'
     end
   end  

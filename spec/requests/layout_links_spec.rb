@@ -39,6 +39,13 @@ describe "LayoutLinks" do
 	response.should have_selector('title', :content => "Home")
 	click_link "Sign up now!"
 	response.should have_selector('title', :content => "Sign Up")
+=begin
+FIXME
+	click_link "Players"
+	response.should have_selector('title', :content => "All Players")
+	click_link "Teams"
+	response.should have_selector('title', :content => "All Teams")
+=end
   end
   
   describe "when not signed in" do

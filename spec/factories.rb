@@ -16,3 +16,8 @@ Factory.define :player do |player|
   player.position                  "Midfielder"
 end
 
+Factory.define :team do |team|
+  team.name                  "Aztex"
+  team.address1                  "123 Main St."
+end
+

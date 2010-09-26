@@ -11,7 +11,7 @@ describe PlayersController do
 
     it "should have the right title" do
       get 'new'
-      response.should have_selector("title", :content => "Players")
+      response.should have_selector("title", :content => "New Player")
     end
   end
 
@@ -108,6 +108,27 @@ describe PlayersController do
     end
   end  
   
+  describe "GET 'index'" do
   
+    it "should be successful" do
+      get :index
+      response.should be_success
+    end
+
+  end
+
+  describe "POST 'create'" do
+      describe "failure" do
+      end
+      describe "success" do
+      end
+
+  end
+  
+  describe "DELETE 'destroy'" do
+    #should require special admin role
+  end
+
+
 
 end
