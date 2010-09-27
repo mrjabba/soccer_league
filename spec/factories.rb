@@ -19,5 +19,12 @@ end
 Factory.define :team do |team|
   team.name                  "Aztex"
   team.address1                  "123 Main St."
+  team.address2                  "Apt A"
+  team.city                  "Austin"
+  team.state                  "TX"
+  team.zip                  "78704"
+  team.phone                  "512-123-4567"
+  team.website                  "http://foo.com"
+  team.email                  "test@foo.com"
 end
 

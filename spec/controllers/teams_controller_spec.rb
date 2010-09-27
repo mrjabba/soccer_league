@@ -61,7 +61,11 @@ describe TeamsController do
 
     describe "success" do
       before(:each) do
-        @attr = { :name => "SomeSoccerTeam", :address1 => "123 Main St."}
+      #  @attr = { :name => "SomeSoccerTeam", :address1 => "123 Main St."}
+       @attr = { :name => "Austin Aztex", :address1 => "123 Main St.", 
+              :address2 => "Apt A", :city => "Austin", :state => "TX",
+              :zip => "78704", :phone => "512-123-4567", :website => "http://foo.com", 
+              :email => "test@foo.com" }        
       end
       
       it "should change the team's attributes" do

@@ -3,7 +3,10 @@ require 'spec_helper'
 describe Team do
 
   before(:each) do
-    @attr = { :name => "Austin Aztex", :address1 => "123 Main St." }
+    @attr = { :name => "Austin Aztex", :address1 => "123 Main St.", 
+              :address2 => "Apt A", :city => "Austin", :state => "TX",
+              :zip => "78704", :phone => "512-123-4567", :website => "http://foo.com", 
+              :email => "test@foo.com" }
   end
 
   it "should create a new instance given valid attributes" do

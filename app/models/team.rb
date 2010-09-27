@@ -1,6 +1,6 @@
 class Team < ActiveRecord::Base
-  attr_accessible :name, :address1
-  
+  attr_accessible :name, :address1, :address2, :city, :state, :zip, :phone, :website, :email
+
   validates :name, :presence => true,
                   :length   => { :maximum => 50 },
                   :uniqueness => { :case_sensitive => false }

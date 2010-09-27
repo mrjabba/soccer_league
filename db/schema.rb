@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100925200849) do
+ActiveRecord::Schema.define(:version => 20100927171836) do
 
   create_table "players", :force => true do |t|
     t.string   "firstname"
@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(:version => 20100925200849) do
     t.string   "address1"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "phone"
+    t.string   "website"
+    t.string   "email"
   end
 
   add_index "teams", ["name"], :name => "index_teams_on_name", :unique => true
