@@ -29,24 +29,8 @@ describe "Players" do
           response.should have_selector('a', :content => "New Player")
           response.should contain("New Player")
           #why does it find the selector, but it can't click the lnk. 
-          #what is weird is that it works if the link is misdefined as ./new rather than players/new
-          
-          #TODO FIXME this clck link below shouldn't be working but it does? 
-					#click_link "newPlayerLink"
-          #<%= link_to "New Player", "players/new" , :id => "newPlayerLink" %>
-					#click_link "newPlayerLink"
 					#click_link "New Player"
-          #response.should have_selector('title', :content => "Soccer_League Manager | New Player")
-          
-          #maybe the fix is to just do this
           visit "players/new"
-          #then fill out the form
-          
-          #should I get the ruby-debug gem then do rdebug rspec spec/ etc?
-          
-#          debugger unless have_tag("tr.group_info_row td",group_title).matches?(response) 
-#          response.should have_tag("tr.group_info_row td",group_title)           
-          #debugger unless have_selector('title', :content => "Soccer_League Manager | New Player").matches?(response) 
           response.should have_selector('title', :content => "Soccer_League Manager | New Player")          
           
           #response.should have_selector('title', :content => "New Player")
