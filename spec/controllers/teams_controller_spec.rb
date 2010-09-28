@@ -74,6 +74,13 @@ describe TeamsController do
         @team.reload
         @team.name.should  == team.name
         @team.address1.should  == team.address1
+        @team.address2.should  == team.address2
+        @team.city.should  == team.city
+        @team.state.should  == team.state
+        @team.zip.should  == team.zip
+        @team.phone.should  == team.phone
+        @team.website.should  == team.website
+        @team.email.should  == team.email
       end
       
       it "should redirect to the team show page" do

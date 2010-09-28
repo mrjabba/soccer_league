@@ -35,7 +35,7 @@ class PlayersController < ApplicationController
   def create
     @player = Player.new(params[:player])
     if @player.save
-      flash[:success] = "Saved player successfully!"
+      flash[:success] = "Player created successfully!"
       redirect_to @player
       #redirect_to user_path(@user)
     else 

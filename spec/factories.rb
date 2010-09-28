@@ -14,6 +14,10 @@ Factory.define :player do |player|
   player.firstname                  "Fred"
   player.lastname                  "Flintstone"
   player.position                  "Midfielder"
+  player.jersey_number                  10
+  player.birth_date                  "09/22/1981"
+  player.nationality                  "USA"
+  player.previous_club                  "Some Other Club"
 end
 
 Factory.define :team do |team|

@@ -3,7 +3,9 @@ require 'spec_helper'
 describe Player do
 
   before(:each) do
-    @attr = { :firstname => "Jamie", :lastname => "Watson", :position => "Forward" }
+    @attr = { :firstname => "Jamie", :lastname => "Watson", :position => "Forward" , 
+    :jersey_number => 10, :birth_date => "02/10/1978", :nationality => "USA", 
+    :previous_club => "Real Salt Lake"}
   end
 
   it "should create a new instance given valid attributes" do

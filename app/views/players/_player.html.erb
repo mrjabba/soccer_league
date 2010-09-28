@@ -1,3 +1,4 @@
 <li>
-  <%= link_to player.firstname + ' ' + player.lastname, player %>
+  <%= link_to player.firstname + ' ' + player.lastname, player %> 
+   <%= link_to "Edit", "players/" + player.id.to_s + "/edit"  %>
 </li>

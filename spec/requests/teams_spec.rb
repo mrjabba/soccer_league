@@ -8,7 +8,9 @@ describe "Teams" do
 			it "should not make a new team" do
 				lambda do
 					visit teams_path
+          #TODO FIXME this clck link below shouldn't be working but it does? 
 					click_link "New Team"
+          response.should have_selector('title', :content => "New Team")
 					fill_in "Name", :with => ""
 					fill_in "Address1", :with => ""
 					click_button
@@ -22,7 +24,9 @@ describe "Teams" do
 			it "should make a new team" do
 				lambda do
 					visit teams_path
+          #TODO FIXME this clck link below shouldn't be working but it does? 
 					click_link "New Team"
+          response.should have_selector('title', :content => "New Team")
 					fill_in "Name", :with => "FC Whatever"
 					fill_in "Address1", :with => "777 Broadway"
 					fill_in "Address2", :with => "Apt A"
