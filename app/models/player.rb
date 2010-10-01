@@ -1,6 +1,8 @@
 class Player < ActiveRecord::Base
   attr_accessible :firstname, :lastname, :position, :jersey_number, :birth_date, :nationality, :previous_club
   
+  has_many :playerstats
+  
   validates :firstname, :presence => true,
                   :length   => { :maximum => 50 }
   validates :lastname, :presence => true,

@@ -39,4 +39,15 @@ describe Player do
     long_name_player.should_not be_valid
   end  
   
+  describe "playerstat associations" do
+
+    before(:each) do
+      @player = Player.create(@attr)
+    end
+
+    it "should have a microposts attribute" do
+      @player.should respond_to(:playerstats)
+    end
+  end  
+  
 end
