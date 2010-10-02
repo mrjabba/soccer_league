@@ -10,7 +10,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100929181649) do
+ActiveRecord::Schema.define(:version => 20101002153421) do
+
+  create_table "leagues", :force => true do |t|
+    t.string   "name"
+    t.integer  "year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "leagueseasons", :force => true do |t|
+    t.integer  "team_id"
+    t.integer  "league_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "players", :force => true do |t|
     t.string   "firstname"
@@ -55,6 +69,19 @@ ActiveRecord::Schema.define(:version => 20100929181649) do
   end
 
   add_index "teams", ["name"], :name => "index_teams_on_name", :unique => true
+
+  create_table "teamstats", :force => true do |t|
+    t.integer  "points"
+    t.integer  "wins"
+    t.integer  "losses"
+    t.integer  "ties"
+    t.integer  "goals_for"
+    t.integer  "goals_against"
+    t.integer  "games_played"
+    t.integer  "leagueseason_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"
