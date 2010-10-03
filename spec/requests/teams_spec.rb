@@ -9,7 +9,12 @@ describe "Teams" do
 				lambda do
 					visit teams_path
           #TODO FIXME this clck link below shouldn't be working but it does? 
-					click_link "New Team"
+					#click_link "New Team"
+          
+					#click_link "New Player"
+          visit "teams/new"
+          response.should have_selector('title', :content => "New Team")
+          
           response.should have_selector('title', :content => "New Team")
 					fill_in "Name", :with => ""
 					fill_in "Address1", :with => ""
@@ -25,7 +30,10 @@ describe "Teams" do
 				lambda do
 					visit teams_path
           #TODO FIXME this clck link below shouldn't be working but it does? 
-					click_link "New Team"
+					#click_link "New Team"
+          
+          visit "teams/new"
+          
           response.should have_selector('title', :content => "New Team")
 					fill_in "Name", :with => "FC Whatever"
 					fill_in "Address1", :with => "777 Broadway"

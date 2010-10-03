@@ -24,16 +24,14 @@ describe "Players" do
         
         
 					visit players_path
-          response.should have_selector('title', :content => "Soccer_League Manager | All players")
+          response.should have_selector('title', :content => "All players")
           response.should have_selector('h1', :content => "All Players")
           response.should have_selector('a', :content => "New Player")
           response.should contain("New Player")
           #why does it find the selector, but it can't click the lnk. 
 					#click_link "New Player"
           visit "players/new"
-          response.should have_selector('title', :content => "Soccer_League Manager | New Player")          
-          
-          #response.should have_selector('title', :content => "New Player")
+          response.should have_selector('title', :content => "New Player")
 					fill_in "Firstname", :with => ""
 					fill_in "LastName", :with => ""
 					fill_in "Position", :with => ""

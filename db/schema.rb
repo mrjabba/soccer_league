@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101002153421) do
+ActiveRecord::Schema.define(:version => 20101003001352) do
 
   create_table "leagues", :force => true do |t|
     t.string   "name"
@@ -25,6 +25,9 @@ ActiveRecord::Schema.define(:version => 20101002153421) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "leagueseasons", ["league_id"], :name => "index_leagueseasons_on_league_id"
+  add_index "leagueseasons", ["team_id"], :name => "index_leagueseasons_on_team_id"
 
   create_table "players", :force => true do |t|
     t.string   "firstname"
@@ -82,6 +85,8 @@ ActiveRecord::Schema.define(:version => 20101002153421) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "teamstats", ["leagueseason_id"], :name => "index_teamstats_on_leagueseason_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"

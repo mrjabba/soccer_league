@@ -1,5 +1,9 @@
 SampleApp::Application.routes.draw do
 
+  get "leagueseasons/new"
+
+  get "leagues/new"
+
 #  get "players/new"
 #  get "players/edit"
 
@@ -7,6 +11,7 @@ SampleApp::Application.routes.draw do
 
   get "sessions/new"
 
+  resources :leagues
   resources :users
   resources :teams
   resources :players
@@ -18,6 +23,7 @@ SampleApp::Application.routes.draw do
   match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about'
   match '/help',    :to => 'pages#help'
+
 
   root :to => 'pages#home'
 
