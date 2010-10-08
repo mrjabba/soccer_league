@@ -6,6 +6,6 @@ class Team < ActiveRecord::Base
                   :uniqueness => { :case_sensitive => false }
   validates :address1, :presence => true
 
-  has_one    :leagueseason
+  has_one    :teamstat
 
 end

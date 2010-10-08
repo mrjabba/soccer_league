@@ -1,7 +1,13 @@
 <h1>Soccer League Manager</h1>
 
 <p>
-  This is the home page for Soccer_League application.
+  Soccer League Manager puts league management into your hands. Currently, this application is under a lot of development and 
+  will be changing frequently. Feel free to try it out. Just keep in mind it is not feature complete. And, data will not be saved.
+</p>
+<p>
+  <% if signed_in? %>
+    <strong><%= link_to "Browse Leagues", leagues_path %></strong>
+  <% end %>
 </p>
 
 <%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>

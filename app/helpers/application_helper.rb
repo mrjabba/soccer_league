@@ -8,6 +8,13 @@ module ApplicationHelper
 
   end
 
+#  def setup_league(league)
+    #deprecated, look up tap
+#    returning(league) do |lg|
+ #     lg.teamstats.build if lg.teamstats.empty?
+ #   end
+ # end
+
   # Return a title on a per-page basis.
   def title
     base_title = "Soccer_League Manager"

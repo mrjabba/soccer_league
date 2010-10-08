@@ -1,0 +1,2 @@
+module TeamstatsHelper
+end

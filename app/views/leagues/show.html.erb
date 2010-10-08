@@ -1,0 +1,26 @@
+<h2>League Name: <%= @league.name %></h2>
+<div>Year: <%= @league.year %></div>
+
+<div>
+<strong>Teams in this league: </strong> <%= @league.teamstats.count %>
+
+
+<% unless @teamstats.empty? %>
+  <table id="league_table">
+  <tr>
+  <th title="Club">Club</th>
+  <th title="Points">PTS</th>
+  <th title="Games Played">GP</th>
+  <th title="Wins">W</th>
+  <th title="Losses">L</th>
+  <th title="Ties">T</th>
+  <th title="Goals For">GF</th>
+  <th title="Goals Against">GA</th>
+  </tr>
+    <%= render @teamstats %>
+  </table>
+<% end %>
+
+</div>
+
+<%= link_to "Edit League", @league.id.to_s + "/edit"  %> - <%= link_to "Add Team", @league.id.to_s + "/edit?new=true"  %>

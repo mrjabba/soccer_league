@@ -152,6 +152,16 @@ div.field, div.actions {
   color: #fff;
 }
 
+.cfield label {
+  font-size: 80%;
+}
+.cfield {
+  background-color: #ddccff;
+  padding: 6px;
+  margin-left: 20px;
+}
+
+
 #error_explanation {
   width: 400px;
   border: 2px solid red;
@@ -190,3 +200,10 @@ ul.users {
 .users li {
   list-style: none;
 }
+
+#league_table td {
+color:#3F3F3F;
+font-family:Helvetica,Arial,sans-serif;
+font-size:12px;
+}
+

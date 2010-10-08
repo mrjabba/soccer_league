@@ -4,64 +4,49 @@ describe Teamstat do
 
   before(:each) do
 
-    #@league = Factory(:league)
-    #@team = Factory(:team, :name => "my team")
-    @leagueseason = Factory(:leagueseason)
+    @league = Factory(:league)
+    @team = Factory(:team)
+    #@attr = { :team_id => @team }
+
     @attr = { :points => 5, :wins => 2, :losses => 1, 
           :ties => 1, :goals_for => 4, 
           :goals_against => 2, :games_played => 4 }
-    
-=begin
-    @attr = { :team_id => @team }
-#    @attr = { :league_season_id => @leagueseason }
-    @leagueseason = @league.leagueseasons.create(@attr)
-
-    @league = Factory(:league)
-    @team = Factory(:team)
-    @attr = { :team_id => @team }
-#    @attr = { :league_season_id => @leagueseason }
-#    @leagueseason = Factory(:leagueseason)
-    @leagueseason = @league.leagueseasons.create(@attr)
-
-
-
-  @leaguetmp = Factory(:league)
-  @teamtmp = Factory(:team)
-  leagueseason.league_id                 @leaguetmp
-  leagueseason.team_id                 @teamtmp  
-=end    
-    
+          #, :team_id => @team
   end
 
 
   it "should create a new instance given valid attributes" do
-    @leagueseason.teamstats.create!(@attr)
+    #@league.teamstats.create!(@attr)
+    @teamstat = @league.teamstats.create(@attr)
+    @teamstat.team = @team
+    @teamstat.save
+    #TODO is there a 1 line way to do this?
   end
 
-  describe "leagueseason associations" do
+  describe "league associations" do
 
     before(:each) do
-      @teamstat = @leagueseason.teamstats.create(@attr)
+      @teamstat = @league.teamstats.create(@attr)
     end
       
-    it "should have a leagueseason attribute" do
-      @teamstat.should respond_to(:leagueseason)
+    it "should have a league attribute" do
+      @teamstat.should respond_to(:league)
     end
   
-    it "should have the right associated leagueseason" do
-      @teamstat.leagueseason_id.should == @leagueseason.id
-      @teamstat.leagueseason.should == @leagueseason
+    it "should have the right associated league" do
+      @teamstat.league_id.should == @league.id
+      @teamstat.league.should == @league
     end
   
   end
 
   describe "validations" do
-    it "should require a leagueseason id" do
+    it "should require a league id" do
       Teamstat.new(@attr).should_not be_valid      
     end
     
     it "should require non wins" do
-      @leagueseason.teamstats.build(:wins => nil).should_not be_valid
+      @league.teamstats.build(:wins => nil).should_not be_valid
     end
     
   end

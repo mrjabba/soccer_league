@@ -8,7 +8,8 @@ class CreateTeamstats < ActiveRecord::Migration
       t.integer :goals_for
       t.integer :goals_against
       t.integer :games_played
-      t.integer :leagueseason_id
+      t.integer :team_id
+      t.integer :league_id
 
       t.timestamps
     end

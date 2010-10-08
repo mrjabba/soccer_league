@@ -1,0 +1,19 @@
+<h1>New League</h1>
+
+<%= form_for(@league) do |f| %>
+  <%= render 'shared/error_messages_league', :object => f.object %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :year %><br />
+    <%= f.text_field :year %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Create" %>
+    <input type="button" id="cancelLeagueNew" value="Cancel"/>
+  </div>
+<% end %>
+

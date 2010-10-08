@@ -1,6 +1,6 @@
 SampleApp::Application.routes.draw do
 
-  get "leagueseasons/new"
+  get "teamstats/new"
 
   get "leagues/new"
 
@@ -12,10 +12,15 @@ SampleApp::Application.routes.draw do
   get "sessions/new"
 
   resources :leagues
+  resources :teamstats
   resources :users
   resources :teams
   resources :players
   resources :sessions, :only => [:new, :create, :destroy]
+
+  resources :leagues do
+    resources :teamstats
+  end
 
   match '/signup', :to => 'users#new'
   match '/signin', :to => 'sessions#new'

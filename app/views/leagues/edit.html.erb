@@ -1,0 +1,36 @@
+<h1>Edit league</h1>
+
+<%= form_for(@league) do |f| %>
+  <%= render 'shared/error_messages_league', :object => f.object %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :year %><br />
+    <%= f.text_field :year %>
+  </div>
+
+  <% unless @league.teamstats.empty? %>
+    <table id="league_table">
+    <tr>
+    <th title="Club">Club</th>
+    <th title="Points">PTS</th>
+    <th title="Games Played">GP</th>
+    <th title="Wins">W</th>
+    <th title="Losses">L</th>
+    <th title="Ties">T</th>
+    <th title="Goals For">GF</th>
+    <th title="Goals Against">GA</th>
+    </tr>
+      <%= render "teamstat_fields", :f => f %>
+    </table>
+  <% end %>
+
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+    <input type="button" id="cancelLeagueEdit" value="Cancel"/>
+  </div>
+<% end %>
+

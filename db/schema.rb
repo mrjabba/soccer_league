@@ -19,16 +19,6 @@ ActiveRecord::Schema.define(:version => 20101003001352) do
     t.datetime "updated_at"
   end
 
-  create_table "leagueseasons", :force => true do |t|
-    t.integer  "team_id"
-    t.integer  "league_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "leagueseasons", ["league_id"], :name => "index_leagueseasons_on_league_id"
-  add_index "leagueseasons", ["team_id"], :name => "index_leagueseasons_on_team_id"
-
   create_table "players", :force => true do |t|
     t.string   "firstname"
     t.string   "lastname"
@@ -81,12 +71,14 @@ ActiveRecord::Schema.define(:version => 20101003001352) do
     t.integer  "goals_for"
     t.integer  "goals_against"
     t.integer  "games_played"
-    t.integer  "leagueseason_id"
+    t.integer  "team_id"
+    t.integer  "league_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "teamstats", ["leagueseason_id"], :name => "index_teamstats_on_leagueseason_id"
+  add_index "teamstats", ["league_id"], :name => "index_teamstats_on_league_id"
+  add_index "teamstats", ["team_id"], :name => "index_teamstats_on_team_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"

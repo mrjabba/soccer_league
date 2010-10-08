@@ -42,14 +42,15 @@ Factory.define :league do |league|
   league.name                 "my soccer league"
 end
 
-Factory.define :leagueseason do |leagueseason|
-  leagueseason.association  :league
-  leagueseason.association  :team
+Factory.define :teamstat do |teamstat|
+  teamstat.points      3
+  teamstat.wins      1
+  teamstat.losses      2
+  teamstat.ties      0
+  teamstat.goals_for      4
+  teamstat.goals_against      2
+  teamstat.games_played      3
+  teamstat.association  :league
+  teamstat.association  :team
 end
-=begin
-  @leaguetmp = Factory(:league)
-  @teamtmp = Factory(:team)
-  leagueseason.league_id                 @leaguetmp
-  leagueseason.team_id                 @teamtmp  
-=end
 
