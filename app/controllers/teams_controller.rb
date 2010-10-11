@@ -9,6 +9,7 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id]) 
+    @title = "View Team | " + @team.name
   end
 
   def edit

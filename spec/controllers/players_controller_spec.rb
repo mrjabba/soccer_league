@@ -125,6 +125,37 @@ describe PlayersController do
 
   end
 
+  describe "GET 'show'" do
+  
+    before(:each) do
+      @player = Factory(:player)
+    end
+    
+    it "should be successful" do
+      get :show, :id => @player
+      response.should be_success
+    end
+    
+    it "should find the right player" do
+      get :show, :id => @player
+      assigns(:player).should == @player
+    end
+    
+    it "should have the right title" do
+      get :show, :id => @player
+      response.should have_selector("title", :content => @player.firstname)    
+    end
+    
+    it "should include the team's player" do
+      get :show, :id => @player
+      response.should have_selector("h1", :content => @player.firstname)
+    end
+  
+  end
+
+
+
+
   describe "POST 'create'" do
       describe "failure" do
       end

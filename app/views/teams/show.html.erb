@@ -1,1 +1,37 @@
-<%= @team.name %>, <%= @team.address1 %>
+
+<h1><%= @team.name %></h1>
+<%= link_to "Edit", @team.id.to_s + "/edit"  %>
+
+  <div class="tfield">
+    <label>Address1</label>
+    <span><%= @team.address1 %></span>
+  </div>
+  <div class="tfield">
+    <label>Address2</label>
+    <span><%= @team.address2 %></span>
+  </div>
+  <div class="tfield">
+    <label>City</label>
+    <span><%= @team.city %></span>
+  </div>
+  <div class="tfield">
+    <label>State</label>
+    <span><%= @team.state %></span>
+  </div>
+  <div class="tfield">
+    <label>Zip</label>
+    <span><%= @team.zip %></span>
+  </div>
+  <div class="tfield">
+    <label>Phone</label>
+    <span><%= @team.phone %></span>
+  </div>
+  <div class="tfield">
+    <label>Website</label>
+    <span><%= @team.website %></span>
+  </div>
+  <div class="tfield">
+    <label>Email</label>
+    <span><%= @team.email %></span>
+  </div>
+

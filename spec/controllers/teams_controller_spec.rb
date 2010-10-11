@@ -130,6 +130,39 @@ describe TeamsController do
 
   end
 
+
+
+  describe "GET 'show'" do
+  
+    before(:each) do
+      @team = Factory(:team)
+    end
+    
+    it "should be successful" do
+      get :show, :id => @team
+      response.should be_success
+    end
+    
+    it "should find the right team" do
+      get :show, :id => @team
+      assigns(:team).should == @team
+    end
+    
+    it "should have the right title" do
+      get :show, :id => @team
+      response.should have_selector("title", :content => @team.name)    
+    end
+    
+    it "should include the team's name" do
+      get :show, :id => @team
+      response.should have_selector("h1", :content => @team.name)
+    end
+  
+  end
+
+
+
+
   describe "POST 'create'" do
       describe "failure" do
       end

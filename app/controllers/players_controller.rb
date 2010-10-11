@@ -9,6 +9,7 @@ class PlayersController < ApplicationController
 
   def show
     @player = Player.find(params[:id])
+    @title = "View Player | " + @player.firstname + " " + @player.lastname
   end
 
   def edit
