@@ -1,5 +1,6 @@
 <tr>
-<td><%= teamstat.team.name %></td>
+<td><%= link_to teamstat.team.name, "../teams/" + teamstat.team.id.to_s   %></td>
+
 <td><%= teamstat.points %></td>
 <td><%= teamstat.games_played %></td>
 <td><%= teamstat.wins %></td>
