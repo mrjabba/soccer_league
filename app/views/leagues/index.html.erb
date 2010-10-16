@@ -6,6 +6,10 @@
   <%= render @leagues %>
  
 </ul>
+
+<% if APP_CONFIG['allow_multiple_leagues'] %>
 <%= link_to "New League", "leagues/new" %>
+<% end %>
+
 
 <%= will_paginate %>

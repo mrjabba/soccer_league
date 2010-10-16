@@ -1,0 +1,8 @@
+development:
+  allow_multiple_leagues: true
+
+test:
+  allow_multiple_leagues: true
+
+production:
+  allow_multiple_leagues: true
