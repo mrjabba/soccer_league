@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101003001352) do
+ActiveRecord::Schema.define(:version => 20101016002549) do
 
   create_table "leagues", :force => true do |t|
     t.string   "name"
@@ -43,9 +43,11 @@ ActiveRecord::Schema.define(:version => 20101003001352) do
     t.integer  "player_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "teamstat_id"
   end
 
   add_index "playerstats", ["player_id"], :name => "index_playerstats_on_player_id"
+  add_index "playerstats", ["teamstat_id"], :name => "index_playerstats_on_teamstat_id"
 
   create_table "teams", :force => true do |t|
     t.string   "name"

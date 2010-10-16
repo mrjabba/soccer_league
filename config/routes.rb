@@ -1,4 +1,5 @@
-SampleApp::Application.routes.draw do
+SoccerleagueApp::Application.routes.draw do
+#SampleApp::Application.routes.draw do
 
   get "teamstats/new"
 

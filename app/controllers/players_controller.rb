@@ -9,11 +9,18 @@ class PlayersController < ApplicationController
 
   def show
     @player = Player.find(params[:id])
+    @playerstats = Playerstat.find_all_by_player_id(params[:id])
+
     @title = "View Player | " + @player.firstname + " " + @player.lastname
   end
 
   def edit
     @player = Player.find(params[:id])
+    
+    if(params[:new]) 
+      @player.playerstats.build
+    end
+
     @title = "Edit player"
   end
   

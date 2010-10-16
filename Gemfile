@@ -13,6 +13,7 @@ group :development do
 	gem 'rspec-rails', '2.0.0.beta.18'
 	gem 'annotate-models', '1.0.4'
   gem 'faker', '0.3.1'
+  gem "rails-erd"
 end
 
 #you may want to go to beta.22 soon

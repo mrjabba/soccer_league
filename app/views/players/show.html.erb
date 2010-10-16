@@ -1,6 +1,6 @@
 
 <h1><%= @player.firstname %> <%= @player.lastname %></h1>
-<%= link_to "Edit", @player.id.to_s + "/edit"  %>
+<%= link_to "Edit", @player.id.to_s + "/edit"  %> - <%= link_to "Add Playerstat", @player.id.to_s + "/edit?new=true"  %>
 
   <div class="field">
     <label>Position </label>
@@ -22,4 +22,35 @@
     <label>Previous Club </label>
     <span><%= @player.previous_club %> </span>
   </div>
+
+
+<div>
+<strong>Playerstats count: </strong> <%= @player.playerstats.count %>
+
+<% unless @playerstats.empty? %>
+
+
+  <table id="playerstats_table">
+  <tr>
+  <th title="League">League</th>
+  <th title="Year">Year</th>
+  <th title="Club">Club</th>
+  <th title="Goals">Goals</th>
+  <th title="Assists">Assists</th>
+  <th title="Shots">Shots</th>
+  <th title="Fouls">Fouls</th>
+  <th title="Cautions">Cautions</th>
+  <th title="Ejections">Ejections</th>
+  <th title="Minutes">Minutes</th>
+  <th title="Saves">Saves</th>
+  </tr>
+  
+  
+    <%= render @playerstats %>
+  </table>
+<% end %>
+</div>
+
+
+
 

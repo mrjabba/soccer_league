@@ -1,0 +1,13 @@
+  <% f.fields_for :playerstats do |c| %>
+  <tr>
+  <td><%= c.select :teamstat_id, Teamstat.all.collect { |t| [ t.league.name + " (#{t.league.year}) " + t.team.name, t.id ] } %></td>
+  <td><%= c.text_field :goals, :size => 3 %></td>
+  <td><%= c.text_field :assists, :size => 3 %></td>
+  <td><%= c.text_field :shots, :size => 3 %></td>
+  <td><%= c.text_field :fouls, :size => 3 %></td>
+  <td><%= c.text_field :yellow_cards, :size => 3 %></td>
+  <td><%= c.text_field :red_cards, :size => 3 %></td>
+  <td><%= c.text_field :minutes, :size => 3 %></td>
+  <td><%= c.text_field :saves, :size => 3 %></td>
+  </tr>
+  <% end %>

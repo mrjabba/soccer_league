@@ -1,10 +1,6 @@
 class Teamstat < ActiveRecord::Base
- # attr_accessible :points, :wins, :losses, :ties, :goals_for, :goals_against, :games_played
   attr_accessible :points, :wins, :losses, :ties, :goals_for, :goals_against, :games_played, :team_id
 
-  #def initialize(league)
-  #  :league_id = league
-  #end
 =begin
   validates :wins, :presence => true
   validates :losses, :presence => true

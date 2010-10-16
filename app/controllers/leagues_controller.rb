@@ -9,7 +9,6 @@ class LeaguesController < ApplicationController
   def show
     @league = League.find(params[:id])
     @teamstats = Teamstat.find_all_by_league_id(params[:id])
-    #TODO you r gonna need a join here to get team name????
     #@teams = Team.find_all_by_id(@teamstats)
     
   end
