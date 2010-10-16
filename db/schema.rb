@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101016002549) do
+ActiveRecord::Schema.define(:version => 20101016162520) do
 
   create_table "leagues", :force => true do |t|
     t.string   "name"
@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(:version => 20101016002549) do
     t.string   "position"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "jersey_number"
     t.date     "birth_date"
     t.string   "nationality"
     t.string   "previous_club"
@@ -44,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20101016002549) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "teamstat_id"
+    t.integer  "jersey_number"
   end
 
   add_index "playerstats", ["player_id"], :name => "index_playerstats_on_player_id"

@@ -6,11 +6,10 @@ describe Teamstat do
 
     @league = Factory(:league)
     @team = Factory(:team)
-    #@attr = { :team_id => @team }
 
-    @attr = { :points => 5, :wins => 2, :losses => 1, 
+    @attr = { :wins => 2, :losses => 1, 
           :ties => 1, :goals_for => 4, 
-          :goals_against => 2, :games_played => 4 }
+          :goals_against => 2 }
           #, :team_id => @team
   end
 
@@ -45,8 +44,38 @@ describe Teamstat do
       Teamstat.new(@attr).should_not be_valid      
     end
     
-    it "should require non wins" do
-      @league.teamstats.build(:wins => nil).should_not be_valid
+    it "should require wins" do
+      @league.teamstats.build(@attr.merge(:wins => nil)).should_not be_valid
+    end
+
+    it "should require losses" do
+      @league.teamstats.build(@attr.merge(:losses => nil)).should_not be_valid
+    end
+
+    it "should require ties" do
+      @league.teamstats.build(@attr.merge(:ties => nil)).should_not be_valid
+    end
+
+    it "should require goals_for" do
+      @league.teamstats.build(@attr.merge(:goals_for => nil)).should_not be_valid
+    end
+
+    it "should require goals_against" do
+      @league.teamstats.build(@attr.merge(:goals_against => nil)).should_not be_valid
+    end
+
+    it "should require games_played" do
+      @league.teamstats.build(@attr.merge(:games_played => nil)).should_not be_valid
+    end
+
+    it "should calculate points" do
+      @league.teamstats.build(@attr.merge(:wins => 3, :ties => 2))
+      @league.teamstats[0].points.should == 11
+    end
+
+    it "should calculate games played" do
+      @league.teamstats.build(@attr.merge(:wins => 3, :losses => 2, :ties => 1))
+      @league.teamstats[0].games_played.should == 6
     end
     
   end

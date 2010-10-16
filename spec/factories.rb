@@ -14,7 +14,6 @@ Factory.define :player do |player|
   player.firstname                  "Fred"
   player.lastname                  "Flintstone"
   player.position                  "Midfielder"
-  player.jersey_number                  10
   player.birth_date                  "09/22/1981"
   player.nationality                  "USA"
   player.previous_club                  "Some Other Club"
@@ -41,16 +40,3 @@ Factory.define :league do |league|
   league.year                 2002
   league.name                 "my soccer league"
 end
-
-Factory.define :teamstat do |teamstat|
-  teamstat.points      3
-  teamstat.wins      1
-  teamstat.losses      2
-  teamstat.ties      0
-  teamstat.goals_for      4
-  teamstat.goals_against      2
-  teamstat.games_played      3
-  teamstat.association  :league
-  teamstat.association  :team
-end
-

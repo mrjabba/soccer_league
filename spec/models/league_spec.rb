@@ -27,6 +27,4 @@ describe League do
   end  
 
   
-
-  
 end

@@ -62,7 +62,7 @@ describe PlayersController do
       before(:each) do
         #@attr = { :firstname => "John", :lastname => "Doe", :position => "Defender"}
         @attr = { :firstname => "Jamie", :lastname => "Watson", :position => "Forward" , 
-        :jersey_number => 10, :birth_date => "02/10/1978", :nationality => "USA", 
+        :birth_date => "02/10/1978", :nationality => "USA", 
         :previous_club => "Real Salt Lake"}
         
       end
@@ -74,7 +74,6 @@ describe PlayersController do
         @player.firstname.should  == player.firstname
         @player.lastname.should  == player.lastname
         @player.position.should  == player.position
-        @player.jersey_number.should  == player.jersey_number
         @player.birth_date.should  == player.birth_date
         @player.nationality.should  == player.nationality
         @player.previous_club.should  == player.previous_club

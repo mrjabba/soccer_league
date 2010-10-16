@@ -8,4 +8,8 @@ class Team < ActiveRecord::Base
 
   has_one    :teamstat
 
+  #TODO validate phone is a valid phone format?
+  #TODO validate email is a valid email format?
+  
+
 end

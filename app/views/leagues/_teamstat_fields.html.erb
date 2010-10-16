@@ -1,8 +1,6 @@
   <% f.fields_for :teamstats do |c| %>
   <tr>
   <td><%= c.select :team_id, Team.all.collect { |t| [ t.name, t.id ] } %></td>
-  <td><%= c.text_field :points, :size => 3 %></td>
-  <td><%= c.text_field :games_played, :size => 3 %></td>
   <td><%= c.text_field :wins, :size => 3 %></td>
   <td><%= c.text_field :losses, :size => 3 %></td>
   <td><%= c.text_field :ties, :size => 3 %></td>
