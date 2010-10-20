@@ -20,6 +20,7 @@ end
 group :test do
 	gem 'rspec', '2.0.0.beta.18'
 	gem 'factory_girl_rails', '1.0'	
+  gem 'simplecov', '>= 0.3.5', :require => false # Will install simplecov-html as a dependency
 end
 
 # Use unicorn as the web server
