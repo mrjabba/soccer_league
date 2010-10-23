@@ -40,3 +40,8 @@ Factory.define :league do |league|
   league.year                 2002
   league.name                 "my soccer league"
 end
+
+#Factory.define :match do |match|
+  #TODO not sure if we want to do this
+#end
+

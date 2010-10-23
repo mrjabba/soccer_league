@@ -3,8 +3,10 @@ require 'spec_helper'
 describe Playerstat do
 
  before(:each) do
+    #@match = Factory(:match)
     @player = Factory(:player)
     @attr = { :goals => 1 }
+    
   end
 
   it "should create a new instance given valid attributes" do
@@ -25,6 +27,12 @@ describe Playerstat do
       @playerstat.player_id.should == @player.id
       @playerstat.player.should == @player
     end
+
+    it "should have the right associated match" do
+     # @playerstat.match_id.should == @match.id
+     # @playerstat.match.should == @match
+    end
+
   end  
   
   describe "validations" do
