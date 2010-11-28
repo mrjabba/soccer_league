@@ -62,5 +62,8 @@ Factory.define :roster do |roster|
   roster.teamstat { |teamstat|  teamstat.association(:teamstat) }
 end
 
-#Factory.define :match do |match|
-#end
+Factory.define :game do |game|
+  game.league { |league|  league.association(:league) }
+  game.visiting_team { |visiting_team|  visiting_team.association(:team, :name => Factory.next(:name))  }
+  game.home_team { |home_team|  home_team.association(:team, :name => Factory.next(:name))  }
+end

@@ -5,7 +5,22 @@ class Playerstat < ActiveRecord::Base
   belongs_to :player
   belongs_to :team
   belongs_to :game
-  
+
+  validates :game_id, :presence => true
+  validates :team_id, :presence => true
+  validates :player_id, :presence => true
+
+  #TODO ensure these are whole numbers?
+  validates_numericality_of :jersey_number, :greater_than_or_equal_to => 0
+  validates_numericality_of :goals, :greater_than_or_equal_to => 0
+  validates_numericality_of :assists, :greater_than_or_equal_to => 0
+  validates_numericality_of :shots, :greater_than_or_equal_to => 0
+  validates_numericality_of :fouls, :greater_than_or_equal_to => 0
+  validates_numericality_of :yellow_cards, :greater_than_or_equal_to => 0
+  validates_numericality_of :red_cards, :greater_than_or_equal_to => 0
+  validates_numericality_of :minutes, :greater_than_or_equal_to => 0
+  validates_numericality_of :saves, :greater_than_or_equal_to => 0
+
   def init_stats
     #init valus to 0 if nil. this is too long. find a better "ruby" way to handle this
     if jersey_number.blank?

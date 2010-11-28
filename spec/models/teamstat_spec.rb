@@ -3,33 +3,25 @@ require 'spec_helper'
 describe Teamstat do
 
   before(:each) do
-
     @league = Factory(:league)
     @team = Factory(:team)
-
-    @attr = { :wins => 2, :losses => 1, 
-          :ties => 1, :goals_for => 4, 
-          :goals_against => 2 }
-          #, :team_id => @team
+    @attr = { :league_id => @league,
+          :team_id => @team }
   end
-
 
   it "should create a new instance given valid attributes" do
-    #TODO is there a 1 line way to do this? try again. i may have fixed this in the model (less restrictive)
-    #@league.teamstats.create!(@attr)
-    @teamstat = @league.teamstats.create(@attr)
-    @teamstat.team = @team
-    @teamstat.save
+    Teamstat.create!(@attr)
   end
 
-  describe "league associations" do
+  describe "validate associations" do
 
     before(:each) do
-      @teamstat = @league.teamstats.create(@attr)
+      @teamstat = Teamstat.create!(@attr)
     end
       
-    it "should have a league attribute" do
+    it "should have the right attributes" do
       @teamstat.should respond_to(:league)
+      @teamstat.should respond_to(:team)
     end
   
     it "should have the right associated league" do
@@ -37,47 +29,52 @@ describe Teamstat do
       @teamstat.league.should == @league
     end
   
+    it "should have the right associated team" do
+      @teamstat.team_id.should == @team.id
+      @teamstat.team.should == @team
+    end
+  
   end
 
   describe "validations" do
-    it "should require a league id" do
-      Teamstat.new(@attr).should_not be_valid      
+    describe "success" do
+      it "should accept content that is a number greater than or equal to zero" do
+        Teamstat.new(@attr.merge(:wins => "1")).should be_valid
+        Teamstat.new(@attr.merge(:losses => "5")).should be_valid
+        Teamstat.new(@attr.merge(:ties => "12")).should be_valid
+        Teamstat.new(@attr.merge(:goals_for => "0")).should be_valid
+        Teamstat.new(@attr.merge(:goals_against => "1000")).should be_valid
+     end
     end
     
-    it "should require wins" do
-      @league.teamstats.build(@attr.merge(:wins => nil)).should_not be_valid
-    end
+    describe "failure" do
+      it "should reject non-numeric content and numbers less than zero" do
+        Teamstat.new(@attr.merge(:wins => "-1")).should_not be_valid
+        Teamstat.new(@attr.merge(:losses => "foo")).should_not be_valid
+        Teamstat.new(@attr.merge(:ties => "foo")).should_not be_valid
+        Teamstat.new(@attr.merge(:goals_for => "foo")).should_not be_valid
+        Teamstat.new(@attr.merge(:goals_against => "foo")).should_not be_valid
+      end
+      
+      it "should require a league id" do
+        Teamstat.new(@attr.merge(:league_id => nil)).should_not be_valid      
+      end
 
-    it "should require losses" do
-      @league.teamstats.build(@attr.merge(:losses => nil)).should_not be_valid
+      it "should require a team id" do
+        Teamstat.new(@attr.merge(:team_id => nil)).should_not be_valid      
+      end
     end
-
-    it "should require ties" do
-      @league.teamstats.build(@attr.merge(:ties => nil)).should_not be_valid
-    end
-
-    it "should require goals_for" do
-      @league.teamstats.build(@attr.merge(:goals_for => nil)).should_not be_valid
-    end
-
-    it "should require goals_against" do
-      @league.teamstats.build(@attr.merge(:goals_against => nil)).should_not be_valid
-    end
-
-    it "should require games_played" do
-      @league.teamstats.build(@attr.merge(:games_played => nil)).should_not be_valid
-    end
-
+    
+  end
+  
+  describe "calculations" do
     it "should calculate points" do
-      @league.teamstats.build(@attr.merge(:wins => 3, :ties => 2))
-      @league.teamstats[0].points.should == 11
+      Teamstat.new(@attr.merge(:wins => 3, :ties => 2)).points.should == 11
     end
 
     it "should calculate games played" do
-      @league.teamstats.build(@attr.merge(:wins => 3, :losses => 2, :ties => 1))
-      @league.teamstats[0].games_played.should == 6
+      Teamstat.new(@attr.merge(:wins => 3, :losses => 2 , :ties => 1)).games_played.should == 6
     end
-    
   end
 
 end

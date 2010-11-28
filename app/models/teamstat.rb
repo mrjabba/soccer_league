@@ -11,6 +11,14 @@ class Teamstat < ActiveRecord::Base
   #TODO verify. Are rosters lazy loaded? (performance)
   has_many :rosters
 
+  #TODO ensure these are whole numbers?
+  validates_numericality_of :wins, :greater_than_or_equal_to => 0
+  validates_numericality_of :losses, :greater_than_or_equal_to => 0
+  validates_numericality_of :ties, :greater_than_or_equal_to => 0
+  validates_numericality_of :goals_for, :greater_than_or_equal_to => 0
+  validates_numericality_of :goals_against, :greater_than_or_equal_to => 0
+
+
   def points
     #TODO do we want to make this formula configurable? tournaments may choose to use a diff calculation on points?
     points = wins * 3 + ties
