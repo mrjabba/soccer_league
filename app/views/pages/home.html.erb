@@ -1,13 +1,21 @@
-<h1>Soccer League Manager</h1>
+<h1>Welcome!</h1>
 
-<p>
+<div class="flash info">
   Soccer League Manager puts league management into your hands. Currently, this application is under a lot of development and 
   will be changing frequently. Feel free to try it out. Just keep in mind it is not feature complete. And, data will not be saved.
-</p>
+</div>
 <p>
-  <% if signed_in? %>
-    <strong><%= link_to "Browse Leagues", leagues_path %></strong>
+  <% if signed_in? %>  
+    <div class="actions">
+      <nav class="round">
+        <ul>
+          <li><%= link_to "Leagues", leagues_path, :class => "action_button round" %></li>
+          <li><%= link_to "Teams", teams_path, :class => "action_button round" %></li>
+          <li><%= link_to "Players", players_path, :class => "action_button round" %></li>
+        </ul>
+      </nav>
+    </div>
   <% end %>
 </p>
 
-<%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
+<%= link_to "Sign up", signup_path, :class => "signup_button round" %>

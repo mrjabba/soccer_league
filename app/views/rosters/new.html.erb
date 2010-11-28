@@ -1,0 +1,22 @@
+<h3><%= link_to "#{@teamstat.league.name} (#{@teamstat.league.year})", "/leagues/#{@teamstat.league.id}" %>
+- <%= link_to "#{@teamstat.team.name}", "/teamstats/#{@teamstat.id}" %> - Add a Player</h3>
+
+<p>
+
+<%= form_for(@roster) do |f| %>
+  
+    <%= f.select :player_id, Player.order("lastname").collect { |t| [ "#{t.firstname} #{t.lastname} (#{t.position})", t.id ] } %>
+    <%= f.hidden_field :teamstat_id %>
+
+  <div class="actions">
+    <%= f.submit "Add Player to Team" %>
+    <input type="button" id="cancelTeamPlayerAdd" value="Cancel"/>
+  </div>
+
+<div id="team_help">
+Can't find your player? You need to <%= link_to "create your player first", players_path %>. Then add your player to the team.
+</div>
+
+<% end %>
+
+</p>

@@ -1,7 +1,6 @@
 <tr>
-<td><%= playerstat.teamstat.league.name %></td>
-<td><%= playerstat.teamstat.league.year %></td>
-<td><%= playerstat.teamstat.team.name %></td>
+<td><%= link_to playerstat.team.name, "../teams/" + playerstat.team.id.to_s %> </td>
+<td><%= link_to "#{playerstat.player.firstname} #{playerstat.player.lastname}", "../players/" + playerstat.player.id.to_s %> </td>
 <td><%= playerstat.goals %></td>
 <td><%= playerstat.assists %></td>
 <td><%= playerstat.shots %></td>
@@ -11,6 +10,14 @@
 <td><%= playerstat.minutes %></td>
 <td><%= playerstat.saves %></td>
 <td><%= playerstat.jersey_number %></td>
+<% if signed_in? %>
+<td>
+    <%= link_to "Remove", playerstat, :method => :delete,
+                                     :confirm => "Remove this player?",
+                                     :title => "Remove",
+                                     :class => "action_button_nar round" %>
+</td>
+<% end %>
 </tr>
 
 

@@ -1,0 +1,60 @@
+
+<h3><%= link_to "#{@game.league.name} (#{@game.league.year})", "/leagues/#{@game.league.id}" %> 
+- <%= link_to "All Games", "../games?league_id=#{@game.league.id}" %> - Game Details</h3>
+
+<% if signed_in? %>
+<div class="actions">
+  <nav class="round">
+    <ul>
+      <li><%= link_to "Manage Game Stats", "#{@game.id}/edit", :class => "action_button_wide round"  %></li>
+    </ul>
+  </nav>
+</div>
+<% end %>
+
+  <table id="gamedetails_table" class="grid_shaded">
+  <tr>
+    <th>Visiting Team</th>
+    <td><%= @game.visiting_team.name %></td>
+    <% if signed_in? %>
+      <td><%= link_to "Add Player", "/playerstats/new?game_id=#{@game.id}&team_id=#{@game.home_team.id}", :class => "action_button_wide round" %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <th>Home Team</th>
+    <td><%= @game.home_team.name %></td>
+    <% if signed_in? %>
+      <td><%= link_to "Add Player", "/playerstats/new?game_id=#{@game.id}&team_id=#{@game.home_team.id}", :class => "action_button_wide round" %></td>
+    <% end %>
+  </tr>
+  </table>
+
+  <div class="tfield">
+    <label>Game Completed?</label>
+    <span><%= @game.completed %></span>
+  </div>
+
+<strong>Game Roster count: </strong> <%= @game.playerstats.count %>
+
+<% unless @game.playerstats.empty? %>
+
+  <table id="playerstats_table" class="grid_shaded">
+  <tr>
+  <th title="Club">Club</th>
+  <th title="Player">Player</th>
+  <th title="Goals">Goals</th>
+  <th title="Assists">Assists</th>
+  <th title="Shots">Shots</th>
+  <th title="Fouls">Fouls</th>
+  <th title="Cautions">Cautions</th>
+  <th title="Ejections">Ejections</th>
+  <th title="Minutes">Minutes</th>
+  <th title="Saves">Saves</th>
+  <th title="Jersey Number">Jersey</th>
+  </tr>
+  
+    <%= render @game.playerstats %>
+  
+  </table>
+<% end %>
+

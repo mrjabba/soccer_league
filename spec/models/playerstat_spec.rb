@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Playerstat do
 
  before(:each) do
-    #@match = Factory(:match)
+    #@game = Factory(:game)
     @player = Factory(:player)
     @attr = { :goals => 1 }
     
@@ -19,8 +19,10 @@ describe Playerstat do
       @playerstat = @player.playerstats.create(@attr)
     end
 
-    it "should have a player attribute" do
+    it "should have the right attributes" do
       @playerstat.should respond_to(:player)
+      @playerstat.should respond_to(:game)
+      @playerstat.should respond_to(:team)
     end
 
     it "should have the right associated player" do
@@ -28,9 +30,9 @@ describe Playerstat do
       @playerstat.player.should == @player
     end
 
-    it "should have the right associated match" do
-     # @playerstat.match_id.should == @match.id
-     # @playerstat.match.should == @match
+    it "should have the right associated game" do
+     # @playerstat.game_id.should == @game.id
+     # @playerstat.game.should == @game
     end
 
   end  
@@ -42,9 +44,6 @@ describe Playerstat do
     end
 =end
     
-    it "should require content" do
-      @player.playerstats.build(:goals => nil).should_not be_valid
-    end
 =begin
     it "should reject non-numeric content" do
       @player.playerstats.build(:goals => "foo").should_not be_valid

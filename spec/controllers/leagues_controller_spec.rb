@@ -21,22 +21,21 @@ describe LeaguesController do
           :ties => 1, :goals_for => 1, 
           :goals_against => 1, :games_played => 1 }
     
-#      Teamstat.create!(:league => @league, :team => @team1)
- #     Teamstat.create!(:league => @league, :team => @team2)
-
-      @teamstat1 = Teamstat.create(@attr1)
-      @teamstat2 = Teamstat.create(@attr2)
-      @teamstat1.team = @team1
-      @teamstat2.team = @team2
-      @teamstat1.league = @league
-      @teamstat2.league = @league
-      @teamstat1.save
-      @teamstat2.save
-      
-      get :show, :id => @league
-      
-      response.should have_selector("td", :content => @team1.name)
-      response.should have_selector("td", :content => @team2.name)
+        @teamstat1 = Teamstat.create(@attr1)
+        @teamstat2 = Teamstat.create(@attr2)
+        @teamstat1.team = @team1
+        @teamstat2.team = @team2
+        @teamstat1.league = @league
+        @teamstat2.league = @league
+        @teamstat1.save
+        @teamstat2.save
+        
+        get :show, :id => @league
+    
+        #FIXME - the setup for this should come from a factory now, assuming > 0 matches
+        #FIXME if 0 matches have occurred, it should still display table but with zero state stats     
+        response.should have_selector("td", :content => @team1.name)
+        response.should have_selector("td", :content => @team2.name)
     end
   end
   
@@ -122,10 +121,7 @@ describe LeaguesController do
       
     end
     
-     
-    
   end
-  
 
   describe "POST 'create'" do
       describe "failure" do
@@ -138,7 +134,5 @@ describe LeaguesController do
   describe "DELETE 'destroy'" do
     #should require special admin role
   end
-
-
 
 end

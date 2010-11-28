@@ -19,8 +19,12 @@ Factory.define :player do |player|
   player.previous_club                  "Some Other Club"
 end
 
+Factory.sequence :lastname do |n|
+  "Van Playerson#{n}"
+end
+
 Factory.define :team do |team|
-  team.name                  "Aztex"
+  team.name                  "Austin FC"
   team.address1                  "123 Main St."
   team.address2                  "Apt A"
   team.city                  "Austin"
@@ -35,13 +39,28 @@ Factory.sequence :name do |n|
   "some Team FC-#{n}"
 end
 
-
 Factory.define :league do |league|
   league.year                 2002
   league.name                 "my soccer league"
 end
 
-#Factory.define :match do |match|
-  #TODO not sure if we want to do this
-#end
+Factory.define :teamstat do |teamstat|
+#TODo can we turn off the stats for this since they are calculated on init now?
+  teamstat.wins           0
+  teamstat.losses         0
+  teamstat.ties           0
+  teamstat.goals_for      0
+  teamstat.goals_against  0
+  teamstat.games_played   0
+  teamstat.team { |team|  team.association(:team, :name => Factory.next(:name)) }
+  teamstat.league { |league|  league.association(:league) }
+end
 
+Factory.define :roster do |roster|
+  roster.player { |player|  player.association(:player, :lastname => Factory.next(:lastname)) }
+  #TODO should I do a Factory.next for teamstat factory objects?
+  roster.teamstat { |teamstat|  teamstat.association(:teamstat) }
+end
+
+#Factory.define :match do |match|
+#end

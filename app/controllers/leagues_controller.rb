@@ -1,30 +1,25 @@
 class LeaguesController < ApplicationController
-  before_filter :authenticate, :only => [:edit, :update]
+  before_filter :authenticate, :only => [:create, :edit, :update]
 
   def index
-    @title = "All Leagues"
+    @title = "League Management"
     @leagues = League.paginate(:page => params[:page])
   end
 
   def show
+    @title = "View League"
     @league = League.find(params[:id])
+    @league_games_size = Game.where(:league_id => params[:id]).size
     @teamstats = Teamstat.find_all_by_league_id(params[:id])
-    #@teams = Team.find_all_by_id(@teamstats)
-    
   end
 
   def new
     @title = "New League"
     @league = League.new(:team_id => 1)
-    #@league.teamstats.build
   end
   
   def edit
-    @league = League.find(params[:id])
-    if(params[:new]) 
-      @league.teamstats.build
-    end
-    
+    @league = League.find(params[:id])    
     @title = "Edit league"
   end
 
@@ -40,13 +35,10 @@ class LeaguesController < ApplicationController
   end
 
   def create
-    #return render :text => "The object is " + params.to_s
-    logger.debug "zzzzzzzzzzzzzzzzzzzz The object is " + params.to_s
     @league = League.new(params[:league])
     if @league.save
       flash[:success] = "League created successfully!"
       redirect_to @league
-      #redirect_to user_path(@user)
     else 
       @title = "New League"
       render 'new'

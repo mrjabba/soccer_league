@@ -26,30 +26,10 @@
     <%= f.label :previous_club %><br />
     <%= f.text_field :previous_club %>
   </div>
-  
-  <% unless @player.playerstats.empty? %>
-    <table id="playerstats_table">
-    <tr>
-    <th title="League/Club">League/Club</th>
-    <th title="Goals">Goals</th>
-    <th title="Assists">Assists</th>
-    <th title="Shots">Shots</th>
-    <th title="Fouls">Fouls</th>
-    <th title="Cautions">Cautions</th>
-    <th title="Ejections">Ejections</th>
-    <th title="Minutes">Minutes</th>
-    <th title="Saves">Saves</th>
-    <th title="Jersey Number">Jersey #</th>
-    </tr>
-      <%= render "playerstat_fields", :f => f %>
-    </table>
-  <% end %>  
-  
 
-  
   <div class="actions">
-    <%= f.submit "Update" %>
-    <input type="button" id="cancelPlayerEdit" value="Cancel"/>
+    <%= f.submit "Update", :class => "button round" %>
+    <input type="button" id="cancelPlayerUpdate" value="Cancel" class="button round" />
   </div>
 <% end %>
 

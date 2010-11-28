@@ -4,6 +4,11 @@ describe PlayersController do
  render_views
  
   describe "GET 'new'" do
+
+    before(:each) do
+      test_sign_in(Factory(:user))
+    end
+
     it "should be successful" do
       get 'new'
       response.should be_success
@@ -60,11 +65,9 @@ describe PlayersController do
     
     describe "success" do
       before(:each) do
-        #@attr = { :firstname => "John", :lastname => "Doe", :position => "Defender"}
         @attr = { :firstname => "Jamie", :lastname => "Watson", :position => "Forward" , 
         :birth_date => "02/10/1978", :nationality => "USA", 
-        :previous_club => "Real Salt Lake"}
-        
+        :previous_club => "Real Salt Lake"}        
       end
       
       it "should change the player's attributes" do
@@ -152,9 +155,6 @@ describe PlayersController do
   
   end
 
-
-
-
   describe "POST 'create'" do
       describe "failure" do
       end
@@ -166,7 +166,5 @@ describe PlayersController do
   describe "DELETE 'destroy'" do
     #should require special admin role
   end
-
-
 
 end

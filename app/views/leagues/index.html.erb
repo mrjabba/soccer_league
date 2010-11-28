@@ -1,15 +1,24 @@
-<h1>All Leagues</h1>
+<h1>League Management</h1>
+<div class="flash notice">Leagues contain teams and matches and may be long (season) or short (tournaments/cups). Teams have rosters within a league season. Manage the season lifecycle here.</div>
+
+<div class="actions">
+  <nav class="round">
+    <ul>
+      <% if signed_in? %>
+        <% if APP_CONFIG['allow_multiple_leagues'] %>
+        <li><%= link_to "New League", "leagues/new", :class => "action_button round" %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </nav>
+</div>
 
 <%= will_paginate %>
-
-<ul class="leagues">
+<table id="leagues_table" class="grid_shaded">
+<tr>
+<th title="Name">Name</th>
+<th title="Year">Year</th>
+</tr>
   <%= render @leagues %>
- 
-</ul>
-
-<% if APP_CONFIG['allow_multiple_leagues'] %>
-<%= link_to "New League", "leagues/new" %>
-<% end %>
-
-
+</table>
 <%= will_paginate %>

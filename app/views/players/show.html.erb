@@ -1,6 +1,18 @@
 
 <h1><%= @player.firstname %> <%= @player.lastname %></h1>
-<%= link_to "Edit", @player.id.to_s + "/edit"  %> - <%= link_to "Add Playerstat", @player.id.to_s + "/edit?new=true"  %>
+
+<div class="actions">
+  <nav class="round">
+    <ul>
+      <% if signed_in? %>
+        <li><%= link_to "Edit", "#{@player.id}/edit", :class => "action_button round"  %></li>
+        <li><%= link_to "Add Player", "/players/new", :class => "action_button round" %></li>
+      <% end %>
+      <li><%= link_to "All Players", players_path, :class => "action_button round" %></li>
+    </ul>
+  </nav>
+</div>
+
 
   <div class="field">
     <label>Position </label>
@@ -23,13 +35,13 @@
 <div>
 <strong>Playerstats count: </strong> <%= @player.playerstats.count %>
 
+<div>TODO roll these stats into a per league/year calculation</div>
 <% unless @playerstats.empty? %>
 
 
-  <table id="playerstats_table">
+  <table id="playerstats_table" class="grid_shaded">
   <tr>
-  <th title="League">League</th>
-  <th title="Year">Year</th>
+  <th title="Match">Match</th>
   <th title="Club">Club</th>
   <th title="Goals">Goals</th>
   <th title="Assists">Assists</th>
@@ -39,13 +51,13 @@
   <th title="Ejections">Ejections</th>
   <th title="Minutes">Minutes</th>
   <th title="Saves">Saves</th>
-  <th title="Jersey Number">Jersey #</th>
+  <th title="Jersey Number">Jersey</th>
   </tr>
-  
-  
+    
     <%= render @playerstats %>
   </table>
 <% end %>
+
 </div>
 
 

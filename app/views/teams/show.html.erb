@@ -1,6 +1,16 @@
 
-<h1><%= @team.name %></h1>
-<%= link_to "Edit", @team.id.to_s + "/edit"  %>
+<h1>Team: <%= @team.name %></h1>
+<div class="actions">
+  <nav class="round">
+    <ul>
+      <% if signed_in? %>
+        <li><%= link_to "Edit", "#{@team.id}/edit", :class => "action_button round"  %></li>
+        <li><%= link_to "Add Team", "/teams/new", :class => "action_button round" %></li>
+      <% end %>
+      <li><%= link_to "All Teams", teams_path, :class => "action_button round" %></li>
+    </ul>
+  </nav>
+</div>
 
   <div class="tfield">
     <label>Address1</label>

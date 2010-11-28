@@ -1,0 +1,31 @@
+<h3><%= link_to "All Games", "../games?league_id=#{@game.league.id}" %>
+- <%= link_to "#{@game.visiting_team.name} at #{@game.home_team.name}", "/games/#{@game.id}" %>
+ - Add Player to Game</h3>
+
+<p>
+
+<%= form_for(@playerstat) do |f| %>
+
+  <div>  <strong>This player will be added to the match for <%= @playerstat.team.name %></strong>
+
+  </div>  
+    <%= f.select :player_id, Player.order("lastname").collect { |t| [ "#{t.firstname} #{t.lastname}", t.id ] } %>
+    <%= f.hidden_field :game_id %>
+    <%= f.hidden_field :team_id %>
+
+  <div>You could give the user choice of all players or just from their roster?
+  </div>
+  <div class="actions">
+    <%= f.submit "Add to Game", :class => "button round" %>
+    <input type="button" id="cancelGamePlayerAdd" value="Cancel" class="button round" />
+  </div>
+
+<div id="playerstat_help">
+Can't find your player? You need to <%= link_to "create your player first", players_path %>. Then add your player to the game.
+</div>
+
+
+<% end %>
+
+
+</p>

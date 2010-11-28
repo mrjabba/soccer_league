@@ -1,0 +1,22 @@
+<h3><%= link_to "#{@league.name} (#{@league.year})", "/leagues/#{@league.id}" %> - Add Team to League</h3>
+
+<p>
+
+<%= form_for(@teamstat) do |f| %>
+  
+    <%= f.select :team_id, Team.order("name").collect { |t| [ t.name, t.id ] } %>
+    <%= f.hidden_field :league_id %>
+
+  <div class="actions">
+    <%= f.submit "Add Team", :class => "button round" %>
+    <input type="button" id="cancelLeagueTeamAdd" value="Cancel" class="button round" />
+  </div>
+
+<div id="team_help">
+Can't find your team? You need to <%= link_to "create your team first", teams_path %>. Then add your team to the league.
+</div>
+
+
+<% end %>
+
+</p>

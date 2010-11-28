@@ -1,14 +1,15 @@
 class PlayersController < ApplicationController
-#FIXME add create and new to authenticate
-  before_filter :authenticate, :only => [:edit, :update]
+  before_filter :authenticate, :only => [:new, :create, :edit, :update]
 
   def index
-    @title = "All players"
-    @players = Player.paginate(:page => params[:page])
+    @title = "Player Repository"
+    @players = Player.order("lastname").paginate(:page => params[:page])
   end
 
   def show
     @player = Player.find(params[:id])
+
+    #TODO roll up playerstats into a league/year calculation
     @playerstats = Playerstat.find_all_by_player_id(params[:id])
 
     @title = "View Player | " + @player.firstname + " " + @player.lastname
@@ -16,11 +17,6 @@ class PlayersController < ApplicationController
 
   def edit
     @player = Player.find(params[:id])
-    
-    if(params[:new]) 
-      @player.playerstats.build
-    end
-
     @title = "Edit player"
   end
   
@@ -45,13 +41,11 @@ class PlayersController < ApplicationController
     if @player.save
       flash[:success] = "Player created successfully!"
       redirect_to @player
-      #redirect_to user_path(@user)
     else 
       @title = "New Player"
       render 'new'
     end
-  end  
-  
+  end    
 
   private
 

@@ -2,6 +2,14 @@ require 'spec_helper'
 
 describe "Players" do
 
+  before(:each) do
+    user = Factory(:user)
+    visit signin_path
+    fill_in :email,    :with => user.email
+    fill_in :password, :with => user.password
+    click_button
+  end
+
   describe "adding a player" do
     
     describe "failure" do
@@ -24,8 +32,8 @@ describe "Players" do
         
         
 					visit players_path
-          response.should have_selector('title', :content => "All players")
-          response.should have_selector('h1', :content => "All Players")
+          response.should have_selector('title', :content => "Player Repository")
+          response.should have_selector('h1', :content => "Player Repository")
           response.should have_selector('a', :content => "New Player")
           response.should contain("New Player")
           #why does it find the selector, but it can't click the lnk. 
@@ -43,6 +51,7 @@ describe "Players" do
     end
     
     describe "success" do
+
 			it "should make a new player" do
 				lambda do
 					visit players_path

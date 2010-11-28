@@ -1,12 +1,28 @@
-<h2>League Name: <%= @league.name %></h2>
-<div>Year: <%= @league.year %></div>
+<h3><%= link_to "All Leagues", leagues_path %> - <%= "#{@league.name} (#{@league.year})" %></h3>
+
+<div class="actions">
+  <nav class="round">
+    <ul>
+      <% if signed_in? %>
+        <li><%= link_to "Edit League", "#{@league.id}/edit", :class => "action_button round" %></li>
+        <li><%= link_to "Add Team", "/teamstats/new?league_id=#{@league.id}", :class => "action_button round" %></li>
+        <% unless @teamstats.size < 2 %>
+        <li><%= link_to "Create Game", "/games/new?league_id=#{@league.id}", :class => "action_button round" %></li>
+        <% end %>
+      <% end %>
+      <% unless @league_games_size < 1 %>
+      <li><%= link_to "View Games", "/games?league_id=#{@league.id}", :class => "action_button round" %></li>
+      <% end %>
+    </ul>
+  </nav>
+</div>
 
 <div>
 <strong>Teams in this league: </strong> <%= @league.teamstats.count %>
 
 
 <% unless @teamstats.empty? %>
-  <table id="league_table">
+  <table id="league_table" class="grid_shaded">
   <tr>
   <th title="Club">Club</th>
   <th title="Points">PTS</th>
@@ -23,4 +39,4 @@
 
 </div>
 
-<%= link_to "Edit League", @league.id.to_s + "/edit"  %> - <%= link_to "Add Team", @league.id.to_s + "/edit?new=true"  %>
+

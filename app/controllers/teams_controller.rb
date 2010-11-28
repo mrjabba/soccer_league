@@ -1,10 +1,9 @@
 class TeamsController < ApplicationController
-#FIXME add create and new? to authenticate
-  before_filter :authenticate, :only => [:edit, :update]
+  before_filter :authenticate, :only => [:new, :create, :edit, :update]
 
   def index
-    @title = "All teams"
-    @teams = Team.paginate(:page => params[:page])
+    @title = "Team Repository"
+    @teams = Team.order("name").paginate(:page => params[:page])
   end
 
   def show

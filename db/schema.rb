@@ -10,19 +10,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101023142847) do
+ActiveRecord::Schema.define(:version => 20101125172152) do
 
-  create_table "leagues", :force => true do |t|
-    t.string   "name"
-    t.integer  "year"
+  create_table "games", :force => true do |t|
+    t.integer  "team1_id"
+    t.integer  "team2_id"
+    t.integer  "league_id"
+    t.boolean  "completed",  :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "matches", :force => true do |t|
-    t.integer  "team1_id"
-    t.integer  "team2_id"
-    t.integer  "league_id"
+  create_table "leagues", :force => true do |t|
+    t.string   "name"
+    t.integer  "year"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -50,13 +51,20 @@ ActiveRecord::Schema.define(:version => 20101023142847) do
     t.integer  "player_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "teamstat_id"
     t.integer  "jersey_number"
-    t.integer  "match_id"
+    t.integer  "game_id"
+    t.integer  "team_id"
   end
 
   add_index "playerstats", ["player_id"], :name => "index_playerstats_on_player_id"
-  add_index "playerstats", ["teamstat_id"], :name => "index_playerstats_on_teamstat_id"
+  add_index "playerstats", ["team_id"], :name => "index_playerstats_on_team_id"
+
+  create_table "rosters", :force => true do |t|
+    t.integer  "teamstat_id"
+    t.integer  "player_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "teams", :force => true do |t|
     t.string   "name"

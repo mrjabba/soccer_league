@@ -4,6 +4,11 @@ describe TeamsController do
  render_views
 
   describe "GET 'new'" do
+
+    before(:each) do
+      test_sign_in(Factory(:user))
+    end
+
     it "should be successful" do
       get 'new'
       response.should be_success
@@ -58,10 +63,8 @@ describe TeamsController do
       
     end
 
-
     describe "success" do
       before(:each) do
-      #  @attr = { :name => "SomeSoccerTeam", :address1 => "123 Main St."}
        @attr = { :name => "Austin Aztex", :address1 => "123 Main St.", 
               :address2 => "Apt A", :city => "Austin", :state => "TX",
               :zip => "78704", :phone => "512-123-4567", :website => "http://foo.com", 
@@ -161,8 +164,6 @@ describe TeamsController do
   end
 
 
-
-
   describe "POST 'create'" do
       describe "failure" do
       end
@@ -174,8 +175,5 @@ describe TeamsController do
   describe "DELETE 'destroy'" do
     #should require special admin role
   end
- 
-  
-
 
 end

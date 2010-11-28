@@ -11,23 +11,6 @@
     <%= f.text_field :year %>
   </div>
 
-  <% unless @league.teamstats.empty? %>
-    <table id="league_table">
-    <tr>
-    <th title="Club">Club</th>
-    <th title="Wins">W</th>
-    <th title="Losses">L</th>
-    <th title="Ties">T</th>
-    <th title="Goals For">GF</th>
-    <th title="Goals Against">GA</th>
-    </tr>
-      <%= render "teamstat_fields", :f => f %>
-    </table>
-  <% end %>
-
-<div id="team_help">
-Can't find your team? You need to <%= link_to "create your team first", teams_path %>. Then add your team to the league.
-</div>
 
 
   <div class="actions">

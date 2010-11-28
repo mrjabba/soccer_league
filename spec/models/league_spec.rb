@@ -3,7 +3,7 @@ require 'spec_helper'
 describe League do
 
   before(:each) do
-    @attr = { :name => "USL", :year => 2002 }
+    @attr = { :name => "MLS", :year => 2002 }
   end
 
   it "should create a new instance given valid attributes" do
@@ -25,6 +25,5 @@ describe League do
     long_name_league = League.new(@attr.merge(:name => long_name))
     long_name_league.should_not be_valid
   end  
-
   
 end

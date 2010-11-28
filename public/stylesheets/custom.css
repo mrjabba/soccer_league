@@ -16,10 +16,32 @@ header img {
 }
 
 section {
-  margin-top: 1em;
+  margin-top: 2em;
   font-size: 120%;
-  padding: 20px;
+  padding: 10px;
   background: #fff;
+}
+
+div.top_logo {
+  padding: 5px;
+  background: #fff;
+  height: 55px;
+  width: 325px;
+  display: block;
+  margin-right: auto;
+}
+
+div.top_logo div {
+  text-align: center;
+  font-size: 140%;
+  font-weight: bold;
+  padding-top: 15px;
+}
+
+img.top_logo {
+  float: left;
+  clear: right;
+  margin-right: 10px;
 }
 
 section h1 {
@@ -46,6 +68,7 @@ a:visited {
 
 nav {
   float: right;
+
 }
 
 nav {
@@ -85,9 +108,9 @@ a.signup_button {
   margin-right: auto;
   display: block;
   text-align: center;
-  width: 190px;
+  width: 160px;
   color: #fff;
-  background: #006400;
+  background: #640000;
   font-size: 150%;
   font-weight: bold;
   padding: 20px;
@@ -207,3 +230,60 @@ font-family:Helvetica,Arial,sans-serif;
 font-size:12px;
 }
 
+a.action_button {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 100px;
+  color: #0000ff;
+  background: #eeeeff;
+  font-size: 80%;
+  font-weight: bold;
+  padding: 10px;
+}
+
+a.action_button_nar {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 50px;
+  color: #0000ff;
+  background: #eeeeff;
+  font-size: 80%;
+  font-weight: bold;
+  padding: 5px;
+}
+
+a.action_button_wide {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 150px;
+  color: #0000ff;
+  background: #eeeeff;
+  font-size: 80%;
+  font-weight: bold;
+  padding: 5px;
+}
+
+div.actions nav {
+  text-align: center;
+  float: none;
+}
+
+table.grid_shaded td {
+  border-bottom: 3px solid #eee;
+  border-left: 3px solid #eee;
+}
+
+input.button {
+  text-align: center;
+  width: 100px;
+  background: #eeeeff;
+  font-size: 80%;
+  font-weight: bold;
+  padding: 5px;
+}

@@ -1,12 +1,29 @@
-<h1>All Teams</h1>
+<h1>Team Repository</h1>
+<div class="flash notice">Teams play in different leagues over various seasons. And, they also play in tournaments and cups. 
+Manage basic team profile information here.</div>
+
+<% if signed_in? %>
+<div class="actions">
+  <nav class="round">
+    <ul>
+      <li><%= link_to "New Team", "teams/new", :class => "action_button round" %></li>
+    </ul>
+  </nav>
+</div>
+<% end %>
+
 
 <%= will_paginate %>
 
-<ul class="teams">
-  <%= render @teams %>
- 
-</ul>
-<%= link_to "New Team", "teams/new" %>
+  <table id="teams_table" class="grid_shaded">
+  <tr>
+  <th title="Name">Name</th>
+  <th title="City">City</th>
+  <th title="State">State</th>
+  <th title="Zip">Zip</th>
+  </tr>
+    <%= render @teams %>  
+  </table>
 
 
 <%= will_paginate %>

@@ -45,7 +45,7 @@ describe Player do
       @player = Player.create(@attr)
     end
 
-    it "should have a microposts attribute" do
+    it "should have a playerstats attribute" do
       @player.should respond_to(:playerstats)
     end
   end  

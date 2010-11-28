@@ -1,0 +1,21 @@
+<h3><%= link_to "#{@league.name} (#{@league.year})", "/leagues/#{@league.id}" %> - All Games </h3>
+
+<div class="actions">
+  <nav class="round">
+    <ul>
+      <% if signed_in? %>
+        <li><%= link_to "Create Game", "/games/new?league_id=#{@league.id}", :class => "action_button round" %></li>
+      <% end %>
+    </ul>
+  </nav>
+</div>
+
+<%= will_paginate %>
+<table id="games_table" class="grid_shaded">
+<tr>
+<th title="Game">Game</th>
+<th title="Completed">Completed</th>
+</tr>
+  <%= render @games %>
+</table>
+<%= will_paginate %>

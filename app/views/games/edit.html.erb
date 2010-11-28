@@ -1,0 +1,37 @@
+<h3><%= link_to "#{@game.visiting_team.name} at #{@game.home_team.name}", "/games/#{@game.id}" %>
+ - Edit Game</h3>
+
+<%= form_for(@game) do |f| %>
+  <%= render 'shared/error_messages_game', :object => f.object %>
+
+  <div class="field">
+    <%= f.label :completed %>
+    <%= f.check_box :completed %>
+  </div>
+
+  <% unless @game.playerstats.empty? %>
+    <table id="playerstats_table" class="grid_shaded">
+    <tr>
+    <th title="Club">Club</th>
+    <th title="Player">Player</th>
+    <th title="Goals">Goals</th>
+    <th title="Assists">Assists</th>
+    <th title="Shots">Shots</th>
+    <th title="Fouls">Fouls</th>
+    <th title="Cautions">Cautions</th>
+    <th title="Ejections">Ejections</th>
+    <th title="Minutes">Minutes</th>
+    <th title="Saves">Saves</th>
+    <th title="Jersey Number">Jersey</th>
+    </tr>
+      <%= render "playerstat_fields", :f => f %>
+    </table>
+  <% end %>  
+
+
+  <div class="actions">
+    <%= f.submit "Update", :class => "button round" %>
+    <input type="button" id="cancelGameEdit" value="Cancel" class="button round"/>
+  </div>
+<% end %>
+

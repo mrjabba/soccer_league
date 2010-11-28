@@ -15,11 +15,11 @@ describe Teamstat do
 
 
   it "should create a new instance given valid attributes" do
+    #TODO is there a 1 line way to do this? try again. i may have fixed this in the model (less restrictive)
     #@league.teamstats.create!(@attr)
     @teamstat = @league.teamstats.create(@attr)
     @teamstat.team = @team
     @teamstat.save
-    #TODO is there a 1 line way to do this?
   end
 
   describe "league associations" do
