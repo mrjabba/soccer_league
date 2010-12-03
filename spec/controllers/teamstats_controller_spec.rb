@@ -22,6 +22,25 @@ describe TeamstatsController do
 
   end
 
+  describe "GET 'show'" do
+  
+    before(:each) do
+      @roster = Factory(:roster)
+    end
+      
+    it "should be successful with a teamstat(roster)" do
+      get :show, :id => @roster.teamstat
+      response.should be_success
+    end
+
+    it "should have the right title" do
+      get :show, :id => @roster.teamstat
+      response.should have_selector("title", 
+          :content => "View Roster | #{@roster.teamstat.league.name} | #{@roster.teamstat.league.year} | #{@roster.teamstat.team.name}")
+    end
+
+  end
+
   describe "DELETE 'destroy'" do
     before(:each) do
       @teamstat = Factory(:teamstat)
@@ -79,7 +98,7 @@ describe TeamstatsController do
        @attr = { :league_id => @league } 
       end
 
-      it "should render the 'edit' page" do
+      it "should render the 'new' page" do
         post :create, :teamstat => @attr
         response.should render_template('new')        
       end

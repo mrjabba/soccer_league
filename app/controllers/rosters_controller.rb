@@ -2,7 +2,6 @@ class RostersController < ApplicationController
   before_filter :authenticate, :only => [:new, :create, :destroy]
 
   def new
-    #TODO write test for new
     @title = "New Roster Player"
     @teamstat = Teamstat.find(params[:teamstat_id])
     @roster = Roster.new()

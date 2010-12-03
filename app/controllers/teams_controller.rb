@@ -12,7 +12,6 @@ class TeamsController < ApplicationController
   end
 
   def edit
-    #needs test
     @team = Team.find(params[:id])
     @title = "Edit team"
   end
@@ -29,13 +28,11 @@ class TeamsController < ApplicationController
   end
 
   def new
-    #needs test
     @title = "New Team"
     @team = Team.new
   end
 
   def create
-    #needs test
     @team = Team.new(params[:team])
     if @team.save
       flash[:success] = "Team created successfully!"

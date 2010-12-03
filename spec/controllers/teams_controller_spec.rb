@@ -166,8 +166,53 @@ describe TeamsController do
 
   describe "POST 'create'" do
       describe "failure" do
+
+        before(:each) do
+        test_sign_in(Factory(:user))
+         @attr = { :name => "", :address1 => ""} 
+        end
+
+        it "should not create a team" do
+          lambda do
+            post :create, :team => @attr
+          end.should_not change(Team, :count)
+        end
+
+        it "should have the right title" do
+          post :create, :team => @attr
+          response.should have_selector("title", :content => "New Team")
+        end
+
+        it "should render the 'new' page" do
+          post :create, :team => @attr
+          response.should render_template('new')
+        end  
+        
       end
+      
       describe "success" do
+
+        before(:each) do
+        test_sign_in(Factory(:user))
+         @attr = { :name => "name", :address1 => "123 main"} 
+        end
+
+        it "should create a team" do
+          lambda do
+            post :create, :team => @attr
+          end.should change(Team, :count).by(1)
+        end
+
+        it "should redirect to the team show page" do
+          post :create, :team => @attr
+          response.should redirect_to(team_path(assigns(:team)))
+        end   
+        
+        it "should have a flash message" do
+          post :create, :team => @attr
+          flash[:success].should =~ /Team created successfully/
+        end
+
       end
 
   end

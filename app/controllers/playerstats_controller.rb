@@ -2,7 +2,6 @@ class PlayerstatsController < ApplicationController
   before_filter :authenticate, :only => [:new, :create, :destroy]
 
   def new
-    #TODO write a test for new here
     @title = "New Playerstat"
     @game = Game.find(params[:game_id])
     @team = Team.find(params[:team_id])
@@ -12,7 +11,6 @@ class PlayerstatsController < ApplicationController
   end
 
   def create
-    #TODO write a test for new here
     @game = Game.find(params[:playerstat][:game_id])
     @team = Team.find(params[:playerstat][:team_id])
     @playerstat = Playerstat.new(params[:playerstat])
@@ -29,7 +27,6 @@ class PlayerstatsController < ApplicationController
   end 
 
   def destroy
-    #TODO write a test for destroy here
     #TODO remove a player from a match. only allow 
     #when completed = false for the match?
     @playerstat = Playerstat.find(params[:id])

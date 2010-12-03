@@ -125,8 +125,52 @@ describe LeaguesController do
 
   describe "POST 'create'" do
       describe "failure" do
+      
+        before(:each) do
+        test_sign_in(Factory(:user))
+         @attr = { :name => "", :year => "" } 
+        end
+
+        it "should not create a league" do
+          lambda do
+            post :create, :league => @attr
+          end.should_not change(League, :count)
+        end
+
+        it "should have the right title" do
+          post :create, :league => @attr
+          response.should have_selector("title", :content => "New League")
+        end
+
+        it "should render the 'new' page" do
+          post :create, :league => @attr
+          response.should render_template('new')
+        end         
       end
+      
       describe "success" do
+
+        before(:each) do
+        test_sign_in(Factory(:user))
+         @attr = { :name => "foo", :year => "2010" } 
+        end
+
+        it "should create a league" do
+          lambda do
+            post :create, :league => @attr
+          end.should change(League, :count).by(1)
+        end
+
+        it "should redirect to the league show page" do
+          post :create, :league => @attr
+          response.should redirect_to(league_path(assigns(:league)))
+        end   
+        
+        it "should have a flash message" do
+          post :create, :league => @attr
+          flash[:success].should =~ /League created successfully/
+        end
+
       end
 
   end

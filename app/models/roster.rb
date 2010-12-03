@@ -4,4 +4,7 @@ class Roster < ActiveRecord::Base
   belongs_to :teamstat
   belongs_to :player
 
+  validates :teamstat_id, :presence => true
+  validates :player_id, :presence => true
+
 end

@@ -9,7 +9,6 @@ class TeamstatsController < ApplicationController
   end
 
   def show
-    #TODO add test for this action
     @teamstat = Teamstat.find(params[:id]) 
     @roster = Roster.find_all_by_teamstat_id(params[:id])
     @league = @teamstat.league

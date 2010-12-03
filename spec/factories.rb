@@ -45,7 +45,7 @@ Factory.define :league do |league|
 end
 
 Factory.define :teamstat do |teamstat|
-#TODo can we turn off the stats for this since they are calculated on init now?
+#TODO can we turn off the stats for this since they are calculated on init now?
   teamstat.wins           0
   teamstat.losses         0
   teamstat.ties           0
@@ -55,6 +55,23 @@ Factory.define :teamstat do |teamstat|
   teamstat.team { |team|  team.association(:team, :name => Factory.next(:name)) }
   teamstat.league { |league|  league.association(:league) }
 end
+
+Factory.define :playerstat do |playerstat|
+#TODO can we turn off the stats for this since they are calculated on init now?
+  playerstat.goals           0
+  playerstat.assists           0
+  playerstat.shots           0
+  playerstat.jersey_number           0
+  playerstat.fouls           0
+  playerstat.yellow_cards           0
+  playerstat.red_cards           0
+  playerstat.minutes           0
+  playerstat.saves           0
+  playerstat.player { |player|  player.association(:player) }
+  playerstat.game { |game|  game.association(:game) }
+  playerstat.team { |team|  team.association(:team) }
+end
+
 
 Factory.define :roster do |roster|
   roster.player { |player|  player.association(:player, :lastname => Factory.next(:lastname)) }

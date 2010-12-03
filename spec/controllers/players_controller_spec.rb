@@ -157,8 +157,53 @@ describe PlayersController do
 
   describe "POST 'create'" do
       describe "failure" do
+
+        before(:each) do
+        test_sign_in(Factory(:user))
+         @attr = { :firstname => "", :lastname => "", :position => "" } 
+        end
+
+        it "should not create a player" do
+          lambda do
+            post :create, :player => @attr
+          end.should_not change(Player, :count)
+        end
+
+        it "should have the right title" do
+          post :create, :player => @attr
+          response.should have_selector("title", :content => "New Player")
+        end
+
+        it "should render the 'new' page" do
+          post :create, :player => @attr
+          response.should render_template('new')
+        end   
+
       end
+
       describe "success" do
+
+        before(:each) do
+        test_sign_in(Factory(:user))
+         @attr = { :firstname => "first", :lastname => "last", :position => "MF" } 
+        end
+
+        it "should create a user" do
+          lambda do
+            post :create, :player => @attr
+          end.should change(Player, :count).by(1)
+        end
+
+        it "should redirect to the player show page" do
+          post :create, :player => @attr
+          response.should redirect_to(player_path(assigns(:player)))
+        end   
+        
+        it "should have a flash message" do
+          post :create, :player => @attr
+          flash[:success].should =~ /Player created successfully/
+        end
+
       end
 
   end
