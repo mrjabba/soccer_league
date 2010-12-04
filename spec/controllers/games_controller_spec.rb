@@ -3,6 +3,24 @@ require 'spec_helper'
 describe GamesController do
  render_views
 
+  describe "GET 'index'" do
+
+    before(:each) do
+      @league = Factory(:league)
+    end
+  
+      it "should require a league and be successful" do
+        get :index, :league_id => @league
+        response.should be_success
+      end
+
+      it "should have the right title" do
+        get :index, :league_id => @league
+        response.should have_selector("title", :content => "All games")
+      end
+
+  end
+
   describe "GET 'new'" do
   
     before(:each) do
