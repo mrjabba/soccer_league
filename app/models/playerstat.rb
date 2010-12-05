@@ -1,6 +1,7 @@
 class Playerstat < ActiveRecord::Base
   attr_accessible :jersey_number, :goals, :assists, :shots, :fouls, :yellow_cards, :red_cards, :minutes, :saves, :game_id, :player_id, :team_id
   before_validation :init_stats
+  before_save :init_stats
 
   belongs_to :player
   belongs_to :team

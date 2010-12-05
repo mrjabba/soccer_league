@@ -1,7 +1,7 @@
 class Game < ActiveRecord::Base
-  attr_accessible :playerstats_attributes, :team1_id, :team2_id, :league_id, :init_players
-#  after_save :team_rosters_to_playerstats_old
-#  after_create :team_rosters_to_playerstats
+  attr_accessible :playerstats_attributes, :team1_id, :team2_id, :league_id, :visiting_team_goals, :home_team_goals
+  before_create :team_rosters_to_playerstats
+  before_update :check_completed
 
   belongs_to :visiting_team,
              :class_name => "Team",
@@ -11,8 +11,9 @@ class Game < ActiveRecord::Base
              :foreign_key => "team2_id"
   belongs_to :league
   
-  has_many :playerstats
-  #has_many :player_stats, :dependent => :destroy
+  has_many :playerstats, :dependent => :destroy
+  validates_associated :playerstats #is this working?
+  
   # or it this more like this????
   # has_many :players, :through => :player_stats
 
@@ -26,38 +27,87 @@ class Game < ActiveRecord::Base
     self.completed = true if game_completed
   end
   
-  
-  def team_rosters_to_playerstats
-    #after game save, grab roster for each team and populate playerstats for the game
-    #this gives the game editor something to work with. 
-    #http://stackoverflow.com/questions/1673433/how-to-insert-into-multiple-tables-in-rails
-    if self.id = nil
-#    if self.init_players?
-
-      teamstat_home = Teamstat.where("league_id = ? AND team_id = ?", self.league.id, self.home_team )
-      roster_home = Roster.where("teamstat_id = ?", teamstat_home[0].id)
-   
-      teamstat_visiting = Teamstat.where("league_id = ? AND team_id = ?", self.league.id, self.visiting_team )
-      roster_visiting = Roster.where("teamstat_id = ?", teamstat_visiting[0].id)
-
-      if roster_visiting.size > 0
-          roster_visiting.each {|roster| 
-#           playerstat = Playerstat.create(:game_id => self.id, :team_id => self.team1_id, :player_id => roster.player.id)
-#           we seem to be failing in here, no game.id? maybe not use create but just add objects? better tests...
-            playerstat = Playerstat.create!(:game_id => self.id, :team_id => self.team1_id, :player_id => roster.player.id)
-           }
-        end
-
-      if roster_home.size > 0
-        roster_home.each {|roster| 
-          playerstat = Playerstat.create!(:game_id => self.id, :team_id => self.team2_id, :player_id => roster.player.id)
-         }
-      end
+  def visiting_team_goals
+    calculate_goals(self.team1_id)
+  end
+ 
+  def home_team_goals
+    calculate_goals(self.team2_id)
+  end
+ 
+  private
     
-    else 
-      #puts "Game is existing, handling update, no roster pull"
+    def calculate_goals(team_value)
+      goals = Playerstat.sum(:goals, :conditions => ["game_id = ? AND team_id = ?", self.id, team_value])
+      if goals != nil
+        goals
+      else
+        0
+      end
+    end
+  
+    def check_completed
+      puts "**** checking that game is completed"
+      if self.completed?
+        
+        teamstat_home = Teamstat.where("league_id = ? AND team_id = ?", self.league.id, self.home_team )
+        teamstat_visiting = Teamstat.where("league_id = ? AND team_id = ?", self.league.id, self.visiting_team )
+        
+        if teamstat_home.size > 0 and teamstat_visiting.size > 0
+          if self.home_team_goals > visiting_team_goals
+            #puts "home team wins"
+            teamstat_home[0].wins += 1
+            teamstat_visiting[0].losses += 1
+          elsif self.home_team_goals < visiting_team_goals
+            #puts "visiting team wins"
+            teamstat_visiting[0].wins += 1
+            teamstat_home[0].losses += 1
+          else 
+            #puts "its a tie"
+            teamstat_home[0].ties += 1
+            teamstat_visiting[0].ties += 1
+          end
+
+          teamstat_home[0].save
+          teamstat_visiting[0].save
+
+        else
+          puts "cant update teamstats unless both teams have teamstat records. TODO validation before game is created?"
+        end
+        
+      end
+      
     end
     
-  end
+    def team_rosters_to_playerstats
+      #after game save, grab roster for each team and populate playerstats for the game
+      #this gives the game editor something to work with. 
+      #http://stackoverflow.com/questions/1673433/how-to-insert-into-multiple-tables-in-rails
+  #    puts "*** running team_rosters_to_playerstats self id"
+
+        teamstat_home = Teamstat.where("league_id = ? AND team_id = ?", self.league.id, self.home_team )
+        teamstat_visiting = Teamstat.where("league_id = ? AND team_id = ?", self.league.id, self.visiting_team )
+
+        if teamstat_home.size > 0
+          roster_home = Roster.where("teamstat_id = ?", teamstat_home[0].id)
+          #puts "kmh roster_home #{roster_home.size}"
+          if roster_home.size > 0
+            roster_home.each {|roster| 
+              self.playerstats.build(:game_id => self.id, :team_id => self.team2_id, :player_id => roster.player.id)
+             }
+          end
+        end
+
+        if teamstat_visiting.size > 0
+          roster_visiting = Roster.where("teamstat_id = ?", teamstat_visiting[0].id)
+          #puts "kmh roster_visiting #{roster_visiting.size}"
+          if roster_visiting.size > 0
+              roster_visiting.each {|roster| 
+                self.playerstats.build(:game_id => self.id, :team_id => self.team1_id, :player_id => roster.player.id)
+               }
+          end
+        end
+      
+    end
 
 end

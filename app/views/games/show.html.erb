@@ -16,13 +16,15 @@
   <tr>
     <th>Visiting Team</th>
     <td><%= @game.visiting_team.name %></td>
+    <td><%= @game.visiting_team_goals %></td>
     <% if signed_in? %>
-      <td><%= link_to "Add Player", "/playerstats/new?game_id=#{@game.id}&team_id=#{@game.home_team.id}", :class => "action_button_wide round" %></td>
+      <td><%= link_to "Add Player", "/playerstats/new?game_id=#{@game.id}&team_id=#{@game.visiting_team.id}", :class => "action_button_wide round" %></td>
     <% end %>
   </tr>
   <tr>
     <th>Home Team</th>
     <td><%= @game.home_team.name %></td>
+    <td><%= @game.home_team_goals %></td>
     <% if signed_in? %>
       <td><%= link_to "Add Player", "/playerstats/new?game_id=#{@game.id}&team_id=#{@game.home_team.id}", :class => "action_button_wide round" %></td>
     <% end %>

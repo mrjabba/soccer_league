@@ -11,6 +11,8 @@ class Team < ActiveRecord::Base
 
   has_one    :teamstat
   has_one    :playerstat
+
   #TODO relationship to game?
+  
 
 end

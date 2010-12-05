@@ -18,9 +18,7 @@ class GamesController < ApplicationController
     #TODO some validation that needs to occur, probably in the model
     # ensure that visting team and home team are not the same id
     # tweak teams query in view to only how teams for THAT league.
-    @league = League.find(params[:game][:league_id])
     @game = Game.new(params[:game])
-
     if @game.save
       flash[:success] = "Game added successfully!"
       
@@ -33,7 +31,7 @@ class GamesController < ApplicationController
     else 
       @title = "New Game"
       @game = Game.new()
-      @game.league = @league
+      @game.league = params[:game][:league_id]
       render 'new'
     end
   end 
