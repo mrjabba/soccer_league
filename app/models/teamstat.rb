@@ -23,6 +23,11 @@ class Teamstat < ActiveRecord::Base
     #TODO do we want to make this formula configurable? tournaments may choose to use a diff calculation on points?
     points = wins * 3 + ties
   end 
+  
+  def record
+    "#{wins}-#{losses}-#{ties}"
+  end
+  
 
   def games_played
     if wins.blank? or losses.blank? or ties.blank?

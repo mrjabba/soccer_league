@@ -59,45 +59,59 @@ describe Game do
     end
 
     describe "completed games" do
-      it "should handle changes league table (teamstats) upon game completion" do
+
+      it "should update league table (teamstats), home team wins" do
         #check_completed games. should be a better(more ruby-like) way to do this
         @teamstat_home.wins.should == 0
         @game.completed = true
         @game.save
         @teamstat_home = Teamstat.find_by_id(@teamstat_home.id)
-        @teamstat_home.wins.should == 1
-        @teamstat_home.losses.should == 0
-        @teamstat_home.ties.should == 0
+        @teamstat_home.record.should == "1-0-0"
         @teamstat_visiting = Teamstat.find_by_id(@teamstat_visiting.id)
-        @teamstat_visiting.wins.should == 0
-        @teamstat_visiting.losses.should == 1
-        @teamstat_visiting.ties.should == 0
+        @teamstat_visiting.record.should == "0-1-0"
       end
 
-      it "should handle changes league table (teamstats) upon game ties" do
+      it "should update league table (teamstats), visiting team wins" do
+        #check_completed games. should be a better(more ruby-like) way to do this
+        @playerstat_3.goals = 3
+        @playerstat_3.save
+
+        @playerstat_4.goals = 1
+        @playerstat_4.save
+        
+        @teamstat_visiting.wins.should == 0
+        @game.completed = true
+        @game.save
+        @teamstat_home = Teamstat.find_by_id(@teamstat_home.id)
+        @teamstat_home.record.should == "0-1-0"
+        @teamstat_visiting = Teamstat.find_by_id(@teamstat_visiting.id)
+        @teamstat_visiting.record.should == "1-0-0"
+      end
+
+
+      it "should update league table (teamstats), tied game" do
 
         @playerstat_3.goals = 3
         @playerstat_3.save
+        
         @game.completed = true
         @game.save
 
         @teamstat_home = Teamstat.find_by_id(@teamstat_home.id)
-        @teamstat_home.wins.should == 0
-        @teamstat_home.losses.should == 0
-        @teamstat_home.ties.should == 1
+        @teamstat_home.record.should == "0-0-1"
         @teamstat_home.goals_for.should == 3
         @teamstat_home.goals_against.should == 3
+        
+        
         @teamstat_visiting = Teamstat.find_by_id(@teamstat_visiting.id)
-        @teamstat_visiting.wins.should == 0
-        @teamstat_visiting.losses.should == 0
-        @teamstat_visiting.ties.should == 1
+        @teamstat_visiting.record.should == "0-0-1"
         @teamstat_visiting.goals_for.should == 3
         @teamstat_visiting.goals_against.should == 3
       end
     end
 
     describe "deleted games" do
-      it "should handle revert league table (teamstats) upon game deletion" do
+      it "should revert game from league table (teamstats), home team win" do
         #check_completed games. should be a better(more ruby-like) way to do this
         @teamstat_home.wins.should == 0
         @game.completed = true
@@ -108,7 +122,40 @@ describe Game do
         @teamstat_home = Teamstat.find_by_id(@teamstat_home.id)
         @teamstat_home.wins.should == 0
       end
+      
+      it "should revert game from league table (teamstats), visiting team win" do
+        #check_completed games. should be a better(more ruby-like) way to do this
+        @playerstat_3.goals = 5
+        @playerstat_3.save
+        
+        @teamstat_visiting.wins.should == 0
+        @game.completed = true
+        @game.save
+        @teamstat_visiting = Teamstat.find_by_id(@teamstat_visiting.id)
+        @teamstat_visiting.wins.should == 1
+        @game.destroy
+        @teamstat_visiting = Teamstat.find_by_id(@teamstat_visiting.id)
+        @teamstat_visiting.wins.should == 0
+      end
+
+      it "should revert game from league table (teamstats), teams tied" do
+        #check_completed games. should be a better(more ruby-like) way to do this
+        @playerstat_3.goals = 3
+        @playerstat_3.save
+        
+        @teamstat_visiting.ties.should == 0
+        @game.completed = true
+        @game.save
+        @teamstat_visiting = Teamstat.find_by_id(@teamstat_visiting.id)
+        @teamstat_visiting.ties.should == 1
+        @game.destroy
+        @teamstat_visiting = Teamstat.find_by_id(@teamstat_visiting.id)
+        @teamstat_visiting.ties.should == 0
+      end
+      
     end
+
+
 
     describe "in-progress games" do
 

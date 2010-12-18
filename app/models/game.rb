@@ -61,12 +61,12 @@ class Game < ActiveRecord::Base
         teamstat_home = Teamstat.where("league_id = ? AND team_id = ?", self.league.id, self.home_team )
         teamstat_visiting = Teamstat.where("league_id = ? AND team_id = ?", self.league.id, self.visiting_team )
         if teamstat_home.size > 0 and teamstat_visiting.size > 0
-          if self.home_team_goals > visiting_team_goals
+          if self.home_team_goals > self.visiting_team_goals
             #puts "home team wins"
             #TODO check to see if these are zeroes or not?
             teamstat_home[0].wins -= 1
             teamstat_visiting[0].losses -= 1
-          elsif self.home_team_goals < visiting_team_goals
+          elsif self.home_team_goals < self.visiting_team_goals
             #puts "visiting team wins"
             teamstat_visiting[0].wins -= 1
             teamstat_home[0].losses -= 1
@@ -91,7 +91,7 @@ class Game < ActiveRecord::Base
     end
   
     def update_game
-      puts "**** update_game"
+      #puts "**** update_game"
       if self.completed?
         
         teamstat_home = Teamstat.where("league_id = ? AND team_id = ?", self.league.id, self.home_team )
