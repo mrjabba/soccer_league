@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_filter :authenticate, :only => [:new, :create, :edit, :update]
+  before_filter :authenticate, :only => [:new, :create, :edit, :update, :destroy]
 
   def index
     @title = "All games"
@@ -66,6 +66,14 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id]) 
     @title = "View Game | #{@game.visiting_team.name} at #{@game.home_team.name}" 
   end
+
+  def destroy
+    #TODO should this be allowed? does it remove/reset necessary data?
+    @game = Game.find(params[:id])
+    @game.destroy
+    redirect_to :action => "index", :league_id => @game.league
+  end
+
 
   private
 

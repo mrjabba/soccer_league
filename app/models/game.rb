@@ -1,7 +1,8 @@
 class Game < ActiveRecord::Base
   attr_accessible :playerstats_attributes, :team1_id, :team2_id, :league_id, :visiting_team_goals, :home_team_goals
   before_create :team_rosters_to_playerstats
-  before_update :check_completed
+  before_update :update_game
+  before_destroy :revert_teamstat
 
   belongs_to :visiting_team,
              :class_name => "Team",
@@ -38,6 +39,7 @@ class Game < ActiveRecord::Base
   private
     
     def calculate_goals(team_value)
+      #TODO there should be a way to grab this from the cached member?
       goals = Playerstat.sum(:goals, :conditions => ["game_id = ? AND team_id = ?", self.id, team_value])
       if goals != nil
         goals
@@ -46,13 +48,48 @@ class Game < ActiveRecord::Base
       end
     end
   
-    def check_completed
-      puts "**** checking that game is completed"
+    def revert_teamstat
+      puts "**** revert_teamstat"
       if self.completed?
         
         teamstat_home = Teamstat.where("league_id = ? AND team_id = ?", self.league.id, self.home_team )
         teamstat_visiting = Teamstat.where("league_id = ? AND team_id = ?", self.league.id, self.visiting_team )
+        if teamstat_home.size > 0 and teamstat_visiting.size > 0
+          if self.home_team_goals > visiting_team_goals
+            #puts "home team wins"
+            #TODO check to see if these are zeroes or not?
+            teamstat_home[0].wins -= 1
+            teamstat_visiting[0].losses -= 1
+          elsif self.home_team_goals < visiting_team_goals
+            #puts "visiting team wins"
+            teamstat_visiting[0].wins -= 1
+            teamstat_home[0].losses -= 1
+          else 
+            #puts "its a tie"
+            teamstat_home[0].ties -= 1
+            teamstat_visiting[0].ties -= 1
+          end
+
+          #FIXME doesnt seem to work when marking game complete + saving at same time. separate transactions? (also has to be a tie?)
+          teamstat_home[0].goals_for -= home_team_goals
+          teamstat_visiting[0].goals_for -= visiting_team_goals
+          teamstat_home[0].goals_against -= visiting_team_goals
+          teamstat_visiting[0].goals_against -= home_team_goals
+
+          teamstat_home[0].save
+          teamstat_visiting[0].save
+        end
+      
+      end
+          
+    end
+  
+    def update_game
+      puts "**** update_game"
+      if self.completed?
         
+        teamstat_home = Teamstat.where("league_id = ? AND team_id = ?", self.league.id, self.home_team )
+        teamstat_visiting = Teamstat.where("league_id = ? AND team_id = ?", self.league.id, self.visiting_team )        
         if teamstat_home.size > 0 and teamstat_visiting.size > 0
           if self.home_team_goals > visiting_team_goals
             #puts "home team wins"
@@ -67,6 +104,11 @@ class Game < ActiveRecord::Base
             teamstat_home[0].ties += 1
             teamstat_visiting[0].ties += 1
           end
+
+          teamstat_home[0].goals_for += home_team_goals
+          teamstat_visiting[0].goals_for += visiting_team_goals
+          teamstat_home[0].goals_against += visiting_team_goals
+          teamstat_visiting[0].goals_against += home_team_goals
 
           teamstat_home[0].save
           teamstat_visiting[0].save

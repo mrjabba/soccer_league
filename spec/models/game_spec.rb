@@ -66,6 +66,47 @@ describe Game do
         @game.save
         @teamstat_home = Teamstat.find_by_id(@teamstat_home.id)
         @teamstat_home.wins.should == 1
+        @teamstat_home.losses.should == 0
+        @teamstat_home.ties.should == 0
+        @teamstat_visiting = Teamstat.find_by_id(@teamstat_visiting.id)
+        @teamstat_visiting.wins.should == 0
+        @teamstat_visiting.losses.should == 1
+        @teamstat_visiting.ties.should == 0
+      end
+
+      it "should handle changes league table (teamstats) upon game ties" do
+
+        @playerstat_3.goals = 3
+        @playerstat_3.save
+        @game.completed = true
+        @game.save
+
+        @teamstat_home = Teamstat.find_by_id(@teamstat_home.id)
+        @teamstat_home.wins.should == 0
+        @teamstat_home.losses.should == 0
+        @teamstat_home.ties.should == 1
+        @teamstat_home.goals_for.should == 3
+        @teamstat_home.goals_against.should == 3
+        @teamstat_visiting = Teamstat.find_by_id(@teamstat_visiting.id)
+        @teamstat_visiting.wins.should == 0
+        @teamstat_visiting.losses.should == 0
+        @teamstat_visiting.ties.should == 1
+        @teamstat_visiting.goals_for.should == 3
+        @teamstat_visiting.goals_against.should == 3
+      end
+    end
+
+    describe "deleted games" do
+      it "should handle revert league table (teamstats) upon game deletion" do
+        #check_completed games. should be a better(more ruby-like) way to do this
+        @teamstat_home.wins.should == 0
+        @game.completed = true
+        @game.save
+        @teamstat_home = Teamstat.find_by_id(@teamstat_home.id)
+        @teamstat_home.wins.should == 1
+        @game.destroy
+        @teamstat_home = Teamstat.find_by_id(@teamstat_home.id)
+        @teamstat_home.wins.should == 0
       end
     end
 

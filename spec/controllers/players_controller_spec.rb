@@ -66,8 +66,7 @@ describe PlayersController do
     describe "success" do
       before(:each) do
         @attr = { :firstname => "Jamie", :lastname => "Watson", :position => "Forward" , 
-        :birth_date => "02/10/1978", :nationality => "USA", 
-        :previous_club => "Real Salt Lake"}        
+        :birth_date => "02/10/1978", :nationality => "USA"}        
       end
       
       it "should change the player's attributes" do
@@ -79,7 +78,6 @@ describe PlayersController do
         @player.position.should  == player.position
         @player.birth_date.should  == player.birth_date
         @player.nationality.should  == player.nationality
-        @player.previous_club.should  == player.previous_club
       end
       
       it "should redirect to the player show page" do
@@ -152,6 +150,10 @@ describe PlayersController do
       get :show, :id => @player
       response.should have_selector("h1", :content => @player.firstname)
     end
+    
+    it "should roll up playerstats in a league/year calculation for player show page"
+
+    it "should calculate player previous club based on past teamstat or roster."
   
   end
 

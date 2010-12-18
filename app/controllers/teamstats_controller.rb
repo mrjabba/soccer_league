@@ -30,8 +30,6 @@ class TeamstatsController < ApplicationController
   end 
 
   def destroy
-    #TODO remove a team from a league. only allow 
-    #when matches = 0 for the league/year?
     @teamstat = Teamstat.find(params[:id])
     @teamstat.destroy
     redirect_to @teamstat.league

@@ -23,9 +23,6 @@ class RostersController < ApplicationController
   end
 
   def destroy
-    #TODO any restrictions on WHEN  this can be done? like not after gamestats?
-    #perhaps at that point, we could ahve an active/inactive relationship? and leave the entry there?
-    # we may need that entry for historical purposes, ex: getting career history for a player?
     @roster = Roster.find(params[:id])
     @roster.destroy
     redirect_to @roster.teamstat

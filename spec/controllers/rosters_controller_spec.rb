@@ -41,7 +41,9 @@ describe RostersController do
         delete :destroy, :id => @roster
         response.should redirect_to(teamstat_path(@roster.teamstat))
       end
-
+      
+      it "should only allow destroy when no game stats exist. inactivate roster person?"
+ 
     end
     
     describe "failure" do

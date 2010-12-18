@@ -21,6 +21,26 @@ describe GamesController do
 
   end
 
+  describe "GET 'show'" do
+  
+    before(:each) do
+      @game = Factory(:game)
+      get :show, :id => @game
+   end
+    
+    it "should find the right game" do
+      response.should be_success
+      assigns(:game).should == @game
+    end
+    
+    it "should include the both teams in a table and the title" do
+      response.should have_selector("title", :content => "#{@game.visiting_team.name} at #{@game.home_team.name}")    
+      response.should have_selector("td", :content => @game.visiting_team.name)
+      response.should have_selector("td", :content => @game.home_team.name)
+    end
+  
+  end
+
   describe "GET 'new'" do
   
     before(:each) do
@@ -41,14 +61,7 @@ describe GamesController do
     end
 
     describe "failure" do
-=begin
-#can we test for exception thrown? or do generic error page first?
-      it "should throw an exception if no league present  " do
-        #TODO error handling page?
-        get :new
-        response.should have_selector("title", :content => "Exception caught")
-      end
-=end
+      it "should display an error if no league present"
     end
 
   end
@@ -117,6 +130,33 @@ describe GamesController do
 
 
   end
+  
+  describe "DELETE 'destroy'" do
+    before(:each) do
+      @game = Factory(:game)
+      test_sign_in(Factory(:user))
+    end
+    
+    describe "success" do
+      before(:each) do
+      end
 
+      it "should destroy the game" do
+        lambda do 
+          delete :destroy, :id => @game
+        end.should change(Game, :count).by(-1)
+      end
 
+      it "should redirect to the league's view games page" do
+        delete :destroy, :id => @game
+        response.should redirect_to(games_path(:league_id => @game.league))
+      end
+
+    end
+    
+    describe "failure" do
+    end
+
+  end  
+  
 end

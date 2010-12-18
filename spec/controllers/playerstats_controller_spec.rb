@@ -44,6 +44,8 @@ describe PlayerstatsController do
         delete :destroy, :id => @playerstat
         response.should redirect_to(game_path(@playerstat.game))
       end
+      
+      it "should destroy the match only if the match is completed"
 
     end
     

@@ -8,10 +8,7 @@ class PlayersController < ApplicationController
 
   def show
     @player = Player.find(params[:id])
-
-    #TODO roll up playerstats into a league/year calculation
     @playerstats = Playerstat.find_all_by_player_id(params[:id])
-
     @title = "View Player | " + @player.firstname + " " + @player.lastname
   end
 

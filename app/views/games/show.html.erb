@@ -7,6 +7,12 @@
   <nav class="round">
     <ul>
       <li><%= link_to "Manage Game Stats", "#{@game.id}/edit", :class => "action_button_wide round"  %></li>
+      <li>
+        <%= link_to "Remove", @game, :method => :delete,
+                                         :confirm => "Remove this game?",
+                                         :title => "Remove",
+                                         :class => "action_button_nar round" %>
+      </li>
     </ul>
   </nav>
 </div>

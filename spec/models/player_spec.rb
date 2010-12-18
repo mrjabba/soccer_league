@@ -4,8 +4,7 @@ describe Player do
 
   before(:each) do
     @attr = { :firstname => "Jamie", :lastname => "Watson", :position => "Forward" , 
-    :jersey_number => 10, :birth_date => "02/10/1978", :nationality => "USA", 
-    :previous_club => "Real Salt Lake"}
+    :jersey_number => 10, :birth_date => "02/10/1978", :nationality => "USA"}
   end
 
   it "should create a new instance given valid attributes" do

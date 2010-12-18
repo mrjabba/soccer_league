@@ -16,7 +16,6 @@ Factory.define :player do |player|
   player.position                  "Midfielder"
   player.birth_date                  "09/22/1981"
   player.nationality                  "USA"
-  player.previous_club                  "Some Other Club"
 end
 
 Factory.sequence :lastname do |n|

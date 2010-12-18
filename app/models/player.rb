@@ -1,6 +1,5 @@
 class Player < ActiveRecord::Base
-  attr_accessible :firstname, :lastname, :position, :birth_date, :nationality, :previous_club
-  #TODO remove previous_club. that is time dependent. we can calculate that based on playerstat.team.name or roster?, etc
+  attr_accessible :firstname, :lastname, :position, :birth_date, :nationality
 
   has_many :playerstats
   

@@ -27,8 +27,6 @@ class PlayerstatsController < ApplicationController
   end 
 
   def destroy
-    #TODO remove a player from a match. only allow 
-    #when completed = false for the match?
     @playerstat = Playerstat.find(params[:id])
     @playerstat.destroy
     redirect_to @playerstat.game

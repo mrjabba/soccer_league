@@ -61,6 +61,8 @@ describe TeamstatsController do
         delete :destroy, :id => @teamstat
         response.should redirect_to(league_path(@league))
       end
+      
+      it "should only allow destroy when matches = 0 for the league/year"
 
     end
     
