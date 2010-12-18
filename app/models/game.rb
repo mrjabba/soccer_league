@@ -39,8 +39,14 @@ class Game < ActiveRecord::Base
   private
     
     def calculate_goals(team_value)
-      #TODO there should be a way to grab this from the cached member?
-      goals = Playerstat.sum(:goals, :conditions => ["game_id = ? AND team_id = ?", self.id, team_value])
+      goals = 0
+      
+      self.playerstats.each {|ps| 
+        if ps.team_id == team_value
+          goals += ps.goals
+        end
+      }
+      
       if goals != nil
         goals
       else
@@ -49,7 +55,7 @@ class Game < ActiveRecord::Base
     end
   
     def revert_teamstat
-      puts "**** revert_teamstat"
+      #puts "**** revert_teamstat"
       if self.completed?
         
         teamstat_home = Teamstat.where("league_id = ? AND team_id = ?", self.league.id, self.home_team )
@@ -91,11 +97,11 @@ class Game < ActiveRecord::Base
         teamstat_home = Teamstat.where("league_id = ? AND team_id = ?", self.league.id, self.home_team )
         teamstat_visiting = Teamstat.where("league_id = ? AND team_id = ?", self.league.id, self.visiting_team )        
         if teamstat_home.size > 0 and teamstat_visiting.size > 0
-          if self.home_team_goals > visiting_team_goals
+          if self.home_team_goals > self.visiting_team_goals
             #puts "home team wins"
             teamstat_home[0].wins += 1
             teamstat_visiting[0].losses += 1
-          elsif self.home_team_goals < visiting_team_goals
+          elsif self.home_team_goals < self.visiting_team_goals
             #puts "visiting team wins"
             teamstat_visiting[0].wins += 1
             teamstat_home[0].losses += 1
@@ -105,10 +111,10 @@ class Game < ActiveRecord::Base
             teamstat_visiting[0].ties += 1
           end
 
-          teamstat_home[0].goals_for += home_team_goals
-          teamstat_visiting[0].goals_for += visiting_team_goals
-          teamstat_home[0].goals_against += visiting_team_goals
-          teamstat_visiting[0].goals_against += home_team_goals
+          teamstat_home[0].goals_for += self.home_team_goals
+          teamstat_visiting[0].goals_for += self.visiting_team_goals
+          teamstat_home[0].goals_against += self.visiting_team_goals
+          teamstat_visiting[0].goals_against += self.home_team_goals
 
           teamstat_home[0].save
           teamstat_visiting[0].save
