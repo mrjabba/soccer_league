@@ -4,10 +4,7 @@ class PlayerstatsController < ApplicationController
   def new
     @title = "New Playerstat"
     @game = Game.find(params[:game_id])
-    @team = Team.find(params[:team_id])
-    @playerstat = Playerstat.new()
-    @playerstat.game = @game
-    @playerstat.team = @team
+    @playerstat = Playerstat.new(:game_id => @game.id, :team_id => params[:team_id])
   end
 
   def create

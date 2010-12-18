@@ -1,4 +1,4 @@
-  <% f.fields_for :playerstats do |c| %>
+  <%= f.fields_for :playerstats do |c| %>
   <tr>
   <td><%= c.object.team.name %></td>
   <td><%= c.object.player.firstname %> <%= c.object.player.lastname %></td>

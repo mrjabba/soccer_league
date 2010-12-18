@@ -2,7 +2,6 @@ class Playerstat < ActiveRecord::Base
   attr_accessible :jersey_number, :goals, :assists, :shots, :fouls, :yellow_cards, :red_cards, :minutes, :saves, :game_id, :player_id, :team_id
   before_validation :init_stats
   before_save :init_stats
-  before_destroy :revert_playerstat_match
 
   belongs_to :player
   belongs_to :team
@@ -24,11 +23,6 @@ class Playerstat < ActiveRecord::Base
   validates_numericality_of :saves, :greater_than_or_equal_to => 0
 
   private
-
-    def revert_playerstat_match
-      puts "TODO handle delete of playerstat. if game.completed, decrement from Teamstat!"
-    end
-    
 
     def init_stats
       #init valus to 0 if nil. this is too long. find a better "ruby" way to handle this

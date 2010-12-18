@@ -10,11 +10,12 @@
 <td><%= playerstat.minutes %></td>
 <td><%= playerstat.saves %></td>
 <td><%= playerstat.jersey_number %></td>
-<% if signed_in? %>
+<% if signed_in? and !@game.completed %>
 <td>
     <%= link_to "Remove", playerstat, :method => :delete,
                                      :confirm => "Remove this player?",
-                                     :title => "Remove",
+                                      :id => "remove_player",
+                                      :title => "Remove",
                                      :class => "action_button_nar round" %>
 </td>
 <% end %>

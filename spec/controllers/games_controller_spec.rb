@@ -21,22 +21,75 @@ describe GamesController do
 
   end
 
+  describe "GET 'edit'" do
+
+    before(:each) do
+      @playerstat = Factory(:playerstat)
+      @game = @playerstat.game
+    end
+  
+    describe "unauthenticated user" do 
+
+      before(:each) do
+        get :edit, :id => @game
+      end
+
+      it "should redirect to login screen" do
+        response.should redirect_to(signin_path)
+      end
+    end
+
+    describe "authenticated user" do 
+      before(:each) do
+        test_sign_in(Factory(:user, :email => Factory.next(:email)))
+        get :edit, :id => @game
+      end
+
+      it "should display game edit screen" do
+        response.should be_success
+        response.should have_selector("title", :content => "Edit game")    
+      end
+    end
+  
+  end  
+
   describe "GET 'show'" do
   
     before(:each) do
-      @game = Factory(:game)
-      get :show, :id => @game
+      @playerstat = Factory(:playerstat)
+      @game = @playerstat.game
    end
-    
-    it "should find the right game" do
-      response.should be_success
-      assigns(:game).should == @game
+  
+    describe "unauthenticated user" do 
+
+      before(:each) do
+        get :show, :id => @game
+      end
+
+      it "should find the right game" do
+        response.should be_success
+        assigns(:game).should == @game
+      end
+      
+      it "should include the both teams in a table and the title" do
+        response.should have_selector("title", :content => "#{@game.visiting_team.name} at #{@game.home_team.name}")    
+        response.should have_selector("td", :content => @game.visiting_team.name)
+        response.should have_selector("td", :content => @game.home_team.name)
+      end
+
     end
     
-    it "should include the both teams in a table and the title" do
-      response.should have_selector("title", :content => "#{@game.visiting_team.name} at #{@game.home_team.name}")    
-      response.should have_selector("td", :content => @game.visiting_team.name)
-      response.should have_selector("td", :content => @game.home_team.name)
+    describe "authenticated user" do
+
+      before(:each) do
+        test_sign_in(Factory(:user, :email => Factory.next(:email)))
+        get :show, :id => @game
+      end
+      
+      it "should include a remove links for game and players when game is not completed" do
+        response.should have_selector("a", :id => "remove_game")
+        response.should have_selector("a", :id => "remove_player")
+      end
     end
   
   end
@@ -45,7 +98,7 @@ describe GamesController do
   
     before(:each) do
       @league = Factory(:league)
-      test_sign_in(Factory(:user))
+      test_sign_in(Factory(:user, :email => Factory.next(:email)))
     end
   
     describe "success" do
@@ -77,8 +130,8 @@ describe GamesController do
       @teamstat_visitor = Factory(:teamstat)
       @teamstat_visitor.team = @team_visiting
      
-      test_sign_in(Factory(:user))
-    end
+      test_sign_in(Factory(:user, :email => Factory.next(:email)))
+   end
 
     describe "success" do
       before(:each) do
@@ -134,8 +187,8 @@ describe GamesController do
   describe "DELETE 'destroy'" do
     before(:each) do
       @game = Factory(:game)
-      test_sign_in(Factory(:user))
-    end
+      test_sign_in(Factory(:user, :email => Factory.next(:email)))
+   end
     
     describe "success" do
       before(:each) do

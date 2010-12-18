@@ -310,7 +310,7 @@ WHY do these tests fail? FIXME
   describe "DELETE 'destroy'" do
   
     before(:each) do
-      @user = Factory(:user)
+      @user = Factory(:user, :email => Factory.next(:email))
     end
   
     describe "as a non sign-in user" do

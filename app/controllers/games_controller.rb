@@ -37,7 +37,6 @@ class GamesController < ApplicationController
   end 
 
  def edit
-    #needs test
     @game = Game.find(params[:id])
     @title = "Edit game"
   end
