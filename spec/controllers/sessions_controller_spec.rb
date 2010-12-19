@@ -56,9 +56,9 @@ describe SessionsController do
       controller.should be_signed_in
     end
     
-    it "should redirect the user to the show page" do
+    it "should redirect the user to the leagues page" do
       post :create, :session => @attr
-      response.should redirect_to(user_path(@user))
+      response.should redirect_to(leagues_path)
     end
     
   end

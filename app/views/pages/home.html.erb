@@ -16,4 +16,7 @@
     </div>
 </p>
 
-<%= link_to "Sign up", signup_path, :class => "signup_button round" %>
+<% if !signed_in? %>
+  <%= link_to "Sign up", signup_path, :class => "signup_button round" %>
+<% end %>
+
