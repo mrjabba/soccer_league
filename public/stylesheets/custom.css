@@ -287,3 +287,17 @@ input.button {
   font-weight: bold;
   padding: 5px;
 }
+
+.grid_shaded th .current {
+  padding-right: 18px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.grid_shaded th .asc {
+  background-image: url(/images/arrow_up.png);
+}
+
+.grid_shaded th .desc {
+  background-image: url(/images/arrow_down.png);
+}

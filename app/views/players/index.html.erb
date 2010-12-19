@@ -10,20 +10,14 @@
 </div>
 <% end %>
 
-<%= form_tag players_path, :method => 'get' do %>
+<%= form_tag players_path, :method => 'get', :remote => true, :id => "players_search" do %>
   <p>
   <%= text_field_tag :search, params[:search] %>
   <%= submit_tag "Search", :name => nil %>
   </p>
 <% end %>
 
-<%= will_paginate %>
-<table id="players_table" class="grid_shaded">
-<tr>
-<th title="Name">Name</th>
-<th title="Position">Position</th>
-<th title="Nationality">Nationality</th>
-</tr>
-  <%= render @players %>
-</table>
-<%= will_paginate %>
+<div id="players">
+  <%= render 'player' %>
+</div>
+

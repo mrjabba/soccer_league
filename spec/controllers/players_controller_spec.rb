@@ -122,6 +122,12 @@ describe PlayersController do
       get :index
       response.should be_success
     end
+    
+    it "should handle paging"
+
+    it "should handle sorting"
+
+    it "should handle simple search"
 
   end
 

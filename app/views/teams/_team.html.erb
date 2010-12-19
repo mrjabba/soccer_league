@@ -1,3 +1,16 @@
+
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<%= will_paginate %>
+<table id="teams_table" class="grid_shaded">
+<tr>
+<th title="Name"><%= sortable "name"  %></th>
+<th title="City"><%= sortable "city"  %></th>
+<th title="State"><%= sortable "state"  %></th>
+<th title="Zip"><%= sortable "zip"  %></th>
+<th title="Country"><%= sortable "country"  %></th>
+</tr>
+<% for team in @teams%>
 <tr>
   <td><%= link_to team.name, team %></td>
   <td><%= team.city %></td>
@@ -5,3 +18,7 @@
   <td><%= team.zip %></td>
   <td><%= team.country %></td>
 </tr>
+<% end%>
+</table>
+<%= will_paginate %>
+

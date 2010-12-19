@@ -12,25 +12,13 @@ Manage basic team profile information here.</div>
 </div>
 <% end %>
 
-<%= form_tag teams_path, :method => 'get' do %>
+<%= form_tag teams_path, :method => 'get', :remote => true, :id => "teams_search" do %>
   <p>
-  <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Search", :name => nil %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
   </p>
+  <div id="teams">
+    <%= render 'team' %>
+  </div>
 <% end %>
 
-<%= will_paginate %>
-
-  <table id="teams_table" class="grid_shaded">
-  <tr>
-  <th title="Name">Name</th>
-  <th title="City">City</th>
-  <th title="State">State</th>
-  <th title="Zip">Zip</th>
-  <th title="Country">Country</th>
-  </tr>
-    <%= render @teams %>  
-  </table>
-
-
-<%= will_paginate %>

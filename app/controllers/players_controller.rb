@@ -1,10 +1,11 @@
 class PlayersController < ApplicationController
   before_filter :authenticate, :only => [:new, :create, :edit, :update]
+  helper_method :sort_column, :sort_direction
 
   def index
     @title = "Player Repository"
-    @players = Player.search(params[:search]).order("lastname").paginate(:page => params[:page])
-  end
+    @players = Player.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])    
+   end
 
   def show
     @player = Player.find(params[:id])
@@ -49,5 +50,14 @@ class PlayersController < ApplicationController
     def authenticate
       deny_access unless signed_in?
     end
+    
+    def sort_column
+      Player.column_names.include?(params[:sort]) ? params[:sort] : "lastname"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
+
 
 end

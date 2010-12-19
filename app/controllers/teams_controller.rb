@@ -1,9 +1,10 @@
 class TeamsController < ApplicationController
   before_filter :authenticate, :only => [:new, :create, :edit, :update]
+  helper_method :sort_column, :sort_direction
 
   def index
     @title = "Team Repository"
-    @teams = Team.search(params[:search]).order("name").paginate(:page => params[:page])
+    @teams = Team.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])    
   end
 
   def show
@@ -48,6 +49,13 @@ class TeamsController < ApplicationController
     def authenticate
       deny_access unless signed_in?
     end
+    
+    def sort_column
+      Team.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
 
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
 
 end

@@ -1,5 +1,18 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<%= will_paginate %>
+<table id="players_table" class="grid_shaded">
+<tr>
+  <th title="Name"><%= sortable "lastname", "Name"  %></th>
+  <th title="Position"><%= sortable "position"  %></th>
+  <th title="Nationality"><%= sortable "nationality"  %></th>
+</tr>
+<% for player in @players %>
 <tr>
   <td><%= link_to "#{player.lastname}, #{player.firstname}", player %></td>
   <td><%= player.position %></td>
   <td><%= player.nationality %></td>
 </tr>
+<% end %>
+</table>
+<%= will_paginate %>
