@@ -3,7 +3,7 @@ class TeamsController < ApplicationController
 
   def index
     @title = "Team Repository"
-    @teams = Team.order("name").paginate(:page => params[:page])
+    @teams = Team.search(params[:search]).order("name").paginate(:page => params[:page])
   end
 
   def show

@@ -3,7 +3,7 @@ class PlayersController < ApplicationController
 
   def index
     @title = "Player Repository"
-    @players = Player.order("lastname").paginate(:page => params[:page])
+    @players = Player.search(params[:search]).order("lastname").paginate(:page => params[:page])
   end
 
   def show

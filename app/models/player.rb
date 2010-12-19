@@ -8,4 +8,13 @@ class Player < ActiveRecord::Base
   validates :lastname, :presence => true,
                   :length   => { :maximum => 50 }
   validates :position, :presence => true
+  
+  def self.search(search)
+    if search
+      where('lastname LIKE ?', "%#{search}%")
+    else
+      scoped
+    end
+  end
+  
 end
