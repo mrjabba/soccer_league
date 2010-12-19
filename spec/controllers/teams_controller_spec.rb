@@ -137,6 +137,8 @@ describe TeamsController do
 
     it "should handle simple search"
 
+    it "should case insensitive search on heroku"
+
   end
 
 
