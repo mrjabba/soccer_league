@@ -232,7 +232,7 @@ WHY do these tests fail? FIXME
       it "should have an element for each user" do
         get :index
         @users[0..2].each do |user|
-          response.should have_selector("li", :content => user.name)
+          response.should have_selector("td", :content => user.name)
         end
       end
       
@@ -245,6 +245,12 @@ WHY do these tests fail? FIXME
         response.should have_selector("a", :href => "/users?page=2", 
                                   :content => "Next")
       end
+     
+      it "should have pagination when viewing users"
+
+      it "should have search when viewing users"
+
+      it "should have sorting when viewing users"
       
     end
     

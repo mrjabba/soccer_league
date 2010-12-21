@@ -1,9 +1,14 @@
 <h1>All users</h1>
 
-<%= will_paginate %>
 
-<ul class="users">
-  <%= render @users %>
-</ul>
+<%= form_tag users_path, :method => 'get', :remote => true, :id => "users_search" do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+  <div id="users">
+    <%= render 'user' %>
+  </div>
+<% end %>
 
-<%= will_paginate %>
+

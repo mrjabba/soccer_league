@@ -1,7 +1,21 @@
-<li>
-  <%= link_to user.name, user %>
-  <% if current_user.admin? %>
-  | <%= link_to "delete", user, :method => :delete, :confirm => "You sure?",
-                                :title => "Delete #{user.name}" %>
-  <% end %>
-</li>
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<%= will_paginate %>
+<table id="users_table" class="grid_shaded">
+<tr>
+<th title="Name"><%= sortable "name"  %></th>
+<th title="Actions">Actions</th>
+</tr>
+<% for user in @users%>
+<tr>
+  <td><%= link_to user.name, user %></td>
+  <td>
+    <% if current_user.admin? %>
+    | <%= link_to "delete", user, :method => :delete, :confirm => "You sure?",
+                                  :title => "Delete #{user.name}" %>
+    <% end %>
+  </td>
+</tr>
+<% end%>
+</table>
+<%= will_paginate %>
