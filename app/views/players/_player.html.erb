@@ -1,6 +1,6 @@
 <%= hidden_field_tag :direction, params[:direction] %>
 <%= hidden_field_tag :sort, params[:sort] %>
-<%= will_paginate %>
+
 <table id="players_table" class="grid_shaded">
 <tr>
   <th title="Name"><%= sortable "lastname", "Name"  %></th>
@@ -15,4 +15,5 @@
 </tr>
 <% end %>
 </table>
+<div class="page_info"><%= page_entries_info @players %></div>
 <%= will_paginate %>

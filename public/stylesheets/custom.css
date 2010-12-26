@@ -301,3 +301,49 @@ input.button {
 .grid_shaded th .desc {
   background-image: url(/images/arrow_down.png);
 }
+
+.pagination {
+  font-size: 80%;
+  background: white;
+  /* self-clearing method: */ }
+  .pagination a, .pagination span, .pagination em {
+    padding: .2em .5em;
+    display: block;
+    float: left;
+    margin-right: 1px; }
+  .pagination span.disabled {
+    color: #999;
+    border: 1px solid #DDD; }
+  .pagination span.current,.pagination em {
+    font-weight: bold;
+    background: #2E6AB1;
+    color: white;
+    border: 1px solid #2E6AB1; }
+  .pagination a {
+    text-decoration: none;
+    color: #105CB6;
+    border: 1px solid #9AAFE5; }
+    .pagination a:hover, .pagination a:focus {
+      color: #003;
+      border-color: #003; }
+  .pagination .page_info {
+    background: #2E6AB1;
+    color: white;
+    padding: .4em .6em;
+    width: 22em;
+    margin-bottom: .3em;
+    text-align: center; }
+    .pagination .page_info b {
+      color: #003;
+      background: #6aa6ed;
+      padding: .1em .25em; }
+  .pagination:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html .pagination {
+    height: 1%; }
+  *:first-child+html .pagination {
+    overflow: hidden; }
