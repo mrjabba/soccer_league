@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-  before_filter :authenticate, :only => [:new, :create, :edit, :update]
+  before_filter :authenticate_user!, :except => [:show, :index]
   helper_method :sort_column, :sort_direction
 
   def index
@@ -47,10 +47,6 @@ class PlayersController < ApplicationController
 
   private
 
-    def authenticate
-      deny_access unless signed_in?
-    end
-    
     def sort_column
       Player.column_names.include?(params[:sort]) ? params[:sort] : "lastname"
     end

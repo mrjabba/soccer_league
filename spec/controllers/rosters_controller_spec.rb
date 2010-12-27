@@ -7,7 +7,7 @@ describe RostersController do
 
     before(:each) do
       @teamstat = Factory(:teamstat)
-      test_sign_in(Factory(:user))
+      sign_in(Factory(:user))
     end
 
     it "should be successful" do
@@ -24,7 +24,7 @@ describe RostersController do
   describe "DELETE 'destroy'" do
     before(:each) do
       @roster = Factory(:roster)
-      test_sign_in(Factory(:user))
+      sign_in(Factory(:user))
     end
     
     describe "success" do
@@ -55,7 +55,7 @@ describe RostersController do
     before(:each) do
       @player = Factory(:player)
       @teamstat = Factory(:teamstat)
-      test_sign_in(Factory(:user))
+      sign_in(Factory(:user))
     end
 
     describe "success" do

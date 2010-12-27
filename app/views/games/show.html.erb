@@ -2,7 +2,7 @@
 <h3><%= link_to "#{@game.league.name} (#{@game.league.year})", "/leagues/#{@game.league.id}" %> 
 - <%= link_to "All Games", "../games?league_id=#{@game.league.id}" %> - Game Details</h3>
 
-<% if signed_in? %>
+<% if user_signed_in? %>
 <div class="actions">
   <nav class="round">
     <ul>
@@ -24,7 +24,7 @@
     <th>Visiting Team</th>
     <td><%= @game.visiting_team.name %></td>
     <td><%= @game.visiting_team_goals %></td>
-    <% if signed_in? %>
+    <% if user_signed_in? %>
       <td><%= link_to "Add Player", "/playerstats/new?game_id=#{@game.id}&team_id=#{@game.visiting_team.id}", :class => "action_button_wide round" %></td>
     <% end %>
   </tr>
@@ -32,7 +32,7 @@
     <th>Home Team</th>
     <td><%= @game.home_team.name %></td>
     <td><%= @game.home_team_goals %></td>
-    <% if signed_in? %>
+    <% if user_signed_in? %>
       <td><%= link_to "Add Player", "/playerstats/new?game_id=#{@game.id}&team_id=#{@game.home_team.id}", :class => "action_button_wide round" %></td>
     <% end %>
   </tr>

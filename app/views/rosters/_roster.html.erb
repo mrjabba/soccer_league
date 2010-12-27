@@ -2,7 +2,7 @@
 <td><%= link_to roster.player.firstname + " " + roster.player.lastname, "../players/" + roster.player.id.to_s %></td>
 <td><%= roster.player.position %></td>
 <td><%= roster.player.nationality %></td>
-<% if signed_in? %>
+<% if user_signed_in? %>
 <td>
     <%= link_to "Remove", roster, :method => :delete,
                                      :confirm => "Remove this player?",

@@ -1,5 +1,5 @@
 class PlayerstatsController < ApplicationController
-  before_filter :authenticate, :only => [:new, :create, :destroy]
+  before_filter :authenticate_user!, :only => [:new, :create, :destroy]
 
   def new
     @title = "New Playerstat"
@@ -28,11 +28,5 @@ class PlayerstatsController < ApplicationController
     @playerstat.destroy
     redirect_to @playerstat.game
   end
-    
-  private
-
-    def authenticate
-      deny_access unless signed_in?
-    end
 
 end

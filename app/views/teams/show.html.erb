@@ -3,7 +3,7 @@
 <div class="actions">
   <nav class="round">
     <ul>
-      <% if signed_in? %>
+      <% if user_signed_in? %>
         <li><%= link_to "Edit", "#{@team.id}/edit", :class => "action_button round"  %></li>
         <li><%= link_to "Add Team", "/teams/new", :class => "action_button round" %></li>
       <% end %>

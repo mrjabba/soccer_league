@@ -1,5 +1,5 @@
 class LeaguesController < ApplicationController
-  before_filter :authenticate, :only => [:create, :edit, :update]
+  before_filter :authenticate_user!, :except => [:show, :index]
 
   def index
     @title = "League Management"
@@ -44,11 +44,5 @@ class LeaguesController < ApplicationController
       render 'new'
     end
   end  
-
-  private
-
-    def authenticate
-      deny_access unless signed_in?
-    end
 
 end

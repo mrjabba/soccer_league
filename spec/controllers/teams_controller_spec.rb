@@ -6,7 +6,7 @@ describe TeamsController do
   describe "GET 'new'" do
 
     before(:each) do
-      test_sign_in(Factory(:user))
+      sign_in Factory(:user)
     end
 
     it "should be successful" do
@@ -25,7 +25,7 @@ describe TeamsController do
     
     before(:each) do
       @team = Factory(:team)
-      test_sign_in(Factory(:user))
+      sign_in Factory(:user)
     end
     
      it "should be successful" do
@@ -43,7 +43,7 @@ describe TeamsController do
   describe "PUT 'update'" do
     before(:each) do
       @team = Factory(:team)
-      test_sign_in(Factory(:user))
+      sign_in Factory(:user)
     end
 
     describe "failure" do
@@ -113,12 +113,12 @@ describe TeamsController do
 
       it "should deny access to 'edit'" do
         get :edit, :id => @team
-        response.should redirect_to(signin_path)
+        response.should redirect_to(new_user_session_path)
       end
 
       it "should deny access to 'update'" do
         put :update, :id => @team, :team => {}
-        response.should redirect_to(signin_path)
+        response.should redirect_to(new_user_session_path)
       end
     end
   end    
@@ -176,7 +176,7 @@ describe TeamsController do
       describe "failure" do
 
         before(:each) do
-        test_sign_in(Factory(:user))
+        sign_in Factory(:user)
          @attr = { :name => "", :address1 => ""} 
         end
 
@@ -201,7 +201,7 @@ describe TeamsController do
       describe "success" do
 
         before(:each) do
-        test_sign_in(Factory(:user))
+        sign_in Factory(:user)
          @attr = { :name => "name", :address1 => "123 main"} 
         end
 

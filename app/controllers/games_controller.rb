@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_filter :authenticate, :only => [:new, :create, :edit, :update, :destroy]
+  before_filter :authenticate_user!, :except => [:show, :index]
 
   def index
     @title = "All games"
@@ -46,7 +46,9 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     
     #TODO a better way? a checkbox workaround. manually set it. otherwise it doesnt seem to update
+    #TODO maybe try this? params[:game][:completed] ||= [] per habtm railscast
     @game.completed = params[:game][:completed]
+    
     
     if @game.update_attributes(params[:game])
       flash[:success] = "Game updated."
@@ -72,12 +74,5 @@ class GamesController < ApplicationController
     @game.destroy
     redirect_to :action => "index", :league_id => @game.league
   end
-
-
-  private
-
-    def authenticate
-      deny_access unless signed_in?
-    end
 
 end

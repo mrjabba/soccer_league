@@ -1,5 +1,5 @@
 class RostersController < ApplicationController
-  before_filter :authenticate, :only => [:new, :create, :destroy]
+  before_filter :authenticate_user!, :only => [:new, :create, :destroy]
 
   def new
     @title = "New Roster Player"
@@ -27,11 +27,5 @@ class RostersController < ApplicationController
     @roster.destroy
     redirect_to @roster.teamstat
   end
-    
-  private
-
-    def authenticate
-      deny_access unless signed_in?
-    end
 
 end

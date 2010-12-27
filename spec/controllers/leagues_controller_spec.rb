@@ -40,6 +40,10 @@ describe LeaguesController do
   end
   
   describe "GET 'new'" do
+    before(:each) do
+      sign_in Factory(:user)
+    end
+
     it "should be successful" do
       get 'new'
       response.should be_success
@@ -56,7 +60,7 @@ describe LeaguesController do
     
     before(:each) do
       @league = Factory(:league)
-      test_sign_in(Factory(:user))
+      sign_in(Factory(:user))
     end
     
      it "should be successful" do
@@ -75,7 +79,7 @@ describe LeaguesController do
   describe "PUT 'update'" do
     before(:each) do
       @league = Factory(:league)
-      test_sign_in(Factory(:user))
+      sign_in(Factory(:user))
     end
     
     describe "failure" do
@@ -127,7 +131,7 @@ describe LeaguesController do
       describe "failure" do
       
         before(:each) do
-        test_sign_in(Factory(:user))
+        sign_in(Factory(:user))
          @attr = { :name => "", :year => "" } 
         end
 
@@ -151,7 +155,7 @@ describe LeaguesController do
       describe "success" do
 
         before(:each) do
-        test_sign_in(Factory(:user))
+        sign_in(Factory(:user))
          @attr = { :name => "foo", :year => "2010" } 
         end
 

@@ -7,7 +7,7 @@ describe TeamstatsController do
   
     before(:each) do
       @league = Factory(:league)
-      test_sign_in(Factory(:user))
+      sign_in(Factory(:user))
     end
       
     it "should be successful with a league" do
@@ -44,7 +44,7 @@ describe TeamstatsController do
   describe "DELETE 'destroy'" do
     before(:each) do
       @teamstat = Factory(:teamstat)
-      test_sign_in(Factory(:user))
+      sign_in(Factory(:user))
     end
     
     describe "success" do
@@ -75,7 +75,7 @@ describe TeamstatsController do
     before(:each) do
       @league = Factory(:league)
       @team = Factory(:team)
-      test_sign_in(Factory(:user))
+      sign_in(Factory(:user))
     end
 
     describe "success" do

@@ -1,5 +1,5 @@
 class TeamstatsController < ApplicationController
-  before_filter :authenticate, :only => [:new, :create, :destroy]
+  before_filter :authenticate_user!, :except => [:show]
 
   def new
     @title = "New Teamstat"
@@ -35,10 +35,4 @@ class TeamstatsController < ApplicationController
     redirect_to @teamstat.league
   end
     
-  private
-
-    def authenticate
-      deny_access unless signed_in?
-    end
-
 end

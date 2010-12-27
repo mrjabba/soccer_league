@@ -6,7 +6,7 @@ describe PlayersController do
   describe "GET 'new'" do
 
     before(:each) do
-      test_sign_in(Factory(:user))
+      sign_in Factory(:user)
     end
 
     it "should be successful" do
@@ -24,7 +24,7 @@ describe PlayersController do
     
     before(:each) do
       @player = Factory(:player)
-      test_sign_in(Factory(:user))
+      sign_in Factory(:user)
     end
     
      it "should be successful" do
@@ -39,12 +39,12 @@ describe PlayersController do
     
     
   end
-  
+
   describe "PUT 'update'" do
     before(:each) do
       @player = Factory(:player)
-      test_sign_in(Factory(:user))
-    end
+      sign_in Factory(:user)
+   end
     
     describe "failure" do
       before(:each) do
@@ -106,12 +106,12 @@ describe PlayersController do
 
       it "should deny access to 'edit'" do
         get :edit, :id => @player
-        response.should redirect_to(signin_path)
+        response.should redirect_to(new_user_session_path)
       end
 
       it "should deny access to 'update'" do
         put :update, :id => @player, :player => {}
-        response.should redirect_to(signin_path)
+        response.should redirect_to(new_user_session_path)
       end
     end
   end  
@@ -169,7 +169,7 @@ describe PlayersController do
       describe "failure" do
 
         before(:each) do
-        test_sign_in(Factory(:user))
+        sign_in Factory(:user)
          @attr = { :firstname => "", :lastname => "", :position => "" } 
         end
 
@@ -194,7 +194,7 @@ describe PlayersController do
       describe "success" do
 
         before(:each) do
-        test_sign_in(Factory(:user))
+        sign_in Factory(:user)
          @attr = { :firstname => "first", :lastname => "last", :position => "MF" } 
         end
 
@@ -221,5 +221,7 @@ describe PlayersController do
   describe "DELETE 'destroy'" do
     #should require special admin role
   end
+
+  
 
 end

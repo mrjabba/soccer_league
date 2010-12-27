@@ -35,13 +35,13 @@ describe GamesController do
       end
 
       it "should redirect to login screen" do
-        response.should redirect_to(signin_path)
+        response.should redirect_to(new_user_session_path)
       end
     end
 
     describe "authenticated user" do 
       before(:each) do
-        test_sign_in(Factory(:user, :email => Factory.next(:email)))
+        sign_in(Factory(:user, :email => Factory.next(:email)))
         get :edit, :id => @game
       end
 
@@ -82,7 +82,7 @@ describe GamesController do
     describe "authenticated user" do
 
       before(:each) do
-        test_sign_in(Factory(:user, :email => Factory.next(:email)))
+        sign_in(Factory(:user, :email => Factory.next(:email)))
         get :show, :id => @game
       end
       
@@ -98,7 +98,7 @@ describe GamesController do
   
     before(:each) do
       @league = Factory(:league)
-      test_sign_in(Factory(:user, :email => Factory.next(:email)))
+      sign_in(Factory(:user, :email => Factory.next(:email)))
     end
   
     describe "success" do
@@ -130,7 +130,7 @@ describe GamesController do
       @teamstat_visitor = Factory(:teamstat)
       @teamstat_visitor.team = @team_visiting
      
-      test_sign_in(Factory(:user, :email => Factory.next(:email)))
+      sign_in(Factory(:user, :email => Factory.next(:email)))
    end
 
     describe "success" do
@@ -187,7 +187,7 @@ describe GamesController do
   describe "DELETE 'destroy'" do
     before(:each) do
       @game = Factory(:game)
-      test_sign_in(Factory(:user, :email => Factory.next(:email)))
+      sign_in(Factory(:user, :email => Factory.next(:email)))
    end
     
     describe "success" do
