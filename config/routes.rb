@@ -1,6 +1,10 @@
 SoccerleagueApp::Application.routes.draw do
 
+
   devise_for :users
+  resources :users
+#  match '/users', :to => 'users#index'
+#  match '/users', :to => 'users#show'
 
 #  get "sessions/new"
 

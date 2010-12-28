@@ -1,0 +1,17 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<table id="users_table" class="grid_shaded">
+<tr>
+<th title="username"><%= sortable "username"  %></th>
+<th title="Actions">Actions</th>
+</tr>
+<% for user in @users%>
+<tr>
+  <td><%= link_to user.username, user %></td>
+  <td>Delete
+  </td>
+</tr>
+<% end%>
+</table>
+<div class="page_info"><%= page_entries_info @users %></div>
+<%= will_paginate %>

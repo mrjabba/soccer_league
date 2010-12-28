@@ -3,8 +3,8 @@ require 'spec_helper'
 describe User do
 	
 	before(:each) do
-		#:name => "Example User", 
 		@attr = { 
+		:username => "myusername", 
 		:email => "user@example.com",
 		:password => "foobar",
 		:password_confirmation => "foobar"
@@ -15,15 +15,19 @@ describe User do
 		User.create!(@attr)
 	end
 
-
 	it "should require an email address" do
 		no_email_user = User.new(@attr.merge(:email => ""))
 		no_email_user.should_not be_valid
 	end
-=begin
+  
+	it "should require a username" do
+		no_username_user = User.new(@attr.merge(:username => ""))
+		no_username_user.should_not be_valid
+	end
+  
 	it "should reject names that are too long" do
 		long_name = "a" * 51
-		long_name_user = User.new(@attr.merge(:name => long_name))
+		long_name_user = User.new(@attr.merge(:username => long_name))
 		long_name_user.should_not be_valid
 	end
 
@@ -42,7 +46,6 @@ describe User do
 			invalid_email_user.should_not be_valid
 		end
 	end
-=end
 	
 
 end

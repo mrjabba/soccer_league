@@ -22,11 +22,10 @@ describe "LayoutLinks" do
     response.should have_selector('title', :content => "Help")
   end
   
-  it "should have a signup page at '/users/sign_up'"
-#FIXME  it "should have a signup page at '/users/sign_up'" do
-#  	get '/users/sign_up'
-#  	response.should have_selector('title', :content => "Sign Up")	
-#  end
+  it "should have a signup page at 'new_user_registration_path'" do
+  	get new_user_registration_path
+  	response.should have_selector('h2', :content => "Sign up")	
+  end
   
   it "should have the right links on the layout" do
 	visit root_path
@@ -61,7 +60,7 @@ describe "LayoutLinks" do
     before(:each) do
       @user = Factory(:user)
       visit new_user_session_path
-      fill_in :email,   :with => @user.email
+      fill_in :username,   :with => @user.username
       fill_in :password,  :with => @user.password
       click_button
     end
@@ -72,14 +71,11 @@ describe "LayoutLinks" do
                                           :content => "Sign out") 
     end
   
-    it "should have a profile link" 
-=begin
-    do
+    it "should have a profile link" do
       visit root_path
-      response.should have_selector("a", :href => user_path(@user), 
+      response.should have_selector("a", :href => edit_user_registration_path, 
                                         :content => "Profile")
     end
-=end  
   end
   
 end

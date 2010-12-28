@@ -25,7 +25,7 @@ describe "Users" do
 			it "should make a new user" do
 				lambda do
 					visit new_user_registration_path
-#					fill_in "Name", :with => "Example User"
+					fill_in "Username", :with => "myuser"
 					fill_in "Email", :with => "user@example.com"
 					fill_in "Password", :with => "foobar"
 					fill_in "Password confirmation", :with => "foobar"
@@ -44,7 +44,7 @@ describe "Users" do
     describe "failure" do
       it "should not sign a user in" do
         visit new_user_session_path
-        fill_in :email,   :with => ""
+        fill_in :username,   :with => ""
         fill_in :password,  :with => ""
         click_button
         response.should have_selector("div.flash.alert", :content => "Invalid")
@@ -56,7 +56,7 @@ describe "Users" do
       it "should sign a user in and out" do
         user = Factory(:user)
         visit new_user_session_path
-        fill_in :email,   :with => user.email
+        fill_in :username,   :with => user.username
         fill_in :password, :with => user.password
         click_button
         response.should have_selector("li a", :content => "Sign out")
