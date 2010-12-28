@@ -7,8 +7,9 @@ class User < ActiveRecord::Base
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me
   
   validates :username, :presence => true,
-            :length => {:maximum => 50}
-  
+            :length => {:maximum => 50},
+            :uniqueness => { :case_sensitive => false}
+   
   def self.search(search)
     if search
       where('username LIKE ?', "%#{search}%")
