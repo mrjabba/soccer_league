@@ -101,6 +101,10 @@ nav ul li a:hover {
   text-decoration: underline;
 }
 
+nav.sub {
+  background: #eeeeff;
+}
+
 /* Sign up button */
 
 a.signup_button {
@@ -155,11 +159,6 @@ td.sidebar {
   background: #ffc;
 }
 
-.profile img.gravatar {
-  border: 1px solid #999;
-  margin-bottom: -15px;
-}
-
 div.field, div.actions {
   margin-bottom: 10px;
 }
@@ -169,6 +168,23 @@ div.field, div.actions {
   padding: 2px;
   background-color: red;
   display: table;
+}
+
+.profile ul li span {
+  font-weight: bold;
+}
+
+.profile ul li div {
+}
+
+.profile ul {
+  margin: 0;
+  padding: 0;
+}
+
+.profile ul li {
+  list-style-type: none;
+  padding: 0.2em 0;
 }
 
 .field_with_errors label {

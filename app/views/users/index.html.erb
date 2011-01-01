@@ -1,10 +1,23 @@
 <h1>All users</h1>
 
+<% if can? :new, @user %>
+  <nav class="sub round">Users by Role:
+  <ul>
+  <li><%= link_to "Admins", "/users?role=admin" %></li>
+  <li><%= link_to "Free", "/users?role=free" %></li>
+  <li><%= link_to "Disabled", "/users?role=" %></li>
+  <li><%= link_to "All", "/users" %></li>
+  </ul>
+  </nav>
+
+<% end %>
+
 <%= form_tag users_path, :method => 'get', :remote => true, :id => "users_search" do %>
   <p>
     <%= text_field_tag :search, params[:search] %>
     <%= submit_tag "Search", :username => nil %>
   </p>
+
   <div id="users">
     <%= render 'user' %>
   </div>

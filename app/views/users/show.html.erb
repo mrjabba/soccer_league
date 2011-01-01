@@ -1,13 +1,34 @@
+<% if can? :new, @user %>
+<div class="actions">
+  <nav class="round">
+    <ul>
+      <li><%= link_to "Edit", "#{@user.id}/edit", :class => "action_button round"  %></li>
+    </ul>
+  </nav>
+</div>
+<% end %>
+
 <table class="profile" summary="Profile information">
   <tr>
     <td class="main">
       <h1>
         <%= @user.username %>
       </h1>
+      
     </td>
     <td class="sidebar round">
-      <strong>Name</strong> <%= @user.username %><br />
-      <strong>URL</strong>  <%= link_to user_path(@user), @user %>
+      <ul>
+        <li><span>Name</span> <div><%= @user.username %></div></li>
+        <% if can? :new, @user %>
+          <li><span>Email</span> <div><%= @user.email %></div></li>
+          <li><span>Roles</span>  
+          <% for role in @user.roles %>
+            <div><%=h role.capitalize %></div>
+          <% end %>
+          </li>
+          <% if @user.roles.size == 0 %><div>User Disabled</div><% end%>
+        <% end %>
+      </ul>
     </td>
   </tr>
 </table>

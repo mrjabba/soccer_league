@@ -4,16 +4,23 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :roles_mask, :perms
+  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :roles_mask, :perms, :free_sign_up, :with_role
   include RoleModel
+  
+#  named_scope :with_role, lambda { |role| {:conditions => "roles_mask = #{User.mask_for(role)}" } }
+  scope :with_role, lambda { |role|  where( "roles_mask = #{User.mask_for(role)}" )  }
   
   # declare the valid roles -- do not change the order if you add more
   # roles later, always append them at the end!
   roles :admin, :free
   
   def perms=(role_names)
-    #need to clear roles first?
+    self.roles = []
     role_names.map {|role| self.roles << role}
+  end
+
+  def free_sign_up=(activate)
+    self.roles << :free unless activate == nil
   end
   
   validates :username, :presence => true,

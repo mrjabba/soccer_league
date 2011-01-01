@@ -3,14 +3,41 @@ class UsersController < ApplicationController
   helper_method :sort_column, :sort_direction
   
   def index
-    @title = "All Users"
-    @users = User.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])    
+    if(params[:role])
+      @title = "#{params[:role].capitalize} Users"
+      @users = User.with_role(params[:role]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])    
+    else
+      @title = "All Users"
+      @users = User.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])    
+    end
   end
-  
+
   def show
     @user = User.find(params[:id])
     @title = "User Profile | #{@user.username}"
   end
+
+  def edit
+    @user = User.find(params[:id])
+    @title = "Edit user"
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      flash[:success] = "Profile updated."
+      redirect_to @user
+    else
+      @title = "Edit user"
+      render 'edit'
+    end
+  end
+
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User destroyed."
+    redirect_to users_path
+  end  
 
   private
   

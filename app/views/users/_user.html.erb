@@ -8,7 +8,12 @@
 <% for user in @users%>
 <tr>
   <td><%= link_to user.username, user %></td>
-  <td>Delete
+  <td>
+      <% if can? :new, @user %>
+      <%= link_to "Delete", user, :method => :delete, :confirm => "Delete this user: #{user.username}?",
+                                  :class => "action_button_nar round",
+                                  :title => "Delete #{user.username}" %>
+      <% end %>  
   </td>
 </tr>
 <% end%>
