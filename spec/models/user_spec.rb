@@ -13,6 +13,8 @@ describe User do
 
   it "should have an user (update_by) field"
 
+  it "should have save a user as an admin role"
+
   it "should allow users to have many leagues, players, and so on"
 	
 	it "should create a new instance given valid attributes" do

@@ -9,7 +9,12 @@ describe UsersController do
       @user = Factory(:user)
       sign_in(@user)
     end
+
+    it "should allow admin to edit any users roles"
+
+    it "should not show admin role on registration page - move to request test"
     
+        
     it "should be successful" do
       get :show, :id => @user
       response.should be_success

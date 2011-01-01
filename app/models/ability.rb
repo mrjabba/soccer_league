@@ -1,6 +1,17 @@
 class Ability
   include CanCan::Ability
 
+  def initialize(user)
+    user ||= User.new #guest user
+  
+    if user.has_role? :admin
+      can :manage, :all
+    else
+      can :read, :all
+    end
+
+  end
+
 =begin
       can :create, Player
       can :update, Player do |player|
@@ -15,19 +26,5 @@ class Ability
           end
         end
 =end
-  
-  def initialize(user)
-    user ||= User.new #guest user
-  
-    #TODO I need to add a "user" to each model
-    if user.has_role? :admin
-#      puts "user has admin"
-      can :manage, :all
-    else
-#      puts "user doesnt have admin #{user} #{user.roles_mask.to_s}"
-      can :read, :all
-    end
-
-  end
   
 end
