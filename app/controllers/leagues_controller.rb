@@ -1,4 +1,7 @@
 class LeaguesController < ApplicationController
+  load_and_authorize_resource #requires controller to be RESTful?
+  #TODO need to remove lines like -> @league = League.find(params[:id]) 
+  # from each method b/c cancan will do it by default?
   before_filter :authenticate_user!, :except => [:show, :index]
 
   def index

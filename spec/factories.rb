@@ -4,6 +4,7 @@ Factory.define :user do |user|
   user.email                 "greenjeans@foo.com"
   user.password              "foobar"
   user.password_confirmation "foobar"
+  user.roles                  [:admin]
 end
 
 Factory.sequence :username do |n|

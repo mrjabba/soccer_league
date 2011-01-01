@@ -7,6 +7,8 @@ describe Player do
     :jersey_number => 10, :birth_date => "02/10/1978", :nationality => "USA"}
   end
 
+  it "should have an user (update_by) field"
+
   it "should create a new instance given valid attributes" do
     Player.create!(@attr)
   end

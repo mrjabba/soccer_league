@@ -6,6 +6,8 @@ describe League do
     @attr = { :name => "MLS", :year => 2002 }
   end
 
+  it "should have an user (update_by) field"
+
   it "should create a new instance given valid attributes" do
     League.create!(@attr)
   end

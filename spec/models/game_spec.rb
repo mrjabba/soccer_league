@@ -18,6 +18,8 @@ describe Game do
 
   end
 
+  it "should have an user (update_by) field"
+
   it "should create a new instance given valid attributes" do
     Game.create!(@attr)
   end

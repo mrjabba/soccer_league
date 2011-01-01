@@ -9,6 +9,8 @@ describe Teamstat do
           :team_id => @team }
   end
 
+  it "should have an user (update_by) field"
+
   it "should create a new instance given valid attributes" do
     Teamstat.create!(@attr)
   end

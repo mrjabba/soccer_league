@@ -3,7 +3,7 @@
 <div class="actions">
   <nav class="round">
     <ul>
-      <% if user_signed_in? %>
+      <% if can? :new, @league %>
         <li><%= link_to "Edit League", "#{@league.id}/edit", :class => "action_button round" %></li>
         <li><%= link_to "Add Team", "/teamstats/new?league_id=#{@league.id}", :class => "action_button round" %></li>
         <% unless @teamstats.size < 2 %>

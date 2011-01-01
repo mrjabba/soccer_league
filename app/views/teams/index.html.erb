@@ -2,7 +2,7 @@
 <div class="flash notice">Teams play in different leagues over various seasons. And, they also play in tournaments and cups. 
 Manage basic team profile information here.</div>
 
-<% if user_signed_in? %>
+<% if can? :new, @team %>
 <div class="actions">
   <nav class="round">
     <ul>

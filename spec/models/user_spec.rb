@@ -10,6 +10,10 @@ describe User do
 		:password_confirmation => "foobar"
 		}
 	end
+
+  it "should have an user (update_by) field"
+
+  it "should allow users to have many leagues, players, and so on"
 	
 	it "should create a new instance given valid attributes" do
 		User.create!(@attr)

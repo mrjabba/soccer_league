@@ -1,6 +1,6 @@
 <h1>Player Repository</h1>
 <div class="flash notice">Players careers span often span multiple teams and leagues. Manage basic player profile information here.</div>
-<% if user_signed_in? %>
+<% if can? :new, @player %>
 <div class="actions">
   <nav class="round">
     <ul>

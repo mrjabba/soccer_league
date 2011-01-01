@@ -6,7 +6,7 @@
 <div class="actions">
   <nav class="round">
     <ul>
-      <% if user_signed_in? %>
+      <% if can? :new, @teamstat %>
         <li><%= link_to "Add Player", "/rosters/new?teamstat_id=#{@teamstat.id}", :class => "action_button round" %></li>
       <% end %>
     </ul>

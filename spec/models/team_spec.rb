@@ -9,6 +9,8 @@ describe Team do
               :email => "test@foo.com", :country => "USA" }
   end
 
+  it "should have an user (update_by) field"
+
   it "should create a new instance given valid attributes" do
     Team.create!(@attr)
   end
