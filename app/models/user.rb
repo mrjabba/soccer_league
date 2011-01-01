@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :roles_mask, :perms, :free_sign_up, :with_role
   include RoleModel
   
-#  named_scope :with_role, lambda { |role| {:conditions => "roles_mask = #{User.mask_for(role)}" } }
   scope :with_role, lambda { |role|  where( "roles_mask = #{User.mask_for(role)}" )  }
   
   # declare the valid roles -- do not change the order if you add more
