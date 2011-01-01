@@ -23,7 +23,7 @@
           <li><span>Email</span> <div><%= @user.email %></div></li>
           <li><span>Roles</span>  
           <% for role in @user.roles %>
-            <div><%=h role.capitalize %></div>
+            <div><%=h role.to_s.capitalize %></div>
           <% end %>
           </li>
           <% if @user.roles.size == 0 %><div>User Disabled</div><% end%>
