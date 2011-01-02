@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   def free_sign_up=(activate)
     self.roles << :free unless activate == nil
   end
+
+
   
   validates :username, :presence => true,
             :length => {:maximum => 50},

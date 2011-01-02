@@ -1,5 +1,5 @@
 class Player < ActiveRecord::Base
-  attr_accessible :firstname, :lastname, :position, :birth_date, :nationality
+  attr_accessible :firstname, :lastname, :position, :birth_date, :nationality, :birth_city, :birth_nation, :height
 
   has_many :playerstats
   
@@ -8,7 +8,9 @@ class Player < ActiveRecord::Base
   validates :lastname, :presence => true,
                   :length   => { :maximum => 50 }
   validates :position, :presence => true
-  
+ 
+  validates_numericality_of :height, :greater_than_or_equal_to => 1
+ 
   def self.search(search)
     if search
       where('lastname LIKE ?', "%#{search}%")

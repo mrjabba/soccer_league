@@ -4,8 +4,11 @@ describe Player do
 
   before(:each) do
     @attr = { :firstname => "Jamie", :lastname => "Watson", :position => "Forward" , 
-    :jersey_number => 10, :birth_date => "02/10/1978", :nationality => "USA"}
+    :jersey_number => 10, :birth_date => "02/10/1978", :nationality => "USA", 
+    :birth_city => "Austin", :birth_nation => "USA", :height => 20}
   end
+
+  it "should calculate/persist height as millimeters, allow input as meters (decimal)"
 
   it "should have an user (update_by) field"
 
