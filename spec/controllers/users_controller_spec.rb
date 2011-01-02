@@ -4,38 +4,43 @@ describe UsersController do
   render_views
 
   describe "GET 'show'" do
-  
-    before(:each) do
-      @user = Factory(:user)
-      sign_in(@user)
+
+    describe "for non-signed users" do
+      it "should deny access" 
     end
 
-    it "should allow admin to edit any users roles"
+    describe "for signed in users" do
+      before(:each) do
+        @user = Factory(:user)
+        sign_in(@user)
+      end
 
-    it "should not show admin role on registration page - move to request test"
-    
-        
-    it "should be successful" do
-      get :show, :id => @user
-      response.should be_success
-    end
-    
-    it "should find the right user" do
-      get :show, :id => @user
-      assigns(:user).should == @user
-    end
-    
-    it "should have the right title" do
-      get :show, :id => @user
-      response.should have_selector("title", :content => @user.username)    
-    end
-    
-    it "should include the user's name" do
-      get :show, :id => @user
-      response.should have_selector("h1", :content => @user.username)
-    end
+      it "should allow admin to edit any users roles"
 
-  
+      it "should not show admin role on registration page - move to request test"
+      
+          
+      it "should be successful" do
+        get :show, :id => @user
+        response.should be_success
+      end
+      
+      it "should find the right user" do
+        get :show, :id => @user
+        assigns(:user).should == @user
+      end
+      
+      it "should have the right title" do
+        get :show, :id => @user
+        response.should have_selector("title", :content => @user.username)    
+      end
+      
+      it "should include the user's name" do
+        get :show, :id => @user
+        response.should have_selector("h1", :content => @user.username)
+      end
+
+    end
   
   end
 
@@ -43,24 +48,26 @@ describe UsersController do
   describe "GET 'index'" do
     
     describe "for non-signed users" do
-      it "should deny access" do
+      it "should deny access" 
+=begin
         get :index
-        response.should redirect_to(new_user_session_path)
-        flash[:alert].should =~ /You need to sign in/
+#        response.should redirect_to(new_user_session_path)
+ #       response.should redirect_to(root_path)
+  #      response.should redirect_to(root_path)
+        flash[:error].should =~ /Access Denied/
+   #     response.should have_selector("title", :content => "Disabled Users")
       end
+=end      
     end
     
     describe "for signed in users" do
       before(:each) do
-        @user = Factory(:user)
-        sign_in(@user)
-        second = Factory(:user, :username  => Factory.next(:username), :email => "another@example.com")
-        third = Factory(:user, :username  => Factory.next(:username), :email => "another@example.net")
-        @users = [@user, second, third]
-        8.times do
-          @users << Factory(:user, :username  => Factory.next(:username), :email  => Factory.next(:email))
-        end
-        
+        @admin = Factory(:user, :username  => "an_admin", :roles => [:admin], :email => Factory.next(:email))
+        sign_in(@admin)
+
+        @non_admin = Factory(:user, :username => "regular_user", :roles => [:free], :email => Factory.next(:email))
+        third = Factory(:user, :username => Factory.next(:username) , :roles => [:free], :email => Factory.next(:email))
+        @users = [@admin, @non_admin, third]
       end
 
       it "should have an element for each user" do
@@ -72,7 +79,27 @@ describe UsersController do
         end
       end
       
+      it "should allow searching by role - admin" do
+        get :index, :role => :admin
+        response.should have_selector("title", :content => "Admin Users")
+        response.should have_selector("a", :content => @admin.username)
+        response.should_not have_selector("a", :content => @non_admin.username)
+      end
+
+      it "should allow searching by role - disabled" do
+        disabled_user = Factory(:user, :username => Factory.next(:username) , :roles => [], :email => Factory.next(:email))
+        get :index, :role => ""
+        response.should have_selector("title", :content => "Disabled Users")
+        response.should have_selector("a", :content => disabled_user.username)
+        response.should_not have_selector("a", :content => @non_admin.username)
+        response.should_not have_selector("a", :content => @admin.username)
+      end
+
       it "should paginate users" do
+        8.times do
+          @users << Factory(:user, :username  => Factory.next(:username), :email  => Factory.next(:email))
+        end
+
         get :index
         response.should have_selector("div.pagination")
         response.should have_selector("span.disabled", :content => "Previous")
@@ -85,6 +112,113 @@ describe UsersController do
     end
     
   end
+
+  describe "GET 'edit'" do
+    before(:each) do
+      @user = Factory(:user)
+      sign_in @user
+    end
+    
+    it "should be successful" do
+      get :edit, :id => @user
+      response.should be_success
+    end
+    
+    it "should have the right title" do
+      get :edit, :id => @user
+      response.should have_selector("title", :content => "Edit user")
+    end
+    
+  end
+
+  describe "DELETE 'destroy'" do
   
+    before(:each) do
+      @user = Factory(:user, :email => Factory.next(:email))
+    end
+  
+    describe "as a non sign-in user" do
+      it "should deny access" do
+        delete :destroy, :id => @user
+        flash[:error].should =~ /Access Denied/
+      end
+    end
+
+    describe "as a non-admin user" do
+      it "should protect the page" do
+        @non_admin = Factory(:user, :username => Factory.next(:username), :email => Factory.next(:email), :roles => [:free])
+        sign_in(@non_admin)
+        delete :destroy, :id => @user
+        flash[:error].should =~ /Access Denied/
+      end
+    end
+    
+    describe "as an admin user" do
+      before(:each) do
+        @admin = Factory(:user, :username => Factory.next(:username), :email => Factory.next(:email))
+        sign_in(@admin)
+      end
+      
+      it "should destroy the user" do
+        lambda do
+          delete :destroy, :id => @user
+        end.should change(User, :count).by(-1)
+      end
+      
+      it "should redirect to the users page" do
+        delete :destroy, :id => @user
+        response.should redirect_to(users_path)
+      end
+      
+    end
+  
+  end
+
+  describe "PUT 'update'" do
+
+    before(:each) do
+      @user = Factory(:user)
+      sign_in(@user)
+    end
+    
+    describe "failure" do
+      before(:each) do
+        @invalid_attr = {:email => "", :username => "", :password => "",
+                    :password_confirmation => "" }
+      end
+      
+      it "should render the 'edit' page" do
+        put :update, :id => @user, :user => @invalid_attr
+        response.should render_template('edit')
+        response.should have_selector("title", :content => "Edit user")
+      end
+      
+    end
+    
+    describe "success" do
+      
+      before(:each) do
+        @attr = { :name => "New Name", :email => "user@example.org",
+                  :password => "barbaz", :password_confirmation => "barbaz" }
+      end      
+      
+      it "should change the user's attributes" do
+        put :update, :id => @user, :user => @attr
+        user = assigns(:user)
+        @user.reload
+        @user.username.should == user.username
+        @user.email.should == user.email
+      end
+
+      it "should redirect to the user show page with flash message" do
+        put :update, :id => @user, :user => @attr
+        response.should redirect_to(user_path(@user))
+        flash[:success].should =~ /updated/
+      end
+      
+    end
+    
+  end
+
 
 end

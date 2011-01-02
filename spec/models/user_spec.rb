@@ -21,6 +21,19 @@ describe User do
 		User.create!(@attr)
 	end
 
+	it "should persist single roles" do
+		user = User.create!(@attr.merge(:perms => ["admin"]))
+    user.has_any_role?(:admin).should be_true
+	end
+
+	it "should persist multiple roles" do
+		user = User.create!(@attr.merge(:perms => ["admin", "free"]))
+    user.has_any_role?(:admin).should be_true
+    user.has_any_role?(:free).should be_true
+    user.has_any_role?(:noexist).should be_false
+	end
+
+
 	it "should require an email address" do
 		no_email_user = User.new(@attr.merge(:email => ""))
 		no_email_user.should_not be_valid
