@@ -22,6 +22,8 @@ describe TeamstatsController do
 
   end
 
+  it "should allow the league_table_editor role to override league table settings, ex: docking points"
+
   describe "GET 'show'" do
   
     before(:each) do

@@ -9,7 +9,7 @@ class Player < ActiveRecord::Base
                   :length   => { :maximum => 50 }
   validates :position, :presence => true
  
-  validates_numericality_of :height, :greater_than_or_equal_to => 1
+  validates_numericality_of :height, :allow_nil => true, :greater_than_or_equal_to => 1
  
   def self.search(search)
     if search

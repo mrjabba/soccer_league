@@ -198,7 +198,7 @@ describe PlayersController do
          @attr = { :firstname => "first", :lastname => "last", :position => "MF" } 
         end
 
-        it "should create a user" do
+        it "should create a player" do
           lambda do
             post :create, :player => @attr
           end.should change(Player, :count).by(1)

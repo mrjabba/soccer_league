@@ -38,7 +38,7 @@ describe LeaguesController do
         response.should have_selector("td", :content => @team2.name)
     end
   end
-  
+
   describe "GET 'new'" do
     before(:each) do
       sign_in Factory(:user)
