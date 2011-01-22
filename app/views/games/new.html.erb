@@ -4,6 +4,7 @@
 <p>
 
 <%= form_for [@league, @game] do |f| %>
+  <%= render 'shared/error_messages_game', :object => f.object %>
 
   <div class="field">
     <%= f.label :visiting_team %><br />
