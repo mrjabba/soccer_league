@@ -24,10 +24,10 @@ class Game < ActiveRecord::Base
   validates :visiting_team, :presence => true
   validates :home_team, :presence => true
 
-  validate :opposing_teams_must_be_diferent
+  validate :opposing_teams_must_be_different
 
-  def opposing_teams_must_be_diferent
-    errors.add(:team1_id, "Opposing teams must be different") if team1_id == team2_id
+  def opposing_teams_must_be_different
+    errors.add(:visiting_team, "must be different from Home team") if team1_id == team2_id
   end  
 
   def game_completed=(game_completed)
