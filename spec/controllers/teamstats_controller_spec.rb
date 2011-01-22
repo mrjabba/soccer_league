@@ -82,16 +82,16 @@ describe TeamstatsController do
 
     describe "success" do
       before(:each) do
-       @attr = { :league_id => @league, :team_id => @team } 
+       @attr = { :team_id => @team } 
       end
 
       it "should redirect to the league show page" do
-        post :create, :teamstat => @attr
+        post :create, :league_id => @league, :teamstat => @attr
         response.should redirect_to(league_path(@league))
       end
       
       it "should have a flash message" do
-        post :create, :teamstat => @attr
+        post :create, :league_id => @league, :teamstat => @attr
         flash[:success].should =~ /added/
       end
 
@@ -103,13 +103,13 @@ describe TeamstatsController do
       end
 
       it "should render the 'new' page" do
-        post :create, :teamstat => @attr
+        post :create, :league_id => @league, :teamstat => @attr
         response.should render_template('new')        
       end
       
       it "should have the right title" do
-        post :create, :teamstat => @attr
-        response.should have_selector("title", :content => "New Teamstat")
+         post :create, :league_id => @league, :teamstat => @attr
+       response.should have_selector("title", :content => "New Teamstat")
       end
 
     end

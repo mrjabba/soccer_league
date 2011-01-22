@@ -15,26 +15,17 @@ class GamesController < ApplicationController
   end
 
   def create
-    #TODO some validation that needs to occur, probably in the model
-    # ensure that visting team and home team are not the same id
-    # tweak teams query in view to only how teams for THAT league.
-    @game = Game.new(params[:game])
+    @league = League.find(params[:league_id])
+    @game = @league.games.build(params[:game])
     if @game.save
       flash[:success] = "Game added successfully!"
-      
-      #TODO we r losing the ID for @game here as well
-      # workaround didnt work
-      # try commenting out the activerecord callback to see if it 
-      # still works
-      #@game = Game.find(params[:game])
       redirect_to @game
     else 
       @title = "New Game"
-      @game = Game.new()
-      @game.league = params[:game][:league_id]
       render 'new'
     end
   end 
+
 
  def edit
     @game = Game.find(params[:id])
@@ -72,7 +63,7 @@ class GamesController < ApplicationController
     #TODO should this be allowed? does it remove/reset necessary data?
     @game = Game.find(params[:id])
     @game.destroy
-    redirect_to :action => "index", :league_id => @game.league
+    redirect_to league_games_path(@game.league)
   end
 
 end

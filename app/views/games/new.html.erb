@@ -3,7 +3,7 @@
 
 <p>
 
-<%= form_for(@game) do |f| %>
+<%= form_for [@league, @game] do |f| %>
 
   <div class="field">
     <%= f.label :visiting_team %><br />

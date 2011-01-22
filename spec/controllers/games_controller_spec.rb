@@ -166,21 +166,21 @@ describe GamesController do
 
     describe "failure" do
       before(:each) do
-       @attr = { :league_id => @league } 
+        @league = Factory(:league)
+        @attr = { :team1_id => nil } 
       end
 
       it "should render the 'edit' page" do
-        post :create, :game => @attr
+        post :create, :league_id => @league.id, :game => @attr
         response.should render_template('new')        
       end
       
       it "should have the right title" do
-        post :create, :game => @attr
+        post :create, :league_id => @league.id, :game => @attr
         response.should have_selector("title", :content => "New Game")
       end
 
     end
-
 
   end
   
@@ -191,8 +191,6 @@ describe GamesController do
    end
     
     describe "success" do
-      before(:each) do
-      end
 
       it "should destroy the game" do
         lambda do 
@@ -202,12 +200,9 @@ describe GamesController do
 
       it "should redirect to the league's view games page" do
         delete :destroy, :id => @game
-        response.should redirect_to(games_path(:league_id => @game.league))
+        response.should redirect_to(league_games_path(@game.league))
       end
 
-    end
-    
-    describe "failure" do
     end
 
   end  

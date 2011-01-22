@@ -1,8 +1,7 @@
 <h3><%= link_to "#{@league.name} (#{@league.year})", "/leagues/#{@league.id}" %> - Add Team to League</h3>
 
 <p>
-
-<%= form_for(@teamstat) do |f| %>
+<%= form_for [@league, @teamstat] do |f| %>
   
     <%= f.select :team_id, Team.order("name").collect { |t| [ t.name, t.id ] } %>
     <%= f.hidden_field :league_id %>

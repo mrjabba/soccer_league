@@ -16,18 +16,17 @@ class TeamstatsController < ApplicationController
   end
 
   def create
-    @league = League.find(params[:teamstat][:league_id])
-    @teamstat = Teamstat.new(params[:teamstat])
+    @league = League.find(params[:league_id])
+    @teamstat = @league.teamstats.build(params[:teamstat])
     if @teamstat.save
       flash[:success] = "Team added to league successfully!"
       redirect_to @league
     else 
       @title = "New Teamstat"
-      @teamstat = Teamstat.new()
-      @teamstat.league = @league
       render 'new'
     end
   end 
+
 
   def destroy
     @teamstat = Teamstat.find(params[:id])

@@ -35,6 +35,8 @@ describe Game do
       @game.visiting_team_goals.should == 0
     end
 
+    it "should validate visiting and home team are not the same id"
+
   end
   
   describe "game associations" do
