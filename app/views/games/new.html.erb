@@ -1,5 +1,5 @@
 <h3><%= link_to "#{@game.league.name} (#{@game.league.year})", "/leagues/#{@game.league.id}" %> 
-- <%= link_to "All Games", "/games?league_id=#{@game.league.id}" %> - Create Game</h3>
+- <%= link_to "All Games", league_games_path(@game.league) %> - Create Game</h3>
 
 <p>
 
@@ -15,8 +15,6 @@
     <%= f.select :team2_id, Teamstat.where(:league_id => @league).collect { |t| [ t.team.name, t.team_id ] } %><br/>
   </div>
   
-  <%= f.hidden_field :league_id %>
-
   <div class="actions">
     <%= f.submit "Create Game", :class => "button round" %>
     <input type="button" id="cancelGameAdd" value="Cancel" class="button round"/>

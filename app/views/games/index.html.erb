@@ -4,7 +4,7 @@
   <nav class="round">
     <ul>
       <% if can? :new, @game %>
-        <li><%= link_to "Create Game", "/games/new?league_id=#{@league.id}", :class => "action_button round" %></li>
+        <li><%= link_to "Create Game", new_league_game_path(@league), :class => "action_button round" %></li>
       <% end %>
     </ul>
   </nav>

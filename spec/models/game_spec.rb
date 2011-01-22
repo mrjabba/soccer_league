@@ -18,6 +18,11 @@ describe Game do
 
   end
 
+  it "should validate visiting and home team are not the same id" do 
+    game = Game.new(@attr.merge(:team1_id => 1, :team2_id => 1))
+    game.should_not be_valid     
+  end
+
   it "should have an user (update_by) field"
 
   it "should create a new instance given valid attributes" do
@@ -35,9 +40,8 @@ describe Game do
       @game.visiting_team_goals.should == 0
     end
 
-    it "should validate visiting and home team are not the same id"
-
   end
+  
   
   describe "game associations" do
 
