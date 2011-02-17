@@ -146,6 +146,7 @@ describe TeamsController do
   describe "GET 'show'" do
   
     before(:each) do
+      @user = Factory(:user)
       @team = Factory(:team)
     end
     

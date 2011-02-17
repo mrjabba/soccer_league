@@ -1,12 +1,15 @@
 class Playerstat < ActiveRecord::Base
-  attr_accessible :jersey_number, :goals, :assists, :shots, :fouls, :yellow_cards, :red_cards, :minutes, :saves, :game_id, :player_id, :team_id
+  attr_accessible :jersey_number, :goals, :assists, :shots, :fouls, :yellow_cards, :red_cards, :minutes, :saves, :game_id, :player_id, :team_id, :created_by_id
   before_validation :init_stats
   before_save :init_stats
+
+  belongs_to :created_by, :class_name => "User", :foreign_key => "created_by_id"
 
   belongs_to :player
   belongs_to :team
   belongs_to :game
 
+#  validates :created_by_id, :presence => true
   validates :game_id, :presence => true
   validates :team_id, :presence => true
   validates :player_id, :presence => true

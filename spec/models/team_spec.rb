@@ -9,8 +9,6 @@ describe Team do
               :email => "test@foo.com", :country => "USA" }
   end
 
-  it "should have an user (update_by) field"
-
   it "should create a new instance given valid attributes" do
     Team.create!(@attr)
   end
@@ -32,6 +30,7 @@ describe Team do
       @team.should respond_to(:website)
       @team.should respond_to(:email)
       @team.should respond_to(:country)
+      @team.should respond_to(:created_by_id)
     end
 
    it "should validate phone format if present" do      

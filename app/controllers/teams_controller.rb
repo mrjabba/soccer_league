@@ -35,6 +35,7 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new(params[:team])
+    @team.created_by_id = current_user.id
     if @team.save
       flash[:success] = "Team created successfully!"
       redirect_to @team

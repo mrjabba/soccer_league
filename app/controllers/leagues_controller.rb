@@ -4,6 +4,7 @@ class LeaguesController < ApplicationController
   # from each method b/c cancan will do it by default?
   before_filter :authenticate_user!, :except => [:show, :index]
 
+  
   def index
     @title = "League Management"
     @leagues = League.paginate(:page => params[:page])
@@ -39,6 +40,7 @@ class LeaguesController < ApplicationController
 
   def create
     @league = League.new(params[:league])
+    @league.created_by_id = current_user.id
     if @league.save
       flash[:success] = "League created successfully!"
       redirect_to @league
@@ -47,5 +49,6 @@ class LeaguesController < ApplicationController
       render 'new'
     end
   end  
+
 
 end

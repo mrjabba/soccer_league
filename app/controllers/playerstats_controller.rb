@@ -11,6 +11,7 @@ class PlayerstatsController < ApplicationController
     @game = Game.find(params[:playerstat][:game_id])
     @team = Team.find(params[:playerstat][:team_id])
     @playerstat = Playerstat.new(params[:playerstat])
+    @playerstat.created_by_id = current_user.id
     if @playerstat.save
       flash[:success] = "Player added to game successfully!"
       redirect_to @game

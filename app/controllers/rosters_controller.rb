@@ -11,6 +11,7 @@ class RostersController < ApplicationController
   def create
     @teamstat = Teamstat.find(params[:roster][:teamstat_id])
     @roster = Roster.new(params[:roster])
+    @roster.created_by_id = current_user.id
     if @roster.save
       flash[:success] = "Player added to team successfully!"
       redirect_to @teamstat

@@ -33,29 +33,9 @@
 
 <div>
 <strong>Playerstats count: </strong> <%= @player.playerstats.count %>
-
 <div>TODO roll these stats into a per league/year calculation</div>
-<% unless @playerstats.empty? %>
 
-
-  <table id="playerstats_table" class="grid_shaded">
-  <tr>
-  <th title="Match">Match</th>
-  <th title="Club">Club</th>
-  <th title="Goals">Goals</th>
-  <th title="Assists">Assists</th>
-  <th title="Shots">Shots</th>
-  <th title="Fouls">Fouls</th>
-  <th title="Cautions">Cautions</th>
-  <th title="Ejections">Ejections</th>
-  <th title="Minutes">Minutes</th>
-  <th title="Saves">Saves</th>
-  <th title="Jersey Number">Jersey</th>
-  </tr>
-    
-    <%= render @playerstats %>
-  </table>
-<% end %>
+<div class="audit">Created by: <%= @player.created_by.username %></div>
 
 </div>
 

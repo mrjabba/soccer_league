@@ -3,13 +3,14 @@ require 'spec_helper'
 describe League do
 
   before(:each) do
-    @attr = { :name => "MLS", :year => 2002 }
+    @user = Factory(:user)
+    @attr = { :name => "MLS", :year => 2002, :created_by_id => @user.id }
   end
 
   it "should have an user (update_by) field"
 
   it "should create a new instance given valid attributes" do
-    League.create!(@attr)
+    @league = League.create!(@attr)
   end
 
   it "should require a name" do
@@ -27,5 +28,17 @@ describe League do
     long_name_league = League.new(@attr.merge(:name => long_name))
     long_name_league.should_not be_valid
   end  
+  
+  describe "league associations" do
+
+    before(:each) do
+      @league = League.create(@attr)
+    end
+
+    it "should have a league attribute" do
+      @league.should respond_to(:created_by_id)
+    end
+  end  
+  
   
 end

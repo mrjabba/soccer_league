@@ -363,3 +363,7 @@ input.button {
     height: 1%; }
   *:first-child+html .pagination {
     overflow: hidden; }
+
+.audit {
+  font-size: 80%;
+}

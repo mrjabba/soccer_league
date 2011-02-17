@@ -8,8 +8,6 @@ describe Roster do
     @attr = { :teamstat_id => @teamstat, :player_id => @player } 
   end
 
-  it "should have an user (update_by) field"
-
   it "should create a new instance given valid attributes" do
     Roster.create!(@attr)
   end
@@ -34,6 +32,7 @@ describe Roster do
     it "should have the right attributes" do
       @roster.should respond_to(:player)
       @roster.should respond_to(:teamstat)
+      @roster.should respond_to(:created_by_id)
     end
     
   end

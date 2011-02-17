@@ -24,7 +24,7 @@ describe PlayersController do
     
     before(:each) do
       @player = Factory(:player)
-      sign_in Factory(:user)
+      sign_in(Factory(:user, :email => Factory.next(:email)))
     end
     
      it "should be successful" do
@@ -43,8 +43,8 @@ describe PlayersController do
   describe "PUT 'update'" do
     before(:each) do
       @player = Factory(:player)
-      sign_in Factory(:user)
-   end
+      sign_in(Factory(:user, :email => Factory.next(:email)))
+    end
     
     describe "failure" do
       before(:each) do
@@ -136,6 +136,7 @@ describe PlayersController do
   describe "GET 'show'" do
   
     before(:each) do
+      @user = Factory(:user)
       @player = Factory(:player)
     end
     

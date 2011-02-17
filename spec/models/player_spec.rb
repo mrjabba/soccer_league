@@ -3,9 +3,10 @@ require 'spec_helper'
 describe Player do
 
   before(:each) do
+    @user = Factory(:user)
     @attr = { :firstname => "Jamie", :lastname => "Watson", :position => "Forward" , 
     :jersey_number => 10, :birth_date => "02/10/1978", :nationality => "USA", 
-    :birth_city => "Austin", :birth_nation => "USA", :height => 20}
+    :birth_city => "Austin", :birth_nation => "USA", :height => 20, :created_by_id => @user.id}
   end
 
   it "should calculate/persist height as millimeters, allow input as meters (decimal)"
@@ -51,6 +52,7 @@ describe Player do
 
     it "should have a playerstats attribute" do
       @player.should respond_to(:playerstats)
+      @player.should respond_to(:created_by_id)
     end
   end  
   

@@ -3,15 +3,14 @@ require 'spec_helper'
 describe Playerstat do
 
  before(:each) do
+    @user = Factory(:user)
     @team = Factory(:team)
     @game = Factory(:game)
     @player = Factory(:player)
     @attr = { :team_id => @team,
             :game_id => @game,
-            :player_id => @player }
+            :player_id => @player, :created_by_id => @user.id }
   end
-
-  it "should have an user (update_by) field"
 
   it "should create a new instance given valid attributes" do
     Playerstat.create!(@attr)
@@ -27,6 +26,7 @@ describe Playerstat do
       @playerstat.should respond_to(:player)
       @playerstat.should respond_to(:game)
       @playerstat.should respond_to(:team)
+      @playerstat.should respond_to(:created_by_id)
     end
 
     it "should have the right associated player" do

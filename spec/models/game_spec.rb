@@ -1,20 +1,24 @@
 require 'spec_helper'
 
+#fix me kevin
+
 describe Game do
 
  before(:each) do
     @league = Factory(:league)
+    @user = Factory(:user, :email => Factory.next(:email))
 
     @teamstat_home = Factory(:teamstat, :league_id => @league.id)
     @teamstat_visiting = Factory(:teamstat, :league_id => @league.id)
     
     @player_home_1 = Factory(:player)
-    @player_home_2 = Factory(:player, :lastname => Factory.next(:lastname))
+    @player_home_2 = Factory(:player)
+
+    @player_visiting_1 = Factory(:player)
+    @player_visiting_2 = Factory(:player)
     
-    @player_visiting_1 = Factory(:player, :lastname => Factory.next(:lastname))
-    @player_visiting_2 = Factory(:player, :lastname => Factory.next(:lastname))
     
-    @attr = { :league_id => @league, :team1_id => @teamstat_visiting.team.id, :team2_id => @teamstat_home.team.id }
+    @attr = { :league_id => @league, :team1_id => @teamstat_visiting.team.id, :team2_id => @teamstat_home.team.id, :created_by_id => @user.id }
 
   end
 
@@ -64,6 +68,7 @@ describe Game do
       @game.should respond_to(:home_team)
       @game.should respond_to(:visiting_team)
       @game.should respond_to(:playerstats)
+      @game.should respond_to(:created_by_id)
     end
 
     describe "completed games" do

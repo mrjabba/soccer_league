@@ -10,23 +10,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110102183040) do
+ActiveRecord::Schema.define(:version => 20110123223843) do
 
   create_table "games", :force => true do |t|
     t.integer  "team1_id"
     t.integer  "team2_id"
     t.integer  "league_id"
-    t.boolean  "completed",  :default => false
+    t.boolean  "completed",     :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "created_by_id"
   end
+
+  add_index "games", ["created_by_id"], :name => "index_games_on_created_by_id"
 
   create_table "leagues", :force => true do |t|
     t.string   "name"
     t.integer  "year"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "created_by_id"
   end
+
+  add_index "leagues", ["created_by_id"], :name => "index_leagues_on_created_by_id"
 
   create_table "players", :force => true do |t|
     t.string   "firstname"
@@ -39,7 +45,10 @@ ActiveRecord::Schema.define(:version => 20110102183040) do
     t.string   "birth_city"
     t.string   "birth_nation"
     t.integer  "height"
+    t.integer  "created_by_id"
   end
+
+  add_index "players", ["created_by_id"], :name => "index_players_on_created_by_id"
 
   create_table "playerstats", :force => true do |t|
     t.integer  "goals"
@@ -56,8 +65,10 @@ ActiveRecord::Schema.define(:version => 20110102183040) do
     t.integer  "jersey_number"
     t.integer  "game_id"
     t.integer  "team_id"
+    t.integer  "created_by_id"
   end
 
+  add_index "playerstats", ["created_by_id"], :name => "index_playerstats_on_created_by_id"
   add_index "playerstats", ["player_id"], :name => "index_playerstats_on_player_id"
   add_index "playerstats", ["team_id"], :name => "index_playerstats_on_team_id"
 
@@ -66,7 +77,10 @@ ActiveRecord::Schema.define(:version => 20110102183040) do
     t.integer  "player_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "created_by_id"
   end
+
+  add_index "rosters", ["created_by_id"], :name => "index_rosters_on_created_by_id"
 
   create_table "teams", :force => true do |t|
     t.string   "name"
@@ -81,8 +95,10 @@ ActiveRecord::Schema.define(:version => 20110102183040) do
     t.string   "website"
     t.string   "email"
     t.string   "country"
+    t.integer  "created_by_id"
   end
 
+  add_index "teams", ["created_by_id"], :name => "index_teams_on_created_by_id"
   add_index "teams", ["name"], :name => "index_teams_on_name", :unique => true
 
   create_table "teamstats", :force => true do |t|
@@ -97,8 +113,10 @@ ActiveRecord::Schema.define(:version => 20110102183040) do
     t.integer  "league_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "created_by_id"
   end
 
+  add_index "teamstats", ["created_by_id"], :name => "index_teamstats_on_created_by_id"
   add_index "teamstats", ["league_id"], :name => "index_teamstats_on_league_id"
   add_index "teamstats", ["team_id"], :name => "index_teamstats_on_team_id"
 

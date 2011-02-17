@@ -23,7 +23,6 @@ class User < ActiveRecord::Base
   end
 
 
-  
   validates :username, :presence => true,
             :length => {:maximum => 50},
             :uniqueness => { :case_sensitive => false}

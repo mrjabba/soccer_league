@@ -24,6 +24,7 @@ describe Teamstat do
     it "should have the right attributes" do
       @teamstat.should respond_to(:league)
       @teamstat.should respond_to(:team)
+      @teamstat.should respond_to(:created_by_id)
     end
   
     it "should have the right associated league" do
