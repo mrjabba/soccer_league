@@ -23,18 +23,4 @@ describe Roster do
     no_player_roster.should_not be_valid
   end
 
-  describe "roster associations" do
-
-    before(:each) do
-      @roster = Roster.create()
-    end
-
-    it "should have the right attributes" do
-      @roster.should respond_to(:player)
-      @roster.should respond_to(:teamstat)
-      @roster.should respond_to(:created_by_id)
-    end
-    
-  end
-
 end

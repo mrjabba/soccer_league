@@ -5,8 +5,7 @@ describe Teamstat do
   before(:each) do
     @league = Factory(:league)
     @team = Factory(:team)
-    @attr = { :league_id => @league,
-          :team_id => @team }
+    @attr = { :league_id => @league, :team_id => @team }
   end
 
   it "should have an user (update_by) field"
@@ -20,13 +19,7 @@ describe Teamstat do
     before(:each) do
       @teamstat = Teamstat.create!(@attr)
     end
-      
-    it "should have the right attributes" do
-      @teamstat.should respond_to(:league)
-      @teamstat.should respond_to(:team)
-      @teamstat.should respond_to(:created_by_id)
-    end
-  
+        
     it "should have the right associated league" do
       @teamstat.league_id.should == @league.id
       @teamstat.league.should == @league

@@ -43,17 +43,5 @@ describe Player do
     long_name_player = Player.new(@attr.merge(:lastname => long_name))
     long_name_player.should_not be_valid
   end  
-  
-  describe "playerstat associations" do
-
-    before(:each) do
-      @player = Player.create(@attr)
-    end
-
-    it "should have a playerstats attribute" do
-      @player.should respond_to(:playerstats)
-      @player.should respond_to(:created_by_id)
-    end
-  end  
-  
+    
 end

@@ -27,18 +27,6 @@ describe League do
     long_name = "a" * 51
     long_name_league = League.new(@attr.merge(:name => long_name))
     long_name_league.should_not be_valid
-  end  
-  
-  describe "league associations" do
-
-    before(:each) do
-      @league = League.create(@attr)
-    end
-
-    it "should have a league attribute" do
-      @league.should respond_to(:created_by_id)
-    end
-  end  
-  
+  end    
   
 end
