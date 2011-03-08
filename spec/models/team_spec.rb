@@ -19,20 +19,6 @@ describe Team do
       @team = Factory(:team)
     end
 
-    it "should have the right attributes" do
-      @team.should respond_to(:name)
-      @team.should respond_to(:address1)
-      @team.should respond_to(:address2)
-      @team.should respond_to(:city)
-      @team.should respond_to(:state)
-      @team.should respond_to(:zip)
-      @team.should respond_to(:phone)
-      @team.should respond_to(:website)
-      @team.should respond_to(:email)
-      @team.should respond_to(:country)
-      @team.should respond_to(:created_by_id)
-    end
-
    it "should validate phone format if present" do      
       team = Team.new(@attr.merge(:phone => "512-123-4567"))
       team.should be_valid

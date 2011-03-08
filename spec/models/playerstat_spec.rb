@@ -22,13 +22,6 @@ describe Playerstat do
       @playerstat = Playerstat.create!(@attr)
     end
 
-    it "should have the right attributes" do
-      @playerstat.should respond_to(:player)
-      @playerstat.should respond_to(:game)
-      @playerstat.should respond_to(:team)
-      @playerstat.should respond_to(:created_by_id)
-    end
-
     it "should have the right associated player" do
       @playerstat.player_id.should == @player.id
       @playerstat.player.should == @player

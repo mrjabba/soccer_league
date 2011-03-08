@@ -63,14 +63,6 @@ describe Game do
 
     end
 
-    it "should have the right attributes" do
-      @game.should respond_to(:league)
-      @game.should respond_to(:home_team)
-      @game.should respond_to(:visiting_team)
-      @game.should respond_to(:playerstats)
-      @game.should respond_to(:created_by_id)
-    end
-
     describe "completed games" do
 
       it "should update league table (teamstats), home team wins" do
