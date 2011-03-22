@@ -1,10 +1,22 @@
 class Player < ActiveRecord::Base
-  attr_accessible :firstname, :lastname, :position, :birth_date, :nationality, :birth_city, :birth_nation, :height, :created_by_id
+  attr_accessible :firstname, :lastname, :position, :birth_date, :nationality, :birth_city, :birth_nation, :height, :created_by_id, :name, :fields
 #  before_save :format_height
 
   belongs_to :created_by, :class_name => "User", :foreign_key => "created_by_id"
-
-  has_many :playerstats
+  has_many :playerstats  
+  has_many :rosters
+  has_many :teamstats, :through => :rosters
+  
+  def fields
+    attrs = {}
+    attrs[:id] = id
+    attrs[:name] = name
+    attrs
+  end
+  
+  def name
+    "#{self.firstname} #{self.lastname}"
+  end  
   
 #  validates :created_by_id, :presence => true
   validates :firstname, :presence => true,

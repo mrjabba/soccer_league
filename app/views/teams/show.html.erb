@@ -1,5 +1,7 @@
-
-<h1>Team: <%= @team.name %></h1>
+<% unless @league == nil %>
+  <h1 class="league"><%= link_to "#{@league.name} - #{@league.year}", league_path(@league) %></h1>
+<% end%>
+<h1 class="team">Team: <%= @team.name %></h1>
 <div class="actions">
   <nav class="round">
     <ul>
@@ -48,5 +50,6 @@
     <label>Email</label>
     <span><%= @team.email %></span>
   </div>
+
 
 <div class="audit">Created by: <%= @team.created_by.username %></div>

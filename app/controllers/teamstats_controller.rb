@@ -9,10 +9,26 @@ class TeamstatsController < ApplicationController
   end
 
   def show
-    @teamstat = Teamstat.find(params[:id]) 
-    @roster = Roster.find_all_by_teamstat_id(params[:id])
+    @teamstat = Teamstat.find(params[:id])     
     @league = @teamstat.league
-    @title = "View Roster | #{@league.name} | #{@league.year} | #{@teamstat.team.name}"
+    @title = "View Roster | #{@league.name} | #{@league.year} | #{@teamstat.team_name}"
+  end
+  
+  def edit
+    @teamstat = Teamstat.find(params[:id])
+    @league = @teamstat.league
+    @title = "Edit Teamstat"
+  end
+  
+  def update
+    @teamstat = Teamstat.find(params[:id])
+    if @teamstat.update_attributes(params[:teamstat])
+      flash[:success] = "Teamstat updated."
+      redirect_to @teamstat
+    else
+      @title = "Edit Teamstat"
+      render 'edit'
+    end    
   end
 
   def create

@@ -45,7 +45,10 @@ img.top_logo {
 }
 
 section h1 {
-  font-size: 200%;
+  font-size: 150%;
+  background-repeat: no-repeat;
+  padding-left: 5px;
+  background-position: left center;
 }
 
 /* Links */
@@ -297,7 +300,7 @@ table.grid_shaded td {
 
 input.button {
   text-align: center;
-  width: 100px;
+  width: 110px;
   background: #eeeeff;
   font-size: 80%;
   font-weight: bold;
@@ -366,4 +369,8 @@ input.button {
 
 .audit {
   font-size: 80%;
+}
+
+.indent1 {
+  margin-left: 20px;
 }

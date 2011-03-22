@@ -1,31 +1,30 @@
-
-<h3><%= link_to "#{@league.name} (#{@league.year})", "/leagues/#{@league.id}" %> 
-- <%= link_to @teamstat.team.name, "/teams/#{@teamstat.team.id}" %> - Manage Roster</h3>
-
+<h1 class="league"><%= link_to "#{@league.name} (#{@league.year})", "/leagues/#{@league.id}" %></h1>
+<h1 class="team indent1"><%= "#{@teamstat.team.name} Roster" %></h1>
 
 <div class="actions">
   <nav class="round">
     <ul>
       <% if can? :new, @teamstat %>
-        <li><%= link_to "Add Player", "/rosters/new?teamstat_id=#{@teamstat.id}", :class => "action_button round" %></li>
+        <li><%= link_to "Edit Roster", "#{@teamstat.id}/edit", :class => "action_button round" %></li>
+        <li><%= link_to "View Team", team_path(@teamstat.team), :class => "action_button round" %></li>
+        <li><%= link_to "Edit Team", edit_team_path(@teamstat.team), :class => "action_button round" %></li>
       <% end %>
     </ul>
   </nav>
 </div>
 
 <div>
-  <% unless @roster.empty? %>
+  <% unless @teamstat.players.empty? %>
     <table id="roster_table" class="grid_shaded">
     <tr>
       <th title="Player Name">Name</th>
       <th title="Position">Position</th>
       <th title="Nationality">Nationality</th>
     </tr>
-      <%= render @roster %>
+      <%= render :partial => "player", :collection => @teamstat.players %>
     </table>
   <% end %>
 </div>
 <div>
-
 
 </div>

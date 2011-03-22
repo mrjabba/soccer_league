@@ -6,6 +6,7 @@ class Roster < ActiveRecord::Base
   belongs_to :teamstat
   belongs_to :player
 
+  #FIXME created_by not being updated now that we go through teamstats_controller.
 #  validates :created_by_id, :presence => true
   validates :teamstat_id, :presence => true
   validates :player_id, :presence => true

@@ -9,6 +9,8 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id]) 
+    #temporary code sin, get league.
+    @league = @team.teamstat.league if @team.teamstat != nil 
     @title = "View Team | " + @team.name
   end
 

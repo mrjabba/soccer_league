@@ -6,6 +6,12 @@
     <%= f.select :team_id, Team.order("name").collect { |t| [ t.name, t.id ] } %>
     <%= f.hidden_field :league_id %>
 
+  <div>Start building a Roster</div>
+  <div class="field">
+    <%= f.label :player_tokens, "Players" %><br/>
+    <%= f.text_field :player_tokens %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Add Team", :class => "button round" %>
     <input type="button" id="cancelLeagueTeamAdd" value="Cancel" class="button round" />

@@ -4,4 +4,11 @@ $(function() {
     return false;
   });
 
+  $('#teamstat_player_tokens').tokenInput("/players.json", {
+    crossDomain: false,
+    prePopulate: $('#teamstat_player_tokens').data("pre"), 
+    theme: "facebook"
+  });
 });
+
+

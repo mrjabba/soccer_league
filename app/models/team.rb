@@ -18,7 +18,7 @@ class Team < ActiveRecord::Base
 
   belongs_to :created_by, :class_name => "User", :foreign_key => "created_by_id"
 
-  has_one    :teamstat
+  has_one    :teamstat #I think I would like teams to have_many teamstats (belonging to multiple leagues)...can we do this?
   has_one    :playerstat
 
   #TODO relationship to game?
