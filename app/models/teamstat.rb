@@ -14,6 +14,8 @@ class Teamstat < ActiveRecord::Base
   #TODO verify. Are rosters lazy loaded? (performance)
   has_many :rosters
 
+  delegate :name, :to => :team, :prefix => true 
+
   #TODO ensure these are whole numbers?
   validates_numericality_of :wins, :greater_than_or_equal_to => 0
   validates_numericality_of :losses, :greater_than_or_equal_to => 0

@@ -14,7 +14,7 @@ class LeaguesController < ApplicationController
     @title = "View League"
     @league = League.find(params[:id])
     @league_games_size = Game.where(:league_id => params[:id]).size
-    @teamstats = Teamstat.find_all_by_league_id(params[:id])
+    @teamstats = Teamstat.includes([:team]).find_all_by_league_id(params[:id])
   end
 
   def new
