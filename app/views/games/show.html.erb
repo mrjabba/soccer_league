@@ -1,6 +1,6 @@
+<h1 class="games"><%= link_to "All Games", league_games_path(@game.league) %></h1>
+<h1 class="game indent1">Game: <%= "#{@game.visiting_team.name} vs #{@game.home_team.name}" %></h1>
 
-<h3><%= link_to "#{@game.league.name} (#{@game.league.year})", "/leagues/#{@game.league.id}" %> 
-- <%= link_to "All Games", league_games_path(@game.league) %> - Game Details</h3>
 
 <% if can? :new, @game %>
 <div class="actions">

@@ -1,1 +1,2 @@
-rvm ruby-1.9.2@soccer_league
+rvm --create ruby-1.9.2@soccer_league
+rvm use ruby-1.9.2@soccer_league

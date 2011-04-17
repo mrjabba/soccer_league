@@ -196,7 +196,7 @@ describe PlayersController do
 
         before(:each) do
         sign_in Factory(:user)
-         @attr = { :firstname => "first", :lastname => "last", :position => "MF" } 
+         @attr = { :firstname => "first", :lastname => "last", :position => "MF", :birth_date => "02/10/1978" } 
         end
 
         it "should create a player" do
@@ -209,6 +209,12 @@ describe PlayersController do
           post :create, :player => @attr
           response.should redirect_to(player_path(assigns(:player)))
         end   
+
+        it "should save the player's attributes" do
+          post :create, :player => @attr          
+          player = assigns(:player)
+          player.birth_date.should_not == nil
+        end
         
         it "should have a flash message" do
           post :create, :player => @attr

@@ -9,6 +9,14 @@ $(function() {
     prePopulate: $('#teamstat_player_tokens').data("pre"), 
     theme: "facebook"
   });
+  
+  $( "#player_birth_date" ).datepicker({
+    showOn: "button",
+    buttonImage: "/images/calendar.png",
+    buttonImageOnly: true
+  });
+  
+  
 });
 
 

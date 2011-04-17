@@ -1,5 +1,7 @@
-<h3><%= link_to "#{@game.visiting_team.name} at #{@game.home_team.name}", "/games/#{@game.id}" %>
- - Edit Game</h3>
+<h1 class="game"><%= link_to "View Game", "/games/#{@game.id}" %></h1>
+<h1 class="game indent"><%= "Edit Game: #{@game.visiting_team.name} at #{@game.home_team.name}" %></h1>
+
+<h1 class="game indent1">Game: <%= "#{@game.visiting_team.name} vs #{@game.home_team.name}" %></h1>
 
 <%= form_for(@game) do |f| %>
   <%= render 'shared/error_messages_game', :object => f.object %>
