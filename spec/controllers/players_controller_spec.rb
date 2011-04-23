@@ -65,7 +65,7 @@ describe PlayersController do
     
     describe "success" do
       before(:each) do
-        @attr = { :firstname => "Jamie", :lastname => "Watson", :position => "Forward" , 
+        @attr = { :firstname => "Jamie", :lastname => "Watson", :position => Player::POSITIONS.values.first , 
         :birth_date => "02/10/1978", :nationality => "USA"}        
       end
       
@@ -196,7 +196,7 @@ describe PlayersController do
 
         before(:each) do
         sign_in Factory(:user)
-         @attr = { :firstname => "first", :lastname => "last", :position => "MF", :birth_date => "02/10/1978" } 
+         @attr = { :firstname => "first", :lastname => "last", :position => Player::POSITIONS.values.first, :birth_date => "02/10/1978" } 
         end
 
         it "should create a player" do

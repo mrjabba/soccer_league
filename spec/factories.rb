@@ -26,7 +26,7 @@ end
 Factory.define :player do |player|
   player.firstname                  "Fred"
   player.lastname                  Factory.next(:lastname)
-  player.position                  "Midfielder"
+  player.position                  Player::POSITIONS.values.first
   player.birth_date                  "09/22/1981"
   player.nationality                  "USA"
 #  player.created_by { |user|  user.association(:user, :username => Factory.next(:username), :email => Factory.next(:email)    ) }

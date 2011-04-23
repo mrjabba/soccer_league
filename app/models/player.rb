@@ -6,6 +6,8 @@ class Player < ActiveRecord::Base
   has_many :playerstats  
   has_many :rosters
   has_many :teamstats, :through => :rosters
+
+  POSITIONS = {"Forward" => "FW", "Midfielder" => "MF", "Defender" => "DF", "Forward/Midfielder" => "FW/MF", "Midfielder/Defender" => "MF/DF", "Goalkeeper" => "GK"}
   
   def fields
     attrs = {}
@@ -26,6 +28,7 @@ class Player < ActiveRecord::Base
   validates :position, :presence => true
  
   validates_numericality_of :height, :allow_nil => true, :greater_than_or_equal_to => 1
+  validates_inclusion_of :position, :in => POSITIONS.values, :message => "%{value} is not a valid position"
   
   def self.search(search)
     if search

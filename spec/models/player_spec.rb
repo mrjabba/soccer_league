@@ -4,7 +4,7 @@ describe Player do
 
   before(:each) do
     @user = Factory(:user)
-    @attr = { :firstname => "Jamie", :lastname => "Watson", :position => "Forward" , 
+    @attr = { :firstname => "Jamie", :lastname => "Watson", :position => Player::POSITIONS.values.first, 
     :jersey_number => 10, :birth_date => "02/10/1978", :nationality => "USA", 
     :birth_city => "Austin", :birth_nation => "USA", :height => 20, :created_by_id => @user.id}
   end
@@ -30,6 +30,12 @@ describe Player do
   it "should require a position" do
     no_position_player = Player.new(@attr.merge(:position => ""))
     no_position_player.should_not be_valid
+  end  
+
+  it "should reject positions not in the position list" do
+    position = "coach"
+    player = Player.new(@attr.merge(:position => position))
+    player.should_not be_valid
   end  
   
   it "should reject firstnames that are too long" do

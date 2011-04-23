@@ -63,7 +63,7 @@ describe "Players" do
 #          :firstname, :lastname, :position, :jersey_number, :birth_date, :nationality, :previous_club
 					fill_in "Firstname", :with => "Joe"
 					fill_in "LastName", :with => "Smith"
-					fill_in "Position", :with => "Midfielder"
+					fill_in "Position", :with => Player::POSITIONS.values.first
 					click_button
 					response.should have_selector("div.flash.success", :content => "Player created successfully!")
 					response.should render_template('players/new')

@@ -12,7 +12,7 @@
   </div>
   <div class="field">
     <%= f.label :position %><br />
-    <%= f.text_field :position %>
+    <%= f.select(:position, Player::POSITIONS) %>
   </div>
   <div class="field">
     <%= f.label :birth_date %><br />
