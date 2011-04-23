@@ -20,7 +20,7 @@
   </div>
   <div class="field">
     <%= f.label :nationality %><br />
-    <%= f.text_field :nationality %>
+    <%= f.select(:nationality, Carmen::countries.unshift(["Choose...", ""]) ) %>
   </div>
   <div class="field">
     <%= f.label :height%><br />
@@ -28,7 +28,7 @@
   </div>
   <div class="field">
     <%= f.label :birth_nation %><br />
-    <%= f.text_field :birth_nation%>
+    <%= f.select(:birth_nation, Carmen::countries.unshift(["Choose...", ""]) ) %>
   </div>
   <div class="field">
     <%= f.label :birth_city %><br />

@@ -28,7 +28,7 @@
   </div>
   <div class="field">
     <%= f.label :country %><br />
-    <%= f.text_field :country %>
+    <%= f.select(:country, Carmen::countries.unshift(["Choose...", ""]) ) %>
   </div>
   <div class="field">
     <%= f.label :phone %><br />
