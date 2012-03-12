@@ -62,6 +62,7 @@ Factory.define :teamstat do |teamstat|
   teamstat.goals_for      0
   teamstat.goals_against  0
   teamstat.games_played   0
+  teamstat.created_by_id 1
   teamstat.team { |team|  team.association(:team, :name => Factory.next(:name)) }
   teamstat.league { |league|  league.association(:league) }
 end

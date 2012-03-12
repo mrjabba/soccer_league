@@ -5,12 +5,12 @@ class Teamstat < ActiveRecord::Base
   
   belongs_to :created_by, :class_name => "User", :foreign_key => "created_by_id"
   belongs_to :league
-  belongs_to :team    
+  belongs_to :team
   has_many :rosters
   has_many :players, :through => :rosters
-  delegate :name, :to => :team, :prefix => true 
+  delegate :name, :to => :team, :prefix => true
   
-  #  validates :created_by_id, :presence => true
+  validates :created_by_id, :presence => true
   validates :league_id, :presence => true
   validates :team_id, :presence => true
 

@@ -3,23 +3,19 @@ require 'spec_helper'
 describe Teamstat do
 
   before(:each) do
-    @league = Factory(:league)
-    @team = Factory(:team)
-    @attr = { :league_id => @league, :team_id => @team }
+    @attr = {:wins => 1, :losses => 1, :ties => 1, :goals_for => 1, :goals_against => 1,
+      :league_id => 1, :team_id => 1, :created_by_id => 1}
   end
 
   it "should have an user (update_by) field"
 
-  it "should create a new instance given valid attributes" do
-    Teamstat.create!(@attr)
-  end
-
-  describe "validate associations" do
-
+  describe "valid associations" do
     before(:each) do
-      @teamstat = Teamstat.create!(@attr)
+      @league = Factory(:league)
+      @team = Factory(:team)
+      @teamstat = Teamstat.create!(:league_id => @league, :team_id => @team, :created_by_id => 1)
     end
-        
+
     it "should have the right associated league" do
       @teamstat.league_id.should == @league.id
       @teamstat.league.should == @league
@@ -29,38 +25,64 @@ describe Teamstat do
       @teamstat.team_id.should == @team.id
       @teamstat.team.should == @team
     end
-  
   end
 
   describe "validations" do
-    describe "success" do
-      it "should accept content that is a number greater than or equal to zero" do
-        Teamstat.new(@attr.merge(:wins => "1")).should be_valid
-        Teamstat.new(@attr.merge(:losses => "5")).should be_valid
-        Teamstat.new(@attr.merge(:ties => "12")).should be_valid
-        Teamstat.new(@attr.merge(:goals_for => "0")).should be_valid
-        Teamstat.new(@attr.merge(:goals_against => "1000")).should be_valid
-     end
-    end
-    
-    describe "failure" do
-      it "should reject non-numeric content and numbers less than zero" do
+      it "should be valid with valid attrs" do
+        Teamstat.new(@attr).should be_valid
+      end
+
+      it "require wins be a number" do
+        Teamstat.new(@attr.merge(:wins => "foo")).should_not be_valid
+      end
+
+      it "require wins be >=0" do
         Teamstat.new(@attr.merge(:wins => "-1")).should_not be_valid
+      end
+
+      it "require losses be a number" do
         Teamstat.new(@attr.merge(:losses => "foo")).should_not be_valid
+      end
+
+      it "require losses be >=0" do
+        Teamstat.new(@attr.merge(:losses => "-5")).should_not be_valid
+      end
+
+      it "require ties be a number" do
         Teamstat.new(@attr.merge(:ties => "foo")).should_not be_valid
+      end
+
+      it "require ties be >=0" do
+        Teamstat.new(@attr.merge(:ties => "-5")).should_not be_valid
+      end
+
+      it "require goals_for be a number" do
         Teamstat.new(@attr.merge(:goals_for => "foo")).should_not be_valid
+      end
+
+      it "require goals_for be >=0" do
+        Teamstat.new(@attr.merge(:goals_for => "-4")).should_not be_valid
+      end
+
+      it "require goals_against be a number" do
         Teamstat.new(@attr.merge(:goals_against => "foo")).should_not be_valid
+      end
+
+      it "require goals_against be >=0" do
+        Teamstat.new(@attr.merge(:goals_against => "-4")).should_not be_valid
       end
       
       it "should require a league id" do
-        Teamstat.new(@attr.merge(:league_id => nil)).should_not be_valid      
+        Teamstat.new(@attr.merge(:league_id => nil)).should_not be_valid
       end
 
       it "should require a team id" do
-        Teamstat.new(@attr.merge(:team_id => nil)).should_not be_valid      
+        Teamstat.new(@attr.merge(:team_id => nil)).should_not be_valid
       end
-    end
-    
+
+      it "should require created_by id" do
+        Teamstat.new(@attr.merge(:created_by_id => nil)).should_not be_valid
+      end
   end
   
   describe "calculations" do
@@ -72,5 +94,4 @@ describe Teamstat do
       Teamstat.new(@attr.merge(:wins => 3, :losses => 2 , :ties => 1)).games_played.should == 6
     end
   end
-
 end
