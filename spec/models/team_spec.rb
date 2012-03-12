@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 describe Team do
-
   before(:each) do
-    @attr = { :name => "Austin Aztex", :address1 => "123 Main St.", 
+    @user = Factory(:user)
+    @attr = { :name => "Austin Aztex", :address1 => "123 Main St.",
               :address2 => "Apt A", :city => "Austin", :state => "TX",
-              :zip => "78704", :phone => "", :website => "http://foo.com", 
-              :email => "test@foo.com", :country => "USA" }
+              :zip => "78704", :phone => "", :website => "http://foo.com",
+              :email => "test@foo.com", :country => "USA", :created_by_id => @user.id }
   end
 
   it "should create a new instance given valid attributes" do
@@ -14,7 +14,6 @@ describe Team do
   end
 
   describe "valid team" do
-
     before(:each) do
       @team = Factory(:team)
     end
@@ -28,11 +27,9 @@ describe Team do
       team = Team.new(@attr.merge(:email => "me@me.com"))
       team.should be_valid
     end
-
   end
 
   describe "invalid team" do
-
    it "should validate phone format if present" do
       team = Team.new(@attr.merge(:phone => "abc-notvalid"))
       team.should_not be_valid
@@ -51,27 +48,30 @@ describe Team do
     it "should require a address1" do
       no_address1_team = Team.new(@attr.merge(:address1 => ""))
       no_address1_team.should_not be_valid
-    end  
+    end
     
     it "should reject names that are too long" do
       long_name = "a" * 51
       long_name_user = Team.new(@attr.merge(:name => long_name))
       long_name_user.should_not be_valid
-    end  
+    end
     
     it "should reject duplicate team names" do
       Team.create!(@attr)
       team_with_duplicate_name = Team.new(@attr)
       team_with_duplicate_name.should_not be_valid
-    end  
+    end
     
     it "should reject team names identical up to case" do
       upcased_name = @attr[:name].upcase
       Team.create!(@attr.merge(:name => upcased_name))
       team_with_duplicate_name = Team.new(@attr)
       team_with_duplicate_name.should_not be_valid
-    end  
+    end
 
+    it "should require createed by id" do
+      team = Team.new(@attr.merge(:created_by_id => nil))
+      team.should_not be_valid
+    end
   end
-  
 end
