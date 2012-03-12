@@ -43,4 +43,9 @@ describe League do
     no_year_league = League.new(@attr.merge(:year => "foo"))
     no_year_league.should_not be_valid
   end
+
+  it "should require created by id" do
+      league = League.new(@attr.merge(:created_by_id => nil))
+      league.should_not be_valid
+    end
 end

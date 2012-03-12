@@ -69,7 +69,7 @@ describe Team do
       team_with_duplicate_name.should_not be_valid
     end
 
-    it "should require createed by id" do
+    it "should require created by id" do
       team = Team.new(@attr.merge(:created_by_id => nil))
       team.should_not be_valid
     end
