@@ -10,5 +10,5 @@ class League < ActiveRecord::Base
     
   validates :created_by_id, :presence => true
   validates :name, :presence => true, :length => { :maximum => 50 }
-  validates_numericality_of :year, :greater_than_or_equal_to => 1800  
+  validates_numericality_of :year, :greater_than_or_equal_to => 1800
 end
