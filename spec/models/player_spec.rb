@@ -1,12 +1,10 @@
 require 'spec_helper'
 
 describe Player do
-
   before(:each) do
-    @user = Factory(:user)
-    @attr = { :firstname => "Jamie", :lastname => "Watson", :position => Player::POSITIONS.values.first, 
-    :jersey_number => 10, :birth_date => "02/10/1978", :nationality => "USA", 
-    :birth_city => "Austin", :birth_nation => "USA", :height => 20, :created_by_id => @user.id}
+    @attr = { :firstname => "Jamie", :lastname => "Watson", :position => Player::POSITIONS.values.first,
+    :jersey_number => 10, :birth_date => "02/10/1978", :nationality => "USA",
+    :birth_city => "Austin", :birth_nation => "USA", :height => 20, :created_by_id => 1}
   end
 
   it "should calculate/persist height as millimeters, allow input as meters (decimal)"
@@ -18,36 +16,32 @@ describe Player do
   end
 
   it "should require a first name" do
-    no_firstname_player = Player.new(@attr.merge(:firstname => ""))
-    no_firstname_player.should_not be_valid
+    Player.new(@attr.merge(:firstname => "")).should_not be_valid
   end
 
   it "should require a last name" do
-    no_lastname_player = Player.new(@attr.merge(:lastname => ""))
-    no_lastname_player.should_not be_valid
+    Player.new(@attr.merge(:lastname => "")).should_not be_valid
   end
   
   it "should require a position" do
-    no_position_player = Player.new(@attr.merge(:position => ""))
-    no_position_player.should_not be_valid
-  end  
+    Player.new(@attr.merge(:position => "")).should_not be_valid
+  end
 
   it "should reject positions not in the position list" do
-    position = "coach"
-    player = Player.new(@attr.merge(:position => position))
-    player.should_not be_valid
-  end  
+    player = Player.new(@attr.merge(:position => "coach")).should_not be_valid
+  end
   
   it "should reject firstnames that are too long" do
     long_name = "a" * 51
-    long_name_player = Player.new(@attr.merge(:firstname => long_name))
-    long_name_player.should_not be_valid
-  end  
+    Player.new(@attr.merge(:firstname => long_name)).should_not be_valid
+  end
 
   it "should reject lastnames that are too long" do
     long_name = "a" * 51
-    long_name_player = Player.new(@attr.merge(:lastname => long_name))
-    long_name_player.should_not be_valid
-  end  
-    
+    Player.new(@attr.merge(:lastname => long_name)).should_not be_valid
+  end
+
+  it "should require created by id" do
+    Player.new(@attr.merge(:created_by_id => nil)).should_not be_valid
+  end
 end
