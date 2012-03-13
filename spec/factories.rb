@@ -88,6 +88,7 @@ Factory.define :roster do |roster|
   roster.player { |player|  player.association(:player, :lastname => Factory.next(:lastname)) }
   #TODO should I do a Factory.next for teamstat factory objects?
   roster.teamstat { |teamstat|  teamstat.association(:teamstat) }
+  roster.created_by_id 1
 end
 
 Factory.define :game do |game|
