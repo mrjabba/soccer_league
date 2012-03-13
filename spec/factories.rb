@@ -60,7 +60,7 @@ Factory.define :playerstat do |playerstat|
   playerstat.player { |player|  player.association(:player) }
   playerstat.game { |game|  game.association(:game) }
   playerstat.team { |team|  team.association(:team) }
-  playerstat.created_by { |user|  user.association(:user, :username => Factory.next(:username)) }
+  playerstat.created_by_id 1
 end
 
 Factory.define :roster do |roster|

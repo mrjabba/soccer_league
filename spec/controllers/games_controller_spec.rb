@@ -4,32 +4,28 @@ describe GamesController do
  render_views
 
   describe "GET 'index'" do
-
     before(:each) do
       @league = Factory(:league)
     end
   
-      it "should require a league and be successful" do
-        get :index, :league_id => @league
-        response.should be_success
-      end
+    it "should require a league and be successful" do
+      get :index, :league_id => @league
+      response.should be_success
+    end
 
-      it "should have the right title" do
-        get :index, :league_id => @league
-        response.should have_selector("title", :content => "All games")
-      end
-
+    it "should have the right title" do
+      get :index, :league_id => @league
+      response.should have_selector("title", :content => "All games")
+    end
   end
 
   describe "GET 'edit'" do
-
     before(:each) do
       @playerstat = Factory(:playerstat)
       @game = @playerstat.game
     end
   
-    describe "unauthenticated user" do 
-
+    describe "unauthenticated user" do
       before(:each) do
         get :edit, :id => @game
       end
@@ -47,21 +43,18 @@ describe GamesController do
 
       it "should display game edit screen" do
         response.should be_success
-        response.should have_selector("title", :content => "Edit game")    
+        response.should have_selector("title", :content => "Edit game")
       end
     end
-  
-  end  
+  end
 
   describe "GET 'show'" do
-  
     before(:each) do
       @playerstat = Factory(:playerstat)
       @game = @playerstat.game
-   end
+    end
   
-    describe "unauthenticated user" do 
-
+    describe "unauthenticated user" do
       before(:each) do
         get :show, :id => @game
       end
@@ -76,11 +69,9 @@ describe GamesController do
         response.should have_selector("td", :content => @game.visiting_team.name)
         response.should have_selector("td", :content => @game.home_team.name)
       end
-
     end
     
     describe "authenticated user" do
-
       before(:each) do
         sign_in(Factory(:user, :email => Factory.next(:email)))
         get :show, :id => @game
@@ -91,11 +82,9 @@ describe GamesController do
         response.should have_selector("a", :id => "remove_player")
       end
     end
-  
   end
 
   describe "GET 'new'" do
-  
     before(:each) do
       @league = Factory(:league)
       sign_in(Factory(:user, :email => Factory.next(:email)))
@@ -116,7 +105,6 @@ describe GamesController do
     describe "failure" do
       it "should display an error if no league present"
     end
-
   end
 
   describe "POST 'create'" do
@@ -131,7 +119,7 @@ describe GamesController do
       @teamstat_visitor.team = @team_visiting
      
       sign_in(Factory(:user, :email => Factory.next(:email)))
-   end
+    end
 
     describe "success" do
       before(:each) do
@@ -179,21 +167,18 @@ describe GamesController do
         post :create, :league_id => @league.id, :game => @attr
         response.should have_selector("title", :content => "New Game")
       end
-
     end
-
   end
   
   describe "DELETE 'destroy'" do
     before(:each) do
       @game = Factory(:game)
       sign_in(Factory(:user, :email => Factory.next(:email)))
-   end
+    end
     
     describe "success" do
-
       it "should destroy the game" do
-        lambda do 
+        lambda do
           delete :destroy, :id => @game
         end.should change(Game, :count).by(-1)
       end
@@ -202,9 +187,6 @@ describe GamesController do
         delete :destroy, :id => @game
         response.should redirect_to(league_games_path(@game.league))
       end
-
     end
-
-  end  
-  
+  end
 end

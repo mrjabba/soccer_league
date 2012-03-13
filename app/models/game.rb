@@ -44,7 +44,11 @@ class Game < ActiveRecord::Base
   def home_team_goals
     calculate_goals(self.team2_id)
   end
- 
+
+  def game_creator
+    created_by ? created_by.username : "unknown"
+  end
+
   private
     
     def calculate_goals(team_value)

@@ -25,10 +25,9 @@ class GamesController < ApplicationController
       @title = "New Game"
       render 'new'
     end
-  end 
+  end
 
-
- def edit
+  def edit
     @game = Game.find(params[:id])
     @title = "Edit game"
   end
@@ -51,8 +50,7 @@ class GamesController < ApplicationController
     else
       @title = "Edit game"
       render 'edit'
-    end    
-
+    end
   end
 
   def show
@@ -66,5 +64,4 @@ class GamesController < ApplicationController
     @game.destroy
     redirect_to league_games_path(@game.league)
   end
-
 end
