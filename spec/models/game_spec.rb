@@ -6,7 +6,6 @@ describe Game do
 
  before(:each) do
     @league = Factory(:league)
-    @user = Factory(:user, :email => Factory.next(:email))
 
     @teamstat_home = Factory(:teamstat, :league_id => @league.id)
     @teamstat_visiting = Factory(:teamstat, :league_id => @league.id)
@@ -17,40 +16,36 @@ describe Game do
     @player_visiting_1 = Factory(:player)
     @player_visiting_2 = Factory(:player)
     
-    
-    @attr = { :league_id => @league, :team1_id => @teamstat_visiting.team.id, :team2_id => @teamstat_home.team.id, :created_by_id => @user.id }
-
+    @attr = { :league_id => @league, :team1_id => @teamstat_visiting.team.id, :team2_id => @teamstat_home.team.id, :created_by_id => 1 }
   end
-
-  it "should validate visiting and home team are not the same id" do 
-    game = Game.new(@attr.merge(:team1_id => 1, :team2_id => 1))
-    game.should_not be_valid     
-  end
-
-  it "should have an user (update_by) field"
 
   it "should create a new instance given valid attributes" do
     Game.create!(@attr)
   end
 
-  describe "New games " do
+  it "should validate visiting and home team are not the same id" do
+    Game.new(@attr.merge(:team1_id => 1, :team2_id => 1)).should_not be_valid
+  end
 
+  it "should require created by id" do
+    Game.new(@attr.merge(:created_by_id => nil)).should_not be_valid
+  end
+
+  it "should have an user (update_by) field"
+
+  describe "New games" do
     before(:each) do
-      @game = Game.create!(@attr)
+      @game = Game.create(@attr)
     end
  
     it "should initialize goals to zero" do
       @game.home_team_goals.should == 0
       @game.visiting_team_goals.should == 0
     end
-
   end
   
-  
   describe "game associations" do
-
     before(:each) do
-
       @game = Game.create!(@attr)
 
       @playerstat_1 = Playerstat.create!(:game_id => @game.id, :player_id => @player_home_1.id, :team_id => @teamstat_home.team.id, :goals => 1)
@@ -60,11 +55,9 @@ describe Game do
 
       #refresh game to get playerstats (better way to do this?)
       @game = Game.find_by_id(@game.id)
-
     end
 
     describe "completed games" do
-
       it "should update league table (teamstats), home team wins" do
         #check_completed games. should be a better(more ruby-like) way to do this
         @teamstat_home.wins.should == 0
@@ -92,7 +85,6 @@ describe Game do
         @teamstat_visiting = Teamstat.find_by_id(@teamstat_visiting.id)
         @teamstat_visiting.record.should == "1-0-0"
       end
-
 
       it "should update league table (teamstats), tied game" do
 
@@ -157,13 +149,9 @@ describe Game do
         @teamstat_visiting = Teamstat.find_by_id(@teamstat_visiting.id)
         @teamstat_visiting.ties.should == 0
       end
-      
     end
 
-
-
     describe "in-progress games" do
-
       it "should calculate goals when playerstats are changed" do
         @game.visiting_team_goals.should == 0
         @game.home_team_goals.should == 3
@@ -189,9 +177,6 @@ describe Game do
         @game.playerstats[2].player.should == @player_visiting_1
         @game.playerstats[3].player.should == @player_visiting_2
       end
-
     end
- 
   end
-
 end

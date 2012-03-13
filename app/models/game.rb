@@ -22,7 +22,7 @@ class Game < ActiveRecord::Base
 
   accepts_nested_attributes_for :playerstats, :reject_if => :all_blank
 
-#  validates :created_by_id, :presence => true
+  validates :created_by_id, :presence => true
   validates :league, :presence => true
   validates :visiting_team, :presence => true
   validates :home_team, :presence => true
