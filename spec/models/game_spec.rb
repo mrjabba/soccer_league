@@ -16,7 +16,8 @@ describe Game do
     @player_visiting_1 = Factory(:player)
     @player_visiting_2 = Factory(:player)
     
-    @attr = { :league_id => @league, :team1_id => @teamstat_visiting.team.id, :team2_id => @teamstat_home.team.id, :created_by_id => 1 }
+    @created_by_id = 1
+    @attr = { :league_id => @league, :team1_id => @teamstat_visiting.team.id, :team2_id => @teamstat_home.team.id, :created_by_id => @created_by_id }
   end
 
   it "should create a new instance given valid attributes" do
@@ -48,10 +49,10 @@ describe Game do
     before(:each) do
       @game = Game.create!(@attr)
 
-      @playerstat_1 = Playerstat.create!(:game_id => @game.id, :player_id => @player_home_1.id, :team_id => @teamstat_home.team.id, :goals => 1)
-      @playerstat_2 = Playerstat.create!(:game_id => @game.id, :player_id => @player_home_2.id, :team_id => @teamstat_home.team.id, :goals => 2)
-      @playerstat_3 = Playerstat.create!(:game_id => @game.id, :player_id => @player_visiting_1.id, :team_id => @teamstat_visiting.team.id, :goals => 0)
-      @playerstat_4 = Playerstat.create!(:game_id => @game.id, :player_id => @player_visiting_2.id, :team_id => @teamstat_visiting.team.id, :goals => 0)
+      @playerstat_1 = Playerstat.create!(:game_id => @game.id, :player_id => @player_home_1.id, :team_id => @teamstat_home.team.id, :goals => 1, :created_by_id => @created_by_id)
+      @playerstat_2 = Playerstat.create!(:game_id => @game.id, :player_id => @player_home_2.id, :team_id => @teamstat_home.team.id, :goals => 2, :created_by_id => @created_by_id)
+      @playerstat_3 = Playerstat.create!(:game_id => @game.id, :player_id => @player_visiting_1.id, :team_id => @teamstat_visiting.team.id, :goals => 0, :created_by_id => @created_by_id)
+      @playerstat_4 = Playerstat.create!(:game_id => @game.id, :player_id => @player_visiting_2.id, :team_id => @teamstat_visiting.team.id, :goals => 0, :created_by_id => @created_by_id)
 
       #refresh game to get playerstats (better way to do this?)
       @game = Game.find_by_id(@game.id)

@@ -9,7 +9,7 @@ class Playerstat < ActiveRecord::Base
   belongs_to :team
   belongs_to :game
 
-#  validates :created_by_id, :presence => true
+  validates :created_by_id, :presence => true
   validates :game_id, :presence => true
   validates :team_id, :presence => true
   validates :player_id, :presence => true
