@@ -65,8 +65,8 @@ describe PlayersController do
     
     describe "success" do
       before(:each) do
-        @attr = { :firstname => "Jamie", :lastname => "Watson", :position => Player::POSITIONS.values.first , 
-        :birth_date => "02/10/1978", :nationality => "USA"}        
+        @attr = { :firstname => "Jamie", :lastname => "Watson", :position => Player::POSITIONS.values.first,
+        :birth_date => "02/10/1978", :nationality => "USA", :height_feet => "5", :height_inches => "8"}
       end
       
       it "should change the player's attributes" do
@@ -78,6 +78,7 @@ describe PlayersController do
         @player.position.should  == player.position
         @player.birth_date.should  == player.birth_date
         @player.nationality.should  == player.nationality
+        @player.height.should be_within(0.05).of(1.73)
       end
       
       it "should redirect to the player show page" do

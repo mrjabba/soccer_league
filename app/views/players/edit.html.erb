@@ -23,9 +23,20 @@
     <%= f.select(:nationality, Carmen::countries.unshift(["Choose...", ""]) ) %>
   </div>
   <div class="field">
-    <%= f.label :height%><br />
-    <%= f.text_field :height%>
+    <%= f.label :height_meters%><br />
+    <%= f.text_field :height_meters%>
   </div>
+
+  <div class="field">
+    <%= f.label :height_feet%><br />
+    <%= f.text_field :height_feet%>
+  </div>
+  <div class="field">
+    <%= f.label :height_inches%><br />
+    <%= f.text_field :height_inches%>
+  </div>
+
+
   <div class="field">
     <%= f.label :birth_nation %><br />
     <%= f.select(:birth_nation, Carmen::countries.unshift(["Choose...", ""]) ) %>
