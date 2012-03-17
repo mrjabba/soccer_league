@@ -1,15 +1,13 @@
 <h1>All users</h1>
 
 <% if can? :new, @user %>
-  <nav class="sub round">Users by Role:
-  <ul>
-  <li><%= link_to "Admins", "/users?role=admin" %></li>
-  <li><%= link_to "Free", "/users?role=free" %></li>
-  <li><%= link_to "Disabled", "/users?role=" %></li>
-  <li><%= link_to "All", "/users" %></li>
-  </ul>
-  </nav>
-
+<div class="alert">Filter Users By Role</div>
+<div class="btn-group">
+  <%= link_to "Admins", "/users?role=admin", :class => "btn" %>
+  <%= link_to "Free", "/users?role=free", :class => "btn" %>
+  <%= link_to "Disabled", "/users?role=", :class => "btn" %>
+  <%= link_to "All", "/users", :class => "btn" %>
+</div>
 <% end %>
 
 <%= form_tag users_path, :method => 'get', :remote => true, :id => "users_search" do %>

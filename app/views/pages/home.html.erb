@@ -1,23 +1,16 @@
-
-
-<h1>Welcome!</h1>
-
-<div class="flash info">
-  Soccer League Manager puts league management into your hands. Currently, this application is under a lot of development and 
+<div class="hero-unit">
+  <h2>Soccer Stats For All!</h2>
+  <p>  Soccer League Manager puts league management into your hands. Currently, this application is under a lot of development and 
   will be changing frequently. Feel free to try it out. Just keep in mind it is not feature complete. And, data will not be saved.
-</div>
-<p>
-    <div class="actions">
-      <nav class="round">
-        <ul>
-          <li><%= link_to "Leagues", leagues_path, :class => "action_button round" %></li>
-          <li><%= link_to "Teams", teams_path, :class => "action_button round" %></li>
-          <li><%= link_to "Players", players_path, :class => "action_button round" %></li>
-        </ul>
-      </nav>
-    </div>
 </p>
+  <p>
+    <%= link_to "Leagues", leagues_path, :class => "btn btn-primary btn-large" %>
+    <%= link_to "Teams", teams_path, :class => "btn btn-primary btn-large" %>
+    <%= link_to "Players", players_path, :class => "btn btn-primary btn-large" %>
+    <% if !user_signed_in? %>
+      <%= link_to "Sign up", new_user_registration_path, :class => "btn btn-primary btn-large" %>
+    <% end%>
+  </p>
+</div>
 
-<% if !user_signed_in? %>
-  <%= link_to "Sign up", new_user_registration_path, :class => "signup_button round" %>
-<% end%>
+

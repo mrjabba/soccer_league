@@ -1,14 +1,11 @@
 <h1>Player Repository</h1>
-<div class="flash notice">Players careers span often span multiple teams and leagues. Manage basic player profile information here.</div>
-<% if can? :new, @player %>
-<div class="actions">
-  <nav class="round">
-    <ul>
-      <li><%= link_to "New Player", "players/new", :class => "action_button round" %></li>
-    </ul>
-  </nav>
+<div class="alert">Players careers span often span multiple teams and leagues. Manage basic player profile information here.</div>
+
+<div class="btn-group">
+  <% if can? :new, @player %>
+      <%= link_to "New Player", "players/new", :class => "btn" %>
+  <% end %>
 </div>
-<% end %>
 
 <%= form_tag players_path, :method => 'get', :remote => true, :id => "players_search" do %>
   <p>

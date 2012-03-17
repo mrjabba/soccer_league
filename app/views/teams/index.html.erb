@@ -3,12 +3,10 @@
 Manage basic team profile information here.</div>
 
 <% if can? :new, @team %>
-<div class="actions">
-  <nav class="round">
-    <ul>
-      <li><%= link_to "New Team", "teams/new", :class => "action_button round" %></li>
-    </ul>
-  </nav>
+<div class="btn-group">
+  <% if can? :new, @player %>
+      <%= link_to "New Team", "teams/new", :class => "btn" %>
+  <% end %>
 </div>
 <% end %>
 
