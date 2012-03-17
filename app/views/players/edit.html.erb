@@ -2,56 +2,43 @@
 
 <%= form_for(@player) do |f| %>
   <%= render 'shared/error_messages_player', :object => f.object %>
-  <div class="field">
-    <%= f.label :firstname %><br />
+<br/> 
+
+    <%= f.label :firstname %>
     <%= f.text_field :firstname %>
-  </div>
-  <div class="field">
-    <%= f.label :lastname %><br />
+
+    <%= f.label :lastname %>
     <%= f.text_field :lastname %>
-  </div>
-  <div class="field">
-    <%= f.label :position %><br />
+
+    <%= f.label :position %>
     <%= f.select(:position, Player::POSITIONS) %>
-  </div>
-  <div class="field">
-    <%= f.label :birth_date %><br />
+
+    <%= f.label :birth_date %>
     <%= f.text_field :birth_date %>
-  </div>
-  <div class="field">
-    <%= f.label :nationality %><br />
+
+    <%= f.label :nationality %>
     <%= f.select(:nationality, Carmen::countries.unshift(["Choose...", ""]) ) %>
-  </div>
 
   <% if current_user.metric %>
-    <div class="field">
-      <%= f.label :height_meters%><br />
+      <%= f.label :height_meters%>
       <%= f.text_field :height_meters%>
-    </div>
   <% else %>
-    <div class="field">
-      <%= f.label :height_feet%><br />
+      <%= f.label :height_feet%>
       <%= f.text_field :height_feet%>
-    </div>
-    <div class="field">
-      <%= f.label :height_inches%><br />
+      <%= f.label :height_inches%>
       <%= f.text_field :height_inches%>
-    </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :birth_nation %><br />
+    <%= f.label :birth_nation %>
     <%= f.select(:birth_nation, Carmen::countries.unshift(["Choose...", ""]) ) %>
-  </div>
-  <div class="field">
-    <%= f.label :birth_city %><br />
+
+    <%= f.label :birth_city %>
     <%= f.text_field :birth_city%>
-  </div>
 
 
   <div class="actions">
-    <%= f.submit "Update", :class => "button round" %>
-    <input type="button" id="cancelPlayerUpdate" value="Cancel" class="button round" />
+    <%= f.submit "Update", :class => "btn" %>
+    <input type="button" id="cancelPlayerUpdate" value="Cancel" class="btn" />
   </div>
 <% end %>
 

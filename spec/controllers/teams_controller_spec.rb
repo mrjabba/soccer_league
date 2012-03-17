@@ -167,7 +167,7 @@ describe TeamsController do
     
     it "should include the team's name" do
       get :show, :id => @team
-      response.should have_selector("h1", :content => @team.name)
+      response.should have_selector("h2", :content => @team.name)
     end
   
   end

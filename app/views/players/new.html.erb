@@ -2,45 +2,32 @@
 
 <%= form_for(@player) do |f| %>
   <%= render 'shared/error_messages_player', :object => f.object %>
-  <div class="field">
-    <%= f.label :firstname %><br />
+    <%= f.label :firstname %>
     <%= f.text_field :firstname %>
-  </div>
-  <div class="field">
-    <%= f.label :lastname %><br />
+
+    <%= f.label :lastname %>
     <%= f.text_field :lastname %>
-  </div>
-  <div class="field">
-    <%= f.label :position %><br />
+
+    <%= f.label :position %>
     <%= f.select(:position, Player::POSITIONS) %>
-  </div>
-  <div class="field">
-    <%= f.label :birth_date %><br />
+
+    <%= f.label :birth_date %>
     <%= f.text_field :birth_date %>
-  </div>
-  <div class="field">
-    <%= f.label :nationality %><br />
+
+    <%= f.label :nationality %>
     <%= f.select(:nationality, Carmen::countries.unshift(["Choose...", ""]) ) %>
-  </div>
 
-  <div class="field">
-    <%= f.label :height %><br />
+    <%= f.label :height %>
     <%= f.text_field :height%>
-  </div>
-  <div class="field">
-    <%= f.label :birth_nation %><br />
+
+    <%= f.label :birth_nation %>
     <%= f.select(:birth_nation, Carmen::countries.unshift(["Choose...", ""]) ) %>
-  </div>
-  <div class="field">
-    <%= f.label :birth_city %><br />
+
+    <%= f.label :birth_city %>
     <%= f.text_field :birth_city%>
-  </div>
-
-
 
 <div class="actions">
-    <%= f.submit "Create", :class => "button round" %>
-    <input type="button" id="cancelPlayerNew" value="Cancel" class="button round" />
+    <%= f.submit "Create", :class => "btn" %>
+    <input type="button" id="cancelPlayerNew" value="Cancel" class="btn" />
   </div>
 <% end %>
-

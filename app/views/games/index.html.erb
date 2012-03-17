@@ -1,4 +1,8 @@
-<h3><%= link_to "#{@league.name} (#{@league.year})", "/leagues/#{@league.id}" %> - All Games </h3>
+<ul class="breadcrumb">
+  <li><%= link_to "#{@league.name} (#{@league.year})", "/leagues/#{@league.id}" %><span class="divider">/</span>
+  </li>
+  <li class="active">All Games</li>
+</ul>
 
 <div class="btn-group">
   <% if can? :new, @game %>
@@ -9,7 +13,7 @@
 <table id="games_table" class="table table-condensed">
 <tr>
 <th title="Game">Game</th>
-<th title="Completed">Completed</th>
+<th title="Completed">Status</th>
 </tr>
   <%= render @games %>
 </table>

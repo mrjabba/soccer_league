@@ -1,5 +1,8 @@
-<h1 class="leagues"><%= link_to "Leagues", leagues_path %></h1>
-<h1 class="league indent1"><%= "#{@league.name} (#{@league.year})" %></h1>
+<ul class="breadcrumb">
+  <li><%= link_to "Leagues", leagues_path %><span class="divider">/</span>
+  </li>
+  <li class="active"><%= "#{@league.name} (#{@league.year})" %></li>
+</ul>
 
 <div class="btn-group">
       <% if can? :new, @league %>

@@ -1,7 +1,12 @@
 <% unless @league == nil %>
-  <h1 class="league"><%= link_to "#{@league.name} - #{@league.year}", league_path(@league) %></h1>
+<ul class="breadcrumb">
+  <li><%= link_to "#{@league.name} - #{@league.year}", league_path(@league) %><span class="divider">/</span></li>
+  <li class="active"><%= @team.name %></li>
+</ul>
 <% end%>
-<h1 class="team">Team: <%= @team.name %></h1>
+
+<h2 class="team">Team: <%= @team.name %></h2>
+
 
 <div class="btn-group">
   <% if can? :new, @team %>
@@ -11,42 +16,44 @@
   <%= link_to "All Teams", teams_path, :class => "btn" %>
 </div>
 
-  <div class="tfield">
-    <label>Address1</label>
-    <span><%= @team.address1 %></span>
-  </div>
-  <div class="tfield">
-    <label>Address2</label>
-    <span><%= @team.address2 %></span>
-  </div>
-  <div class="tfield">
-    <label>City</label>
-    <span><%= @team.city %></span>
-  </div>
-  <div class="tfield">
-    <label>State</label>
-    <span><%= @team.state %></span>
-  </div>
-  <div class="tfield">
-    <label>Zip</label>
-    <span><%= @team.zip %></span>
-  </div>
-  <div class="tfield">
-    <label>Country</label>
-    <span><%= @team.country %></span>
-  </div>
-  <div class="tfield">
-    <label>Phone</label>
-    <span><%= @team.phone %></span>
-  </div>
-  <div class="tfield">
-    <label>Website</label>
-    <span><%= @team.website %></span>
-  </div>
-  <div class="tfield">
-    <label>Email</label>
-    <span><%= @team.email %></span>
-  </div>
 
+<table class="table table-condensed">
+  <tr>
+    <th>Address1</th>
+    <td><%= @team.address1 %></td>
+  </tr>
+  <tr>
+    <th>Address2</th>
+    <td><%= @team.address2 %></td>
+  </tr>
+  <tr>
+    <th>City</th>
+    <td><%= @team.city %></td>
+  </tr>
+  <tr>
+    <th>State</th>
+    <td><%= @team.state %></td>
+  </tr>
+  <tr>
+    <th>Zip</th>
+    <td><%= @team.zip %></td>
+  </tr>
+  <tr>
+    <th>Country</th>
+    <td><%= @team.country %></td>
+  </tr>
+  <tr>
+    <th>Phone</th>
+    <td><%= @team.phone %></td>
+  </tr>
+  <tr>
+    <th>Website</th>
+    <td><%= @team.website %></td>
+  </tr>
+  <tr>
+    <th>Email</th>
+    <td><%= @team.email %></td>
+  </tr>
+</table>
 
-<div class="audit">Created by: <%= @team.created_by.username %></div>
+<div class="alert">Created by: <%= @team.created_by.username %></div>

@@ -1,12 +1,17 @@
-<h3><%= link_to "#{@league.name} (#{@league.year})", "/leagues/#{@league.id}" %> - Add Team to League</h3>
+<ul class="breadcrumb">
+  <li><%= link_to "#{@league.name} (#{@league.year})", "/leagues/#{@league.id}" %><span class="divider">/</span>
+  </li>
+  <li class="active">Add Team to League</li>
+</ul>
 
 <p>
 <%= form_for [@league, @teamstat] do |f| %>
   
+  <div class="alert alert-info">Pick a Team to Build</div>
     <%= f.select :team_id, Team.order("name").collect { |t| [ t.name, t.id ] } %>
     <%= f.hidden_field :league_id %>
 
-  <div>Start building a Roster</div>
+  <div class="alert alert-info">Start building a Roster</div>
   <div class="field">
     <%= f.label :player_tokens, "Players" %><br/>
     <%= f.text_field :player_tokens %>
