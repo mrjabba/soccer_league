@@ -1,18 +1,13 @@
 
 <h1><%= @player.firstname %> <%= @player.lastname %></h1>
 
-<div class="actions">
-  <nav class="round">
-    <ul>
-      <% if can? :new, @player %>
-        <li><%= link_to "Edit", "#{@player.id}/edit", :class => "action_button round"  %></li>
-        <li><%= link_to "Add Player", "/players/new", :class => "action_button round" %></li>
-      <% end %>
-      <li><%= link_to "All Players", players_path, :class => "action_button round" %></li>
-    </ul>
-  </nav>
+<div class="btn-group">
+  <% if can? :new, @player %>
+        <%= link_to "Edit", "#{@player.id}/edit", :class => "btn"  %>
+        <%= link_to "Add Player", "/players/new", :class => "btn" %>
+  <% end %>
+  <%= link_to "All Players", players_path, :class => "btn" %>
 </div>
-
 
   <div class="field">
     <label>Position </label>
