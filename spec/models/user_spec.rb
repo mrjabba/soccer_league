@@ -7,11 +7,19 @@ describe User do
 		:username => "myusername", 
 		:email => "user@example.com",
 		:password => "foobar",
-		:password_confirmation => "foobar"
+		:password_confirmation => "foobar",
 		}
 	end
 
-  it "should have a preference for metric or english units"
+  it "should persist default preference for metric units" do
+		user = User.create!(@attr)
+    user.metric.should be_true
+  end
+
+  it "should persist preference for english units" do
+		user = User.create!(@attr.merge(:metric => false))
+    user.metric.should be_false
+  end
 
   it "should have an user (update_by) field"
 

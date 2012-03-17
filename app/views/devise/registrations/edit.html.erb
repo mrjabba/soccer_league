@@ -18,6 +18,11 @@
   <p><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
   <%= f.password_field :current_password %></p>
 
+  <p>
+    <%= f.label "Preferred Unit of Measure" %><br />
+    <%= f.select(:metric, User::METRIC_ENGLISH) %>
+  </p>
+
   <p><%= f.submit "Update" %></p>
 <% end %>
 

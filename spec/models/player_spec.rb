@@ -7,6 +7,8 @@ describe Player do
     :birth_city => "Austin", :birth_nation => "USA", :height => 20, :created_by_id => 1}
   end
 
+  it "should populate height_feet/height_inches on load"
+  
   it "should allow entering height as meters(decimal)" do
     player = Player.new(@attr)
     player.height_meters = 1.73

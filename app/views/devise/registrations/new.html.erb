@@ -15,6 +15,10 @@
   <p><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></p>
 
+  <p>
+    <%= f.label "Preferred Unit of Measure" %><br />
+    <%= f.select(:metric, User::METRIC_ENGLISH) %>
+  </p>
 
   <%= hidden_field_tag "user[free_sign_up]", "1" %>
 

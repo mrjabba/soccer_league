@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :roles_mask, :perms, :free_sign_up, :with_role
+  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :roles_mask, :perms, :free_sign_up, :with_role, :metric
   include RoleModel
   
   scope :with_role, lambda { |role|  where( "roles_mask = #{User.mask_for(role)}" )  }
@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
     self.roles << :free unless activate == nil
   end
 
+  METRIC_ENGLISH = {"Metric (meters)" => true, "English (feet)" => false}
 
   validates :username, :presence => true,
             :length => {:maximum => 50},

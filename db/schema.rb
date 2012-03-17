@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120212175306) do
+ActiveRecord::Schema.define(:version => 20120317072400) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -142,9 +142,9 @@ ActiveRecord::Schema.define(:version => 20120212175306) do
   add_index "teamstats", ["team_id"], :name => "index_teamstats_on_team_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
+    t.string   "email",                               :default => "",   :null => false
+    t.string   "encrypted_password",   :limit => 128, :default => "",   :null => false
+    t.string   "password_salt",                       :default => "",   :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
@@ -157,6 +157,7 @@ ActiveRecord::Schema.define(:version => 20120212175306) do
     t.datetime "updated_at"
     t.string   "username"
     t.integer  "roles_mask"
+    t.boolean  "metric",                              :default => true
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
