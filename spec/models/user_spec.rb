@@ -11,6 +11,8 @@ describe User do
 		}
 	end
 
+  it "should have a preference for metric or english units"
+
   it "should have an user (update_by) field"
 
   it "should have save a user as an admin role"
