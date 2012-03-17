@@ -1,5 +1,5 @@
 <h1>League Management</h1>
-<div class="flash notice">Leagues contain teams and matches and may be long (season) or short (tournaments/cups). Teams have rosters within a league season. Manage the season lifecycle here.</div>
+<div class="alert">Leagues contain teams and matches and may be long (season) or short (tournaments/cups). Teams have rosters within a league season. Manage the season lifecycle here.</div>
 
 <div class="btn-group">
   <% if can? :new, @league %>
@@ -10,7 +10,7 @@
 </div>
 
 <%= will_paginate %>
-<table id="leagues_table" class="grid_shaded">
+<table id="leagues_table" class="table table-condensed">
 <tr>
 <th title="Name">Name</th>
 <th title="Year">Year</th>
