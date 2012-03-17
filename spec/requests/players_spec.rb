@@ -65,7 +65,7 @@ describe "Players" do
 					fill_in "LastName", :with => "Smith"
 					fill_in "Position", :with => Player::POSITIONS.values.first
 					click_button
-					response.should have_selector("div.flash.success", :content => "Player created successfully!")
+					response.should have_selector("div.success", :content => "Player created successfully!")
 					response.should render_template('players/new')
 				
 				end.should change(Player, :count).by(1)

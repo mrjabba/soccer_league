@@ -53,7 +53,7 @@ describe "Teams" do
 					fill_in "Website", :with => "http://foo.com"
 					fill_in "Email", :with => "test@foo.com"
 					click_button
-					response.should have_selector("div.flash.success", :content => "Team created successfully!")
+					response.should have_selector("div.success", :content => "Team created successfully!")
 					response.should render_template('teams/new')
 				
 				end.should change(Team, :count).by(1)

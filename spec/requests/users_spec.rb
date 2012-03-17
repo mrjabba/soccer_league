@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 describe "Users" do
-
-	describe "signup" do
-		
+	describe "signup" do		
 		describe "failure" do
 			it "should not make a new user" do
 				lambda do
@@ -21,7 +19,6 @@ describe "Users" do
 		end
 		
 		describe "success" do
-		
 			it "should make a new user" do
 				lambda do
 					visit new_user_registration_path
@@ -30,14 +27,11 @@ describe "Users" do
 					fill_in "Password", :with => "foobar"
 					fill_in "Password confirmation", :with => "foobar"
 					click_button
-					response.should have_selector("div.flash.notice", :content => "You have signed up successfully")
-					response.should render_template('devise/registrations/new')
-				
+					response.should have_selector("div.alert", :content => "You have signed up successfully")
+					response.should render_template('devise/registrations/new')				
 				end.should change(User, :count).by(1)
-			end
-		
-		end
-		
+			end		
+		end		
 	end
   
   describe "sign in/out" do
@@ -47,7 +41,7 @@ describe "Users" do
         fill_in :username,   :with => ""
         fill_in :password,  :with => ""
         click_button
-        response.should have_selector("div.flash.alert", :content => "Invalid")
+        response.should have_selector("div.alert", :content => "Invalid")
       end
     end
     
