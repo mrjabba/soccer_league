@@ -19,6 +19,13 @@ class Player < ActiveRecord::Base
   validates :firstname, :presence => true, :length   => { :maximum => 50 }
   validates :lastname, :presence => true, :length   => { :maximum => 50 }
 
+  def fields
+    attrs = {}
+    attrs[:id] = id
+    attrs[:name] = name
+    attrs
+  end
+
   def height_meters=(height)
     self.height = height
   end
