@@ -11,7 +11,7 @@
   <td>
       <% if can? :new, @user %>
       <%= link_to "Delete", user, :method => :delete, :confirm => "Delete this user: #{user.username}?",
-                                  :class => "action_button_nar round",
+                                  :class => "btn btn-danger",
                                   :title => "Delete #{user.username}" %>
       <% end %>  
   </td>
