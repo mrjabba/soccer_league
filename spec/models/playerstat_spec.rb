@@ -5,7 +5,7 @@ describe Playerstat do
  before(:each) do
     @attr = {:jersey_number => 1, :goals => 0, :assists => 10, :shots => 1000, :fouls => 33,
       :yellow_cards => 2, :red_cards => 4, :minutes => 77, :saves => 12, :team_id => 4,
-      :game_id => 3, :player_id => 2, :created_by_id => 1 }
+      :game_id => 3, :player_id => 2, :created_by_id => 1, :updated_by_id => 1 }
   end
 
   it "should create a new instance given valid attributes" do
@@ -40,6 +40,10 @@ describe Playerstat do
   describe "validations" do
     it "should require created_by id" do
       Playerstat.new(@attr.merge(:created_by_id => nil)).should_not be_valid
+    end
+
+    it "should require updated_by id" do
+      Playerstat.new(@attr.merge(:updated_by_id => nil)).should_not be_valid
     end
 
     it "should require team_id id" do

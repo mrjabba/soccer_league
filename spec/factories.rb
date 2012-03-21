@@ -20,6 +20,7 @@ Factory.define :user do |user|
   user.password              "foobar"
   user.password_confirmation "foobar"
   user.roles                  [:admin]
+  user.updated_by_id 1
 end
 
 Factory.define :player do |player|
@@ -29,6 +30,7 @@ Factory.define :player do |player|
   player.birth_date                  "09/22/1981"
   player.nationality                  "USA"
   player.created_by_id 1
+  player.updated_by_id 1
 end
 
 Factory.define :team do |team|
@@ -42,18 +44,21 @@ Factory.define :team do |team|
   team.website                  "http://foo.com"
   team.email                  "test@foo.com"
   team.created_by_id 1
+  team.updated_by_id 1
 end
 
 Factory.define :league do |league|
   league.year                 2002
   league.name                 "my soccer league"
   league.created_by_id 1
+  league.updated_by_id 1
 end
 
 Factory.define :teamstat do |teamstat|
   teamstat.created_by_id 1
   teamstat.team { |team|  team.association(:team, :name => Factory.next(:name)) }
   teamstat.league { |league|  league.association(:league) }
+  teamstat.updated_by_id 1
 end
 
 Factory.define :playerstat do |playerstat|
@@ -61,6 +66,7 @@ Factory.define :playerstat do |playerstat|
   playerstat.game { |game|  game.association(:game) }
   playerstat.team { |team|  team.association(:team) }
   playerstat.created_by_id 1
+  playerstat.updated_by_id 1
 end
 
 Factory.define :roster do |roster|
@@ -68,6 +74,7 @@ Factory.define :roster do |roster|
   #TODO should I do a Factory.next for teamstat factory objects?
   roster.teamstat { |teamstat|  teamstat.association(:teamstat) }
   roster.created_by_id 1
+  roster.updated_by_id 1
 end
 
 Factory.define :game do |game|
@@ -75,4 +82,5 @@ Factory.define :game do |game|
   game.visiting_team { |visiting_team|  visiting_team.association(:team, :name => Factory.next(:name))  }
   game.home_team { |home_team|  home_team.association(:team, :name => Factory.next(:name))  }
   game.created_by_id 1
+  game.updated_by_id 1
 end

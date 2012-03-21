@@ -1,10 +1,11 @@
 class Game < ActiveRecord::Base
-  attr_accessible :playerstats_attributes, :team1_id, :team2_id, :league_id, :visiting_team_goals, :home_team_goals, :created_by_id
+  attr_accessible :playerstats_attributes, :team1_id, :team2_id, :league_id, :visiting_team_goals, :home_team_goals, :created_by_id, :updated_by_id
   before_create :team_rosters_to_playerstats
   before_update :update_game
   before_destroy :revert_teamstat
 
   belongs_to :created_by, :class_name => "User", :foreign_key => "created_by_id"
+  belongs_to :updated_by, :class_name => "User", :foreign_key => "updated_by_id"
 
   belongs_to :visiting_team,
              :class_name => "Team",
@@ -23,6 +24,7 @@ class Game < ActiveRecord::Base
   accepts_nested_attributes_for :playerstats, :reject_if => :all_blank
 
   validates :created_by_id, :presence => true
+  validates :updated_by_id, :presence => true
   validates :league, :presence => true
   validates :visiting_team, :presence => true
   validates :home_team, :presence => true

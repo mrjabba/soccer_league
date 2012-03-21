@@ -3,6 +3,8 @@ require 'spec_helper'
 describe GamesController do
  render_views
 
+  it "why arent there failing tests here for adding updated_by_id?"
+  
   describe "GET 'index'" do
     before(:each) do
       @league = Factory(:league)
@@ -91,7 +93,7 @@ describe GamesController do
     end
   
     describe "success" do
-      it "should reqiure a league and be successful" do
+      it "should require a league and be successful" do
         get :new, :league_id => @league
         response.should be_success
       end
@@ -100,10 +102,6 @@ describe GamesController do
         get :new, :league_id => @league
         response.should have_selector("title", :content => "New Game")
       end
-    end
-
-    describe "failure" do
-      it "should display an error if no league present"
     end
   end
 

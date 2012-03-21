@@ -29,6 +29,7 @@ class PlayersController < ApplicationController
   
   def update
     @player = Player.find(params[:id])
+    @player.updated_by_id = current_user
     if @player.update_attributes(params[:player])
       flash[:success] = "Player updated."
       redirect_to @player
@@ -46,6 +47,7 @@ class PlayersController < ApplicationController
   def create
     @player = Player.new(params[:player])
     @player.created_by_id = current_user.id
+    @player.updated_by_id = current_user.id
     if @player.save
       flash[:success] = "Player created successfully!"
       redirect_to @player

@@ -18,6 +18,7 @@ class GamesController < ApplicationController
     @league = League.find(params[:league_id])
     @game = @league.games.build(params[:game])
     @game.created_by_id = current_user.id
+    @game.updated_by_id = current_user.id
     if @game.save
       flash[:success] = "Game added successfully!"
       redirect_to @game
@@ -35,12 +36,11 @@ class GamesController < ApplicationController
   def update
     #TODO add test for update
     @game = Game.find(params[:id])
+    @game.updated_by_id = current_user
     
     #TODO a better way? a checkbox workaround. manually set it. otherwise it doesnt seem to update
     #TODO maybe try this? params[:game][:completed] ||= [] per habtm railscast
     @game.completed = params[:game][:completed]
-    
-    
     if @game.update_attributes(params[:game])
       flash[:success] = "Game updated."
       #TODO figure out why it loses the ID here and I had to query thd db again

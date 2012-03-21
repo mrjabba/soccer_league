@@ -4,16 +4,14 @@ describe Teamstat do
 
   before(:each) do
     @attr = {:wins => 1, :losses => 1, :ties => 1, :goals_for => 1, :goals_against => 1,
-      :league_id => 1, :team_id => 1, :created_by_id => 1}
+      :league_id => 1, :team_id => 1, :created_by_id => 1, :updated_by_id => 1}
   end
-
-  it "should have an user (update_by) field"
 
   describe "valid associations" do
     before(:each) do
       @league = Factory(:league)
       @team = Factory(:team)
-      @teamstat = Teamstat.create!(:league_id => @league, :team_id => @team, :created_by_id => 1)
+      @teamstat = Teamstat.create!(:league_id => @league, :team_id => @team, :created_by_id => 1, :updated_by_id => 1)
     end
 
     it "should have the right associated league" do
@@ -82,6 +80,10 @@ describe Teamstat do
 
       it "should require created_by id" do
         Teamstat.new(@attr.merge(:created_by_id => nil)).should_not be_valid
+      end
+
+      it "should require updated_by id" do
+        Teamstat.new(@attr.merge(:updated_by_id => nil)).should_not be_valid
       end
   end
   

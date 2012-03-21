@@ -17,7 +17,7 @@ describe Game do
     @player_visiting_2 = Factory(:player)
     
     @created_by_id = 1
-    @attr = { :league_id => @league, :team1_id => @teamstat_visiting.team.id, :team2_id => @teamstat_home.team.id, :created_by_id => @created_by_id }
+    @attr = { :league_id => @league, :team1_id => @teamstat_visiting.team.id, :team2_id => @teamstat_home.team.id, :created_by_id => @created_by_id, :updated_by_id => 1 }
   end
 
   it "should create a new instance given valid attributes" do
@@ -32,7 +32,9 @@ describe Game do
     Game.new(@attr.merge(:created_by_id => nil)).should_not be_valid
   end
 
-  it "should have an user (update_by) field"
+  it "should require updated by id" do
+    Game.new(@attr.merge(:updated_by_id => nil)).should_not be_valid
+  end
 
   describe "New games" do
     before(:each) do
@@ -49,10 +51,11 @@ describe Game do
     before(:each) do
       @game = Game.create!(@attr)
 
-      @playerstat_1 = Playerstat.create!(:game_id => @game.id, :player_id => @player_home_1.id, :team_id => @teamstat_home.team.id, :goals => 1, :created_by_id => @created_by_id)
-      @playerstat_2 = Playerstat.create!(:game_id => @game.id, :player_id => @player_home_2.id, :team_id => @teamstat_home.team.id, :goals => 2, :created_by_id => @created_by_id)
-      @playerstat_3 = Playerstat.create!(:game_id => @game.id, :player_id => @player_visiting_1.id, :team_id => @teamstat_visiting.team.id, :goals => 0, :created_by_id => @created_by_id)
-      @playerstat_4 = Playerstat.create!(:game_id => @game.id, :player_id => @player_visiting_2.id, :team_id => @teamstat_visiting.team.id, :goals => 0, :created_by_id => @created_by_id)
+      #shouldn't we just mock playerstat here?
+      @playerstat_1 = Playerstat.create!(:game_id => @game.id, :player_id => @player_home_1.id, :team_id => @teamstat_home.team.id, :goals => 1, :created_by_id => @created_by_id, :updated_by_id => 1)
+      @playerstat_2 = Playerstat.create!(:game_id => @game.id, :player_id => @player_home_2.id, :team_id => @teamstat_home.team.id, :goals => 2, :created_by_id => @created_by_id, :updated_by_id => 1)
+      @playerstat_3 = Playerstat.create!(:game_id => @game.id, :player_id => @player_visiting_1.id, :team_id => @teamstat_visiting.team.id, :goals => 0, :created_by_id => @created_by_id, :updated_by_id => 1)
+      @playerstat_4 = Playerstat.create!(:game_id => @game.id, :player_id => @player_visiting_2.id, :team_id => @teamstat_visiting.team.id, :goals => 0, :created_by_id => @created_by_id, :updated_by_id => 1)
 
       #refresh game to get playerstats (better way to do this?)
       @game = Game.find_by_id(@game.id)

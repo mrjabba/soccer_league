@@ -1,9 +1,10 @@
 class Teamstat < ActiveRecord::Base
-  attr_accessible :wins, :losses, :ties, :goals_for, :goals_against, :team_id, :league_id, :created_by_id, :player_tokens 
+  attr_accessible :wins, :losses, :ties, :goals_for, :goals_against, :team_id, :league_id, :created_by_id, :updated_by_id, :player_tokens 
   attr_reader :player_tokens
   before_validation :init_stats
   
   belongs_to :created_by, :class_name => "User", :foreign_key => "created_by_id"
+  belongs_to :updated_by, :class_name => "User", :foreign_key => "updated_by_id"
   belongs_to :league
   belongs_to :team
   has_many :rosters
@@ -11,6 +12,7 @@ class Teamstat < ActiveRecord::Base
   delegate :name, :to => :team, :prefix => true
   
   validates :created_by_id, :presence => true
+  validates :updated_by_id, :presence => true
   validates :league_id, :presence => true
   validates :team_id, :presence => true
 

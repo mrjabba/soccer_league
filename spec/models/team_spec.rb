@@ -5,7 +5,7 @@ describe Team do
     @attr = { :name => "Austin Aztex", :address1 => "123 Main St.",
               :address2 => "Apt A", :city => "Austin", :state => "TX",
               :zip => "78704", :phone => "", :website => "http://foo.com",
-              :email => "test@foo.com", :country => "USA", :created_by_id => 1 }
+              :email => "test@foo.com", :country => "USA", :created_by_id => 1, :updated_by_id => 1 }
   end
 
   it "should create a new instance given valid attributes" do
@@ -48,5 +48,9 @@ describe Team do
 
   it "should require created by id" do
     Team.new(@attr.merge(:created_by_id => nil)).should_not be_valid
+  end
+
+  it "should require updated by id" do
+    Team.new(@attr.merge(:updated_by_id => nil)).should_not be_valid
   end
 end

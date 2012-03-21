@@ -29,6 +29,7 @@ class LeaguesController < ApplicationController
 
   def update
     @league = League.find(params[:id])
+    @league.updated_by_id = current_user
     if @league.update_attributes(params[:league])
       flash[:success] = "League updated."
       redirect_to @league
@@ -41,6 +42,7 @@ class LeaguesController < ApplicationController
   def create
     @league = League.new(params[:league])
     @league.created_by_id = current_user.id
+    @league.updated_by_id = current_user.id
     if @league.save
       flash[:success] = "League created successfully!"
       redirect_to @league

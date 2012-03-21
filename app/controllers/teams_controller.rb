@@ -21,6 +21,7 @@ class TeamsController < ApplicationController
 
   def update
     @team = Team.find(params[:id])
+    @team.updated_by_id = current_user
     if @team.update_attributes(params[:team])
       flash[:success] = "Team updated."
       redirect_to @team
@@ -38,6 +39,7 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(params[:team])
     @team.created_by_id = current_user.id
+    @team.updated_by_id = current_user.id
     if @team.save
       flash[:success] = "Team created successfully!"
       redirect_to @team

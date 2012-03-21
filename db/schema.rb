@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120317072400) do
+ActiveRecord::Schema.define(:version => 20120321022937) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -41,9 +41,11 @@ ActiveRecord::Schema.define(:version => 20120317072400) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "created_by_id"
+    t.integer  "updated_by_id"
   end
 
   add_index "games", ["created_by_id"], :name => "index_games_on_created_by_id"
+  add_index "games", ["updated_by_id"], :name => "index_games_on_updated_by_id"
 
   create_table "leagues", :force => true do |t|
     t.string   "name"
@@ -51,9 +53,11 @@ ActiveRecord::Schema.define(:version => 20120317072400) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "created_by_id"
+    t.integer  "updated_by_id"
   end
 
   add_index "leagues", ["created_by_id"], :name => "index_leagues_on_created_by_id"
+  add_index "leagues", ["updated_by_id"], :name => "index_leagues_on_updated_by_id"
 
   create_table "players", :force => true do |t|
     t.string   "firstname"
@@ -67,9 +71,11 @@ ActiveRecord::Schema.define(:version => 20120317072400) do
     t.string   "birth_nation"
     t.decimal  "height"
     t.integer  "created_by_id"
+    t.integer  "updated_by_id"
   end
 
   add_index "players", ["created_by_id"], :name => "index_players_on_created_by_id"
+  add_index "players", ["updated_by_id"], :name => "index_players_on_updated_by_id"
 
   create_table "playerstats", :force => true do |t|
     t.integer  "goals"
@@ -87,11 +93,13 @@ ActiveRecord::Schema.define(:version => 20120317072400) do
     t.integer  "game_id"
     t.integer  "team_id"
     t.integer  "created_by_id"
+    t.integer  "updated_by_id"
   end
 
   add_index "playerstats", ["created_by_id"], :name => "index_playerstats_on_created_by_id"
   add_index "playerstats", ["player_id"], :name => "index_playerstats_on_player_id"
   add_index "playerstats", ["team_id"], :name => "index_playerstats_on_team_id"
+  add_index "playerstats", ["updated_by_id"], :name => "index_playerstats_on_updated_by_id"
 
   create_table "rosters", :force => true do |t|
     t.integer  "teamstat_id"
@@ -99,9 +107,11 @@ ActiveRecord::Schema.define(:version => 20120317072400) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "created_by_id"
+    t.integer  "updated_by_id"
   end
 
   add_index "rosters", ["created_by_id"], :name => "index_rosters_on_created_by_id"
+  add_index "rosters", ["updated_by_id"], :name => "index_rosters_on_updated_by_id"
 
   create_table "teams", :force => true do |t|
     t.string   "name"
@@ -117,10 +127,12 @@ ActiveRecord::Schema.define(:version => 20120317072400) do
     t.string   "email"
     t.string   "country"
     t.integer  "created_by_id"
+    t.integer  "updated_by_id"
   end
 
   add_index "teams", ["created_by_id"], :name => "index_teams_on_created_by_id"
   add_index "teams", ["name"], :name => "index_teams_on_name", :unique => true
+  add_index "teams", ["updated_by_id"], :name => "index_teams_on_updated_by_id"
 
   create_table "teamstats", :force => true do |t|
     t.integer  "points"
@@ -135,11 +147,13 @@ ActiveRecord::Schema.define(:version => 20120317072400) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "created_by_id"
+    t.integer  "updated_by_id"
   end
 
   add_index "teamstats", ["created_by_id"], :name => "index_teamstats_on_created_by_id"
   add_index "teamstats", ["league_id"], :name => "index_teamstats_on_league_id"
   add_index "teamstats", ["team_id"], :name => "index_teamstats_on_team_id"
+  add_index "teamstats", ["updated_by_id"], :name => "index_teamstats_on_updated_by_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "",   :null => false
@@ -158,10 +172,12 @@ ActiveRecord::Schema.define(:version => 20120317072400) do
     t.string   "username"
     t.integer  "roles_mask"
     t.boolean  "metric",                              :default => true
+    t.integer  "updated_by_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["updated_by_id"], :name => "index_users_on_updated_by_id"
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
 end

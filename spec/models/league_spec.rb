@@ -3,10 +3,8 @@ require 'spec_helper'
 describe League do
 
   before(:each) do
-    @attr = { :name => "MLS", :year => 2002, :created_by_id => 1 }
+    @attr = { :name => "MLS", :year => 2002, :created_by_id => 1, :updated_by_id => 1 }
   end
-
-  it "should have an user (update_by) field"
 
   it "should create a new instance given valid attributes" do
     @league = League.create!(@attr)
@@ -39,5 +37,9 @@ describe League do
 
   it "should require created by id" do
       League.new(@attr.merge(:created_by_id => nil)).should_not be_valid
-    end
+  end
+
+  it "should require updated by id" do
+      League.new(@attr.merge(:updated_by_id => nil)).should_not be_valid
+  end
 end

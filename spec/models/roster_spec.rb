@@ -5,7 +5,7 @@ describe Roster do
   before(:each) do
     @teamstat = Factory(:teamstat)
     @player = Factory(:player)
-    @attr = { :teamstat_id => @teamstat, :player_id => @player, :created_by_id => 1 }
+    @attr = { :teamstat_id => @teamstat, :player_id => @player, :created_by_id => 1, :updated_by_id => 1 }
   end
 
   it "should create a new instance given valid attributes" do
@@ -22,5 +22,9 @@ describe Roster do
 
   it "should require created by id" do
     Roster.new(@attr.merge(:created_by_id => nil)).should_not be_valid
+  end
+
+  it "should require updated by id" do
+    Roster.new(@attr.merge(:updated_by_id => nil)).should_not be_valid
   end
 end
