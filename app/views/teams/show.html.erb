@@ -16,44 +16,49 @@
   <%= link_to "All Teams", teams_path, :class => "btn" %>
 </div>
 
+<div class="row">
+  <div class="span9">
+    <table class="table table-condensed">
+      <tr>
+        <th>Address1</th>
+        <td><%= @team.address1 %></td>
+      </tr>
+      <tr>
+        <th>Address2</th>
+        <td><%= @team.address2 %></td>
+      </tr>
+      <tr>
+        <th>City</th>
+        <td><%= @team.city %></td>
+      </tr>
+      <tr>
+        <th>State</th>
+        <td><%= @team.state %></td>
+      </tr>
+      <tr>
+        <th>Zip</th>
+        <td><%= @team.zip %></td>
+      </tr>
+      <tr>
+        <th>Country</th>
+        <td><%= @team.country %></td>
+      </tr>
+      <tr>
+        <th>Phone</th>
+        <td><%= @team.phone %></td>
+      </tr>
+      <tr>
+        <th>Website</th>
+        <td><%= @team.website %></td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td><%= @team.email %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="span3">
+      <%= render :partial => "shared/audit", :locals => {:auditable => @team} %>
+  </div>
+</div>
 
-<table class="table table-condensed">
-  <tr>
-    <th>Address1</th>
-    <td><%= @team.address1 %></td>
-  </tr>
-  <tr>
-    <th>Address2</th>
-    <td><%= @team.address2 %></td>
-  </tr>
-  <tr>
-    <th>City</th>
-    <td><%= @team.city %></td>
-  </tr>
-  <tr>
-    <th>State</th>
-    <td><%= @team.state %></td>
-  </tr>
-  <tr>
-    <th>Zip</th>
-    <td><%= @team.zip %></td>
-  </tr>
-  <tr>
-    <th>Country</th>
-    <td><%= @team.country %></td>
-  </tr>
-  <tr>
-    <th>Phone</th>
-    <td><%= @team.phone %></td>
-  </tr>
-  <tr>
-    <th>Website</th>
-    <td><%= @team.website %></td>
-  </tr>
-  <tr>
-    <th>Email</th>
-    <td><%= @team.email %></td>
-  </tr>
-</table>
-
-<div class="alert">Created by: <%= @team.created_by.username %></div>

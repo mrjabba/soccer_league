@@ -29,7 +29,7 @@ class PlayersController < ApplicationController
   
   def update
     @player = Player.find(params[:id])
-    @player.updated_by_id = current_user
+    @player.updated_by_id = current_user.id
     if @player.update_attributes(params[:player])
       flash[:success] = "Player updated."
       redirect_to @player

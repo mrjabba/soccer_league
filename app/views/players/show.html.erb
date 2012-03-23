@@ -12,26 +12,32 @@
   <% end %>
 </div>
 
-<table class="table table-condensed">
-  <tr>
-    <th>Position</th>
-    <td><%= @player.position %></td>
-  </tr>
-  <tr>
-    <th>Birth Date</th>
-    <td><%= @player.birth_date %></td>
-  </tr>
-  <tr>
-    <th>Nationality</th>
-    <td><%= @player.nationality %></td>
-  </tr>
-  <% if @player.height %>
-    <th>Height</th>
-    <td><%= @player.height %> m</td>
-  <% end %>
-</table>
+<div class="row">
+  <div class="span9">
+    <table class="table table-condensed">
+      <tr>
+        <th>Position</th>
+        <td><%= @player.position %></td>
+      </tr>
+      <tr>
+        <th>Birth Date</th>
+        <td><%= @player.birth_date %></td>
+      </tr>
+      <tr>
+        <th>Nationality</th>
+        <td><%= @player.nationality %></td>
+      </tr>
+      <% if @player.height %>
+        <th>Height</th>
+        <td><%= @player.height %> m</td>
+      <% end %>
+    </table>
+
+  </div>
+  <div class="span3">
+      <%= render :partial => "shared/audit", :locals => {:auditable => @player} %>
+  </div>
+</div>
 
 <div class="alert alert-info">Playerstats count: </strong> <%= @player.playerstats.count %>
 TODO roll these stats into a per league/year calculation</div>
-
-<div class="alert">Created by: <%= @player.created_by.username %></div>

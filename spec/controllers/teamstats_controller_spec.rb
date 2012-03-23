@@ -3,6 +3,12 @@ require 'spec_helper'
 describe TeamstatsController do
  render_views
 
+  describe "PUT 'update'" do
+      describe "success" do
+        it "should change the teamstat's attributes "
+      end
+  end
+
   describe "GET 'new'" do
   
     before(:each) do
@@ -37,7 +43,7 @@ describe TeamstatsController do
 
     it "should have the right title" do
       get :show, :id => @roster.teamstat
-      response.should have_selector("title", 
+      response.should have_selector("title",
           :content => "View Roster | #{@roster.teamstat.league.name} | #{@roster.teamstat.league.year} | #{@roster.teamstat.team.name}")
     end
 

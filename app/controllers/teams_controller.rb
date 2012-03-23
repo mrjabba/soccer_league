@@ -21,7 +21,7 @@ class TeamsController < ApplicationController
 
   def update
     @team = Team.find(params[:id])
-    @team.updated_by_id = current_user
+    @team.updated_by_id = current_user.id
     if @team.update_attributes(params[:team])
       flash[:success] = "Team updated."
       redirect_to @team

@@ -29,7 +29,7 @@ class LeaguesController < ApplicationController
 
   def update
     @league = League.find(params[:id])
-    @league.updated_by_id = current_user
+    @league.updated_by_id = current_user.id
     if @league.update_attributes(params[:league])
       flash[:success] = "League updated."
       redirect_to @league

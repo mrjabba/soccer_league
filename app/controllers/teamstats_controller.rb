@@ -21,8 +21,9 @@ class TeamstatsController < ApplicationController
   end
   
   def update
+    puts "updating with user #{current_user}"
     @teamstat = Teamstat.find(params[:id])
-    @teamstat.updated_by_id = current_user
+    @teamstat.updated_by_id = current_user.id
     if @teamstat.update_attributes(params[:teamstat])
       flash[:success] = "Teamstat updated."
       redirect_to @teamstat

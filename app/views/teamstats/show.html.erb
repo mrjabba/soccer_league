@@ -12,16 +12,23 @@
   <% end %>
 </div>
 <div>
-  <% unless @teamstat.players.empty? %>
-    <table id="roster_table" class="table table-condensed">
-    <tr>
-      <th title="Player Name">Name</th>
-      <th title="Position">Position</th>
-      <th title="Nationality">Nationality</th>
-    </tr>
-      <%= render :partial => "player", :collection => @teamstat.players %>
-    </table>
-  <% end %>
+
+<div class="row">
+  <div class="span9">
+    <% unless @teamstat.players.empty? %>
+      <table id="roster_table" class="table table-condensed">
+      <tr>
+        <th title="Player Name">Name</th>
+        <th title="Position">Position</th>
+        <th title="Nationality">Nationality</th>
+      </tr>
+        <%= render :partial => "player", :collection => @teamstat.players %>
+      </table>
+    <% end %>
+  </div>
+  <div class="span3">
+      <%= render :partial => "shared/audit", :locals => {:auditable => @teamstat} %>
+  </div>
 </div>
 <div>
 </div>

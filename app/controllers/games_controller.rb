@@ -36,7 +36,7 @@ class GamesController < ApplicationController
   def update
     #TODO add test for update
     @game = Game.find(params[:id])
-    @game.updated_by_id = current_user
+    @game.updated_by_id = current_user.id
     
     #TODO a better way? a checkbox workaround. manually set it. otherwise it doesnt seem to update
     #TODO maybe try this? params[:game][:completed] ||= [] per habtm railscast
