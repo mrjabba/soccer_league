@@ -1,0 +1,11 @@
+<ul class="nav nav-list">
+  <li class="nav-header">
+    Audit
+  </li>
+  <li>
+    Creator: <%= link_to auditable.created_by.username, "/users/#{auditable.created_by.id}" %>
+  </li>
+  <li>
+    Last Touched: <%= link_to auditable.updated_by.username, "/users/#{auditable.updated_by.id}" %>
+  </li>
+</ul>
