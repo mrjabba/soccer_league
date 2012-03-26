@@ -1,11 +1,10 @@
 class Player < ActiveRecord::Base
-  attr_accessible :firstname, :lastname, :position, :birth_date, :nationality, :birth_city, :birth_nation, :created_by_id, :updated_by_id, :name, :fields, :height_feet, :height_inches, :height_meters, :height
+  include Auditable
+  attr_accessible :firstname, :lastname, :position, :birth_date, :nationality, :birth_city, :birth_nation, :name, :fields, :height_feet, :height_inches, :height_meters, :height
   attr_accessor  :height_feet, :height_inches, :height_meters
   before_validation :calc_feet_in_meters
   validate :height_meters_inches_required_together
 
-  belongs_to :created_by, :class_name => "User", :foreign_key => "created_by_id"
-  belongs_to :updated_by, :class_name => "User", :foreign_key => "updated_by_id"
   has_many :playerstats
   has_many :rosters
   has_many :teamstats, :through => :rosters
@@ -16,8 +15,6 @@ class Player < ActiveRecord::Base
     "#{self.firstname} #{self.lastname}"
   end
   
-  validates :created_by_id, :presence => true
-  validates :updated_by_id, :presence => true
   validates :firstname, :presence => true, :length   => { :maximum => 50 }
   validates :lastname, :presence => true, :length   => { :maximum => 50 }
 
