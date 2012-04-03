@@ -25,7 +25,7 @@ describe Teamstat do
     end
 
     it "should return only one teamstat when given a league and team" do
-      Teamstat.teamstat_for_league(@league.id, @team.id).size.should == 1
+      Teamstat.teamstat_for_league(@league.id, @team.id).should == @teamstat
     end
   end
 

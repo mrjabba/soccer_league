@@ -25,7 +25,8 @@ class Teamstat < ActiveRecord::Base
   validates_numericality_of :goals_against, :greater_than_or_equal_to => 0
 
   def self.teamstat_for_league(league_id, team_id)
-    where("league_id = ? AND team_id = ?", league_id, team_id )
+    team_stat = where("league_id = ? AND team_id = ?", league_id, team_id )
+    team_stat.first
   end
 
   def points

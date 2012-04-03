@@ -43,7 +43,7 @@ describe GamesController do
         get :edit, :id => @game
       end
 
-      it "should display game edit screen" do
+      it "should display game edit screen", :focus => true do
         response.should be_success
         response.should have_selector("title", :content => "Edit game")
       end
