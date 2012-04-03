@@ -120,18 +120,18 @@ class Game < ActiveRecord::Base
     
     def team_rosters_to_playerstats
       #after game save, grab roster for each team and populate playerstats for the game
-      #this gives the game editor something to work with. 
+      #this gives the game editor something to work with.
       #http://stackoverflow.com/questions/1673433/how-to-insert-into-multiple-tables-in-rails
-        teamstat_home = teamstat_for_league(self.home_team.id )
+        teamstat_home = teamstat_for_league(self.home_team )
         teamstat_visiting = teamstat_for_league(self.visiting_team )
-        roster_home = Roster.where("teamstat_id = ?", teamstat_home)
+        roster_home = roster_for_team(teamstat_home)
         if roster_home.size > 0
           roster_home.each {|roster|
             self.playerstats.build(:game_id => self.id, :team_id => self.team2_id, :player_id => roster.player.id)
            }
         end
 
-        roster_visiting = Roster.where("teamstat_id = ?", teamstat_visiting)
+        roster_visiting = roster_for_team(teamstat_visiting)
         if roster_visiting.size > 0
             roster_visiting.each {|roster|
               self.playerstats.build(:game_id => self.id, :team_id => self.team1_id, :player_id => roster.player.id)
@@ -143,4 +143,7 @@ class Game < ActiveRecord::Base
       Teamstat.teamstat_for_league(self.league.id, team_id )
     end
 
+    def roster_for_team(teamstat_id)
+      Roster.roster_for_team(teamstat_id)
+    end
 end

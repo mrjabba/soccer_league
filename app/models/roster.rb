@@ -8,4 +8,8 @@ class Roster < ActiveRecord::Base
   #FIXME created_by not being updated now that we go through teamstats_controller.
   validates :teamstat_id, :presence => true
   validates :player_id, :presence => true
+
+  def self.roster_for_team(teamstat_id)
+    roster = where("teamstat_id = ?", teamstat_id)
+  end
 end
