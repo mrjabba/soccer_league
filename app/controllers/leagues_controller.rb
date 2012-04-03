@@ -15,11 +15,14 @@ class LeaguesController < ApplicationController
     @league = League.find(params[:id])
     @league_games_size = Game.where(:league_id => params[:id]).size
     @teamstats = Teamstat.includes([:team]).find_all_by_league_id(params[:id])
+    @organization = @league.organization
   end
 
   def new
     @title = "New League"
-    @league = League.new(:team_id => 1)
+    @organization = Organization.find(params[:organization_id])
+    @league = League.new()
+    @league.organization = @organization
   end
   
   def edit
@@ -40,7 +43,8 @@ class LeaguesController < ApplicationController
   end
 
   def create
-    @league = League.new(params[:league])
+    @organization = Organization.find(params[:organization_id])
+    @league = @organization.leagues.build(params[:league])
     @league.created_by_id = current_user.id
     @league.updated_by_id = current_user.id
     if @league.save
@@ -50,7 +54,5 @@ class LeaguesController < ApplicationController
       @title = "New League"
       render 'new'
     end
-  end  
-
-
+  end
 end

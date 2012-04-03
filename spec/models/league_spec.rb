@@ -3,7 +3,7 @@ require 'spec_helper'
 describe League do
 
   before(:each) do
-    @attr = { :name => "MLS", :year => 2002, :created_by_id => 1, :updated_by_id => 1 }
+    @attr = { :name => "MLS", :year => 2002, :created_by_id => 1, :updated_by_id => 1, :organization_id => 1 }
   end
 
   it "should create a new instance given valid attributes" do

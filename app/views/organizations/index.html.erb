@@ -1,0 +1,18 @@
+<h1>Organization Management</h1>
+<div class="alert">Organizations (also Associations) manage leagues. These can be as large as national/continental confederations or local city associations.</div>
+
+<div class="btn-group">
+  <% if can? :new, @organization %>
+      <%= link_to "New Organization", "organizations/new", :class => "btn" %>
+  <% end %>
+</div>
+
+<%= will_paginate %>
+<table id="organizations_table" class="table table-condensed">
+<tr>
+<th title="Name">Name</th>
+<th title="Founded">Founded</th>
+</tr>
+  <%= render @organizations %>
+</table>
+<%= will_paginate %>

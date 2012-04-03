@@ -1,0 +1,25 @@
+<ul class="breadcrumb">
+  <li><%= link_to "Organizations", organizations_path %><span class="divider">/</span>
+  </li>
+  <li class="active"><%= "#{@organization.name}" %></li>
+</ul>
+
+<div class="btn-group">
+      <% if can? :new, @organization %>
+        <%= link_to "Edit Organization", "#{@organization.id}/edit", :class => "btn" %>
+        <%= link_to "New League", new_organization_league_path(@organization), :class => "btn" %>
+      <% end %>
+</div>
+
+<div>
+<% unless @leagues.empty? %>
+  <table id="league_table" class="table table-condensed">
+  <tr>
+  <th title="Name">Name</th>
+  </tr>
+    <%= render @leagues %>
+  </table>
+<% end %>
+</div>
+
+

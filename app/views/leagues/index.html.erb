@@ -1,14 +1,6 @@
 <h1>League Management</h1>
 <div class="alert">Leagues contain teams and matches and may be long (season) or short (tournaments/cups). Teams have rosters within a league season. Manage the season lifecycle here.</div>
 
-<div class="btn-group">
-  <% if can? :new, @league %>
-    <% if APP_CONFIG['allow_multiple_leagues'] %>
-      <%= link_to "New League", "leagues/new", :class => "btn" %>
-    <% end %>
-  <% end %>
-</div>
-
 <%= will_paginate %>
 <table id="leagues_table" class="table table-condensed">
 <tr>

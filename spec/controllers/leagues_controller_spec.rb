@@ -43,16 +43,17 @@ describe LeaguesController do
 
   describe "GET 'new'" do
     before(:each) do
+      @organization = Factory(:organization)
       sign_in Factory(:user)
     end
 
     it "should be successful" do
-      get 'new'
+      get :new, :organization_id => @organization
       response.should be_success
     end
 
     it "should have the right title" do
-      get 'new'
+      get :new, :organization_id => @organization
       response.should have_selector("title", :content => "New League")
     end
 
@@ -130,59 +131,58 @@ describe LeaguesController do
   end
 
   describe "POST 'create'" do
+    before(:each) do
+      @organization = Factory(:organization)
+    end
+
       describe "failure" do
-      
         before(:each) do
         sign_in(Factory(:user))
-         @attr = { :name => "", :year => "" } 
+         @attr = { :name => "", :year => "" }
         end
 
         it "should not create a league" do
           lambda do
-            post :create, :league => @attr
+            post :create, :organization_id => @organization, :league => @attr
           end.should_not change(League, :count)
         end
 
         it "should have the right title" do
-          post :create, :league => @attr
+          post :create, :organization_id => @organization, :league => @attr
           response.should have_selector("title", :content => "New League")
         end
 
         it "should render the 'new' page" do
-          post :create, :league => @attr
+          post :create, :organization_id => @organization, :league => @attr
           response.should render_template('new')
-        end         
+        end
       end
       
       describe "success" do
-
         before(:each) do
         sign_in(Factory(:user))
-         @attr = { :name => "foo", :year => "2010" } 
+         @attr = { :name => "foo", :year => "2010" }
         end
 
         it "should create a league" do
           lambda do
-            post :create, :league => @attr
+          post :create, :organization_id => @organization, :league => @attr
           end.should change(League, :count).by(1)
         end
 
-        it "should redirect to the league show page" do
-          post :create, :league => @attr
+        it "should redirect to the league show page", :focus => true do
+          post :create, :organization_id => @organization, :league => @attr
           response.should redirect_to(league_path(assigns(:league)))
-        end   
+        end
         
         it "should have a flash message" do
-          post :create, :league => @attr
+          post :create, :organization_id => @organization, :league => @attr
           flash[:success].should =~ /League created successfully/
         end
-
       end
-
   end
   
   describe "DELETE 'destroy'" do
     #should require special admin role
   end
-
 end

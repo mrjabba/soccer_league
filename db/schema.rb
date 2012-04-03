@@ -10,22 +10,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120321022937) do
+ActiveRecord::Schema.define(:version => 20120403180636) do
 
   create_table "audits", :force => true do |t|
-    t.integer  "auditable_id"
-    t.string   "auditable_type"
-    t.integer  "associated_id"
-    t.string   "associated_type"
-    t.integer  "user_id"
-    t.string   "user_type"
-    t.string   "username"
-    t.string   "action"
-    t.text     "audited_changes"
-    t.integer  "version",         :default => 0
-    t.string   "comment"
-    t.string   "remote_address"
-    t.datetime "created_at"
+    t.integer   "auditable_id"
+    t.string    "auditable_type"
+    t.integer   "associated_id"
+    t.string    "associated_type"
+    t.integer   "user_id"
+    t.string    "user_type"
+    t.string    "username"
+    t.string    "action"
+    t.text      "audited_changes"
+    t.integer   "version",         :default => 0
+    t.string    "comment"
+    t.string    "remote_address"
+    t.timestamp "created_at"
   end
 
   add_index "audits", ["associated_id", "associated_type"], :name => "associated_index"
@@ -54,10 +54,22 @@ ActiveRecord::Schema.define(:version => 20120321022937) do
     t.datetime "updated_at"
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
+    t.integer  "organization_id"
   end
 
   add_index "leagues", ["created_by_id"], :name => "index_leagues_on_created_by_id"
+  add_index "leagues", ["organization_id"], :name => "index_leagues_on_organization_id"
   add_index "leagues", ["updated_by_id"], :name => "index_leagues_on_updated_by_id"
+
+  create_table "organizations", :force => true do |t|
+    t.string   "name"
+    t.integer  "founded"
+    t.string   "website"
+    t.integer  "updated_by_id"
+    t.integer  "created_by_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "players", :force => true do |t|
     t.string   "firstname"

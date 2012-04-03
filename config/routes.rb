@@ -13,6 +13,10 @@ SoccerleagueApp::Application.routes.draw do
     resources :games, :shallow => true
   end
 
+  resources :organizations do
+    resources :leagues, :shallow => true
+  end  
+
   match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about'
   match '/help',    :to => 'pages#help'

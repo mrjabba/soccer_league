@@ -1,0 +1,19 @@
+<h1>New Organization</h1>
+
+<%= form_for(@organization) do |f| %>
+  <%= render 'shared/error_messages_organization', :object => f.object %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :founded %><br />
+    <%= f.text_field :founded %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Create" %>
+    <input type="button" id="cancelOrganizationNew" value="Cancel"/>
+  </div>
+<% end %>
+

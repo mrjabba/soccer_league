@@ -47,9 +47,17 @@ Factory.define :team do |team|
   team.updated_by_id 1
 end
 
+Factory.define :organization do |org|
+  org.founded                 1913
+  org.name                 "United States Soccer Federation"
+  org.created_by_id 1
+  org.updated_by_id 1
+end
+
 Factory.define :league do |league|
   league.year                 2002
   league.name                 "my soccer league"
+  league.organization { |org|  org.association(:organization) }
   league.created_by_id 1
   league.updated_by_id 1
 end
