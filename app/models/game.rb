@@ -68,21 +68,17 @@ class Game < ActiveRecord::Base
     def revert_teamstat
       #puts "**** revert_teamstat"
       if self.completed?
-        
-        teamstat_home = Teamstat.where("league_id = ? AND team_id = ?", self.league.id, self.home_team )
-        teamstat_visiting = Teamstat.where("league_id = ? AND team_id = ?", self.league.id, self.visiting_team )
+        teamstat_home = Teamstat.teamstat_for_league(self.league.id, self.home_team )
+        teamstat_visiting = Teamstat.teamstat_for_league(self.league.id, self.visiting_team )
         if teamstat_home.size > 0 and teamstat_visiting.size > 0
           if self.home_team_goals > self.visiting_team_goals
-            #puts "home team wins"
             #TODO check to see if these are zeroes or not?
             teamstat_home[0].wins -= 1
             teamstat_visiting[0].losses -= 1
           elsif self.home_team_goals < self.visiting_team_goals
-            #puts "visiting team wins"
             teamstat_visiting[0].wins -= 1
             teamstat_home[0].losses -= 1
           else 
-            #puts "its a tie"
             teamstat_home[0].ties -= 1
             teamstat_visiting[0].ties -= 1
           end
@@ -102,22 +98,17 @@ class Game < ActiveRecord::Base
     end
   
     def update_game
-      #puts "**** update_game"
       if self.completed?
-        
-        teamstat_home = Teamstat.where("league_id = ? AND team_id = ?", self.league.id, self.home_team )
-        teamstat_visiting = Teamstat.where("league_id = ? AND team_id = ?", self.league.id, self.visiting_team )        
+        teamstat_home = Teamstat.teamstat_for_league(self.league.id, self.home_team )
+        teamstat_visiting = Teamstat.teamstat_for_league(self.league.id, self.visiting_team )
         if teamstat_home.size > 0 and teamstat_visiting.size > 0
           if self.home_team_goals > self.visiting_team_goals
-            #puts "home team wins"
             teamstat_home[0].wins += 1
             teamstat_visiting[0].losses += 1
           elsif self.home_team_goals < self.visiting_team_goals
-            #puts "visiting team wins"
             teamstat_visiting[0].wins += 1
             teamstat_home[0].losses += 1
           else 
-            #puts "its a tie"
             teamstat_home[0].ties += 1
             teamstat_visiting[0].ties += 1
           end
@@ -133,9 +124,7 @@ class Game < ActiveRecord::Base
         else
           puts "cant update teamstats unless both teams have teamstat records. TODO validation before game is created?"
         end
-        
       end
-      
     end
     
     def team_rosters_to_playerstats
@@ -143,10 +132,8 @@ class Game < ActiveRecord::Base
       #this gives the game editor something to work with. 
       #http://stackoverflow.com/questions/1673433/how-to-insert-into-multiple-tables-in-rails
   #    puts "*** running team_rosters_to_playerstats self id"
-
-        teamstat_home = Teamstat.where("league_id = ? AND team_id = ?", self.league.id, self.home_team )
-        teamstat_visiting = Teamstat.where("league_id = ? AND team_id = ?", self.league.id, self.visiting_team )
-
+        teamstat_home = Teamstat.teamstat_for_league(self.league.id, self.home_team )
+        teamstat_visiting = Teamstat.teamstat_for_league(self.league.id, self.visiting_team )
         if teamstat_home.size > 0
           roster_home = Roster.where("teamstat_id = ?", teamstat_home[0].id)
           #puts "kmh roster_home #{roster_home.size}"
@@ -166,7 +153,5 @@ class Game < ActiveRecord::Base
                }
           end
         end
-      
     end
-
 end

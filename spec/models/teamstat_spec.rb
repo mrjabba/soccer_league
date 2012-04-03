@@ -23,6 +23,10 @@ describe Teamstat do
       @teamstat.team_id.should == @team.id
       @teamstat.team.should == @team
     end
+
+    it "should return only one teamstat when given a league and team" do
+      Teamstat.teamstat_for_league(@league.id, @team.id).size.should == 1
+    end
   end
 
   describe "validations" do

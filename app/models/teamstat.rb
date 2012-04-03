@@ -24,6 +24,9 @@ class Teamstat < ActiveRecord::Base
   validates_numericality_of :goals_for, :greater_than_or_equal_to => 0
   validates_numericality_of :goals_against, :greater_than_or_equal_to => 0
 
+  def self.teamstat_for_league(league_id, team_id)
+    where("league_id = ? AND team_id = ?", league_id, team_id )
+  end
 
   def points
     #TODO do we want to make this formula configurable? tournaments may choose to use a diff calculation on points?
@@ -34,7 +37,6 @@ class Teamstat < ActiveRecord::Base
     "#{wins}-#{losses}-#{ties}"
   end
   
-
   def games_played
     if wins.blank? or losses.blank? or ties.blank?
       games_played = 0
@@ -63,5 +65,4 @@ class Teamstat < ActiveRecord::Base
     self.games_played = games_played()
     self.points = points()    
   end
-
 end
