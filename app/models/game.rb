@@ -68,8 +68,8 @@ class Game < ActiveRecord::Base
     def revert_teamstat
       #puts "**** revert_teamstat"
       if self.completed?
-        teamstat_home = Teamstat.teamstat_for_league(self.league.id, self.home_team )
-        teamstat_visiting = Teamstat.teamstat_for_league(self.league.id, self.visiting_team )
+        teamstat_home = teamstat_for_league(self.home_team )
+        teamstat_visiting = teamstat_for_league(self.visiting_team )
         if self.home_team_goals > self.visiting_team_goals
           #TODO check to see if these are zeroes or not?
           teamstat_home.wins -= 1
@@ -95,8 +95,8 @@ class Game < ActiveRecord::Base
   
     def update_game
       if self.completed?
-        teamstat_home = Teamstat.teamstat_for_league(self.league.id, self.home_team )
-        teamstat_visiting = Teamstat.teamstat_for_league(self.league.id, self.visiting_team )
+        teamstat_home = teamstat_for_league(self.home_team )
+        teamstat_visiting = teamstat_for_league(self.visiting_team )
         if self.home_team_goals > self.visiting_team_goals
           teamstat_home.wins += 1
           teamstat_visiting.losses += 1
@@ -122,8 +122,8 @@ class Game < ActiveRecord::Base
       #after game save, grab roster for each team and populate playerstats for the game
       #this gives the game editor something to work with. 
       #http://stackoverflow.com/questions/1673433/how-to-insert-into-multiple-tables-in-rails
-        teamstat_home = Teamstat.teamstat_for_league(self.league.id, self.home_team.id )
-        teamstat_visiting = Teamstat.teamstat_for_league(self.league.id, self.visiting_team )
+        teamstat_home = teamstat_for_league(self.home_team.id )
+        teamstat_visiting = teamstat_for_league(self.visiting_team )
         roster_home = Roster.where("teamstat_id = ?", teamstat_home)
         if roster_home.size > 0
           roster_home.each {|roster|
@@ -138,4 +138,9 @@ class Game < ActiveRecord::Base
              }
         end
     end
+
+    def teamstat_for_league(team_id)
+      Teamstat.teamstat_for_league(self.league.id, team_id )
+    end
+
 end
