@@ -1,11 +1,23 @@
-<ul class="nav nav-list">
-  <li class="nav-header">
-    Audit
-  </li>
-  <li>
-    Creator: <%= link_to auditable.created_by.username, "/users/#{auditable.created_by.id}" %>
-  </li>
-  <li>
-    Last Touched: <%= link_to auditable.updated_by.username, "/users/#{auditable.updated_by.id}" %>
-  </li>
-</ul>
+<button class="btn btn-inverse" data-toggle="collapse" data-target="#audit">Audit</button>
+<div id="audit" class="collapse in">
+  <div class="alert alert-info">
+    <div class="row">
+      <div class="span6">
+        <h6>Creator: <%= link_to auditable.creator_name, "/users/#{auditable.creator_id}" %></h6>
+      </div>
+      <div class="span6">
+        <h6>Created: <%= auditable.created_at %></h6>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span6">
+        <h6>Last Editor: <%= link_to auditable.updator_name, "/users/#{auditable.updator_id}" %></h6>
+      </div>
+      <div class="span6">
+        <h6>Updated: <%= auditable.updated_at %></h6>
+      </div>
+    </div>
+  </div>
+</div>
+
+

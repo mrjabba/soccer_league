@@ -26,6 +26,8 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   config.include Devise::TestHelpers, :type => :controller
+  config.include FactoryGirl::Syntax::Methods
+
 #  def test_sign_in(user)
 #    controller.current_user = user
 #  end

@@ -14,7 +14,7 @@
 <div>
 
 <div class="row">
-  <div class="span9">
+  <div class="span12">
     <% unless @teamstat.players.empty? %>
       <table id="roster_table" class="table table-condensed">
       <tr>
@@ -26,9 +26,10 @@
       </table>
     <% end %>
   </div>
-  <div class="span3">
+</div>
+<div class="row">
+  <div class="span12">
       <%= render :partial => "shared/audit", :locals => {:auditable => @teamstat} %>
   </div>
 </div>
-<div>
-</div>
+

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe GamesController do
  render_views
 
-  it "why arent there failing tests here for adding updated_by_id?"
+ it "why arent there failing tests here for adding updated_by_id?"
   
   describe "GET 'index'" do
     before(:each) do
@@ -39,7 +39,7 @@ describe GamesController do
 
     describe "authenticated user" do 
       before(:each) do
-        sign_in(FactoryGirl.create(:user, :email => FactoryGirl.generate(:email)))
+        sign_in(FactoryGirl.create(:user))
         get :edit, :id => @game
       end
 
@@ -67,7 +67,7 @@ describe GamesController do
       end
       
       it "should include the both teams in a table and the title" do
-        response.should have_selector("title", :content => "#{@game.visiting_team.name} at #{@game.home_team.name}")    
+        response.should have_selector("title", :content => "#{@game.visiting_team.name} at #{@game.home_team.name}")
         response.should have_selector("td", :content => @game.visiting_team.name)
         response.should have_selector("td", :content => @game.home_team.name)
       end
@@ -75,7 +75,7 @@ describe GamesController do
     
     describe "authenticated user" do
       before(:each) do
-        sign_in(FactoryGirl.create(:user, :email => FactoryGirl.generate(:email)))
+        sign_in(FactoryGirl.create(:user))
         get :show, :id => @game
       end
       

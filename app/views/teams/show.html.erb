@@ -17,7 +17,7 @@
 </div>
 
 <div class="row">
-  <div class="span9">
+  <div class="span12">
     <table class="table table-condensed">
       <tr>
         <th>Address1</th>
@@ -57,8 +57,10 @@
       </tr>
     </table>
   </div>
-  <div class="span3">
-      <%= render :partial => "shared/audit", :locals => {:auditable => @team} %>
+</div>
+<div class="row">
+  <div class="span12">
+    <%= render :partial => "shared/audit", :locals => {:auditable => @team} %>
   </div>
 </div>
 

@@ -137,7 +137,7 @@ DEPENDENCIES
   faker (= 0.3.1)
   fuubar
   guard-rspec
-  jquery-rails (>= 0.2.6)
+  jquery-rails (>= 1.0.12)
   libnotify
   rails (= 3.0.7)
   rails-erd

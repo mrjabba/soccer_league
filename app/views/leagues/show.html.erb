@@ -18,26 +18,25 @@
 </div>
 
 <div>
-<div class="alert">Teams in this league: <%= @league.teamstats.count %></div>
-
-
-<% unless @teamstats.empty? %>
-  <table id="league_table" class="table table-condensed">
-  <tr>
-  <th title="Club">Club</th>
-  <th title="Points">PTS</th>
-  <th title="Games Played">GP</th>
-  <th title="Wins">W</th>
-  <th title="Losses">L</th>
-  <th title="Ties">T</th>
-  <th title="Goals For">GF</th>
-  <th title="Goals Against">GA</th>
-  </tr>
-    <%= render @teamstats %>
-  </table>
-<% end %>
-
-
+  <div class="alert">Teams in this league: <%= @league.teamstats.count %></div>
+  <% unless @teamstats.empty? %>
+    <table id="league_table" class="table table-condensed">
+    <tr>
+    <th title="Club">Club</th>
+    <th title="Points">PTS</th>
+    <th title="Games Played">GP</th>
+    <th title="Wins">W</th>
+    <th title="Losses">L</th>
+    <th title="Ties">T</th>
+    <th title="Goals For">GF</th>
+    <th title="Goals Against">GA</th>
+    </tr>
+      <%= render @teamstats %>
+    </table>
+  <% end %>
 </div>
-
-
+<div class="row">
+  <div class="span12">
+      <%= render :partial => "shared/audit", :locals => {:auditable => @league} %>
+  </div>
+</div>

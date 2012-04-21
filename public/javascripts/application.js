@@ -15,8 +15,8 @@ $(function() {
     buttonImage: "/images/calendar.png",
     buttonImageOnly: true
   });
-  
-  
+
+$(".collapse").collapse();  
 });
 
 

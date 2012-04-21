@@ -25,7 +25,6 @@ end
 FactoryGirl.define do
   factory :user do
     username               FactoryGirl.generate(:username)
-    email
     email                  FactoryGirl.generate(:email)
     password              "foobar"
     password_confirmation "foobar"
@@ -83,9 +82,9 @@ end
 
 FactoryGirl.define do
   factory :teamstat do
-    created_by_id 1
     team { |team|  team.association(:team, :name => FactoryGirl.generate(:name)) }
     league { |league|  league.association(:league) }
+    created_by_id 1
     updated_by_id 1
   end
 end
@@ -105,7 +104,7 @@ FactoryGirl.define do
     player { |player|  player.association(:player, :lastname => FactoryGirl.generate(:lastname)) }
     teamstat { |teamstat|  teamstat.association(:teamstat) }
     created_by_id 1
-    updated_by_id { |user|  user.association(:user, :username => FactoryGirl.generate(:username)) }
+    updated_by_id 1
   end
 end
 

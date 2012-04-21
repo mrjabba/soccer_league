@@ -73,4 +73,8 @@
     <%= render @game.playerstats %>  
   </table>
 <% end %>
-<div class="alert">Created by: <%= @game.game_creator %></div>
+<div class="row">
+  <div class="span12">
+      <%= render :partial => "shared/audit", :locals => {:auditable => @game} %>
+  </div>
+</div>
