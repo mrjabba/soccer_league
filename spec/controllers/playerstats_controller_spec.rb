@@ -3,12 +3,11 @@ require 'spec_helper'
 describe PlayerstatsController do
  render_views
 
-  describe "GET 'new'" do
-  
+  describe "GET 'new'" do  
     before(:each) do
-      @game = Factory(:game)
-      @team = Factory(:team)
-      sign_in(Factory(:user))
+      @game = FactoryGirl.create(:game)
+      @team = FactoryGirl.create(:team)
+      sign_in(FactoryGirl.create(:user))
     end
       
     it "should be successful with a game and a team" do
@@ -20,14 +19,12 @@ describe PlayerstatsController do
       get :new, :game_id => @game, :team_id => @team
       response.should have_selector("title", :content => "New Playerstat")
     end
-
   end
-  
 
   describe "DELETE 'destroy'" do
     before(:each) do
-      @playerstat = Factory(:playerstat)
-      sign_in(Factory(:user, :email => Factory.next(:email)))
+      @playerstat = FactoryGirl.create(:playerstat)
+      sign_in(FactoryGirl.create(:user, :email => FactoryGirl.generate(:email)))
      end
     
     describe "success" do
@@ -49,16 +46,14 @@ describe PlayerstatsController do
     
     describe "failure" do
     end
-
   end    
-  
 
   describe "POST 'create'" do
     before(:each) do
-      @game = Factory(:game)
-      @team = Factory(:team)
-      @player = Factory(:player)
-      sign_in(Factory(:user, :email => Factory.next(:email)))
+      @game = FactoryGirl.create(:game)
+      @team = FactoryGirl.create(:team)
+      @player = FactoryGirl.create(:player)
+      sign_in(FactoryGirl.create(:user, :email => FactoryGirl.generate(:email)))
     end
 
     describe "success" do
@@ -92,10 +87,6 @@ describe PlayerstatsController do
         post :create, :playerstat => @attr
         response.should have_selector("title", :content => "New Playerstat")
       end
-
     end
-
   end
-
-  
 end

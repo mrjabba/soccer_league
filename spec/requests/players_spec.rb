@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "Players" do
 
   before(:each) do
-    user = Factory(:user)
+    user = FactoryGirl.create(:user)
     visit new_user_session_path
     fill_in :username,    :with => user.username
     fill_in :password, :with => user.password
@@ -73,13 +73,7 @@ describe "Players" do
         #TODO need to combine these 2 somehow to include both add and edit
         #TODO need to combine these 2 somehow to include both add and edit
         #TODO need to combine these 2 somehow to include both add and edit
-        
       end
-      
     end
-    
-    
   end
-  
-
 end

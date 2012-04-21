@@ -58,7 +58,7 @@ describe "LayoutLinks" do
   describe "when signed in" do
     
     before(:each) do
-      @user = Factory(:user)
+      @user = FactoryGirl.create(:user)
       visit new_user_session_path
       fill_in :username,   :with => @user.username
       fill_in :password,  :with => @user.password
@@ -77,5 +77,4 @@ describe "LayoutLinks" do
                                         :content => "Profile")
     end
   end
-  
 end

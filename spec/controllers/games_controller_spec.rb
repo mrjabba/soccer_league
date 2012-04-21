@@ -7,7 +7,7 @@ describe GamesController do
   
   describe "GET 'index'" do
     before(:each) do
-      @league = Factory(:league)
+      @league = FactoryGirl.create(:league)
     end
   
     it "should require a league and be successful" do
@@ -23,7 +23,7 @@ describe GamesController do
 
   describe "GET 'edit'" do
     before(:each) do
-      @playerstat = Factory(:playerstat)
+      @playerstat = FactoryGirl.create(:playerstat)
       @game = @playerstat.game
     end
   
@@ -39,7 +39,7 @@ describe GamesController do
 
     describe "authenticated user" do 
       before(:each) do
-        sign_in(Factory(:user, :email => Factory.next(:email)))
+        sign_in(FactoryGirl.create(:user, :email => FactoryGirl.generate(:email)))
         get :edit, :id => @game
       end
 
@@ -52,10 +52,10 @@ describe GamesController do
 
   describe "GET 'show'" do
     before(:each) do
-      @playerstat = Factory(:playerstat)
+      @playerstat = FactoryGirl.create(:playerstat)
       @game = @playerstat.game
     end
-  
+
     describe "unauthenticated user" do
       before(:each) do
         get :show, :id => @game
@@ -75,7 +75,7 @@ describe GamesController do
     
     describe "authenticated user" do
       before(:each) do
-        sign_in(Factory(:user, :email => Factory.next(:email)))
+        sign_in(FactoryGirl.create(:user, :email => FactoryGirl.generate(:email)))
         get :show, :id => @game
       end
       
@@ -88,8 +88,8 @@ describe GamesController do
 
   describe "GET 'new'" do
     before(:each) do
-      @league = Factory(:league)
-      sign_in(Factory(:user, :email => Factory.next(:email)))
+      @league = FactoryGirl.create(:league)
+      sign_in(FactoryGirl.create(:user, :email => FactoryGirl.generate(:email)))
     end
   
     describe "success" do
@@ -107,16 +107,16 @@ describe GamesController do
 
   describe "POST 'create'" do
     before(:each) do
-      @league = Factory(:league)
-      @team_home = Factory(:team)
-      @team_visiting = Factory(:team, :name => Factory.next(:name))
+      @league = FactoryGirl.create(:league)
+      @team_home = FactoryGirl.create(:team)
+      @team_visiting = FactoryGirl.create(:team, :name => FactoryGirl.generate(:name))
  
-      @teamstat_home = Factory(:teamstat)
+      @teamstat_home = FactoryGirl.create(:teamstat)
       @teamstat_home.team = @team_home
-      @teamstat_visitor = Factory(:teamstat)
+      @teamstat_visitor = FactoryGirl.create(:teamstat)
       @teamstat_visitor.team = @team_visiting
      
-      sign_in(Factory(:user, :email => Factory.next(:email)))
+      sign_in(FactoryGirl.create(:user, :email => FactoryGirl.generate(:email)))
     end
 
     describe "success" do
@@ -152,7 +152,7 @@ describe GamesController do
 
     describe "failure" do
       before(:each) do
-        @league = Factory(:league)
+        @league = FactoryGirl.create(:league)
         @attr = { :team1_id => nil } 
       end
 
@@ -170,8 +170,8 @@ describe GamesController do
   
   describe "DELETE 'destroy'" do
     before(:each) do
-      @game = Factory(:game)
-      sign_in(Factory(:user, :email => Factory.next(:email)))
+      @game = FactoryGirl.create(:game)
+      sign_in(FactoryGirl.create(:user, :email => FactoryGirl.generate(:email)))
     end
     
     describe "success" do

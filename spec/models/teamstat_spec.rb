@@ -9,8 +9,8 @@ describe Teamstat do
 
   describe "valid associations" do
     before(:each) do
-      @league = Factory(:league)
-      @team = Factory(:team)
+      @league = FactoryGirl.create(:league)
+      @team = FactoryGirl.create(:team)
       @teamstat = Teamstat.create!(:league_id => @league, :team_id => @team, :created_by_id => 1, :updated_by_id => 1)
     end
 

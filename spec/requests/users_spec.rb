@@ -46,9 +46,8 @@ describe "Users" do
     end
     
     describe "success" do
-
       it "should sign a user in and out" do
-        user = Factory(:user)
+        user = FactoryGirl.create(:user)
         visit new_user_session_path
         fill_in :username,   :with => user.username
         fill_in :password, :with => user.password
@@ -57,10 +56,6 @@ describe "Users" do
         click_link "Sign out"
         response.should have_selector("li a", :content => "Sign in")
       end
-    
     end
-    
   end
-
-
 end

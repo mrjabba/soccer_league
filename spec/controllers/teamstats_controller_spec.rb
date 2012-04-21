@@ -12,8 +12,8 @@ describe TeamstatsController do
   describe "GET 'new'" do
   
     before(:each) do
-      @league = Factory(:league)
-      sign_in(Factory(:user))
+      @league = FactoryGirl.create(:league)
+      sign_in(FactoryGirl.create(:user))
     end
       
     it "should be successful with a league" do
@@ -33,7 +33,7 @@ describe TeamstatsController do
   describe "GET 'show'" do
   
     before(:each) do
-      @roster = Factory(:roster)
+      @roster = FactoryGirl.create(:roster)
     end
       
     it "should be successful with a teamstat(roster)" do
@@ -51,8 +51,8 @@ describe TeamstatsController do
 
   describe "DELETE 'destroy'" do
     before(:each) do
-      @teamstat = Factory(:teamstat)
-      sign_in(Factory(:user))
+      @teamstat = FactoryGirl.create(:teamstat)
+      sign_in(FactoryGirl.create(:user))
     end
     
     describe "success" do
@@ -81,9 +81,9 @@ describe TeamstatsController do
 
   describe "POST 'create'" do
     before(:each) do
-      @league = Factory(:league)
-      @team = Factory(:team)
-      sign_in(Factory(:user))
+      @league = FactoryGirl.create(:league)
+      @team = FactoryGirl.create(:team)
+      sign_in(FactoryGirl.create(:user))
     end
 
     describe "success" do

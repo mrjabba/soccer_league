@@ -6,7 +6,7 @@ describe TeamsController do
   describe "GET 'new'" do
 
     before(:each) do
-      sign_in Factory(:user)
+      sign_in FactoryGirl.create(:user)
     end
 
     it "should be successful" do
@@ -24,8 +24,8 @@ describe TeamsController do
   describe "GET 'edit'" do
     
     before(:each) do
-      @team = Factory(:team)
-      sign_in Factory(:user)
+      @team = FactoryGirl.create(:team)
+      sign_in FactoryGirl.create(:user)
     end
     
      it "should be successful" do
@@ -42,8 +42,8 @@ describe TeamsController do
   
   describe "PUT 'update'" do
     before(:each) do
-      @team = Factory(:team)
-      sign_in Factory(:user)
+      @team = FactoryGirl.create(:team)
+      sign_in FactoryGirl.create(:user)
     end
 
     describe "failure" do
@@ -106,7 +106,7 @@ describe TeamsController do
   describe "authentication of team edit/update pages" do
 
     before(:each) do
-      @team = Factory(:team)
+      @team = FactoryGirl.create(:team)
     end
 
     describe "for non-signed-in users" do
@@ -146,8 +146,8 @@ describe TeamsController do
   describe "GET 'show'" do
   
     before(:each) do
-      @user = Factory(:user)
-      @team = Factory(:team)
+      @user = FactoryGirl.create(:user)
+      @team = FactoryGirl.create(:team)
     end
     
     it "should be successful" do
@@ -177,7 +177,7 @@ describe TeamsController do
       describe "failure" do
 
         before(:each) do
-        sign_in Factory(:user)
+        sign_in FactoryGirl.create(:user)
          @attr = { :name => "", :address1 => ""} 
         end
 
@@ -202,7 +202,7 @@ describe TeamsController do
       describe "success" do
 
         before(:each) do
-        sign_in Factory(:user)
+        sign_in FactoryGirl.create(:user)
          @attr = { :name => "name", :address1 => "123 main"} 
         end
 

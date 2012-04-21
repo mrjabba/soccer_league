@@ -11,7 +11,7 @@ describe UsersController do
 
     describe "for signed in users" do
       before(:each) do
-        @user = Factory(:user)
+        @user = FactoryGirl.create(:user)
         sign_in(@user)
       end
 
@@ -62,11 +62,11 @@ describe UsersController do
     
     describe "for signed in users" do
       before(:each) do
-        @admin = Factory(:user, :username  => "an_admin", :roles => [:admin], :email => Factory.next(:email))
+        @admin = FactoryGirl.create(:user, :username  => "an_admin", :roles => [:admin], :email => FactoryGirl.generate(:email))
         sign_in(@admin)
 
-        @non_admin = Factory(:user, :username => "regular_user", :roles => [:free], :email => Factory.next(:email))
-        third = Factory(:user, :username => Factory.next(:username) , :roles => [:free], :email => Factory.next(:email))
+        @non_admin = FactoryGirl.create(:user, :username => "regular_user", :roles => [:free], :email => FactoryGirl.generate(:email))
+        third = FactoryGirl.create(:user, :username => FactoryGirl.generate(:username) , :roles => [:free], :email => FactoryGirl.generate(:email))
         @users = [@admin, @non_admin, third]
       end
 
@@ -87,7 +87,7 @@ describe UsersController do
       end
 
       it "should allow searching by role - disabled" do
-        disabled_user = Factory(:user, :username => Factory.next(:username) , :roles => [], :email => Factory.next(:email))
+        disabled_user = FactoryGirl.create(:user, :username => FactoryGirl.generate(:username) , :roles => [], :email => FactoryGirl.generate(:email))
         get :index, :role => ""
         response.should have_selector("title", :content => "Disabled Users")
         response.should have_selector("a", :content => disabled_user.username)
@@ -97,7 +97,7 @@ describe UsersController do
 
       it "should paginate users" do
         8.times do
-          @users << Factory(:user, :username  => Factory.next(:username), :email  => Factory.next(:email))
+          @users << FactoryGirl.create(:user, :username  => FactoryGirl.generate(:username), :email  => FactoryGirl.generate(:email))
         end
 
         get :index
@@ -115,7 +115,7 @@ describe UsersController do
 
   describe "GET 'edit'" do
     before(:each) do
-      @user = Factory(:user)
+      @user = FactoryGirl.create(:user)
       sign_in @user
     end
     
@@ -134,7 +134,7 @@ describe UsersController do
   describe "DELETE 'destroy'" do
   
     before(:each) do
-      @user = Factory(:user, :email => Factory.next(:email))
+      @user = FactoryGirl.create(:user, :email => FactoryGirl.generate(:email))
     end
   
     describe "as a non sign-in user" do
@@ -146,7 +146,7 @@ describe UsersController do
 
     describe "as a non-admin user" do
       it "should protect the page" do
-        @non_admin = Factory(:user, :username => Factory.next(:username), :email => Factory.next(:email), :roles => [:free])
+        @non_admin = FactoryGirl.create(:user, :username => FactoryGirl.generate(:username), :email => FactoryGirl.generate(:email), :roles => [:free])
         sign_in(@non_admin)
         delete :destroy, :id => @user
         flash[:error].should =~ /Access Denied/
@@ -155,7 +155,7 @@ describe UsersController do
     
     describe "as an admin user" do
       before(:each) do
-        @admin = Factory(:user, :username => Factory.next(:username), :email => Factory.next(:email))
+        @admin = FactoryGirl.create(:user, :username => FactoryGirl.generate(:username), :email => FactoryGirl.generate(:email))
         sign_in(@admin)
       end
       
@@ -177,7 +177,7 @@ describe UsersController do
   describe "PUT 'update'" do
 
     before(:each) do
-      @user = Factory(:user)
+      @user = FactoryGirl.create(:user)
       sign_in(@user)
     end
     
@@ -215,10 +215,6 @@ describe UsersController do
         response.should redirect_to(user_path(@user))
         flash[:success].should =~ /updated/
       end
-      
     end
-    
   end
-
-
 end

@@ -4,3 +4,4 @@ log/*.log
 tmp/**/*
 coverage/**
 webrat.log
+.idea/**

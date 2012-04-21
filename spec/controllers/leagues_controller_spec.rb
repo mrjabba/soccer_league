@@ -6,9 +6,9 @@ describe LeaguesController do
   describe "GET 'show'" do
 
     before(:each) do
-      @league = Factory(:league)
-      @team1 = Factory(:team)
-      @team2 = Factory(:team, :name => "some other name")
+      @league = FactoryGirl.create(:league)
+      @team1 = FactoryGirl.create(:team)
+      @team2 = FactoryGirl.create(:team, :name => "some other name")
     end
 
     it "should show the league's teams" do
@@ -43,8 +43,8 @@ describe LeaguesController do
 
   describe "GET 'new'" do
     before(:each) do
-      @organization = Factory(:organization)
-      sign_in Factory(:user)
+      @organization = FactoryGirl.create(:organization)
+      sign_in FactoryGirl.create(:user)
     end
 
     it "should be successful" do
@@ -62,8 +62,8 @@ describe LeaguesController do
   describe "GET 'edit'" do
     
     before(:each) do
-      @league = Factory(:league)
-      sign_in(Factory(:user))
+      @league = FactoryGirl.create(:league)
+      sign_in(FactoryGirl.create(:user))
     end
     
      it "should be successful" do
@@ -81,8 +81,8 @@ describe LeaguesController do
 
   describe "PUT 'update'" do
     before(:each) do
-      @league = Factory(:league)
-      sign_in(Factory(:user))
+      @league = FactoryGirl.create(:league)
+      sign_in(FactoryGirl.create(:user))
     end
     
     describe "failure" do
@@ -132,12 +132,12 @@ describe LeaguesController do
 
   describe "POST 'create'" do
     before(:each) do
-      @organization = Factory(:organization)
+      @organization = FactoryGirl.create(:organization)
     end
 
       describe "failure" do
         before(:each) do
-        sign_in(Factory(:user))
+        sign_in(FactoryGirl.create(:user))
          @attr = { :name => "", :year => "" }
         end
 
@@ -160,7 +160,7 @@ describe LeaguesController do
       
       describe "success" do
         before(:each) do
-        sign_in(Factory(:user))
+        sign_in(FactoryGirl.create(:user))
          @attr = { :name => "foo", :year => "2010" }
         end
 

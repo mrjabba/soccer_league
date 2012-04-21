@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Roster do
 
   before(:each) do
-    @teamstat = Factory(:teamstat)
-    @player = Factory(:player)
+    @teamstat = FactoryGirl.create(:teamstat)
+    @player = FactoryGirl.create(:player)
     @attr = { :teamstat_id => @teamstat, :player_id => @player, :created_by_id => 1, :updated_by_id => 1 }
   end
 

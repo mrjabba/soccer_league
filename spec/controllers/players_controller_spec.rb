@@ -6,7 +6,7 @@ describe PlayersController do
   describe "GET 'new'" do
 
     before(:each) do
-      sign_in Factory(:user)
+      sign_in FactoryGirl.create(:user)
     end
 
     it "should be successful" do
@@ -23,8 +23,8 @@ describe PlayersController do
   describe "GET 'edit'" do
     
     before(:each) do
-      @player = Factory(:player)
-      sign_in(Factory(:user, :email => Factory.next(:email)))
+      @player = FactoryGirl.create(:player)
+      sign_in(FactoryGirl.create(:user, :email => FactoryGirl.generate(:email)))
     end
     
      it "should be successful" do
@@ -42,8 +42,8 @@ describe PlayersController do
 
   describe "PUT 'update'" do
     before(:each) do
-      @player = Factory(:player)
-      sign_in(Factory(:user, :email => Factory.next(:email)))
+      @player = FactoryGirl.create(:player)
+      sign_in(FactoryGirl.create(:user, :email => FactoryGirl.generate(:email)))
     end
     
     describe "failure" do
@@ -100,7 +100,7 @@ describe PlayersController do
   describe "authentication of player edit/update pages" do
 
     before(:each) do
-      @player = Factory(:player)
+      @player = FactoryGirl.create(:player)
     end
 
     describe "for non-signed-in users" do
@@ -137,8 +137,8 @@ describe PlayersController do
   describe "GET 'show'" do
   
     before(:each) do
-      @user = Factory(:user)
-      @player = Factory(:player)
+      @user = FactoryGirl.create(:user)
+      @player = FactoryGirl.create(:player)
     end
     
     it "should be successful" do
@@ -171,7 +171,7 @@ describe PlayersController do
       describe "failure" do
 
         before(:each) do
-        sign_in Factory(:user)
+        sign_in FactoryGirl.create(:user)
          @attr = { :firstname => "", :lastname => "", :position => "" } 
         end
 
@@ -196,7 +196,7 @@ describe PlayersController do
       describe "success" do
 
         before(:each) do
-        sign_in Factory(:user)
+        sign_in FactoryGirl.create(:user)
          @attr = { :firstname => "first", :lastname => "last", :position => Player::POSITIONS.values.first, :birth_date => "02/10/1978" } 
         end
 

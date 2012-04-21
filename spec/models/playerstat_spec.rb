@@ -15,9 +15,9 @@ describe Playerstat do
   describe "validate associations" do
 
     before(:each) do
-      @team = Factory(:team)
-      @game = Factory(:game)
-      @player = Factory(:player)
+      @team = FactoryGirl.create(:team)
+      @game = FactoryGirl.create(:game)
+      @player = FactoryGirl.create(:player)
       @playerstat = Playerstat.create!(@attr.merge(:team_id => @team, :game_id => @game, :player_id => @player))
     end
 

@@ -5,16 +5,16 @@ require 'spec_helper'
 describe Game do
 
  before(:each) do
-    @league = Factory(:league)
+    @league = FactoryGirl.create(:league)
 
-    @teamstat_home = Factory(:teamstat, :league_id => @league.id)
-    @teamstat_visiting = Factory(:teamstat, :league_id => @league.id)
+    @teamstat_home = FactoryGirl.create(:teamstat, :league_id => @league.id)
+    @teamstat_visiting = FactoryGirl.create(:teamstat, :league_id => @league.id)
     
-    @player_home_1 = Factory(:player)
-    @player_home_2 = Factory(:player)
+    @player_home_1 = FactoryGirl.create(:player)
+    @player_home_2 = FactoryGirl.create(:player)
 
-    @player_visiting_1 = Factory(:player)
-    @player_visiting_2 = Factory(:player)
+    @player_visiting_1 = FactoryGirl.create(:player)
+    @player_visiting_2 = FactoryGirl.create(:player)
     
     @created_by_id = 1
     @attr = { :league_id => @league, :team1_id => @teamstat_visiting.team.id, :team2_id => @teamstat_home.team.id, :created_by_id => @created_by_id, :updated_by_id => 1 }

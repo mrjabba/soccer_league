@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.7'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -15,7 +15,7 @@ gem 'cancan'
 gem 'carmen'
 
 group :development do
-	gem 'rspec-rails', '2.1.0'
+	gem 'rspec-rails', '2.6.0'
   gem 'faker', '0.3.1'
   gem "rails-erd"
 end
@@ -23,8 +23,8 @@ end
 group :test do
   gem 'webrat'
   gem 'fuubar'
-	gem 'rspec', '2.1.0'
-	gem 'factory_girl_rails', '1.0'	
+	gem 'rspec', '2.6.0'
+	gem 'factory_girl_rails', '3.1.0'
   gem 'simplecov', '>= 0.3.5', :require => false # Will install simplecov-html as a dependency
   gem 'guard-rspec'
   gem 'libnotify'
