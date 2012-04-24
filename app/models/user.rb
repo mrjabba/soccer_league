@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :roles_mask, :perms, :free_sign_up, :with_role, :metric
   include RoleModel
@@ -28,6 +28,24 @@ class User < ActiveRecord::Base
             :length => {:maximum => 50},
             :uniqueness => { :case_sensitive => false}
 
+  def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
+    data = access_token.extra.raw_info
+    if user = self.find_by_email(data.email)
+      user
+    else # Create a free user with a stub password.
+      self.create!(:email => data.email, :username => data.email, :roles_mask => 2, :password => Devise.friendly_token[0,20])
+    end
+  end
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["email"]
+      end
+    end
+  end
+  #TODO handle cancel in view -> cancel_user_registration_path see https://github.com/plataformatec/devise/wiki/OmniAuth:-Overview
+
   def self.search(search)
     if search
       where('username LIKE ?', "%#{search}%")
@@ -35,5 +53,4 @@ class User < ActiveRecord::Base
       scoped
     end
   end
-  
 end
