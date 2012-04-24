@@ -5,8 +5,6 @@ gem 'rails', '3.0.7'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
-
 gem 'will_paginate', '3.0.pre2'
 gem 'jquery-rails', '>= 1.0.12'
 gem 'devise', '1.5'
@@ -19,6 +17,7 @@ group :development do
 	gem 'rspec-rails', '2.6.0'
   gem 'faker', '0.3.1'
   gem "rails-erd"
+  gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
 end
 
 group :test do
@@ -29,6 +28,7 @@ group :test do
   gem 'simplecov', '>= 0.3.5', :require => false # Will install simplecov-html as a dependency
   gem 'guard-rspec'
   gem 'libnotify'
+  gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
 end
 
 # Use unicorn as the web server
