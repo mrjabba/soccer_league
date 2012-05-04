@@ -45,7 +45,6 @@ GEM
     factory_girl_rails (3.1.0)
       factory_girl (~> 3.1.0)
       railties (>= 3.0.0)
-    faker (0.3.1)
     faraday (0.8.0)
       multipart-post (~> 1.1)
     fuubar (0.0.2)
@@ -150,7 +149,6 @@ DEPENDENCIES
   carmen
   devise (= 1.5)
   factory_girl_rails (= 3.1.0)
-  faker (= 0.3.1)
   fuubar
   guard-rspec
   jquery-rails (>= 1.0.12)

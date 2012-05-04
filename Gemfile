@@ -15,7 +15,7 @@ gem 'carmen'
 
 group :development do
 	gem 'rspec-rails', '2.6.0'
-  gem 'faker', '0.3.1'
+#  gem 'faker', '0.3.1'
   gem "rails-erd"
   # gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
 end
