@@ -18,7 +18,7 @@ describe Playerstat do
       @team = FactoryGirl.create(:team)
       @game = FactoryGirl.create(:game)
       @player = FactoryGirl.create(:player)
-      @playerstat = Playerstat.create!(@attr.merge(:team_id => @team, :game_id => @game, :player_id => @player))
+      @playerstat = Playerstat.create!(@attr.merge(:team_id => @team.id, :game_id => @game.id, :player_id => @player.id))
     end
 
     it "should have the right associated player" do

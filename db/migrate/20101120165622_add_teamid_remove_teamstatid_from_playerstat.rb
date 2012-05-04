@@ -5,7 +5,7 @@ class AddTeamidRemoveTeamstatidFromPlayerstat < ActiveRecord::Migration
     add_index :playerstats, :team_id
 
     remove_column :playerstats, :teamstat_id
-    remove_index :playerstats, :teamstat_id
+    # remove_index :playerstats, :teamstat_id
   end
 
   def self.down

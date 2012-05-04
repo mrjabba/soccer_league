@@ -71,6 +71,17 @@ FactoryGirl.define do
 end
 
 FactoryGirl.define do
+  factory :league_simple, class: League do
+    year                 2002
+    name                 "my soccer league"
+    organization_id 1
+    created_by_id 1
+    updated_by_id 1
+  end
+end
+
+
+FactoryGirl.define do
   factory :league do
     year                 2002
     name                 "my soccer league"

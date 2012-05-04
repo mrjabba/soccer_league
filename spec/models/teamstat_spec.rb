@@ -11,7 +11,7 @@ describe Teamstat do
     before(:each) do
       @league = FactoryGirl.create(:league)
       @team = FactoryGirl.create(:team)
-      @teamstat = Teamstat.create!(:league_id => @league, :team_id => @team, :created_by_id => 1, :updated_by_id => 1)
+      @teamstat = Teamstat.create!(:league_id => @league.id, :team_id => @team.id, :created_by_id => 1, :updated_by_id => 1)
     end
 
     it "should have the right associated league" do

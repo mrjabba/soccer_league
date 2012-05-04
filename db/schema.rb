@@ -12,27 +12,6 @@
 
 ActiveRecord::Schema.define(:version => 20120403180636) do
 
-  create_table "audits", :force => true do |t|
-    t.integer   "auditable_id"
-    t.string    "auditable_type"
-    t.integer   "associated_id"
-    t.string    "associated_type"
-    t.integer   "user_id"
-    t.string    "user_type"
-    t.string    "username"
-    t.string    "action"
-    t.text      "audited_changes"
-    t.integer   "version",         :default => 0
-    t.string    "comment"
-    t.string    "remote_address"
-    t.timestamp "created_at"
-  end
-
-  add_index "audits", ["associated_id", "associated_type"], :name => "associated_index"
-  add_index "audits", ["auditable_id", "auditable_type"], :name => "auditable_index"
-  add_index "audits", ["created_at"], :name => "index_audits_on_created_at"
-  add_index "audits", ["user_id", "user_type"], :name => "user_index"
-
   create_table "games", :force => true do |t|
     t.integer  "team1_id"
     t.integer  "team2_id"
@@ -81,7 +60,7 @@ ActiveRecord::Schema.define(:version => 20120403180636) do
     t.string   "nationality"
     t.string   "birth_city"
     t.string   "birth_nation"
-    t.decimal  "height"
+    t.decimal  "height",        :precision => 4, :scale => 2
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
   end
@@ -170,7 +149,6 @@ ActiveRecord::Schema.define(:version => 20120403180636) do
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "",   :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "",   :null => false
-    t.string   "password_salt",                       :default => "",   :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"

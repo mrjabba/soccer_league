@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Game do
 
  before(:each) do
-    @league = FactoryGirl.create(:league)
+   @league = FactoryGirl.create(:league)
 
-    @teamstat_home = FactoryGirl.create(:teamstat, :league_id => @league.id)
+   @teamstat_home = FactoryGirl.create(:teamstat, :league_id => @league.id)
     @teamstat_visiting = FactoryGirl.create(:teamstat, :league_id => @league.id)
     
     @player_home_1 = FactoryGirl.create(:player)
@@ -17,7 +17,7 @@ describe Game do
     @player_visiting_2 = FactoryGirl.create(:player)
     
     @created_by_id = 1
-    @attr = { :league_id => @league, :team1_id => @teamstat_visiting.team.id, :team2_id => @teamstat_home.team.id, :created_by_id => @created_by_id, :updated_by_id => 1 }
+    @attr = { :league_id => @league.id, :team1_id => @teamstat_visiting.team.id, :team2_id => @teamstat_home.team.id, :created_by_id => @created_by_id, :updated_by_id => 1 }
   end
 
   it "should create a new instance given valid attributes" do

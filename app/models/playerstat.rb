@@ -23,6 +23,10 @@ class Playerstat < ActiveRecord::Base
   validates_numericality_of :minutes, :greater_than_or_equal_to => 0
   validates_numericality_of :saves, :greater_than_or_equal_to => 0
 
+  def team_name
+    team ? team.name : "unknown"
+  end
+
   private
 
     def init_stats

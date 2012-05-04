@@ -7,7 +7,7 @@
 <p>
 <%= form_for(@playerstat) do |f| %>
 
-  <div class="alert alert-info">This player will be added to the match for <%= @playerstat.team.name %></div>  
+  <div class="alert alert-info">This player will be added to the match for <%= @playerstat.team_name %></div>
 
     <%= f.select :player_id, Player.order("lastname").collect { |t| [ "#{t.firstname} #{t.lastname}", t.id ] } %>
     <%= f.hidden_field :game_id %>

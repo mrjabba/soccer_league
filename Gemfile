@@ -17,7 +17,7 @@ group :development do
 	gem 'rspec-rails', '2.6.0'
   gem 'faker', '0.3.1'
   gem "rails-erd"
-  gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
+  # gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
 end
 
 group :test do
@@ -27,13 +27,14 @@ group :test do
 	gem 'factory_girl_rails', '3.1.0'
   gem 'simplecov', '>= 0.3.5', :require => false # Will install simplecov-html as a dependency
   gem 'guard-rspec'
-  gem 'libnotify'
-  gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
+#  gem 'libnotify'
+  # gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
 end
 
-group :production do
   gem 'pg'
-end
+# group :production do
+#   gem 'pg'
+# end
 
 # Use unicorn as the web server
 # gem 'unicorn'
