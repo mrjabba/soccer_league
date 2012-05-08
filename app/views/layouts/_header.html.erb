@@ -9,11 +9,11 @@
         <a class="brand" href="#">Soccer League Manager</a>
         <div class="nav-collapse">
           <ul class="nav">
-            <li><%= link_to "Home", root_path %></a></li>
-            <li><%= link_to "Organizations", organizations_path %></a></li>
-            <li><%= link_to "Leagues", leagues_path %></a></li>
-            <li><%= link_to "Teams", teams_path %></a></li>
-            <li><%= link_to "Players", players_path %></a></li>
+            <li><%= link_to "Home", root_path %></li>
+            <li><%= link_to "Organizations", organizations_path %></li>
+            <li><%= link_to "Leagues", leagues_path %></li>
+            <li><%= link_to "Teams", teams_path %></li>
+            <li><%= link_to "Players", players_path %></li>
             <% if user_signed_in? %>
               <li><%= link_to "Users", users_path %></li>
               <li><%= link_to "Profile", edit_user_registration_path %></li>
