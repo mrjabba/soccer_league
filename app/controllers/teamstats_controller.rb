@@ -4,8 +4,7 @@ class TeamstatsController < ApplicationController
   def new
     @title = "New Teamstat"
     @league = League.find(params[:league_id])
-    @teamstat = Teamstat.new()
-    @teamstat.league = @league
+    @teamstat = Teamstat.new(:league_id => params[:league_id])
   end
 
   def show
