@@ -10,8 +10,7 @@ class GamesController < ApplicationController
   def new
     @title = "New Game"
     @league = League.find(params[:league_id])
-    @game = Game.new()
-    @game.league = @league
+    @game = Game.new(:league_id => @league.id)
   end
 
   def create
