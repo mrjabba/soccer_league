@@ -10,5 +10,9 @@ class League < ActiveRecord::Base
     
   validates :name, :presence => true, :length => { :maximum => 50 }
   validates_numericality_of :year, :greater_than_or_equal_to => 1800
- validates :organization_id, :presence => true
+  validates :organization_id, :presence => true
+
+  def games_exist
+    Game.where(:league_id => id).size > 0
+  end
 end

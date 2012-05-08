@@ -12,7 +12,7 @@
 
         <% end %>
       <% end %>
-      <% unless @league_games_size < 1 %>
+      <% if @league.games_exist %>
       <%= link_to "View Games", league_games_path(@league), :class => "btn" %>
       <% end %>
 </div>

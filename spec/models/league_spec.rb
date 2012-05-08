@@ -16,7 +16,7 @@ describe League do
 
   it "should reject names that are too long" do
     long_name = "a" * 51
-    long_name_league = League.new(@attr.merge(:name => long_name)).should_not be_valid
+    League.new(@attr.merge(:name => long_name)).should_not be_valid
   end
 
   it "should require a year" do
@@ -41,5 +41,10 @@ describe League do
 
   it "should require updated by id" do
       League.new(@attr.merge(:updated_by_id => nil)).should_not be_valid
+  end
+
+  it "should know if games exist for the league" do
+    league = FactoryGirl.create(:game).league
+    league.games_exist.should be_true
   end
 end

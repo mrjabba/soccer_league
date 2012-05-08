@@ -7,7 +7,7 @@
 <td><%= teamstat.ties %></td>
 <td><%= teamstat.goals_for %></td>
 <td><%= teamstat.goals_against %></td>
-<% unless @league_games_size > 0 %>
+<% unless @league.games_exist %>
 <td>
     <%= link_to "Remove", teamstat, :method => :delete,
                                      :confirm => "Remove this team?",
