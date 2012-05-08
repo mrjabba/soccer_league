@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   load_and_authorize_resource #requires controller to be RESTful?
-#  before_filter :authenticate_user!, :only => [:new, :create, :destroy, :index, :show]
+  before_filter :authenticate_user!, :only => [:new, :create, :destroy, :index, :show]
   helper_method :sort_column, :sort_direction
   
   def index

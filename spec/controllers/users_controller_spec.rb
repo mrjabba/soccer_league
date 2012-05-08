@@ -4,22 +4,28 @@ describe UsersController do
   render_views
 
   describe "GET 'show'" do
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+    end
 
     describe "for non-signed users" do
-      it "should deny access" 
+      it "should deny access" do
+        get :show, :id => @user
+        response.should redirect_to(new_user_session_path)
+        flash[:alert].should =~ /sign in/
+      end
     end
 
     describe "for signed in users" do
       before(:each) do
-        @user = FactoryGirl.create(:user)
         sign_in(@user)
       end
 
-      it "should allow admin to edit any users roles"
+      it "should allow admin to view any users roles" do
+        get :show, :id => @user
+        response.should have_selector("span", :content => "Roles")
+      end
 
-      it "should not show admin role on registration page - move to request test"
-      
-          
       it "should be successful" do
         get :show, :id => @user
         response.should be_success
@@ -39,25 +45,16 @@ describe UsersController do
         get :show, :id => @user
         response.should have_selector("h1", :content => @user.username)
       end
-
-    end
-  
+    end  
   end
 
-  
   describe "GET 'index'" do
-    
     describe "for non-signed users" do
-      it "should deny access" 
-=begin
+      it "should deny access" do
         get :index
-#        response.should redirect_to(new_user_session_path)
- #       response.should redirect_to(root_path)
-  #      response.should redirect_to(root_path)
-        flash[:error].should =~ /Access Denied/
-   #     response.should have_selector("title", :content => "Disabled Users")
+        response.should redirect_to(new_user_session_path)
+        flash[:alert].should =~ /sign in/
       end
-=end      
     end
     
     describe "for signed in users" do
@@ -107,10 +104,8 @@ describe UsersController do
                                   :content => "2")
         response.should have_selector("a", :href => "/users?page=2", 
                                   :content => "Next")
-      end
-      
-    end
-    
+      end      
+    end    
   end
 
   describe "GET 'edit'" do
@@ -128,11 +123,14 @@ describe UsersController do
       get :edit, :id => @user
       response.should have_selector("title", :content => "Edit user")
     end
-    
+
+    it "should allow admin to edit any users roles" do
+      get :edit, :id => @user
+      response.should have_selector("label", :content => "Roles")
+    end
   end
 
   describe "DELETE 'destroy'" do
-  
     before(:each) do
       @user = FactoryGirl.create(:user, :email => FactoryGirl.generate(:email))
     end
@@ -169,13 +167,10 @@ describe UsersController do
         delete :destroy, :id => @user
         response.should redirect_to(users_path)
       end
-      
     end
-  
   end
 
   describe "PUT 'update'" do
-
     before(:each) do
       @user = FactoryGirl.create(:user)
       sign_in(@user)
@@ -192,11 +187,9 @@ describe UsersController do
         response.should render_template('edit')
         response.should have_selector("title", :content => "Edit user")
       end
-      
     end
     
     describe "success" do
-      
       before(:each) do
         @attr = { :name => "New Name", :email => "user@example.org",
                   :password => "barbaz", :password_confirmation => "barbaz" }
