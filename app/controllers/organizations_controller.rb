@@ -9,9 +9,7 @@ class OrganizationsController < ApplicationController
 
   def show
     @title = "View Organization"
-    @organization = Organization.find(params[:id])
     @leagues = League.find_all_by_organization_id(params[:id])
-    # @leagues = League.includes([:team]).find_all_by_organization_id(params[:id])
   end
 
   def new
