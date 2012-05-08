@@ -1,10 +1,10 @@
 class PlayersController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :index]
-  helper_method :sort_column, :sort_direction
+  helper_method :sort_column, :sort_direction, :per_page
 
   def index
     @title = "Player Repository"
-    @players = Player.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])    
+    @players = Player.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => per_page, :page => params[:page])
     
     if params[:q]
       @json_players = Player.where("firstname like ?", "%#{params[:q]}%") 
@@ -62,10 +62,4 @@ class PlayersController < ApplicationController
     def sort_column
       Player.column_names.include?(params[:sort]) ? params[:sort] : "lastname"
     end
-
-    def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-    end
-
-
 end

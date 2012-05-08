@@ -1,16 +1,16 @@
 class UsersController < ApplicationController
   load_and_authorize_resource #requires controller to be RESTful?
   before_filter :authenticate_user!, :only => [:new, :create, :destroy, :index, :show]
-  helper_method :sort_column, :sort_direction
-  
+  helper_method :sort_column, :sort_direction, :per_page
+
   def index
     if(params[:role])
       @role = (params[:role] != "" && params[:role]) || "Disabled"
       @title = "#{@role.capitalize} Users"
-      @users = User.with_role(params[:role]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])    
+      @users = User.with_role(params[:role]).order(sort_column + " " + sort_direction).paginate(:per_page => per_page, :page => params[:page])
     else
       @title = "All Users"
-      @users = User.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])    
+      @users = User.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => per_page, :page => params[:page])
     end
   end
 
@@ -46,9 +46,4 @@ class UsersController < ApplicationController
     def sort_column
       User.column_names.include?(params[:sort]) ? params[:sort] : "username"
     end
-
-    def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-    end
-      
 end

@@ -1,10 +1,10 @@
 class TeamsController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :index]
-  helper_method :sort_column, :sort_direction
+  helper_method :sort_column, :sort_direction, :per_page
 
   def index
     @title = "Team Repository"
-    @teams = Team.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])    
+    @teams = Team.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => per_page, :page => params[:page])
   end
 
   def show
@@ -54,9 +54,4 @@ class TeamsController < ApplicationController
     def sort_column
       Team.column_names.include?(params[:sort]) ? params[:sort] : "name"
     end
-
-    def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-    end
-
 end
