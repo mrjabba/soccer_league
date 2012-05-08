@@ -4,7 +4,7 @@ class GamesController < ApplicationController
   def index
     @title = "All games"
     @league = League.find(params[:league_id])
-    @games = Game.where("league_id = ?", params[:league_id]).paginate(:page => params[:page])
+    @games = @league.games.paginate(:page => params[:page])
   end
 
   def new
