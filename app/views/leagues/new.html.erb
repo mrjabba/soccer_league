@@ -1,6 +1,6 @@
 <h1>New League</h1>
 
-<%= form_for [@organization, @league] do |f| %>
+<%= form_for [@league.organization, @league] do |f| %>
   <%= render 'shared/error_messages_league', :object => f.object %>
   <%= f.hidden_field :organization_id %>
   <div class="field">

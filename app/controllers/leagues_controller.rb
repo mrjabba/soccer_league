@@ -19,9 +19,7 @@ class LeaguesController < ApplicationController
 
   def new
     @title = "New League"
-    @organization = Organization.find(params[:organization_id])
-    @league = League.new()
-    @league.organization = @organization
+    @league = League.new(:organization_id => params[:organization_id])
   end
   
   def edit
