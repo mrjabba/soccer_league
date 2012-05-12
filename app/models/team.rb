@@ -17,6 +17,10 @@ class Team < ActiveRecord::Base
   has_one    :teamstat #I think I would like teams to have_many teamstats (belonging to multiple leagues)...can we do this?
   has_one    :playerstat
 
+  def league
+    teamstat.league if teamstat != nil
+  end
+
   #TODO relationship to game?
   def self.search(search)
     if search
