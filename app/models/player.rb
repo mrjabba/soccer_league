@@ -51,7 +51,7 @@ class Player < ActiveRecord::Base
 
   def self.search(search)
     if search
-      where('lastname LIKE ?', "%#{search}%")
+      where('UPPER(lastname) LIKE UPPER(?)', "%#{search}%")
     else
       scoped
     end

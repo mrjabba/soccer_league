@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
 
   def self.search(search)
     if search
-      where('username LIKE ?', "%#{search}%")
+      where('UPPER(username) LIKE UPPER(?)', "%#{search}%")
     else
       scoped
     end

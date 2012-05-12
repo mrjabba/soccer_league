@@ -129,9 +129,6 @@ describe PlayersController do
     it "should handle sorting"
 
     it "should handle simple search"
-
-    it "should case insensitive search on heroku"
-
   end
 
   describe "GET 'show'" do

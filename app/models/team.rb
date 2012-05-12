@@ -24,7 +24,7 @@ class Team < ActiveRecord::Base
   #TODO relationship to game?
   def self.search(search)
     if search
-      where('name LIKE ?', "%#{search}%")
+      where('UPPER(name) LIKE UPPER(?)', "%#{search}%")
     else
       scoped
     end
