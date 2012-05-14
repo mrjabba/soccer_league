@@ -84,8 +84,8 @@ class Game < ActiveRecord::Base
         teamstat_home.goals_against -= visiting_team_goals
         teamstat_visiting.goals_against -= home_team_goals
 
-        teamstat_home.save
-        teamstat_visiting.save
+        teamstat_home.save!
+        teamstat_visiting.save!
       end
     end
   
@@ -109,8 +109,8 @@ class Game < ActiveRecord::Base
         teamstat_home.goals_against += self.visiting_team_goals
         teamstat_visiting.goals_against += self.home_team_goals
 
-        teamstat_home.save
-        teamstat_visiting.save
+        teamstat_home.save!
+        teamstat_visiting.save!
       end
     end
     
