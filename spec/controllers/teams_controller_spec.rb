@@ -4,7 +4,6 @@ describe TeamsController do
  render_views
 
   describe "GET 'new'" do
-
     before(:each) do
       sign_in FactoryGirl.create(:user)
     end
