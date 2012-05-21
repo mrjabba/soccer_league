@@ -10,6 +10,6 @@ class Roster < ActiveRecord::Base
   validates :player_id, :presence => true
 
   def self.roster_for_team(teamstat_id)
-    roster = where("teamstat_id = ?", teamstat_id)
+    where("teamstat_id = ?", teamstat_id)
   end
 end

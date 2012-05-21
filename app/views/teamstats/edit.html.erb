@@ -1,23 +1,21 @@
-<h1 class="league"><%= link_to "#{@league.name} (#{@league.year})", "/leagues/#{@league.id}" %></h1>
-<h1 class="team indent1"><%= "Edit #{@teamstat.team.name} Roster" %></h1>
+<ul class="breadcrumb">
+  <li><%= link_to "#{@league.name} (#{@league.year})", "/leagues/#{@league.id}" %><span class="divider">/</span></li>
+  <li class="active"><%= "Edit #{@teamstat.team_name} Roster" %></li>
+</ul>
 
+<div class="alert">Start typing a player's name. Then click their name to add them to the Roster.</div>
+
+<h3>Add some players to the roster</h3>
 <p>
-<%= form_for [@teamstat] do |f| %>
-   
-  <div class="field">
-    <%= f.label :team %><br/>
-    <%= @teamstat.team.name %>
-  </div>
-  <div class="field">
-    <%= f.label :player_tokens, "Players" %><br/>
-    <%= f.text_field :player_tokens, "data-pre" => @teamstat.players.map(&:fields).to_json %>
-  </div>
+    <%= form_for [@teamstat] do |f| %>
+      <div class="field">
+        <%= f.text_field :player_tokens, "data-pre" => @teamstat.players.map(&:fields).to_json %>
+      </div>
 
-  <div class="actions">
-    <%= f.submit "Update Roster", :class => "button round" %>
-    <input type="button" id="cancelLeagueTeamAdd" value="Cancel" class="button round" />
-  </div>
+      <div class="actions">
+        <%= f.submit "Update Roster", :class => "btn" %>
+        <input type="button" id="cancelLeagueTeamAdd" value="Cancel" class="btn" />
+      </div>
 
-<% end %>
-
+    <% end %>
 </p>

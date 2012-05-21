@@ -3,7 +3,7 @@ class Teamstat < ActiveRecord::Base
   attr_accessible :wins, :losses, :ties, :goals_for, :goals_against, :team_id, :league_id, :player_tokens 
   attr_reader :player_tokens
   before_validation :init_stats
-  
+
   belongs_to :league
   belongs_to :team
   has_many :rosters
@@ -14,7 +14,7 @@ class Teamstat < ActiveRecord::Base
   validates :team_id, :presence => true
 
   def player_tokens=(ids)
-    self.player_ids = ids.split(",")
+    convert_player_ids_to_roster_items(ids)
   end
 
   #TODO ensure these are whole numbers?
@@ -44,6 +44,17 @@ class Teamstat < ActiveRecord::Base
     else
       wins + losses + ties
     end
+  end
+
+  private
+
+  def convert_player_ids_to_roster_items(ids)
+    self.rosters.clear
+    ids.split(",").each { |player_id|
+      self.rosters.build(:player_id => player_id,
+                         :created_by_id => created_by_id, :updated_by_id => updated_by_id,
+                         :created_by => created_by, :updated_by => updated_by)
+    }
   end
 
   def init_stats
