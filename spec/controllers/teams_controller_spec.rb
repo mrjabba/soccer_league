@@ -70,15 +70,15 @@ describe TeamsController do
         put :update, :id => team, :team => attr
         team = assigns(:team)
         team.reload
-        team.name.should  == team.name
-        team.address1.should  == team.address1
-        team.address2.should  == team.address2
-        team.city.should  == team.city
-        team.state.should  == team.state
-        team.zip.should  == team.zip
-        team.phone.should  == team.phone
-        team.website.should  == team.website
-        team.email.should  == team.email
+        team.name.should eql(attr[:name])
+        team.address1.should eql(attr[:address1])
+        team.address2.should eql(attr[:address2])
+        team.city.should eql(attr[:city])
+        team.state.should eql(attr[:state])
+        team.zip.should eql(attr[:zip])
+        team.phone.should eql(attr[:phone])
+        team.website.should eql(attr[:website])
+        team.email.should eql(attr[:email])
       end
       
       it "should redirect to the team show page" do

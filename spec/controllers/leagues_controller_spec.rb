@@ -98,10 +98,10 @@ describe LeaguesController do
 
       it "should change the league's attributes" do
         put :update, :id => league, :league => attr
-        expected_league = assigns(:league)
+        league = assigns(:league)
         league.reload
-        league.name.should  == expected_league.name
-        league.year.should  == expected_league.year
+        league.name.should eql(attr[:name])
+        league.year.should eql(attr[:year])
       end
       
       it "should redirect to the league show page" do

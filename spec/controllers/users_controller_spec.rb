@@ -185,14 +185,15 @@ describe UsersController do
     end
     
     describe "success" do
-      let(:attr) { { :name => "New Name", :email => "user@example.org", :password => "barbaz", :password_confirmation => "barbaz" } }
+      let(:attr) { { :username => "New Name", :email => "user@example.org", :password => "barbaz", :password_confirmation => "barbaz" } }
 
       it "should change the user's attributes" do
         put :update, :id => user, :user => attr
         user = assigns(:user)
         user.reload
-        user.username.should == user.username
-        user.email.should == user.email
+        user.username.should eq(attr[:username])
+        user.email.should eq(attr[:email])
+        user.password.should eq(attr[:password])
       end
 
       it "should redirect to the user show page with flash message" do

@@ -66,11 +66,11 @@ describe PlayersController do
         put :update, :id => player, :player => attr
         player = assigns(:player)
         player.reload
-        player.firstname.should  == player.firstname
-        player.lastname.should  == player.lastname
-        player.position.should  == player.position
-        player.birth_date.should  == player.birth_date
-        player.nationality.should  == player.nationality
+        player.firstname.should eql(attr[:firstname])
+        player.lastname.should eql(attr[:lastname])
+        player.position.should eql(attr[:position])
+        player.birth_date.should eql(Date.parse(attr[:birth_date]))
+        player.nationality.should eql(attr[:nationality])
         player.height.should be_within(0.05).of(1.73)
       end
       
