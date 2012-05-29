@@ -4,9 +4,40 @@ describe TeamstatsController do
  render_views
 
   describe "PUT 'update'" do
-      describe "success" do
-        it "should change the teamstat's attributes"
+    let(:teamstat) do
+      sign_in FactoryGirl.create(:user)
+      FactoryGirl.create(:teamstat)
+    end
+
+    describe "success" do
+      let(:attr) do
+       { :player_tokens => "1,2", :wins => 2 }
       end
+
+      it "should change add a roster of players to the teamstat" do
+        put :update, :id => teamstat, :teamstat => attr
+        teamstat = assigns(:teamstat)
+        teamstat.reload
+        teamstat.rosters.size.should eq(attr[:player_tokens].split(",").size)
+      end
+
+      it "should not allow changing other stats" do
+        put :update, :id => teamstat, :teamstat => attr
+        teamstat = assigns(:teamstat)
+        teamstat.reload
+        teamstat.wins.should eq(0)
+      end
+
+      it "should redirect to the teamstat show page" do
+        put :update, :id => teamstat, :teamstat => attr
+        response.should redirect_to(teamstat_path(teamstat))
+      end
+
+      it "should have a flash message" do
+        put :update, :id => teamstat, :teamstat => attr
+        flash[:success].should =~ /updated/
+      end
+    end
   end
 
   describe "GET 'new'" do
