@@ -166,7 +166,14 @@ describe LeaguesController do
    end
  end
 
- describe "DELETE 'destroy'" do
+  describe "DELETE 'destroy'" do
     #should require special admin role
+  end
+
+  describe "GET 'index'" do
+    it "should be successful" do
+      get :index
+      response.should be_success
+    end
   end
 end

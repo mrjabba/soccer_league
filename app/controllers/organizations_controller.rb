@@ -8,8 +8,9 @@ class OrganizationsController < ApplicationController
   end
 
   def show
-    @title = "View Organization"
-    @leagues = League.find_all_by_organization_id(params[:id])
+    @organization = Organization.find(params[:id])
+    @title = "View Organization | " + @organization.name
+    @leagues = @organization.leagues
   end
 
   def new
