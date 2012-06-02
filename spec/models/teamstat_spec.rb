@@ -99,5 +99,9 @@ describe Teamstat do
     it "should calculate games played" do
       Teamstat.new(@attr.merge(:wins => 3, :losses => 2 , :ties => 1)).games_played.should == 6
     end
+
+    it "should calculate when no games played" do
+      Teamstat.new(@attr.merge(:wins => 0, :losses => 0 , :ties => nil)).games_played.should == 0
+    end
   end
 end
