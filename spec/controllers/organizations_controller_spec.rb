@@ -117,4 +117,51 @@ describe OrganizationsController do
       end
     end
   end
+
+  describe "PUT 'update'" do
+    let(:organization) do
+      sign_in FactoryGirl.create(:user)
+      FactoryGirl.create(:organization)
+    end
+
+    describe "failure" do
+      let(:attr) do
+        { :name => "", :founded => ""}
+      end
+
+      it "should render the 'edit' page" do
+        put :update, :id => organization, :organization => attr
+        response.should render_template('edit')
+      end
+
+      it "should have the right title" do
+        put :update, :id => organization, :organization => attr
+        response.should have_selector("title", :content => "Edit Organization")
+      end
+    end
+
+    describe "success" do
+      let(:attr) do
+        { :name => "name", :founded => 1901}
+      end
+
+      it "should change the organization's attributes" do
+        put :update, :id => organization, :organization => attr
+        organization = assigns(:organization)
+        organization.reload
+        organization.name.should eql(attr[:name])
+        organization.founded.should eql(attr[:founded])
+      end
+
+      it "should redirect to the organization show page" do
+        put :update, :id => organization, :organization => attr
+        response.should redirect_to(organization_path(organization))
+      end
+
+      it "should have a flash message" do
+        put :update, :id => organization, :organization => attr
+        flash[:success].should =~ /updated/
+      end
+    end
+  end
 end
