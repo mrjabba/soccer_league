@@ -11,10 +11,10 @@ class LeaguesController < ApplicationController
   end
 
   def show
-    @title = "View League"
     @league = League.find(params[:id])
     @teamstats = Teamstat.includes([:team]).find_all_by_league_id(params[:id])
     @organization = @league.organization
+    @title = "View League | " + @league.name
   end
 
   def new

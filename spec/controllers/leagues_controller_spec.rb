@@ -3,40 +3,33 @@ require 'spec_helper'
 describe LeaguesController do
  render_views
 
-  describe "GET 'show'" do
-    let(:team1) { FactoryGirl.create(:team) }
-    let(:team2) { FactoryGirl.create(:team, :name => "some other name") }
-    let(:league) { FactoryGirl.create(:league) }
+ describe "GET 'show'" do
+   let(:league) do
+     FactoryGirl.create(:league)
+   end
 
-    it "should show the league's teams" do
-      pending "this should be working. This test smells. clean it up and the factory"
+   it "should be successful" do
+     get :show, :id => league
+     response.should be_success
+   end
 
-        #let(:attr1) { { :points => 5, :wins => 2, :losses => 1,
-        #                :ties => 1, :goals_for => 4,
-        #                :goals_against => 2, :games_played => 4 } }
-        #let(:attr2) { { :points => 1, :wins => 0, :losses => 1,
-        #                :ties => 1, :goals_for => 1,
-        #                :goals_against => 1, :games_played => 1 } }
-        #
-        #teamstat1 = Teamstat.create(attr1)
-        #teamstat2 = Teamstat.create(attr2)
-        #teamstat1.team = team1
-        #teamstat2.team = team2
-        #teamstat1.league = league
-        #teamstat2.league = league
-        #teamstat1.save
-        #teamstat2.save
-        #
-        #get :show, :id => league
-        #
-        ##FIXME - the setup for this should come from a factory now, assuming > 0 matches
-        ##FIXME if 0 matches have occurred, it should still display table but with zero state stats
-        #response.should have_selector("td", :content => team1.name)
-        #response.should have_selector("td", :content => team2.name)
-    end
-  end
+   it "should find the right league" do
+     get :show, :id => league
+     assigns(:league).should == league
+   end
 
-  describe "GET 'new'" do
+   it "should have the right title" do
+     get :show, :id => league
+     response.should have_selector("title", :content => league.name)
+   end
+
+   it "should include the league's name" do
+     get :show, :id => league
+     response.should have_selector("li", :content => league.name)
+   end
+ end
+
+ describe "GET 'new'" do
     #TODO I dont think this checks for failure. need a test without an organization
    let(:organization) do
      sign_in(FactoryGirl.create(:user))
