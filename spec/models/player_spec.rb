@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Player do
   before(:each) do
-    @attr = { :firstname => "Jamie", :lastname => "Watson", :position => Player::POSITIONS.values.first,
+    @attr = { :firstname => "John", :lastname => "Doe", :position => Player::POSITIONS.values.first,
     :jersey_number => 10, :birth_date => "02/10/1978", :nationality => "USA",
     :birth_city => "Austin", :birth_nation => "USA", :height => 20, :created_by_id => 1, :updated_by_id => 1}
   end
@@ -65,5 +65,14 @@ describe Player do
 
   it "should require updated by id" do
     Player.new(@attr.merge(:updated_by_id => nil)).should_not be_valid
+  end
+
+  it "should display a full name" do
+    Player.new(@attr).name.should eql("#{@attr[:firstname]} #{@attr[:lastname]}")
+  end
+
+  it "should return an array of id/name pairs" do
+    player = Player.new(@attr)
+    player.fields.should eql({:id => nil, :name => player.name})
   end
 end
