@@ -111,7 +111,7 @@ describe PlayersController do
 
     it "should support querying for player tokens" do
       expected = [{:id => player.id, :name => player.name}].to_json
-      get :index, :q => "F", :format => "json"
+      get :index, :q => player.name[0], :format => "json"
       response.body.should eq(expected)
     end
   end
