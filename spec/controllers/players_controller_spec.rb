@@ -103,16 +103,17 @@ describe PlayersController do
   end  
   
   describe "GET 'index'" do
+    let!(:player) { FactoryGirl.create(:player) }
     it "should be successful" do
       get :index
       response.should be_success
     end
-    
-    it "should handle paging"
 
-    it "should handle sorting"
-
-    it "should handle simple search"
+    it "should support querying for player tokens" do
+      expected = [{:id => player.id, :name => player.name}].to_json
+      get :index, :q => "F", :format => "json"
+      response.body.should eq(expected)
+    end
   end
 
   describe "GET 'show'" do

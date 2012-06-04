@@ -18,11 +18,12 @@ class Player < ActiveRecord::Base
   validates :firstname, :presence => true, :length   => { :maximum => 50 }
   validates :lastname, :presence => true, :length   => { :maximum => 50 }
 
-  def fields
-    attrs = {}
-    attrs[:id] = id
-    attrs[:name] = name
-    attrs
+  def self.fetch_players_by_first_name_as_array(query)
+    Player.where("firstname like ?", "%#{query}%").map(&:filter_by_name_hash)
+  end
+
+  def filter_by_name_hash
+    {:id => id, :name => name}
   end
 
   def height_meters=(height)
@@ -58,7 +59,8 @@ class Player < ActiveRecord::Base
   end
  
   private
-    def calc_feet_in_meters
+
+  def calc_feet_in_meters
       return 0 if height_feet.blank? || height_inches.blank?
       total_inches = BigDecimal.new(height_inches) + (BigDecimal.new(height_feet) * 12)
       self.height =  BigDecimal.new("0.02540") * total_inches

@@ -9,13 +9,12 @@
 <p>
     <%= form_for [@teamstat] do |f| %>
       <div class="field">
-        <%= f.text_field :player_tokens, "data-pre" => @teamstat.players.map(&:fields).to_json %>
+        <%= f.text_field :player_tokens, "data-pre" => @teamstat.player_tokens.to_json %>
       </div>
 
       <div class="actions">
         <%= f.submit "Update Roster", :class => "btn" %>
         <input type="button" id="cancelLeagueTeamAdd" value="Cancel" class="btn" />
       </div>
-
     <% end %>
 </p>

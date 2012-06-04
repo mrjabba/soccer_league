@@ -3,17 +3,14 @@ class PlayersController < ApplicationController
   helper_method :sort_column, :sort_direction, :per_page
 
   def index
-    @title = "Player Repository"
-    @players = Player.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => per_page, :page => params[:page])
-    
     if params[:q]
-      @json_players = Player.where("firstname like ?", "%#{params[:q]}%") 
       respond_to do |format|
-        format.html
-        format.json { render :json => @json_players.map(&:fields)}
+        format.json { render :json => Player.fetch_players_by_first_name_as_array(params[:q])}
       end
+    else
+      @title = "Player Repository"
+      @players = Player.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => per_page, :page => params[:page])
     end
-    
   end
 
   def show

@@ -74,7 +74,24 @@ describe TeamstatsController do
     end
   end
 
-  describe "DELETE 'destroy'" do
+ describe "GET 'edit'" do
+   let(:teamstat) do
+     sign_in FactoryGirl.create(:user)
+     FactoryGirl.create(:teamstat)
+   end
+
+   it "should be successful" do
+     get :edit, :id => teamstat
+     response.should be_success
+   end
+
+   it "should have the right title" do
+     get :edit, :id => teamstat
+     response.should have_selector("title", :content => "Edit Teamstat")
+   end
+ end
+
+ describe "DELETE 'destroy'" do
     #why did let not work here?
     before(:each) do
       @teamstat = FactoryGirl.create(:teamstat)
