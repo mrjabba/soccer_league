@@ -8,8 +8,10 @@ You can add, update, and filter for these entities:
 * Leagues (anything from English Premier League to your local pub league)
 * Teams
 * Players
+* League Table Editing
+* Game Stat Management
 
-Additionally, you can manage the stats for an individual game. You can create a game roster and enter individual players stats in a game. This area still needs some work. Your mileage may vary.
+This application also gives you the ability to manage stats. You can configure a league to manage games where league tables are automatically updated from those games. Or, you can choose a simpler approach without game management. This will allow you to simply edit the league table.Game management still needs some work. Your mileage may vary.
 
 This project is being continually improved. There is no official release yet. If you want to use it, feel free to fork it. Contributions are welcome. I have ideas for other features like cataloging venues and stadiums, managing coaches and staff, and adding more roles to handle sharing/collaboration.
 
@@ -21,6 +23,3 @@ see LICENSE
 
 ### Why did you create this app?
 I wanted to learn more Ruby and Rails. And, I love soccer. That's all the reason I need.
-
-### But I don't want game management
-OK. If you would like something simpler without game management, you can pull down the `stats_by_seasons` branch. That branch is old and not maintained. But the basic relationships are there and might be suitable for your needs.
