@@ -7,13 +7,12 @@
   <% end %>
 </div>
 
-<%= form_tag players_path, :method => 'get', :remote => true, :id => "players_search" do %>
+<%= form_tag players_path, :method => 'get', :remote => true, :id => "players_search", :class => "form-search" do %>
   <p>
-  <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Search", :name => nil %>
+    <%= text_field_tag :search, params[:search], :class => "input-medium search-query" %>
+    <%= submit_tag "Search", :class => "btn" %>
   </p>
 <% end %>
-
 <div id="players">
   <%= render 'player' %>
 </div>

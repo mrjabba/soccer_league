@@ -10,13 +10,13 @@ Manage basic team profile information here.</div>
 </div>
 <% end %>
 
-<%= form_tag teams_path, :method => 'get', :remote => true, :id => "teams_search" do %>
+<%= form_tag teams_path, :method => 'get', :remote => true, :id => "teams_search", :class => "form-search" do %>
   <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
+    <%= text_field_tag :search, params[:search], :class => "input-medium search-query" %>
+    <%= submit_tag "Search", :class => "btn" %>
   </p>
-  <div id="teams">
-    <%= render 'team' %>
-  </div>
 <% end %>
+<div id="teams">
+  <%= render 'team' %>
+</div>
 

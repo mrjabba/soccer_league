@@ -10,14 +10,13 @@
 </div>
 <% end %>
 
-<%= form_tag users_path, :method => 'get', :remote => true, :id => "users_search" do %>
+<%= form_tag users_path, :method => 'get', :remote => true, :id => "users_search", :class => "form-search" do %>
   <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :username => nil %>
+    <%= text_field_tag :search, params[:search], :class => "input-medium search-query" %>
+    <%= submit_tag "Search", :class => "btn" %>
   </p>
-
-  <div id="users">
-    <%= render 'user' %>
-  </div>
 <% end %>
+<div id="users">
+  <%= render 'user' %>
+</div>
 

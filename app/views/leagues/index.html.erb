@@ -1,13 +1,13 @@
 <h1>League Management</h1>
 <div class="alert">Leagues contain teams and matches and may be long (season) or short (tournaments/cups). Teams have rosters within a league season. Manage the season lifecycle here.</div>
 
-<%= form_tag leagues_path, :method => 'get', :remote => true, :id => "leagues_search" do %>
+<%= form_tag leagues_path, :method => 'get', :remote => true, :id => "leagues_search", :class => "form-search" do %>
   <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
+    <%= text_field_tag :search, params[:search], :class => "input-medium search-query" %>
+    <%= submit_tag "Search", :class => "btn" %>
   </p>
-  <div id="leagues">
-    <%= render 'league' %>
-  </div>
 <% end %>
+<div id="leagues">
+  <%= render 'league' %>
+</div>
 
