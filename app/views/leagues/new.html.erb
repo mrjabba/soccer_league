@@ -11,6 +11,13 @@
     <%= f.label :year %><br />
     <%= f.text_field :year %>
   </div>
+  <div class="alert">Indicate whether you want to manage games. If you choose "Support Games",
+    you want to manage individual games and have your league table updated automatically.
+    Leave it unchecked if you would like to manually edit your league table (wins/losses) manually without game management.</div>
+  <div class="field">
+    <%= f.label :supports_games %><br />
+    <%= f.check_box(:supports_games) %>
+  </div>
 
   <div class="actions">
     <%= f.submit "Create" %>

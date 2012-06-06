@@ -7,7 +7,7 @@
 <p>
 <%= form_for [@league, @teamstat] do |f| %>
   
-  <div class="alert alert-info">Pick a Team to Build</div>
+  <div class="alert alert-info">Choose a Team to add to this League</div>
     <%= f.select :team_id, Team.order("name").collect { |t| [ t.name, t.id ] } %>
     <%= f.hidden_field :league_id %>
 
@@ -17,9 +17,32 @@
     <%= f.text_field :player_tokens %>
   </div>
 
+  <div class="alert alert-info">You can enter some initial team stats or leave them and they will be initialized to zero.</div>
+
+
+  <% if !@league.supports_games? %>
+    <table id="teamstats_table" class="table table-condensed">
+      <tr>
+        <th title="Wins">Wins</th>
+        <th title="Losses">Losses</th>
+        <th title="Ties">Ties</th>
+        <th title="Goals For">Goals For</th>
+        <th title="Goals Against">Goals Against</th>
+      </tr>
+      <tr>
+        <td><%= f.text_field :wins, :class => "span1" %></td>
+        <td><%= f.text_field :losses, :class => "span1" %></td>
+        <td><%= f.text_field :ties, :class => "span1" %></td>
+        <td><%= f.text_field :goals_for, :class => "span1" %></td>
+        <td><%= f.text_field :goals_against, :class => "span1" %></td>
+      </tr>
+    </table>
+  <% end %>
+
+
   <div class="actions">
-    <%= f.submit "Add Team", :class => "button round" %>
-    <input type="button" id="cancelLeagueTeamAdd" value="Cancel" class="button round" />
+    <%= f.submit "Add Team", :class => "btn" %>
+    <input type="button" id="cancelLeagueTeamAdd" value="Cancel" class="btn" />
   </div>
 
 <div id="team_help">

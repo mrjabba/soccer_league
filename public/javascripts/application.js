@@ -16,7 +16,30 @@ $(function() {
     buttonImageOnly: true
   });
 
-$(".collapse").collapse();  
+  $(".collapse").collapse();
+
+  $(document).ready(function() {
+    $("#league_supports_games").click(function() {
+      if(this.checked) {
+          alert_game_on();
+      } else {
+          alert_game_off();
+      }
+
+      function alert_game_on() {
+          $('#gameWarning .modal-body p').remove();
+          $('#gameWarning .modal-body').append("<p>Game management will be turned ON. This will disable ability to edit teamstats directly.</p>");
+          $('#teamstats_table').hide();
+          $('#gameWarning').modal();
+      }
+
+      function alert_game_off() {
+          $('#gameWarning .modal-body p').remove();
+          $('#gameWarning .modal-body').append("<p>Game management will be turned OFF. This will enable ability to edit teamstats directly. You will need to save and re-edit.</p>");
+          $('#teamstats_table').show();
+          $('#gameWarning').modal();
+      }
+    });
+  });
+
 });
-
-

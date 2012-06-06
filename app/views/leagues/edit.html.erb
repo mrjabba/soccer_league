@@ -11,11 +11,42 @@
     <%= f.text_field :year %>
   </div>
 
+  <div class="row">
+    <div class="span2"><%= f.label :supports_games, :class => "control-label" %></div>
+    <div class="span10"><%= f.check_box :supports_games %></div>
+  </div>
 
+  <div class="alert">Indicate whether you want to manage games. If you choose "Support Games",
+    you want to manage individual games and have your league table updated automatically.
+    Leave it unchecked if you would like to manually edit your league table (wins/losses) manually without game management.</div>
+
+  <% !@league.supports_games? && unless @league.teamstats.empty? %>
+    <table id="teamstats_table" class="table table-condensed">
+    <tr>
+      <th title="Club">Club</th>
+      <th title="Wins">Wins</th>
+      <th title="Losses">Losses</th>
+      <th title="Ties">Ties</th>
+      <th title="Goals For">Goals For</th>
+      <th title="Goals Against">Goals Against</th>
+    </tr>
+    <%= render "teamstat_fields", :f => f %>
+  </table>
+  <% end %>
 
   <div class="actions">
-    <%= f.submit "Update" %>
-    <input type="button" id="cancelLeagueEdit" value="Cancel"/>
+    <%= f.submit "Update", :class => "btn" %>
+    <input type="button" id="cancelLeagueEdit" value="Cancel" class="btn" />
   </div>
 <% end %>
 
+<div class="modal hide" id="gameWarning">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Game Management Warning</h3>
+  </div>
+  <div class="modal-body"></div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">OK</a>
+  </div>
+</div>

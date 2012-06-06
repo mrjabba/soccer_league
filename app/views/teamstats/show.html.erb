@@ -12,6 +12,10 @@
   <% end %>
 </div>
 
+<% if @teamstat.rosters.empty? %>
+  <div class="alert">No players associated with this team in this league. To start building a roster, Click Edit Roster.</div>
+<% end %>
+
 <div class="row">
   <div class="span12">
     <% unless @teamstat.players.empty? %>

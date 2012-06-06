@@ -1,5 +1,5 @@
 <tr>
-<td><%= link_to teamstat.team_name, "/teamstats/#{teamstat.id}" %></td>
+<td><%= teamstat.team_name %></td>
 <td><%= teamstat.points %></td>
 <td><%= teamstat.games_played %></td>
 <td><%= teamstat.wins %></td>
@@ -7,12 +7,15 @@
 <td><%= teamstat.ties %></td>
 <td><%= teamstat.goals_for %></td>
 <td><%= teamstat.goals_against %></td>
-<% unless @league.games_exist %>
 <td>
-    <%= link_to "Remove", teamstat, :method => :delete,
-                                     :confirm => "Remove this team?",
-                                     :title => "Remove",
-                                     :class => "btn btn-danger" %>
+  <div class="btn-group">
+    <%= link_to "Roster", "/teamstats/#{teamstat.id}", :class => "btn" %>
+    <% unless @league.games_exist %>
+      <%= link_to "Remove", teamstat, :method => :delete,
+                  :confirm => "Remove this team?",
+                  :title => "Remove",
+                  :class => "btn btn-danger" %>
+    <% end %>
+  </div>
 </td>
-<% end %>
 </tr>
