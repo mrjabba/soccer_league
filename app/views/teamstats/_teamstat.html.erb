@@ -11,10 +11,12 @@
   <div class="btn-group">
     <%= link_to "Roster", "/teamstats/#{teamstat.id}", :class => "btn" %>
     <% unless @league.games_exist %>
-      <%= link_to "Remove", teamstat, :method => :delete,
-                  :confirm => "Remove this team?",
-                  :title => "Remove",
-                  :class => "btn btn-danger" %>
+      <% if can? :new, teamstat %>
+          <%= link_to "Remove", teamstat, :method => :delete,
+                      :confirm => "Remove this team?",
+                      :title => "Remove",
+                      :class => "btn btn-danger" %>
+      <% end %>
     <% end %>
   </div>
 </td>
