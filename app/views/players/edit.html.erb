@@ -1,44 +1,48 @@
-<h1>Edit player</h1>
+<h2>Edit player</h2>
 
-<%= form_for(@player) do |f| %>
+<%= form_for(@player, :html => {:class => "well form-horizontal"}) do |f| %>
   <%= render 'shared/error_messages_player', :object => f.object %>
-<br/> 
-
-    <%= f.label :firstname %>
-    <%= f.text_field :firstname %>
-
-    <%= f.label :lastname %>
-    <%= f.text_field :lastname %>
-
-    <%= f.label :position %>
-    <%= f.select(:position, Player::POSITIONS) %>
-
-    <%= f.label :birth_date %>
-    <%= f.text_field :birth_date %>
-
-    <%= f.label :nationality %>
-    <%= f.select(:nationality, Carmen::countries.unshift(["Choose...", ""]) ) %>
-
-  <% if current_user.metric %>
-      <%= f.label :height_meters%>
-      <%= f.text_field :height_meters%>
-  <% else %>
-      <%= f.label :height_feet%>
-      <%= f.text_field :height_feet%>
-      <%= f.label :height_inches%>
-      <%= f.text_field :height_inches%>
-  <% end %>
-
-    <%= f.label :birth_nation %>
-    <%= f.select(:birth_nation, Carmen::countries.unshift(["Choose...", ""]) ) %>
-
-    <%= f.label :birth_city %>
-    <%= f.text_field :birth_city%>
-
-
-  <div class="actions">
+  <div class="control-group">
+    <%= f.label :firstname, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :firstname %></div>
+  </div>
+  <div class="control-group">
+    <%= f.label :lastname, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :lastname %></div>
+  </div>
+  <div class="control-group">
+    <%= f.label :position, :class => "control-label" %>
+    <div class="controls"><%= f.select(:position, Player::POSITIONS) %></div>
+  </div>
+  <div class="control-group">
+    <%= f.label :birth_date, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :birth_date %></div>
+  </div>
+  <div class="control-group">
+    <%= f.label :nationality, :class => "control-label" %>
+    <div class="controls"><%= f.select(:nationality, Carmen::countries.unshift(["Choose...", ""]) ) %></div>
+  </div>
+  <div class="control-group">
+    <% if current_user.metric %>
+      <%= f.label :height_meters, :class => "control-label" %>
+      <div class="controls"><%= f.text_field :height_meters %></div>
+    <% else %>
+      <%= f.label :height_feet, :class => "control-label" %>
+      <div class="controls"><%= f.text_field :height_feet %></div>
+      <%= f.label :height_inches, :class => "control-label" %>
+      <div class="controls"><%= f.text_field :height_inches %></div>
+    <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :birth_nation, :class => "control-label" %>
+    <div class="controls"><%= f.select(:birth_nation, Carmen::countries.unshift(["Choose...", ""]) ) %></div>
+  </div>
+  <div class="control-group">
+    <%= f.label :birth_city, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :birth_city %></div>
+  </div>
+  <div class="form-actions">
     <%= f.submit "Update", :class => "btn" %>
-    <input type="button" id="cancelPlayerUpdate" value="Cancel" class="btn" />
+    <%= link_to "Cancel", "/players/#{@player.id}", :class => "btn" %>
   </div>
 <% end %>
-

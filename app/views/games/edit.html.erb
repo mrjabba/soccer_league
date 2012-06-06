@@ -6,12 +6,12 @@
 
 <h2 class="game indent1">Game: <%= "#{@game.visiting_team.name} vs #{@game.home_team.name}" %></h2>
 
-<%= form_for(@game) do |f| %>
+<%= form_for(@game, :html => {:class => "well form-horizontal"}) do |f| %>
   <%= render 'shared/error_messages_game', :object => f.object %>
 
-  <div class="row">
-    <div class="span2"><%= f.label :completed, :class => "control-label" %></div>
-    <div class="span10"><%= f.check_box :completed %></div>
+  <div class="control-group">
+    <%= f.label :completed, :class => "control-label" %>
+    <div class="controls"><%= f.check_box :completed %></div>
   </div>
 
   <% unless @game.playerstats.empty? %>
@@ -31,12 +31,9 @@
     </tr>
       <%= render "playerstat_fields", :f => f %>
     </table>
-  <% end %>  
-
-
-  <div class="actions">
+  <% end %>
+  <div class="form-actions">
     <%= f.submit "Update", :class => "btn" %>
-    <input type="button" id="cancelGameEdit" value="Cancel" class="btn"/>
+    <%= link_to "Cancel", "/games/#{@game.id}", :class => "btn" %>
   </div>
 <% end %>
-

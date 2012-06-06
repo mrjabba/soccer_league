@@ -1,27 +1,27 @@
-<h1>New League</h1>
+<h2>New League</h2>
 
-<%= form_for [@league.organization, @league] do |f| %>
+<%= form_for [@league.organization, @league], :html => {:class => "well form-horizontal"} do |f| %>
   <%= render 'shared/error_messages_league', :object => f.object %>
   <%= f.hidden_field :organization_id %>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  <div class="control-group">
+    <%= f.label :name, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :name %></div>
   </div>
-  <div class="field">
-    <%= f.label :year %><br />
-    <%= f.text_field :year %>
+  <div class="control-group">
+    <%= f.label :year, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :year %></div>
   </div>
   <div class="alert">Indicate whether you want to manage games. If you choose "Support Games",
     you want to manage individual games and have your league table updated automatically.
     Leave it unchecked if you would like to manually edit your league table (wins/losses) manually without game management.</div>
-  <div class="field">
-    <%= f.label :supports_games %><br />
-    <%= f.check_box(:supports_games) %>
+  <div class="control-group">
+    <%= f.label :supports_games, :class => "control-label" %>
+    <div class="controls"><%= f.check_box :supports_games %></div>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Create" %>
-    <input type="button" id="cancelLeagueNew" value="Cancel"/>
+  <div class="form-actions">
+    <%= f.submit "Create", :class => "btn" %>
+    <%= link_to "Cancel", leagues_path, :class => "btn" %>
   </div>
 <% end %>
 

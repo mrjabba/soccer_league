@@ -1,15 +1,5 @@
 module ApplicationHelper
 
-  def logo
-#	base_logo = image_tag("logo.png", :alt => "Soccer_League", :class => "round") 
-	base_logo = image_tag("soccer_icon.png", :alt => "Soccer_League", :class => "top_logo") 
-	#if @logo.nil?
-	#	base_logo
-	#end
-
-
-  end
-
   def sortable(column, title = nil)
     title ||= column.titleize
     css_class = column == sort_column ? "current #{sort_direction}" : nil

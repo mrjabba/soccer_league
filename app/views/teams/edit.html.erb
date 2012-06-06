@@ -1,39 +1,59 @@
-<h1>Edit team</h1>
+<h2>Edit Team</h2>
 
-<%= form_for(@team) do |f| %>
+<%= form_for(@team, :html => {:class => "well form-horizontal"}) do |f| %>
   <%= render 'shared/error_messages_team', :object => f.object %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
 
-    <%= f.label :address1 %>
-    <%= f.text_field :address1 %>
+  <div class="control-group">
+    <%= f.label :name, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :name %></div>
+  </div>
 
-    <%= f.label :address2 %>
-    <%= f.text_field :address2 %>
+  <div class="control-group">
+    <%= f.label :address1, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :address1 %></div>
+  </div>
 
-    <%= f.label :city %>
-    <%= f.text_field :city %>
+  <div class="control-group">
+    <%= f.label :address2, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :address2 %></div>
+  </div>
 
-    <%= f.label :state %>
-    <%= f.text_field :state %>
+  <div class="control-group">
+    <%= f.label :city, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :city %></div>
+  </div>
 
-    <%= f.label :zip %>
-    <%= f.text_field :zip %>
+  <div class="control-group">
+    <%= f.label :state, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :state %></div>
+  </div>
 
-    <%= f.label :country %>
-    <%= f.select(:country, Carmen::countries.unshift(["Choose...", ""]) ) %>
+  <div class="control-group">
+    <%= f.label :zip, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :zip %></div>
+  </div>
 
-    <%= f.label :phone %>
-    <%= f.text_field :phone %>
+  <div class="control-group">
+    <%= f.label :country, :class => "control-label" %>
+    <div class="controls"><%= f.select(:country, Carmen::countries.unshift(["Choose...", ""]) ) %></div>
+  </div>
 
-    <%= f.label :website %>
-    <%= f.text_field :website %>
+  <div class="control-group">
+    <%= f.label :phone, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :phone %></div>
+  </div>
 
-    <%= f.label :email %>
-    <%= f.text_field :email %>
+  <div class="control-group">
+    <%= f.label :website, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :website %></div>
+  </div>
 
-  <div class="actions">
+  <div class="control-group">
+    <%= f.label :email, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :email %></div>
+  </div>
+  <div class="form-actions">
     <%= f.submit "Update", :class => "btn" %>
-    <input type="button" id="cancelTeamUpdate" value="Cancel" class="btn" />
+    <%= link_to "Cancel", "/teams/#{@team.id}", :class => "btn" %>
   </div>
 <% end %>

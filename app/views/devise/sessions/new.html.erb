@@ -1,17 +1,24 @@
 <h2>Sign in</h2>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <p><%= f.label :username %><br />
-  <%= f.text_field :username %></p>
-
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
-
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "well form-horizontal"}) do |f| %>
+  <div class="control-group">
+    <%= f.label :username, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :username %></div>
+  </div>
+  <div class="control-group">
+    <%= f.label :password, :class => "control-label" %>
+    <div class="controls"><%= f.password_field :password %></div>
+  </div>
   <% if devise_mapping.rememberable? -%>
-    <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+    <div class="control-group">
+      <%= f.label :remember_me, :class => "control-label" %>
+      <div class="controls"><%= f.check_box :remember_me %></div>
+    </div>
   <% end -%>
-
-  <p><%= f.submit "Sign in" %></p>
+  <div class="form-actions">
+    <%= f.submit "Sign In", :class => "btn" %>
+    <%= link_to "Cancel", "/", :class => "btn" %>
+  </div>
 <% end %>
 
 <%= render :partial => "devise/shared/links" %>

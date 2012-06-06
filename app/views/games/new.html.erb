@@ -4,26 +4,21 @@
   <li class="active">Create Game</li>
 </ul>
 
-<p>
-
-<%= form_for [@league, @game] do |f| %>
+<%= form_for [@league, @game], :html => {:class => "well form-horizontal"} do |f| %>
   <%= render 'shared/error_messages_game', :object => f.object %>
 
-  <div class="field">
-    <%= f.label :visiting_team %><br />
-    <%= f.select :team1_id, Teamstat.where(:league_id => @league).collect { |t| [ t.team.name, t.team_id ] } %>
+  <div class="control-group">
+    <%= f.label :visiting_team, :class => "control-label" %>
+    <div class="controls"><%= f.select :team1_id, Teamstat.where(:league_id => @league).collect { |t| [ t.team.name, t.team_id ] } %></div>
   </div>
 
-  <div class="field">
-    <%= f.label :home_team %><br />
-    <%= f.select :team2_id, Teamstat.where(:league_id => @league).collect { |t| [ t.team.name, t.team_id ] } %><br/>
-  </div>
-  
-  <div class="actions">
-    <%= f.submit "Create Game", :class => "button round" %>
-    <input type="button" id="cancelGameAdd" value="Cancel" class="button round"/>
+  <div class="control-group">
+    <%= f.label :home_team, :class => "control-label" %>
+    <div class="controls"><%= f.select :team2_id, Teamstat.where(:league_id => @league).collect { |t| [ t.team.name, t.team_id ] } %></div>
   </div>
 
+  <div class="form-actions">
+    <%= f.submit "Create Game", :class => "btn" %>
+    <%= link_to "Cancel", league_games_path, :class => "btn" %>
+  </div>
 <% end %>
-
-</p>

@@ -1,26 +1,27 @@
-<h1>Edit user</h1>
+<h2>Edit user</h2>
 
-<%= form_for(@user) do |f| %>
+<%= form_for(@user, :html => {:class => "well form-horizontal"}) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
+  <div class="control-group">
+    <%= f.label :username, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :username %></div>
   </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
+  <div class="control-group">
+    <%= f.label :email, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :email %></div>
   </div>
-
-  <p><%= f.label :roles, "Roles" %><br />
-
-  <% for role in User.valid_roles %>
-    <%= check_box_tag "user[perms][]", role, @user.roles.include?(role) %>
-    <%=h role.capitalize %><br />
-  <% end %>
-  <%= hidden_field_tag "user[perms][]", "" %>
-
-
-  <div class="actions">
-    <%= f.submit "Update" %>
+  <div class="control-group">
+    <%= f.label :roles, :class => "control-label" %>
+    <div class="controls">
+      <% for role in User.valid_roles %>
+        <%= check_box_tag "user[perms][]", role, @user.roles.include?(role) %>
+        <%=h role.capitalize %><br />
+      <% end %>
+      <%= hidden_field_tag "user[perms][]", "" %>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= f.submit "Update", :class => "btn" %>
+    <%= link_to "Cancel", user_path, :class => "btn" %>
   </div>
 <% end %>

@@ -1,19 +1,18 @@
-<h1>Edit league</h1>
+<h2>Edit League</h2>
 
-<%= form_for(@league) do |f| %>
+<%= form_for(@league, :html => {:class => "well form-horizontal"}) do |f| %>
   <%= render 'shared/error_messages_league', :object => f.object %>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  <div class="control-group">
+    <%= f.label :name, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :name %></div>
   </div>
-  <div class="field">
-    <%= f.label :year %><br />
-    <%= f.text_field :year %>
+  <div class="control-group">
+    <%= f.label :year, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :year %></div>
   </div>
-
-  <div class="row">
-    <div class="span2"><%= f.label :supports_games, :class => "control-label" %></div>
-    <div class="span10"><%= f.check_box :supports_games %></div>
+  <div class="control-group">
+    <%= f.label :supports_games, :class => "control-label" %>
+    <div class="controls"><%= f.check_box :supports_games %></div>
   </div>
 
   <div class="alert">Indicate whether you want to manage games. If you choose "Support Games",
@@ -33,10 +32,9 @@
     <%= render "teamstat_fields", :f => f %>
   </table>
   <% end %>
-
-  <div class="actions">
+  <div class="form-actions">
     <%= f.submit "Update", :class => "btn" %>
-    <input type="button" id="cancelLeagueEdit" value="Cancel" class="btn" />
+    <%= link_to "Cancel", "/leagues/#{@league.id}", :class => "btn" %>
   </div>
 <% end %>
 

@@ -21,7 +21,7 @@ describe UsersController do
 
       it "should allow admin to view any users roles" do
         get :show, :id => user
-        response.should have_selector("span", :content => "Roles")
+        response.should have_selector("div", :content => "Roles")
       end
 
       it "should be successful" do
@@ -41,7 +41,7 @@ describe UsersController do
       
       it "should include the user's name" do
         get :show, :id => user
-        response.should have_selector("h1", :content => user.username)
+        response.should have_selector("div", :content => user.username)
       end
     end  
   end

@@ -1,29 +1,34 @@
 <% if can? :new, @user %>
-<div class="btn-group">
-  <%= link_to "Edit", "#{@user.id}/edit", :class => "btn" %>
-</div>
+  <div class="btn-group">
+    <%= link_to "Edit Profile", "#{@user.id}/edit", :class => "btn" %>
+  </div>
 <% end %>
 
-<table class="table table-condensed" summary="Profile information">
-  <tr>
-    <td class="main">
-      <h1>
-        <%= @user.username %>
-      </h1>
-    </td>
-    <td class="sidebar round">
-      <ul>
-        <li><span>Name</span> <div><%= @user.username %></div></li>
-        <% if can? :new, @user %>
-          <li><span>Email</span> <div><%= @user.email %></div></li>
-          <li><span>Roles</span>  
-          <% for role in @user.roles %>
-            <div><%=h role.to_s.capitalize %></div>
-          <% end %>
-          </li>
-          <% if @user.roles.size == 0 %><div>User Disabled</div><% end%>
+<div class="hero-unit">
+  <div class="alert">Here is your current identity.</div>
+
+  <div class="row">
+    <div class="span3"><strong>Username</strong></div>
+    <div class="span9"><%= @user.username %></div>
+  </div>
+  <span class="lead">&nbsp;</span>
+
+  <% if can? :new, @user %>
+    <div class="row">
+      <div class="span3"><strong>Email</strong></div>
+      <div class="span9 username"><%= @user.email %></div>
+    </div>
+    <span class="lead">&nbsp;</span>
+
+    <div class="row">
+      <div class="span3"><strong>Roles</strong></div>
+      <div class="span9 roles">
+        <% for role in @user.roles %>
+          <div><%=h role.to_s.capitalize %><br/></div>
         <% end %>
-      </ul>
-    </td>
-  </tr>
-</table>
+        <% if @user.roles.size == 0 %><div>User Disabled</div><% end%>
+      </div>
+    </div>
+  <% end %>
+</div>
+

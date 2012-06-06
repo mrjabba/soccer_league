@@ -21,13 +21,6 @@ describe TeamstatsController do
         teamstat.rosters.size.should eq(attr[:player_tokens].split(",").size)
       end
 
-      it "should not allow changing other stats" do
-        put :update, :id => teamstat, :teamstat => attr
-        teamstat = assigns(:teamstat)
-        teamstat.reload
-        teamstat.wins.should eq(0)
-      end
-
       it "should redirect to the teamstat show page" do
         put :update, :id => teamstat, :teamstat => attr
         response.should redirect_to(teamstat_path(teamstat))

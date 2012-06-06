@@ -1,31 +1,51 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put, :class => "well form-horizontal"}) do |f| %>
   <%= devise_error_messages! %>
 
-  <%= f.label :username %>
-  <%= f.text_field :username %>
+  <div class="control-group">
+    <%= f.label :username, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :username %></div>
+  </div>
 
-  <%= f.label :email %>
-  <%= f.text_field :email %>
+  <div class="control-group">
+    <%= f.label :email, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :email %></div>
+  </div>
 
-  <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br/>
-  <%= f.password_field :password %>
+  <div class="control-group">
+    <%= f.label :password, :class => "control-label" %>
+    <div class="controls"><%= f.password_field :password %>
+      <p class="help-block">(leave blank if you don't want to change it)</p>
+    </div>
+  </div>
 
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
+  <div class="control-group">
+    <%= f.label :password_confirmation, :class => "control-label" %>
+    <div class="controls"><%= f.password_field :password_confirmation %></div>
+  </div>
 
-  <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br/>
-  <%= f.password_field :current_password %>
+  <div class="control-group">
+    <%= f.label :current_password, :class => "control-label" %>
+    <div class="controls"><%= f.password_field :current_password %>
+      <p class="help-block">(we need your current password to confirm your changes)</p>
+    </div>
+  </div>
 
-    <%= f.label "Preferred Unit of Measure" %>
-    <%= f.select(:metric, User::METRIC_ENGLISH) %>
+  <div class="control-group">
+    <%= f.label "Preferred Unit of Measure", :class => "control-label" %>
+    <div class="controls"><%= f.select(:metric, User::METRIC_ENGLISH) %></div>
+  </div>
+  <div class="form-actions">
+    <%= f.submit "Update", :class => "btn" %>
+    <%= link_to "Cancel", "/users/#{@user.id}", :class => "btn" %>
+  </div>
 
-  <p><%= f.submit "Update" %></p>
+  <div class="hero-unit">
+    <h2>Cancel my account</h2>
+
+    <h5>We are sorry to see you go. In order to better serve our users in the future, please drop us a note with
+      feedback at <%= link_to "https://github.com/mrjabba/soccer_league" %> or on twitter @mrjabba.</h5>
+      <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete, :class => "btn btn-danger" %>
+  </div>
 <% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
-
-<%= link_to "Back", :back %>

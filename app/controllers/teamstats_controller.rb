@@ -22,7 +22,7 @@ class TeamstatsController < ApplicationController
   def update
     @teamstat = Teamstat.find(params[:id])
     @teamstat.updated_by_id = current_user.id
-    if @teamstat.update_attributes!(post_params_update)
+    if @teamstat.update_attributes!(params[:teamstat])
       flash[:success] = "Teamstat updated."
       redirect_to @teamstat
     else
@@ -33,7 +33,7 @@ class TeamstatsController < ApplicationController
 
   def create
     @league = League.find(params[:league_id])
-    @teamstat = @league.teamstats.build(post_params_create)
+    @teamstat = @league.teamstats.build(params[:teamstat])
     @teamstat.created_by_id = current_user.id
     @teamstat.updated_by_id = current_user.id
     if @teamstat.save
@@ -45,20 +45,9 @@ class TeamstatsController < ApplicationController
     end
   end 
 
-
   def destroy
     @teamstat = Teamstat.find(params[:id])
     @teamstat.destroy
     redirect_to @teamstat.league
-  end
-
-  private
-
-    def post_params_update
-      params[:teamstat].slice(:player_tokens)
-    end
-
-  def post_params_create
-    params[:teamstat].slice(:team_id, :player_tokens)
   end
 end

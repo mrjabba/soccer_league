@@ -3,18 +3,18 @@
   <li class="active"><%= "Edit #{@teamstat.team_name} Roster" %></li>
 </ul>
 
-<div class="alert">Start typing a player's name. Then click their name to add them to the Roster.</div>
-
 <h3>Add some players to the roster</h3>
 <p>
-    <%= form_for [@teamstat] do |f| %>
-      <div class="field">
-        <%= f.text_field :player_tokens, "data-pre" => @teamstat.player_tokens.to_json %>
-      </div>
+  <%= form_for(@teamstat, :html => {:class => "well form-horizontal"}) do |f| %>
+  <div class="alert">Start typing a player's name. Then click their name to add them to the Roster.</div>
+  <div class="control-group">
+    <div class="controls"><%= f.text_field :player_tokens, "data-pre" => @teamstat.player_tokens.to_json %></div>
+  </div>
 
-      <div class="actions">
+
+      <div class="form-actions">
         <%= f.submit "Update Roster", :class => "btn" %>
-        <input type="button" id="cancelLeagueTeamAdd" value="Cancel" class="btn" />
+        <%= link_to "Cancel", "/teamstats/#{@teamstat.id}", :class => "btn" %>
       </div>
     <% end %>
 </p>
