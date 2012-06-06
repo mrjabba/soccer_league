@@ -47,4 +47,10 @@ class OrganizationsController < ApplicationController
       render 'new'
     end
   end
+
+  def destroy
+    Organization.find(params[:id]).destroy
+    flash[:success] = "Organization destroyed."
+    redirect_to organizations_path
+  end
 end

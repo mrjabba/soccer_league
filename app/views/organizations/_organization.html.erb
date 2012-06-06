@@ -1,4 +1,11 @@
 <tr>
   <td><%= link_to organization.name , organization %></td>
   <td><%= organization.founded %></td>
+  <td>
+    <% if can? :new, @organization %>
+      <%= link_to "Delete", organization, :method => :delete, :confirm => "Delete this organization: #{organization.name}?",
+                  :class => "btn btn-danger",
+                  :title => "Delete #{organization.name}" %>
+    <% end %>
+  </td>
 </tr>

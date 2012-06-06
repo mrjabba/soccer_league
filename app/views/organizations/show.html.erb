@@ -13,12 +13,7 @@
 
 <div>
 <% unless @leagues.empty? %>
-  <table id="league_table" class="table table-condensed">
-  <tr>
-  <th title="Name">Name</th>
-  </tr>
-    <%= render @leagues %>
-  </table>
+  <%= render :partial => "leagues/simple", :locals => {:leagues => @leagues} %>
 <% end %>
 </div>
 <div class="row">

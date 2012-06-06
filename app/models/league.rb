@@ -2,8 +2,8 @@ class League < ActiveRecord::Base
   include Auditable
   attr_accessible :name, :year, :games_attributes, :organization_id, :supports_games, :teamstats_attributes
 
-  has_many :teamstats
-  has_many :games
+  has_many :teamstats, :dependent => :destroy
+  has_many :games, :dependent => :destroy
   belongs_to :organization
   
   accepts_nested_attributes_for :games, :reject_if => :all_blank
@@ -15,5 +15,13 @@ class League < ActiveRecord::Base
 
   def games_exist
     Game.where(:league_id => id).size > 0
+  end
+
+  def self.search(search)
+    if search
+      where('UPPER(name) LIKE UPPER(?)', "%#{search}%")
+    else
+      scoped
+    end
   end
 end

@@ -1,14 +1,12 @@
-<%= hidden_field_tag :direction, params[:direction] %>
-<%= hidden_field_tag :sort, params[:sort] %>
-<table id="leagues_table" class="table table-condensed">
+<table id="league_table" class="table table-condensed">
   <tr>
-    <th title="Name"><%= sortable "name"  %></th>
-    <th title="Year"><%= sortable "year"  %></th>
+    <th title="Name">Name</th>
+    <th title="Year">Year</th>
     <th title="Actions">Actions</th>
   </tr>
   <% for league in @leagues%>
     <tr>
-      <td><%= link_to league.name, league %></td>
+      <td><%= link_to league.name , league %></td>
       <td><%= league.year %></td>
       <td>
         <% if can? :new, league %>
@@ -20,6 +18,4 @@
     </tr>
   <% end%>
 </table>
-<div class="page_info"><%= page_entries_info @leagues %></div>
-<%= will_paginate %>
 

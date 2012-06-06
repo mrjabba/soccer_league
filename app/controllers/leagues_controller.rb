@@ -3,11 +3,11 @@ class LeaguesController < ApplicationController
   #TODO need to remove lines like -> @league = League.find(params[:id]) 
   # from each method b/c cancan will do it by default?
   before_filter :authenticate_user!, :except => [:show, :index]
+  helper_method :sort_column, :sort_direction, :per_page
 
-  
   def index
     @title = "League Management"
-    @leagues = League.paginate(:page => params[:page])
+    @leagues = League.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => per_page, :page => params[:page])
   end
 
   def show
@@ -51,5 +51,17 @@ class LeaguesController < ApplicationController
       @title = "New League"
       render 'new'
     end
+  end
+
+  def destroy
+    League.find(params[:id]).destroy
+    flash[:success] = "League destroyed."
+    redirect_to leagues_path
+  end
+
+  private
+
+  def sort_column
+    League.column_names.include?(params[:sort]) ? params[:sort] : "name"
   end
 end

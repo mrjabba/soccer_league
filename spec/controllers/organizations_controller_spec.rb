@@ -164,4 +164,26 @@ describe OrganizationsController do
       end
     end
   end
+
+  describe "DELETE 'destroy'" do
+    before(:each) do
+      @organization = FactoryGirl.create(:organization)
+      sign_in(FactoryGirl.create(:user))
+    end
+
+    describe "success" do
+      it "should destroy the organization" do
+        lambda do
+          delete :destroy, :id => @organization
+        end.should change(Organization, :count).by(-1)
+      end
+
+      it "should redirect to the organizations page" do
+        delete :destroy, :id => @organization
+        response.should redirect_to(organizations_path)
+      end
+
+      it "should require special admin role"
+    end
+  end
 end

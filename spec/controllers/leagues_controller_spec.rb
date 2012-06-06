@@ -159,11 +159,29 @@ describe LeaguesController do
    end
  end
 
-  describe "DELETE 'destroy'" do
-    #should require special admin role
-  end
+ describe "DELETE 'destroy'" do
+   before(:each) do
+     @league = FactoryGirl.create(:league)
+     sign_in(FactoryGirl.create(:user))
+   end
 
-  describe "GET 'index'" do
+   describe "success" do
+     it "should destroy the league" do
+       lambda do
+         delete :destroy, :id => @league
+       end.should change(League, :count).by(-1)
+     end
+
+     it "should redirect to the organization show page" do
+       delete :destroy, :id => @league
+       response.should redirect_to(leagues_path)
+     end
+
+     it "should require special admin role"
+   end
+ end
+
+ describe "GET 'index'" do
     it "should be successful" do
       get :index
       response.should be_success
