@@ -103,5 +103,14 @@ describe Teamstat do
     it "should calculate when no games played" do
       Teamstat.new(@attr.merge(:wins => 0, :losses => 0 , :ties => nil)).games_played.should == 0
     end
+
+    it "should sort league table sorted by points" do
+      @league = FactoryGirl.create(:league)
+      @team = FactoryGirl.create(:team)
+      @teamstat_losers = Teamstat.create!(:league_id => @league.id, :team_id => @team.id, :created_by_id => 1, :updated_by_id => 1, :wins => 1, :losses => 1, :ties => 1)
+      @teamstat_winners = Teamstat.create!(:league_id => @league.id, :team_id => @team.id, :created_by_id => 1, :updated_by_id => 1, :wins => 5, :losses => 0, :ties => 1)
+      league_table = Teamstat.fetch_league_table(@league.id)
+      league_table[0].wins.should eq(@teamstat_winners.wins)
+    end
   end
 end

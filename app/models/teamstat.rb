@@ -12,6 +12,10 @@ class Teamstat < ActiveRecord::Base
   validates :league_id, :presence => true
   validates :team_id, :presence => true
 
+  def self.fetch_league_table(league_id)
+    Teamstat.includes([:team]).find_all_by_league_id(league_id).sort!{|a,b| b.points <=> a.points}
+  end
+
   def player_tokens=(ids)
     convert_player_ids_to_roster_items(ids)
   end
