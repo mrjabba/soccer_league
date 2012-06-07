@@ -73,6 +73,6 @@ describe Player do
 
   it "should return an array of id/name pairs" do
     player = Player.create!(@attr)
-    Player.fetch_players_by_first_name_as_array(@attr[:firstname]).should eql([{:id => player.id, :name => player.name}])
+    Player.fetch_players_by_first_name_as_array(@attr[:firstname].downcase).should eql([{:id => player.id, :name => player.name}])
   end
 end

@@ -19,7 +19,7 @@ class Player < ActiveRecord::Base
   validates :lastname, :presence => true, :length   => { :maximum => 50 }
 
   def self.fetch_players_by_first_name_as_array(query)
-    Player.where("firstname like ?", "%#{query}%").map(&:filter_by_name_hash)
+    Player.where("UPPER(firstname) like UPPER(?)", "%#{query}%").map(&:filter_by_name_hash)
   end
 
   def filter_by_name_hash
