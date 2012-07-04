@@ -5,3 +5,6 @@ tmp/**/*
 coverage/**
 webrat.log
 .idea/**
+*.dat
+*.iml
+.generators
