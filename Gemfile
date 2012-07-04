@@ -14,8 +14,12 @@ gem 'cancan'
 gem 'carmen'
 gem 'pg'
 
+group :development, :test do
+  gem 'debugger'
+end
+
 group :development do
-	gem 'rspec-rails', '2.6.0'
+  gem 'rspec-rails', '2.6.0'
   gem "rails-erd"
 end
 
