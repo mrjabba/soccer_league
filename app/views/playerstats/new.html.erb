@@ -1,27 +1,27 @@
 <ul class="breadcrumb">
   <li><%= link_to "All Games", league_games_path(@game.league) %><span class="divider">/</span></li>
   <li><%= link_to "#{@game.visiting_team.name} at #{@game.home_team.name}", "/games/#{@game.id}" %><span class="divider">/</span></li>
-  <li class="active"> Add Player to Game</li>
+  <li class="active"> Add Person to Game</li>
 </ul>
 
 <p>
 <%= form_for(@playerstat) do |f| %>
 
-  <div class="alert alert-info">This player will be added to the match for <%= @playerstat.team_name %></div>
+  <div class="alert alert-info">This person will be added to the match for <%= @playerstat.team_name %></div>
 
-    <%= f.select :player_id, Player.order("lastname").collect { |t| [ "#{t.firstname} #{t.lastname}", t.id ] } %>
+    <%= f.select :person_id, Person.order("lastname").collect { |t| [ "#{t.firstname} #{t.lastname}", t.id ] } %>
     <%= f.hidden_field :game_id %>
     <%= f.hidden_field :team_id %>
 
-  <div>You could give the user choice of all players or just from their roster?
+  <div>You could give the user choice of all people or just from their roster?
   </div>
   <div class="actions">
     <%= f.submit "Add to Game", :class => "btn" %>
-    <input type="button" id="cancelGamePlayerAdd" value="Cancel" class="btn" />
+    <input type="button" id="cancelGamePersonAdd" value="Cancel" class="btn" />
   </div>
 
 <div id="playerstat_help">
-Can't find your player? You need to <%= link_to "create your player first", players_path %>. Then add your player to the game.
+Can't find your person? You need to <%= link_to "create your person first", people_path %>. Then add your person to the game.
 </div>
 
 

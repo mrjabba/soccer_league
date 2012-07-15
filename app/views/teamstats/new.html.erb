@@ -13,10 +13,10 @@
 
     <%= f.hidden_field :league_id %>
 
-  <div class="alert">Start typing a player's name. Then click their name to add them to the Roster. (optional)</div>
+  <div class="alert">Start typing a person's name. Then click their name to add them to the Roster. (optional)</div>
 
   <div class="control-group">
-    <div class="controls"><%= f.text_field :player_tokens %></div>
+    <div class="controls"><%= f.text_field :person_tokens %></div>
   </div>
 
   <% if !@league.supports_games? %>

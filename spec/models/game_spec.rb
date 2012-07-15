@@ -10,11 +10,11 @@ describe Game do
    @teamstat_home = FactoryGirl.create(:teamstat, :league_id => @league.id)
     @teamstat_visiting = FactoryGirl.create(:teamstat, :league_id => @league.id)
     
-    @player_home_1 = FactoryGirl.create(:player)
-    @player_home_2 = FactoryGirl.create(:player)
+    @person_home_1 = FactoryGirl.create(:person)
+    @person_home_2 = FactoryGirl.create(:person)
 
-    @player_visiting_1 = FactoryGirl.create(:player)
-    @player_visiting_2 = FactoryGirl.create(:player)
+    @person_visiting_1 = FactoryGirl.create(:person)
+    @person_visiting_2 = FactoryGirl.create(:person)
     
     @created_by_id = 1
     @attr = { :league_id => @league.id, :team1_id => @teamstat_visiting.team.id, :team2_id => @teamstat_home.team.id, :created_by_id => @created_by_id, :updated_by_id => 1 }
@@ -52,10 +52,10 @@ describe Game do
       @game = Game.create!(@attr)
 
       #shouldn't we just mock playerstat here?
-      @playerstat_1 = Playerstat.create!(:game_id => @game.id, :player_id => @player_home_1.id, :team_id => @teamstat_home.team.id, :goals => 1, :created_by_id => @created_by_id, :updated_by_id => 1)
-      @playerstat_2 = Playerstat.create!(:game_id => @game.id, :player_id => @player_home_2.id, :team_id => @teamstat_home.team.id, :goals => 2, :created_by_id => @created_by_id, :updated_by_id => 1)
-      @playerstat_3 = Playerstat.create!(:game_id => @game.id, :player_id => @player_visiting_1.id, :team_id => @teamstat_visiting.team.id, :goals => 0, :created_by_id => @created_by_id, :updated_by_id => 1)
-      @playerstat_4 = Playerstat.create!(:game_id => @game.id, :player_id => @player_visiting_2.id, :team_id => @teamstat_visiting.team.id, :goals => 0, :created_by_id => @created_by_id, :updated_by_id => 1)
+      @playerstat_1 = Playerstat.create!(:game_id => @game.id, :person_id => @person_home_1.id, :team_id => @teamstat_home.team.id, :goals => 1, :created_by_id => @created_by_id, :updated_by_id => 1)
+      @playerstat_2 = Playerstat.create!(:game_id => @game.id, :person_id => @person_home_2.id, :team_id => @teamstat_home.team.id, :goals => 2, :created_by_id => @created_by_id, :updated_by_id => 1)
+      @playerstat_3 = Playerstat.create!(:game_id => @game.id, :person_id => @person_visiting_1.id, :team_id => @teamstat_visiting.team.id, :goals => 0, :created_by_id => @created_by_id, :updated_by_id => 1)
+      @playerstat_4 = Playerstat.create!(:game_id => @game.id, :person_id => @person_visiting_2.id, :team_id => @teamstat_visiting.team.id, :goals => 0, :created_by_id => @created_by_id, :updated_by_id => 1)
 
       #refresh game to get playerstats (better way to do this?)
       @game = Game.find_by_id(@game.id)
@@ -176,10 +176,10 @@ describe Game do
 
       it "should have an associated playerstat aka roster" do
         #not sure I like this right now
-        @game.playerstats[0].player.should == @player_home_1
-        @game.playerstats[1].player.should == @player_home_2
-        @game.playerstats[2].player.should == @player_visiting_1
-        @game.playerstats[3].player.should == @player_visiting_2
+        @game.playerstats[0].person.should == @person_home_1
+        @game.playerstats[1].person.should == @person_home_2
+        @game.playerstats[2].person.should == @person_visiting_1
+        @game.playerstats[3].person.should == @person_visiting_2
       end
     end
   end

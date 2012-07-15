@@ -20,7 +20,7 @@
     <td><%= @game.visiting_team.name %></td>
     <td><%= @game.visiting_team_goals %></td>
     <% if can? :new, @game %>
-      <td><%= link_to "Add Player", "/playerstats/new?game_id=#{@game.id}&team_id=#{@game.visiting_team.id}", :class => "btn" %></td>
+      <td><%= link_to "Add Person", "/playerstats/new?game_id=#{@game.id}&team_id=#{@game.visiting_team.id}", :class => "btn" %></td>
     <% end %>
   </tr>
   <tr>
@@ -28,7 +28,7 @@
     <td><%= @game.home_team.name %></td>
     <td><%= @game.home_team_goals %></td>
     <% if can? :new, @game %>
-      <td><%= link_to "Add Player", "/playerstats/new?game_id=#{@game.id}&team_id=#{@game.home_team.id}", :class => "btn" %></td>
+      <td><%= link_to "Add Person", "/playerstats/new?game_id=#{@game.id}&team_id=#{@game.home_team.id}", :class => "btn" %></td>
     <% end %>
   </tr>
   </table>
@@ -59,7 +59,7 @@
   <table id="playerstats_table" class="table table-condensed">
   <tr>
   <th title="Club">Club</th>
-  <th title="Player">Player</th>
+  <th title="Person">Person</th>
   <th title="Goals">Goals</th>
   <th title="Assists">Assists</th>
   <th title="Shots">Shots</th>

@@ -1,4 +1,4 @@
-class Player < ActiveRecord::Base
+class Person < ActiveRecord::Base
   include Auditable
   attr_accessible :firstname, :lastname, :position, :birth_date, :nationality, :birth_city, :birth_nation, :name, :fields, :height_feet, :height_inches, :height_meters, :height
   attr_accessor  :height_feet, :height_inches, :height_meters
@@ -18,8 +18,8 @@ class Player < ActiveRecord::Base
   validates :firstname, :presence => true, :length   => { :maximum => 50 }
   validates :lastname, :presence => true, :length   => { :maximum => 50 }
 
-  def self.fetch_players_by_first_name_as_array(query)
-    Player.where("UPPER(firstname) like UPPER(?)", "%#{query}%").map(&:filter_by_name_hash)
+  def self.fetch_people_by_first_name_as_array(query)
+    Person.where("UPPER(firstname) like UPPER(?)", "%#{query}%").map(&:filter_by_name_hash)
   end
 
   def filter_by_name_hash

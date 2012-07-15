@@ -1,0 +1,43 @@
+<ul class="breadcrumb">
+  <li><%= link_to "All People", people_path %><span class="divider">/</span></li>
+  <li class="active"><%= @person.firstname %> <%= @person.lastname %></li>
+</ul>
+
+<h1><%= @person.firstname %> <%= @person.lastname %></h1>
+
+<div class="btn-group">
+  <% if can? :new, @person %>
+        <%= link_to "Edit", "#{@person.id}/edit", :class => "btn"  %>
+        <%= link_to "Add Person", "/people/new", :class => "btn" %>
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <table class="table table-condensed">
+      <tr>
+        <th>Position</th>
+        <td><%= @person.position %></td>
+      </tr>
+      <tr>
+        <th>Birth Date</th>
+        <td><%= @person.birth_date %></td>
+      </tr>
+      <tr>
+        <th>Nationality</th>
+        <td><%= @person.nationality %></td>
+      </tr>
+      <% if @person.height %>
+        <th>Height</th>
+        <td><%= @person.height %> m</td>
+      <% end %>
+    </table>
+
+  </div>
+</div>
+<div class="row">
+  <div class="span12">
+      <%= render :partial => "shared/audit", :locals => {:auditable => @person} %>
+  </div>
+</div>
+

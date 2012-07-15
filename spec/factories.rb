@@ -34,10 +34,10 @@ FactoryGirl.define do
 end
 
 FactoryGirl.define do
-  factory :player do
+  factory :person do
     firstname                  "Fred"
     lastname                  FactoryGirl.generate(:lastname)
-    position                  Player::POSITIONS.values.first
+    position                  Person::POSITIONS.values.first
     birth_date                  "09/22/1981"
     nationality                  "USA"
     created_by_id 1
@@ -102,7 +102,7 @@ end
 
 FactoryGirl.define do
   factory :playerstat do
-    player { |player|  player.association(:player) }
+    person { |person|  person.association(:person) }
     game { |game|  game.association(:game) }
     team { |team|  team.association(:team) }
     created_by_id 1
@@ -112,7 +112,7 @@ end
 
 FactoryGirl.define do
   factory :roster do
-    player { |player|  player.association(:player, :lastname => FactoryGirl.generate(:lastname)) }
+    person { |person|  person.association(:person, :lastname => FactoryGirl.generate(:lastname)) }
     teamstat { |teamstat|  teamstat.association(:teamstat) }
     created_by_id 1
     updated_by_id 1

@@ -11,14 +11,14 @@ describe TeamstatsController do
 
     describe "success" do
       let(:attr) do
-       { :player_tokens => "1,2", :wins => 2 }
+       { :person_tokens => "1,2", :wins => 2 }
       end
 
-      it "should change add a roster of players to the teamstat" do
+      it "should change add a roster of people to the teamstat" do
         put :update, :id => teamstat, :teamstat => attr
         teamstat = assigns(:teamstat)
         teamstat.reload
-        teamstat.rosters.size.should eq(attr[:player_tokens].split(",").size)
+        teamstat.rosters.size.should eq(attr[:person_tokens].split(",").size)
       end
 
       it "should redirect to the teamstat show page" do

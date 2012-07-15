@@ -1,19 +1,19 @@
 <%= hidden_field_tag :direction, params[:direction] %>
 <%= hidden_field_tag :sort, params[:sort] %>
 
-<table id="players_table" class="table table-condensed">
+<table id="people_path" class="table table-condensed">
 <tr>
   <th title="Name"><%= sortable "lastname", "Name"  %></th>
   <th title="Position"><%= sortable "position"  %></th>
   <th title="Nationality"><%= sortable "nationality"  %></th>
 </tr>
-<% for player in @players %>
+<% for person in @people %>
 <tr>
-  <td><%= link_to "#{player.lastname}, #{player.firstname}", player %></td>
-  <td><%= player.position %></td>
-  <td><%= player.nationality %></td>
+  <td><%= link_to "#{person.lastname}, #{person.firstname}", person %></td>
+  <td><%= person.position %></td>
+  <td><%= person.nationality %></td>
 </tr>
 <% end %>
 </table>
-<div class="page_info"><%= page_entries_info @players %></div>
+<div class="page_info"><%= page_entries_info @people %></div>
 <%= will_paginate %>

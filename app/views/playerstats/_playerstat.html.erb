@@ -1,6 +1,6 @@
 <tr>
 <td><%= link_to playerstat.team.name, "../teams/" + playerstat.team.id.to_s %> </td>
-<td><%= link_to "#{playerstat.player.firstname} #{playerstat.player.lastname}", "../players/" + playerstat.player.id.to_s %> </td>
+<td><%= link_to "#{playerstat.person.firstname} #{playerstat.person.lastname}", "../people/" + playerstat.person.id.to_s %> </td>
 <td><%= playerstat.goals %></td>
 <td><%= playerstat.assists %></td>
 <td><%= playerstat.shots %></td>
@@ -13,8 +13,8 @@
 <% if can? :new, @game and !@game.completed %>
 <td>
     <%= link_to "Remove", playerstat, :method => :delete,
-                                     :confirm => "Remove this player?",
-                                      :id => "remove_player",
+                                     :confirm => "Remove this person?",
+                                      :id => "remove_person",
                                       :title => "Remove",
                                      :class => "btn btn-danger" %>
 </td>

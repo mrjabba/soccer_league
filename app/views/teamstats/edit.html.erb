@@ -3,12 +3,12 @@
   <li class="active"><%= "Edit #{@teamstat.team_name} Roster" %></li>
 </ul>
 
-<h3>Add some players to the roster</h3>
+<h3>Add some people to the roster</h3>
 <p>
   <%= form_for(@teamstat, :html => {:class => "well form-horizontal"}) do |f| %>
-  <div class="alert">Start typing a player's name. Then click their name to add them to the Roster.</div>
+  <div class="alert">Start typing a person's name. Then click their name to add them to the Roster.</div>
   <div class="control-group">
-    <div class="controls"><%= f.text_field :player_tokens, "data-pre" => @teamstat.player_tokens.to_json %></div>
+    <div class="controls"><%= f.text_field :person_tokens, "data-pre" => @teamstat.person_tokens.to_json %></div>
   </div>
 
 

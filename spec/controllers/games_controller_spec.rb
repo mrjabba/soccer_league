@@ -3,7 +3,7 @@ require 'spec_helper'
 describe GamesController do
  render_views
 
- it "why arent there failing tests here for adding updated_by_id?"
+# it "why arent there failing tests here for adding updated_by_id?"
   
   describe "GET 'index'" do
     before(:each) do
@@ -79,9 +79,9 @@ describe GamesController do
         get :show, :id => @game
       end
       
-      it "should include a remove links for game and players when game is not completed" do
+      it "should include a remove links for game and people when game is not completed" do
         response.should have_selector("a", :id => "remove_game")
-        response.should have_selector("a", :id => "remove_player")
+        response.should have_selector("a", :id => "remove_person")
       end
     end
   end

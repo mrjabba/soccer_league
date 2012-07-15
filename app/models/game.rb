@@ -16,9 +16,6 @@ class Game < ActiveRecord::Base
   has_many :playerstats, :dependent => :destroy
   validates_associated :playerstats #is this working?
   
-  # or it this more like this????
-  # has_many :players, :through => :player_stats
-
   accepts_nested_attributes_for :playerstats, :reject_if => :all_blank
 
   validates :league, :presence => true
@@ -123,14 +120,14 @@ class Game < ActiveRecord::Base
         roster_home = roster_for_team(teamstat_home)
         if roster_home.size > 0
           roster_home.each {|roster|
-            self.playerstats.build(:game_id => self.id, :team_id => self.team2_id, :player_id => roster.player.id)
+            self.playerstats.build(:game_id => self.id, :team_id => self.team2_id, :person_id => roster.person.id)
            }
         end
 
         roster_visiting = roster_for_team(teamstat_visiting)
         if roster_visiting.size > 0
             roster_visiting.each {|roster|
-              self.playerstats.build(:game_id => self.id, :team_id => self.team1_id, :player_id => roster.player.id)
+              self.playerstats.build(:game_id => self.id, :team_id => self.team1_id, :person_id => roster.person.id)
              }
         end
     end

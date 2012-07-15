@@ -44,14 +44,14 @@ describe PlayerstatsController do
   describe "POST 'create'" do
     let(:game) { FactoryGirl.create(:game) }
     let(:team) { FactoryGirl.create(:team) }
-    let(:player) { FactoryGirl.create(:player) }
+    let(:person) { FactoryGirl.create(:person) }
 
     before(:each) do
       sign_in(FactoryGirl.create(:user, :email => FactoryGirl.generate(:email)))
     end
 
     describe "success" do
-      let(:attr) { { :game_id => game, :team_id => team, :player_id => player } }
+      let(:attr) { { :game_id => game, :team_id => team, :person_id => person } }
 
       it "should redirect to the game show page" do
         post :create, :playerstat => attr
@@ -60,7 +60,7 @@ describe PlayerstatsController do
       
       it "should have a flash message" do
         post :create, :playerstat => attr
-        flash[:success].should =~ /Player added to game successfully/
+        flash[:success].should =~ /Person added to game successfully/
       end
     end
 

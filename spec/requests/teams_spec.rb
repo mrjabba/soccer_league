@@ -19,7 +19,7 @@ describe "Teams" do
           #TODO FIXME this clck link below shouldn't be working but it does? 
 					#click_link "New Team"
           
-					#click_link "New Player"
+          #click_link "New Person"
           visit "teams/new"
           response.should have_selector('title', :content => "New Team")
           

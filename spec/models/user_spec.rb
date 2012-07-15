@@ -25,7 +25,7 @@ describe User do
 
   it "should have save a user as an admin role"
 
-  it "should allow users to have many leagues, players, and so on"
+  it "should allow users to have many leagues, people, and so on"
 	
 	it "should create a new instance given valid attributes" do
 		User.create!(@attr)

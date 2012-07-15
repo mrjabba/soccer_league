@@ -5,7 +5,7 @@ describe Playerstat do
  before(:each) do
     @attr = {:jersey_number => 1, :goals => 0, :assists => 10, :shots => 1000, :fouls => 33,
       :yellow_cards => 2, :red_cards => 4, :minutes => 77, :saves => 12, :team_id => 4,
-      :game_id => 3, :player_id => 2, :created_by_id => 1, :updated_by_id => 1 }
+      :game_id => 3, :person_id => 2, :created_by_id => 1, :updated_by_id => 1 }
   end
 
   it "should create a new instance given valid attributes" do
@@ -17,13 +17,13 @@ describe Playerstat do
     before(:each) do
       @team = FactoryGirl.create(:team)
       @game = FactoryGirl.create(:game)
-      @player = FactoryGirl.create(:player)
-      @playerstat = Playerstat.create!(@attr.merge(:team_id => @team.id, :game_id => @game.id, :player_id => @player.id))
+      @person = FactoryGirl.create(:person)
+      @playerstat = Playerstat.create!(@attr.merge(:team_id => @team.id, :game_id => @game.id, :person_id => @person.id))
     end
 
-    it "should have the right associated player" do
-      @playerstat.player_id.should == @player.id
-      @playerstat.player.should == @player
+    it "should have the right associated person" do
+      @playerstat.person_id.should == @person.id
+      @playerstat.person.should == @person
     end
 
     it "should have the right associated game" do
@@ -54,8 +54,8 @@ describe Playerstat do
       Playerstat.new(@attr.merge(:game_id => nil)).should_not be_valid
     end
 
-    it "should require player_id id" do
-      Playerstat.new(@attr.merge(:player_id => nil)).should_not be_valid
+    it "should require person_id id" do
+      Playerstat.new(@attr.merge(:person_id => nil)).should_not be_valid
     end
 
     it "require jersey_number be a number" do

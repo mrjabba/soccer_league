@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120604185120) do
+ActiveRecord::Schema.define(:version => 20120712021117) do
 
   create_table "games", :force => true do |t|
     t.integer  "team1_id"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(:version => 20120604185120) do
     t.datetime "updated_at"
   end
 
-  create_table "players", :force => true do |t|
+  create_table "people", :force => true do |t|
     t.string   "firstname"
     t.string   "lastname"
     t.string   "position"
@@ -66,8 +66,8 @@ ActiveRecord::Schema.define(:version => 20120604185120) do
     t.integer  "updated_by_id"
   end
 
-  add_index "players", ["created_by_id"], :name => "index_players_on_created_by_id"
-  add_index "players", ["updated_by_id"], :name => "index_players_on_updated_by_id"
+  add_index "people", ["created_by_id"], :name => "index_players_on_created_by_id"
+  add_index "people", ["updated_by_id"], :name => "index_players_on_updated_by_id"
 
   create_table "playerstats", :force => true do |t|
     t.integer  "goals"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(:version => 20120604185120) do
     t.integer  "red_cards"
     t.integer  "minutes"
     t.integer  "saves"
-    t.integer  "player_id"
+    t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "jersey_number"
@@ -89,13 +89,13 @@ ActiveRecord::Schema.define(:version => 20120604185120) do
   end
 
   add_index "playerstats", ["created_by_id"], :name => "index_playerstats_on_created_by_id"
-  add_index "playerstats", ["player_id"], :name => "index_playerstats_on_player_id"
+  add_index "playerstats", ["person_id"], :name => "index_playerstats_on_player_id"
   add_index "playerstats", ["team_id"], :name => "index_playerstats_on_team_id"
   add_index "playerstats", ["updated_by_id"], :name => "index_playerstats_on_updated_by_id"
 
   create_table "rosters", :force => true do |t|
     t.integer  "teamstat_id"
-    t.integer  "player_id"
+    t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "created_by_id"

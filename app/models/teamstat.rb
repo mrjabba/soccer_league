@@ -1,12 +1,12 @@
 class Teamstat < ActiveRecord::Base
   include Auditable
-  attr_accessible :wins, :losses, :ties, :goals_for, :goals_against, :team_id, :league_id, :player_tokens
+  attr_accessible :wins, :losses, :ties, :goals_for, :goals_against, :team_id, :league_id, :person_tokens
   before_validation :init_stats
 
   belongs_to :league
   belongs_to :team
   has_many :rosters
-  has_many :players, :through => :rosters
+  has_many :people, :through => :rosters
   delegate :name, :to => :team, :prefix => true
   
   validates :league_id, :presence => true
@@ -16,12 +16,12 @@ class Teamstat < ActiveRecord::Base
     Teamstat.includes([:team]).find_all_by_league_id(league_id).sort!{|a,b| b.points <=> a.points}
   end
 
-  def player_tokens=(ids)
-    convert_player_ids_to_roster_items(ids)
+  def person_tokens=(ids)
+    convert_person_ids_to_roster_items(ids)
   end
 
-  def player_tokens
-    players.map(&:filter_by_name_hash)
+  def person_tokens
+    people.map(&:filter_by_name_hash)
   end
 
   #TODO ensure these are whole numbers?
@@ -55,10 +55,10 @@ class Teamstat < ActiveRecord::Base
 
   private
 
-  def convert_player_ids_to_roster_items(ids)
+  def convert_person_ids_to_roster_items(ids)
     self.rosters.clear
-    ids.split(",").each { |player_id|
-      self.rosters.build(:player_id => player_id,
+    ids.split(",").each { |person_id|
+      self.rosters.build(:person_id => person_id,
                          :created_by_id => created_by_id, :updated_by_id => updated_by_id,
                          :created_by => created_by, :updated_by => updated_by)
     }

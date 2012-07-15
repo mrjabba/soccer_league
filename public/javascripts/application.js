@@ -1,16 +1,16 @@
 $(function() {
-  $("#teams th a, #teams .pagination a, #players th a, #players .pagination a, #users th a, #users .pagination a").live("click", function() {
+  $("#teams th a, #teams .pagination a, #people th a, #people .pagination a, #users th a, #users .pagination a").live("click", function() {
     $.getScript(this.href);
     return false;
   });
 
-  $('#teamstat_player_tokens').tokenInput("/players.json", {
+  $('#teamstat_person_tokens').tokenInput("/people.json", {
     crossDomain: false,
-    prePopulate: $('#teamstat_player_tokens').data("pre"), 
+    prePopulate: $('#teamstat_person_tokens').data("pre"),
     theme: "facebook"
   });
   
-  $( "#player_birth_date" ).datepicker({
+  $( "#person_birth_date" ).datepicker({
     showOn: "button",
     buttonImage: "/images/calendar.png",
     buttonImageOnly: true

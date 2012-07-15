@@ -14,7 +14,7 @@ class PlayerstatsController < ApplicationController
     @playerstat.created_by_id = current_user.id
     @playerstat.updated_by_id = current_user.id
     if @playerstat.save
-      flash[:success] = "Player added to game successfully!"
+      flash[:success] = "Person added to game successfully!"
       redirect_to @game
     else 
       @title = "New Playerstat"
@@ -30,5 +30,4 @@ class PlayerstatsController < ApplicationController
     @playerstat.destroy
     redirect_to @playerstat.game
   end
-
 end

@@ -1,0 +1,19 @@
+<h1>Person Repository</h1>
+<div class="alert">People careers span often span multiple teams and leagues. Manage basic person profile information here.</div>
+
+<div class="btn-group">
+  <% if can? :new, @person %>
+      <%= link_to "New Person", "people/new", :class => "btn" %>
+  <% end %>
+</div>
+
+<%= form_tag people_path, :method => 'get', :remote => true, :id => "people_path", :class => "form-search" do %>
+  <p>
+    <%= text_field_tag :search, params[:search], :class => "input-medium search-query" %>
+    <%= submit_tag "Search", :class => "btn" %>
+  </p>
+<% end %>
+<div id="people">
+  <%= render 'person' %>
+</div>
+

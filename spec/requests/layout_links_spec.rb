@@ -39,8 +39,8 @@ describe "LayoutLinks" do
 	response.should have_selector('title', :content => "Home")
 	click_link "Sign up"
 	response.should have_selector('h2', :content => "Sign up")
-	click_link "Players"
-	response.should have_selector('title', :content => "Player Repository")
+	click_link "People"
+	response.should have_selector('title', :content => "Person Repository")
 	click_link "Teams"
 	response.should have_selector('title', :content => "Team Repository")
 	click_link "Leagues"

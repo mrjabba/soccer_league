@@ -7,7 +7,7 @@ You can add, update, and filter for these entities:
 * Organizations (such as Federations or Associations)
 * Leagues (anything from English Premier League to your local pub league)
 * Teams
-* Players
+* People (Players, Referees, Coaches, and so on)
 * League Table Editing
 * Game Stat Management
 

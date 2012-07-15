@@ -13,19 +13,19 @@
 </div>
 
 <% if @teamstat.rosters.empty? %>
-  <div class="alert">No players associated with this team in this league. To start building a roster, Click Edit Roster.</div>
+  <div class="alert">No people associated with this team in this league. To start building a roster, Click Edit Roster.</div>
 <% end %>
 
 <div class="row">
   <div class="span12">
-    <% unless @teamstat.players.empty? %>
+    <% unless @teamstat.people.empty? %>
       <table id="roster_table" class="table table-condensed">
       <tr>
-        <th title="Player Name">Name</th>
+        <th title="Person Name">Name</th>
         <th title="Position">Position</th>
         <th title="Nationality">Nationality</th>
       </tr>
-        <%= render :partial => "player", :collection => @teamstat.players %>
+        <%= render :partial => "person", :collection => @teamstat.people %>
       </table>
     <% end %>
   </div>
