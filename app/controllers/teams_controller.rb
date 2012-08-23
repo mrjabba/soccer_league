@@ -40,6 +40,7 @@ class TeamsController < ApplicationController
     @team.created_by_id = current_user.id
     @team.updated_by_id = current_user.id
     if @team.save
+      OpenGraph.post_new_team(request, session, @team)
       flash[:success] = "Team created successfully!"
       redirect_to @team
     else 

@@ -1,5 +1,9 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
+    #Store facebook oauth token for session (nasty)
+    oauth_token = request.env["omniauth.auth"].credentials.token
+    session["oauth_token"] = oauth_token
+
     # You need to implement the method below in your model
     @user = User.find_for_facebook_oauth(request.env["omniauth.auth"], current_user)
 

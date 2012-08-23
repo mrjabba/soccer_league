@@ -13,6 +13,7 @@ gem 'role_model'
 gem 'cancan'
 gem 'carmen'
 gem 'pg'
+gem 'koala'
 
 group :development, :test do
   gem 'debugger'
