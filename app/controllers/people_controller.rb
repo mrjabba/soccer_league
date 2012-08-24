@@ -46,7 +46,8 @@ class PeopleController < ApplicationController
     @person.created_by_id = current_user.id
     @person.updated_by_id = current_user.id
     if @person.save
-      OpenGraph.post_new_person(request, session, @person)
+      @graph = OpenGraph.new(@person)
+      @graph.post_new_model(request, session)
       flash[:success] = "Person created successfully!"
       redirect_to @person
     else 

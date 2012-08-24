@@ -1,0 +1,17 @@
+<% if @team %>
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# <%="#{FB_APP_NAMESPACE}"%>: http://ogp.me/ns/fb/<%="#{FB_APP_NAMESPACE}"%>#">
+    <meta property="fb:app_id" content="<%="#{FB_SL_APP_ID}"%>" /> 
+    <meta property="og:type"   content="<%="#{FB_APP_NAMESPACE}"%>:team" /> 
+    <meta property="og:url"    content="<%="#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>" /> 
+    <meta property="og:title"  content="<%=@team.try(:name)%>" /> 
+    <meta property="og:image"  content="<%="#{request.protocol}#{request.host_with_port}/images/team.jpg" %>" /> 
+<% elsif @person %>
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# <%="#{FB_APP_NAMESPACE}"%>: http://ogp.me/ns/fb/<%="#{FB_APP_NAMESPACE}"%>#">
+    <meta property="fb:app_id" content="<%="#{FB_SL_APP_ID}"%>" /> 
+    <meta property="og:type"   content="<%="#{FB_APP_NAMESPACE}"%>:person" /> 
+    <meta property="og:url"    content="<%="#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>" /> 
+    <meta property="og:title"  content="<%=@person.try(:name)%>" /> 
+    <meta property="og:image"  content="<%="#{request.protocol}#{request.host_with_port}/images/player.jpg" %>" /> 
+<% else %>
+  <head>
+<% end %>

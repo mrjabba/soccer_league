@@ -1,37 +1,29 @@
 class OpenGraph
-  def self.post_new_team(request, session, team)
+  attr_accessor :model, :graph_type_name
+
+  def initialize(model)
+    @model = model
+  end
+
+  def post_new_model(request, session)
       oauth_token = session["oauth_token"]
       if oauth_token
-        callback_url = "#{request.protocol}#{request.host_with_port}/teams/#{team.id}"
-        Rails.logger.debug "facebook team callback_url #{callback_url}"
+        callback_url = "#{request.protocol}#{request.host_with_port}/#{graph_type_name.pluralize}/#{@model.id}"
+        Rails.logger.debug "facebook #{graph_type_name} callback_url #{callback_url}"
         graph = Koala::Facebook::API.new(oauth_token)
         Thread.new {
-          graph.put_connections("me", "#{FB_APP_NAMESPACE}:create", :team => "#{callback_url}")
+          graph.put_connections("me", "#{FB_APP_NAMESPACE}:create", 
+            graph_type_name.to_sym => "#{callback_url}")
         }
       else
-        puts "No oauth_token found!"
+        Rails.logger.warn "OpenGraph: No oauth_token found!"
       end 
   rescue StandardError => e
     #Just report the error. We can move on without a facebook publish
-    Rails.logger.error "Unable to post team to facebook, error : #{e}"
+    Rails.logger.error "Unable to post #{@model} to facebook, error : #{e}"
   end
 
-  def self.post_new_person(request, session, person)
-    #TODO need to handle oauth token expiration
-    # this is failing silently after I think about an hour?
-      oauth_token = session["oauth_token"]
-      if oauth_token
-        callback_url = "#{request.protocol}#{request.host_with_port}/people/#{person.id}"
-        Rails.logger.debug "facebook person callback_url #{callback_url}"
-        graph = Koala::Facebook::API.new(oauth_token)
-        Thread.new {
-          graph.put_connections("me", "#{FB_APP_NAMESPACE}:create", :person => "#{callback_url}")
-        }
-      else
-        puts "No oauth_token found!"
-      end 
-    rescue StandardError => e
-      #Just report the error. We can move on without a facebook publish
-      Rails.logger.error "Unable to post person to facebook, error : #{e}"
-   end
+  def graph_type_name
+    @model.class.to_s.downcase
+  end
 end
