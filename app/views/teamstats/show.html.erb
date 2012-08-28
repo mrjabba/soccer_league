@@ -18,14 +18,15 @@
 
 <div class="row">
   <div class="span12">
-    <% unless @teamstat.people.empty? %>
+    <% unless @teamstat.rosters.empty? %>
       <table id="roster_table" class="table table-condensed">
       <tr>
         <th title="Person Name">Name</th>
+        <th title="Jersey Number">Jersey Number</th>
         <th title="Position">Position</th>
         <th title="Nationality">Nationality</th>
       </tr>
-        <%= render :partial => "person", :collection => @teamstat.people %>
+        <%= render :partial => "roster", :collection => @teamstat.rosters %>
       </table>
     <% end %>
   </div>

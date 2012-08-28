@@ -47,7 +47,7 @@ describe "People" do
           response.should have_selector('title', :content => "New Person")
           fill_in "Firstname", :with => "Joe"
           fill_in "LastName", :with => "Smith"
-          fill_in "Position", :with => Person::POSITIONS.values.first
+          fill_in "Position", :with => Person::POSITIONS.values.last
           click_button
           response.should have_selector("div.success", :content => "Person created successfully!")
           response.should render_template('people/new')

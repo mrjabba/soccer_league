@@ -9,7 +9,7 @@ class Person < ActiveRecord::Base
   has_many :rosters
   has_many :teamstats, :through => :rosters
 
-  POSITIONS = {"Forward" => "FW", "Midfielder" => "MF", "Defender" => "DF", "Forward/Midfielder" => "FW/MF", "Midfielder/Defender" => "MF/DF", "Goalkeeper" => "GK"}
+  POSITIONS = {"" => "", "Forward" => "FW", "Midfielder" => "MF", "Defender" => "DF", "Forward/Midfielder" => "FW/MF", "Midfielder/Defender" => "MF/DF", "Goalkeeper" => "GK"}
   
   def name
     "#{self.firstname} #{self.lastname}"

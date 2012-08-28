@@ -8,7 +8,7 @@ class TeamstatsController < ApplicationController
   end
 
   def show
-    @teamstat = Teamstat.find(params[:id])     
+    @teamstat = Teamstat.find(params[:id])
     @league = @teamstat.league
     @title = "View Roster | #{@league.name} | #{@league.year} | #{@teamstat.team_name}"
   end

@@ -37,7 +37,7 @@ FactoryGirl.define do
   factory :person do
     firstname                  "Fred"
     lastname                  FactoryGirl.generate(:lastname)
-    position                  Person::POSITIONS.values.first
+    position                  Person::POSITIONS.values.last
     birth_date                  "09/22/1981"
     nationality                  "USA"
     created_by_id 1

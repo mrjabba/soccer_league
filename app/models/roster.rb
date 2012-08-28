@@ -1,6 +1,6 @@
 class Roster < ActiveRecord::Base
   include Auditable
-  attr_accessible :teamstat_id, :person_id
+  attr_accessible :teamstat_id, :person_id, :position, :jersey_number
 
   belongs_to :teamstat
   belongs_to :person

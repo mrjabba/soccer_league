@@ -4,12 +4,6 @@ $(function() {
     return false;
   });
 
-  $('#teamstat_person_tokens').tokenInput("/people.json", {
-    crossDomain: false,
-    prePopulate: $('#teamstat_person_tokens').data("pre"),
-    theme: "facebook"
-  });
-  
   $( "#person_birth_date" ).datepicker({
     showOn: "button",
     buttonImage: "/images/calendar.png",

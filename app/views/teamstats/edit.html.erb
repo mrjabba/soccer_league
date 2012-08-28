@@ -6,15 +6,19 @@
 <h3>Add some people to the roster</h3>
 <p>
   <%= form_for(@teamstat, :html => {:class => "well form-horizontal"}) do |f| %>
-  <div class="alert">Start typing a person's name. Then click their name to add them to the Roster.</div>
-  <div class="control-group">
-    <div class="controls"><%= f.text_field :person_tokens, "data-pre" => @teamstat.person_tokens.to_json %></div>
-  </div>
-
-
-      <div class="form-actions">
-        <%= f.submit "Update Roster", :class => "btn" %>
-        <%= link_to "Cancel", "/teamstats/#{@teamstat.id}", :class => "btn" %>
-      </div>
-    <% end %>
+  <% unless @teamstat.rosters.empty? %>
+    <table id="rosters_table" class="table table-condensed">
+    <tr>
+    <th title="Name">Name</th>
+    <th title="Position">Position</th>
+    <th title="Jersey Number">Jersey Number</th>
+    </tr>
+      <%= render "roster_fields", :f => f %>
+    </table>
+  <% end %>
+    <div class="form-actions">
+      <%= f.submit "Update Roster", :class => "btn" %>
+      <%= link_to "Cancel", "/teamstats/#{@teamstat.id}", :class => "btn" %>
+    </div>
+  <% end %>
 </p>

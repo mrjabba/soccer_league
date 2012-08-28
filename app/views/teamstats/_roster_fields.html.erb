@@ -1,0 +1,11 @@
+  <%= f.fields_for :rosters do |c| %>
+  <tr>
+  <td><%= c.object.person.firstname %> <%= c.object.person.lastname %> </td>
+
+  <td>
+      <%= c.select(:position, Person::POSITIONS) %>
+  </td>
+
+  <td><%= c.text_field :jersey_number, :class => "span1" %></td>
+  </tr>
+  <% end %>

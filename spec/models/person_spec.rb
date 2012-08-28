@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Person do
   before(:each) do
-    @attr = { :firstname => "John", :lastname => "Doe", :position => Person::POSITIONS.values.first,
+    @attr = { :firstname => "John", :lastname => "Doe", :position => Person::POSITIONS.values.last,
     :jersey_number => 10, :birth_date => "02/10/1978", :nationality => "USA",
     :birth_city => "Austin", :birth_nation => "USA", :height => 20, :created_by_id => 1, :updated_by_id => 1}
   end
