@@ -7,6 +7,9 @@
 <div class="btn-group">
   <% if can? :new, @teamstat %>
         <%= link_to "Edit Roster", "#{@teamstat.id}/edit", :class => "btn" %>
+        <% if can? :new, @game %>
+            <td><%= link_to "Add Person", "/rosters/new?teamstat_id=#{@teamstat.id}", :class => "btn" %></td>
+        <% end %>
         <%= link_to "View Team", team_path(@teamstat.team), :class => "btn" %>
         <%= link_to "Edit Team", edit_team_path(@teamstat.team), :class => "btn" %>
   <% end %>
