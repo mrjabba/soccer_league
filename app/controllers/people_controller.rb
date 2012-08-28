@@ -5,7 +5,7 @@ class PeopleController < ApplicationController
   def index
     if params[:q]
       respond_to do |format|
-        format.json { render :json => Person.fetch_players_by_first_name_as_array(params[:q])}
+        format.json { render :json => Person.fetch_people_by_first_name_as_array(params[:q])}
       end
     else
       @title = "Person Repository"

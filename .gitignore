@@ -8,3 +8,5 @@ webrat.log
 *.dat
 *.iml
 .generators
+.DS_Store
+.rakeTasks
