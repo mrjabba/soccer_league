@@ -1,0 +1,39 @@
+
+<h2 class="venue">Venue: <%= @venue.name %></h2>
+
+<div class="btn-group">
+    <% if can? :new, @venue %>
+        <%= link_to "Edit", "#{@venue.id}/edit", :class => "btn"  %>
+        <%= link_to "Add Venue", "/venues/new", :class => "btn" %>
+    <% end %>
+    <%= link_to "All Venues", venues_path, :class => "btn" %>
+</div>
+
+<div class="row">
+    <div class="span12">
+        <table class="table table-condensed">
+            <tr>
+                <th>Name</th>
+                <td><%= @venue.name %></td>
+            </tr>
+            <tr>
+                <th>Year Built</th>
+                <td><%= @venue.built %></td>
+            </tr>
+            <tr>
+                <th>Coordinates</th>
+                <td><%= @venue.coordinates %></td>
+            </tr>
+            <tr>
+                <th>Surface</th>
+                <td><%= @venue.surface %></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="span12">
+        <%= render :partial => "shared/audit", :locals => {:auditable => @venue} %>
+    </div>
+</div>
+

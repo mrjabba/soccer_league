@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120828012653) do
+ActiveRecord::Schema.define(:version => 20120904033708) do
 
   create_table "games", :force => true do |t|
     t.integer  "team1_id"
@@ -93,6 +93,15 @@ ActiveRecord::Schema.define(:version => 20120828012653) do
   add_index "playerstats", ["team_id"], :name => "index_playerstats_on_team_id"
   add_index "playerstats", ["updated_by_id"], :name => "index_playerstats_on_updated_by_id"
 
+  create_table "playinglocations", :force => true do |t|
+    t.integer  "teamstat_id"
+    t.integer  "venue_id"
+    t.integer  "updated_by_id"
+    t.integer  "created_by_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "rosters", :force => true do |t|
     t.integer  "teamstat_id"
     t.integer  "person_id"
@@ -172,5 +181,16 @@ ActiveRecord::Schema.define(:version => 20120828012653) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["updated_by_id"], :name => "index_users_on_updated_by_id"
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
+
+  create_table "venues", :force => true do |t|
+    t.string   "name"
+    t.string   "coordinates"
+    t.string   "surface"
+    t.integer  "built"
+    t.integer  "updated_by_id"
+    t.integer  "created_by_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

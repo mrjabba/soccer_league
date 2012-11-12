@@ -1,7 +1,7 @@
 <ul class="breadcrumb">
   <li><%= link_to "#{@league.name} (#{@league.year})", "/leagues/#{@league.id}" %><span class="divider">/</span>
   </li>
-  <li class="active"><%= "#{@teamstat.team.name} Roster" %></li>
+  <li class="active"><%= "#{@teamstat.team.name} Team Information" %></li>
 </ul>
 
 <div class="btn-group">
@@ -9,7 +9,8 @@
         <%= link_to "Edit Roster", "#{@teamstat.id}/edit", :class => "btn" %>
         <% if can? :new, @game %>
             <td><%= link_to "Add Person", "/rosters/new?teamstat_id=#{@teamstat.id}", :class => "btn" %></td>
-        <% end %>
+            <td><%= link_to "Add Playing Location", "/playinglocations/new?teamstat_id=#{@teamstat.id}", :class => "btn" %></td>
+<% end %>
         <%= link_to "View Team", team_path(@teamstat.team), :class => "btn" %>
         <%= link_to "Edit Team", edit_team_path(@teamstat.team), :class => "btn" %>
   <% end %>
@@ -22,6 +23,7 @@
 <div class="row">
   <div class="span12">
     <% unless @teamstat.rosters.empty? %>
+    <h3>Roster</h3>
       <table id="roster_table" class="table table-condensed">
       <tr>
         <th title="Person Name">Name</th>
@@ -34,6 +36,21 @@
     <% end %>
   </div>
 </div>
+<div class="row">
+  <div class="span12">
+    <% unless @teamstat.playinglocations.empty? %>
+    <h3>Playing Locations</h3>
+      <table id="playinglocation_table" class="table table-condensed">
+      <tr>
+        <th title="Venue Name">Name</th>
+        <th title="Built">Built</th>
+      </tr>
+        <%= render :partial => "playinglocation", :collection => @teamstat.playinglocations %>
+      </table>
+    <% end %>
+  </div>
+</div>
+
 <div class="row">
   <div class="span12">
       <%= render :partial => "shared/audit", :locals => {:auditable => @teamstat} %>

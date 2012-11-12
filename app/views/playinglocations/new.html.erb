@@ -1,0 +1,17 @@
+<h2>New Playing Location</h2>
+
+<%= form_for [@playinglocation.teamstat, @playinglocation], :html => {:class => "well form-horizontal"} do |f| %>
+    <%= render 'shared/error_messages_playinglocation', :object => f.object %>
+    <%= f.hidden_field :teamstat_id %>
+    <div class="alert alert-info">This venue will be added to the league for this team: <%= @teamstat.team_name %></div>
+
+    <div class="control-group">
+        <%= f.label "Venue", :class => "control-label" %>
+        <div class="controls"><%= f.select :venue_id, Venue.order("name").collect { |t| [ "#{t.name}", t.id ] } %></div>
+    </div>
+    <div class="form-actions">
+        <%= f.submit "Create", :class => "btn" %>
+        <%= link_to "Cancel", leagues_path, :class => "btn" %>
+    </div>
+<% end %>
+

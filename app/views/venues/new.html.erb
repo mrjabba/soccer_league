@@ -1,0 +1,26 @@
+<h2>New Venue</h2>
+
+<%= form_for [@venue], :html => {:class => "well form-horizontal"} do |f| %>
+  <%= render 'shared/error_messages_venue', :object => f.object %>
+    <div class="control-group">
+        <%= f.label :name, :class => "control-label" %>
+        <div class="controls"><%= f.text_field :name %></div>
+    </div>
+    <div class="control-group">
+        <%= f.label "Year Built", :class => "control-label" %>
+        <div class="controls"><%= f.text_field :built %></div>
+    </div>
+    <div class="control-group">
+        <%= f.label :coordinates, :class => "control-label" %>
+        <div class="controls"><%= f.text_field :coordinates %></div>
+    </div>
+    <div class="control-group">
+        <%= f.label :surface, :class => "control-label" %>
+        <div class="controls"><%= f.text_field :surface %></div>
+    </div>
+    <div class="form-actions">
+    <%= f.submit "Create", :class => "btn" %>
+    <%= link_to "Cancel", leagues_path, :class => "btn" %>
+  </div>
+<% end %>
+

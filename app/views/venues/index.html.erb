@@ -1,0 +1,22 @@
+<h1>Venue Repository</h1>
+<div class="alert">Teams play in different venues over various seasons, sometimes sharing venues with other teams.
+    Manage basic venue information for fields and stadia here.</div>
+
+<% if can? :new, @venue %>
+    <div class="btn-group">
+        <% if can? :new, @venue %>
+            <%= link_to "New Venu", "venues/new", :class => "btn" %>
+        <% end %>
+    </div>
+<% end %>
+
+<%= form_tag venues_path, :method => 'get', :remote => true, :id => "venues_search", :class => "form-search" do %>
+    <p>
+        <%= text_field_tag :search, params[:search], :class => "input-medium search-query" %>
+        <%= submit_tag "Search", :class => "btn" %>
+    </p>
+<% end %>
+<div id="venues">
+    <%= render 'venue' %>
+</div>
+

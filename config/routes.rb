@@ -10,10 +10,13 @@ SoccerleagueApp::Application.routes.draw do
   resources :playerstats
   resources :teams
   resources :people
+  resources :playinglocations
+  resources :venues
 
   resources :leagues do
     resources :teamstats, :shallow => true do
       resources :rosters, :shallow => true
+      resources :playinglocations, :shallow => true
     end
     resources :games, :shallow => true
   end

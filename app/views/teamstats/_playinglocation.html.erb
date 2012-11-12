@@ -1,0 +1,12 @@
+<tr>
+    <td><%= link_to "#{playinglocation.venue.name}", "../venues/" + playinglocation.venue.id.to_s %></td>
+    <% if can? :new, @teamstat %>
+        <td>
+            <%= link_to "Remove", playinglocation, :method => :delete,
+                        :confirm => "Remove this Playing Location from this team for this season?",
+                        :id => "remove_playinglocation",
+                        :title => "Remove",
+                        :class => "btn btn-danger" %>
+        </td>
+    <% end %>
+</tr>

@@ -1,0 +1,22 @@
+
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<table id="venues_table" class="table table-condensed">
+    <tr>
+        <th title="Name"><%= sortable "name"  %></th>
+        <th title="Coordinates"><%= sortable "coordinates"  %></th>
+        <th title="Surface"><%= sortable "surface"  %></th>
+        <th title="Built"><%= sortable "built"  %></th>
+    </tr>
+    <% for venue in @venues%>
+        <tr>
+            <td><%= link_to venue.name, venue %></td>
+            <td><%= venue.coordinates %></td>
+            <td><%= venue.surface %></td>
+            <td><%= venue.built %></td>
+        </tr>
+    <% end%>
+</table>
+<div class="page_info"><%= page_entries_info @venues %></div>
+<%= will_paginate %>
+

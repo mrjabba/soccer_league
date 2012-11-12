@@ -1,5 +1,5 @@
 $(function() {
-  $("#teams th a, #teams .pagination a, #people th a, #people .pagination a, #users th a, #users .pagination a").live("click", function() {
+  $("#teams th a, #teams .pagination a, #people th a, #people .pagination a, #users th a, #users .pagination a, #venues th a, #venues .pagination a").live("click", function() {
     $.getScript(this.href);
     return false;
   });

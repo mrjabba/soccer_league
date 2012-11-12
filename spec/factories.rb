@@ -127,4 +127,15 @@ FactoryGirl.define do
     created_by_id 1
     updated_by_id 1
   end
+
+  FactoryGirl.define do
+    factory :venue do
+      name                  "my soccer field"
+      coordinates "coordinates"
+      surface "grass"
+      built 1999
+      created_by_id 1
+      updated_by_id 1
+    end
+  end
 end
