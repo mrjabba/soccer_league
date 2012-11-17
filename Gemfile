@@ -21,7 +21,7 @@ group :development do
 end
 
 group :test do
-  gem 'webrat'
+  gem "webrat", "~> 0.7.3"
   gem 'fuubar'
 	gem 'rspec', '2.6.0'
 	gem 'factory_girl_rails', '3.1.0'
