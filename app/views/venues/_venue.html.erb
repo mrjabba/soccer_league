@@ -4,14 +4,16 @@
 <table id="venues_table" class="table table-condensed">
     <tr>
         <th title="Name"><%= sortable "name"  %></th>
-        <th title="Coordinates"><%= sortable "coordinates"  %></th>
+        <th title="Latitude"><%= sortable "coordinate_lat"  %></th>
+        <th title="Coordinates"><%= sortable "coordinate_long"  %></th>
         <th title="Surface"><%= sortable "surface"  %></th>
         <th title="Built"><%= sortable "built"  %></th>
     </tr>
     <% for venue in @venues%>
         <tr>
             <td><%= link_to venue.name, venue %></td>
-            <td><%= venue.coordinates %></td>
+            <td><%= venue.coordinate_lat %></td>
+            <td><%= venue.coordinate_long %></td>
             <td><%= venue.surface %></td>
             <td><%= venue.built %></td>
         </tr>

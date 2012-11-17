@@ -11,8 +11,12 @@
         <div class="controls"><%= f.text_field :built %></div>
     </div>
     <div class="control-group">
-        <%= f.label :coordinates, :class => "control-label" %>
-        <div class="controls"><%= f.text_field :coordinates %></div>
+        <%= f.label "Coordinates (Latitude)", :class => "control-label" %>
+        <div class="controls"><%= f.text_field :coordinate_lat %></div>
+    </div>
+    <div class="control-group">
+        <%= f.label "Coordinates (Longitude)", :class => "control-label" %>
+        <div class="controls"><%= f.text_field :coordinate_long %></div>
     </div>
     <div class="control-group">
         <%= f.label :surface, :class => "control-label" %>

@@ -131,7 +131,8 @@ FactoryGirl.define do
   FactoryGirl.define do
     factory :venue do
       name                  "my soccer field"
-      coordinates "coordinates"
+      coordinate_lat "51.481667"
+      coordinate_long "-0.191111"
       surface "grass"
       built 1999
       created_by_id 1
