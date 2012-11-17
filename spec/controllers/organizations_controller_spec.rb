@@ -72,10 +72,8 @@ describe OrganizationsController do
 
   describe "POST 'create'" do
     describe "failure" do
-      let(:attr) do
-        { :name => "", :founded => ""}
-        sign_in FactoryGirl.create(:user)
-      end
+      before { sign_in FactoryGirl.create(:user) }
+      let(:attr) { { :name => "", :founded => ""} }
 
       it "should not create an organization" do
         lambda do

@@ -10,7 +10,7 @@
   <td><%= link_to user.username, user %></td>
   <td>
       <% if can? :new, @user %>
-      <%= link_to "Delete", user, :method => :delete, :confirm => "Delete this user: #{user.username}?",
+      <%= link_to "Delete", user, :method => :delete, :data => {:confirm => "Delete this user: #{user.username}?"},
                                   :class => "btn btn-danger",
                                   :title => "Delete #{user.username}" %>
       <% end %>  

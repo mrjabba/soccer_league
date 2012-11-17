@@ -59,75 +59,75 @@ describe Playerstat do
     end
 
     it "require jersey_number be a number" do
-      Teamstat.new(@attr.merge(:jersey_number => "foo")).should_not be_valid
+      Playerstat.new(@attr.merge(:jersey_number => "foo")).should_not be_valid
     end
 
     it "require jersey_number be >=0" do
-      Teamstat.new(@attr.merge(:jersey_number => "-5")).should_not be_valid
+      Playerstat.new(@attr.merge(:jersey_number => "-5")).should_not be_valid
     end
     
     it "require goals be a number" do
-      Teamstat.new(@attr.merge(:goals => "foo")).should_not be_valid
+      Playerstat.new(@attr.merge(:goals => "foo")).should_not be_valid
     end
 
     it "require goals be >=0" do
-      Teamstat.new(@attr.merge(:goals => "-5")).should_not be_valid
+      Playerstat.new(@attr.merge(:goals => "-5")).should_not be_valid
     end
 
     it "require assists be a number" do
-      Teamstat.new(@attr.merge(:assists => "foo")).should_not be_valid
+      Playerstat.new(@attr.merge(:assists => "foo")).should_not be_valid
     end
 
     it "require assists be >=0" do
-      Teamstat.new(@attr.merge(:assists => "-5")).should_not be_valid
+      Playerstat.new(@attr.merge(:assists => "-5")).should_not be_valid
     end
 
     it "require shots be a number" do
-      Teamstat.new(@attr.merge(:shots => "foo")).should_not be_valid
+      Playerstat.new(@attr.merge(:shots => "foo")).should_not be_valid
     end
 
     it "require shots be >=0" do
-      Teamstat.new(@attr.merge(:shots => "-5")).should_not be_valid
+      Playerstat.new(@attr.merge(:shots => "-5")).should_not be_valid
     end
 
     it "require fouls be a number" do
-      Teamstat.new(@attr.merge(:fouls => "foo")).should_not be_valid
+      Playerstat.new(@attr.merge(:fouls => "foo")).should_not be_valid
     end
 
     it "require fouls be >=0" do
-      Teamstat.new(@attr.merge(:fouls => "-5")).should_not be_valid
+      Playerstat.new(@attr.merge(:fouls => "-5")).should_not be_valid
     end
 
     it "require yellow_cards be a number" do
-      Teamstat.new(@attr.merge(:yellow_cards => "foo")).should_not be_valid
+      Playerstat.new(@attr.merge(:yellow_cards => "foo")).should_not be_valid
     end
 
     it "require yellow_cards be >=0" do
-      Teamstat.new(@attr.merge(:yellow_cards => "-5")).should_not be_valid
+      Playerstat.new(@attr.merge(:yellow_cards => "-5")).should_not be_valid
     end
 
     it "require red_cards be a number" do
-      Teamstat.new(@attr.merge(:red_cards => "foo")).should_not be_valid
+      Playerstat.new(@attr.merge(:red_cards => "foo")).should_not be_valid
     end
 
     it "require red_cards be >=0" do
-      Teamstat.new(@attr.merge(:red_cards => "-5")).should_not be_valid
+      Playerstat.new(@attr.merge(:red_cards => "-5")).should_not be_valid
     end
 
     it "require minutes be a number" do
-      Teamstat.new(@attr.merge(:minutes => "foo")).should_not be_valid
+      Playerstat.new(@attr.merge(:minutes => "foo")).should_not be_valid
     end
 
     it "require minutes be >=0" do
-      Teamstat.new(@attr.merge(:minutes => "-5")).should_not be_valid
+      Playerstat.new(@attr.merge(:minutes => "-5")).should_not be_valid
     end
 
     it "require saves be a number" do
-      Teamstat.new(@attr.merge(:saves => "foo")).should_not be_valid
+      Playerstat.new(@attr.merge(:saves => "foo")).should_not be_valid
     end
 
     it "require saves be >=0" do
-      Teamstat.new(@attr.merge(:saves => "foo")).should_not be_valid
+      Playerstat.new(@attr.merge(:saves => "foo")).should_not be_valid
     end
   end
 end

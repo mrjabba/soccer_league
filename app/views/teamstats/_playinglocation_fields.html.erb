@@ -4,7 +4,7 @@
 <% if can? :new, @teamstat %>
     <td>
         <%= link_to "Remove", playinglocation, :method => :delete,
-                    :confirm => "Remove this venue from this team/league?",
+                    :data => {:confirm => "Remove this venue from this team/league?"},
                     :id => "remove_playinglocation",
                     :title => "Remove",
                     :class => "btn btn-danger" %>

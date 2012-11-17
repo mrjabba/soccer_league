@@ -13,7 +13,7 @@
     <% unless @league.games_exist %>
       <% if can? :new, teamstat %>
           <%= link_to "Remove", teamstat, :method => :delete,
-                      :confirm => "Remove this team?",
+                      :data => {:confirm => "Remove this team?"},
                       :title => "Remove",
                       :class => "btn btn-danger" %>
       <% end %>

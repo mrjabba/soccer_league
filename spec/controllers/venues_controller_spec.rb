@@ -135,11 +135,8 @@ describe VenuesController do
 
   describe "POST 'create'" do
       describe "failure" do
-        let(:attr) do
-         { :name => ""}
-         sign_in FactoryGirl.create(:user)
-        end
-
+        before {sign_in FactoryGirl.create(:user)}
+        let(:attr) { { :name => ""}}
         it "should not create a venue" do
           lambda do
             post :create, :venue => attr

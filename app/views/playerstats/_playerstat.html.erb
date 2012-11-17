@@ -13,7 +13,7 @@
 <% if can? :new, @game and !@game.completed %>
 <td>
     <%= link_to "Remove", playerstat, :method => :delete,
-                                     :confirm => "Remove this person?",
+                                     :data => {:confirm => "Remove this person?"},
                                       :id => "remove_person",
                                       :title => "Remove",
                                      :class => "btn btn-danger" %>

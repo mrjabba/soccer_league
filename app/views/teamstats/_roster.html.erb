@@ -6,7 +6,7 @@
 <% if can? :new, @teamstat %>
     <td>
         <%= link_to "Remove", roster, :method => :delete,
-                    :confirm => "Remove this person from the roster?",
+                    :data => {:confirm => "Remove this person from the roster?"},
                     :id => "remove_person",
                     :title => "Remove",
                     :class => "btn btn-danger" %>

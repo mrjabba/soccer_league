@@ -15,7 +15,7 @@ class OrganizationsController < ApplicationController
 
   def new
     @title = "New Organization"
-    @organization = Organization.new(:team_id => 1)
+    @organization = Organization.new
   end
   
   def edit

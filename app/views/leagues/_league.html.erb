@@ -12,7 +12,7 @@
       <td><%= league.year %></td>
       <td>
         <% if can? :new, league %>
-          <%= link_to "Delete", league, :method => :delete, :confirm => "Delete this league: #{league.name}?",
+          <%= link_to "Delete", league, :method => :delete, :data => {:confirm => "Delete this league: #{league.name}?"},
                       :class => "btn btn-danger",
                       :title => "Delete #{league.name}" %>
         <% end %>

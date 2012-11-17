@@ -64,8 +64,7 @@ class Teamstat < ActiveRecord::Base
     self.rosters.clear
     ids.split(",").each { |person_id|
       self.rosters.build(:person_id => person_id,
-                         :created_by_id => created_by_id, :updated_by_id => updated_by_id,
-                         :created_by => created_by, :updated_by => updated_by)
+                         :created_by_id => created_by_id, :updated_by_id => updated_by_id)
     }
   end
 

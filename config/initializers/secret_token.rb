@@ -4,5 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-#SampleApp::Application.config.secret_token = 'a2aea9b5d29b80d73e596434fd57d24c724f941fcc380b56dc46b50e5421f840d728e4e458301d09bede8b4852d303efb4d6b04074be1d2238ae227176a3de1c'
-SoccerleagueApp::Application.config.secret_token = 'a2aea9b5d29b80d73e596434fd57d24c724f941fcc380b56dc46b50e5421f840d728e4e458301d09bede8b4852d303efb4d6b04074be1d2238ae227176a3de1c'
+SoccerleagueApp::Application.config.secret_token = '53654f4c3e6d78cde685779fa0369e05272fd49617e4dbb9c11ff5729fb82ce50f391db9ed7faecd693c9b343dca7fbb61154534b41561684e5c0295541e3c78'

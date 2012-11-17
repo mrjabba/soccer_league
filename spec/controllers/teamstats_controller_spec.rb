@@ -14,7 +14,7 @@ describe TeamstatsController do
        { :person_tokens => "1,2", :wins => 2 }
       end
 
-      it "should change add a roster of people to the teamstat" do
+      it "should change add a roster of people to the teamstat", :focus => true do
         put :update, :id => teamstat, :teamstat => attr
         teamstat = assigns(:teamstat)
         teamstat.reload
