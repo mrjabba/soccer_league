@@ -56,7 +56,7 @@
             var marker = new google.maps.Marker(markerOptions);
             marker.setMap(map);
             var infoWindowOptions = {
-                content: '<%= "Venue Name: #{@venue.name}" %>'
+                content: '<%= "Venue Name: #{@venue.name}".html_safe.gsub('\'','') %>'
             };
             var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
             google.maps.event.addListener(marker,'click',function(e){
