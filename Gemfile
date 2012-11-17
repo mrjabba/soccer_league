@@ -18,7 +18,6 @@ end
 
 group :development do
   gem 'rspec-rails', '2.6.0'
-  gem "rails-erd"
 end
 
 group :test do
