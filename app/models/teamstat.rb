@@ -1,19 +1,22 @@
 class Teamstat < ActiveRecord::Base
   include Auditable
-  attr_accessible :rosters_attributes, :wins, :losses, :ties, :goals_for, :goals_against, :team_id, :league_id, :person_tokens, :playinglocations_attributes
+  attr_accessible :rosters_attributes, :wins, :losses, :ties, :goals_for, :goals_against, :team_id, :league_id, :person_tokens, :playinglocations_attributes, :technicalstaffs_attributes
   before_validation :init_stats
 
   belongs_to :league
   belongs_to :team
+
   has_many :rosters
   has_many :playinglocations, :dependent => :destroy
-  accepts_nested_attributes_for :playinglocations, :reject_if => :all_blank
-
+  has_many :technicalstaffs, :dependent => :destroy
   has_many :people, :through => :rosters
-  delegate :name, :to => :team, :prefix => true
 
   accepts_nested_attributes_for :rosters, :reject_if => :all_blank
-  
+  accepts_nested_attributes_for :playinglocations, :reject_if => :all_blank
+  accepts_nested_attributes_for :technicalstaffs, :reject_if => :all_blank
+
+  delegate :name, :to => :team, :prefix => true
+
   validates :league_id, :presence => true
   validates :team_id, :presence => true
 

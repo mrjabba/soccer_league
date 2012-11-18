@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121117033331) do
+ActiveRecord::Schema.define(:version => 20121118181832) do
 
   create_table "games", :force => true do |t|
     t.integer  "team1_id"
@@ -157,6 +158,16 @@ ActiveRecord::Schema.define(:version => 20121117033331) do
   add_index "teamstats", ["league_id"], :name => "index_teamstats_on_league_id"
   add_index "teamstats", ["team_id"], :name => "index_teamstats_on_team_id"
   add_index "teamstats", ["updated_by_id"], :name => "index_teamstats_on_updated_by_id"
+
+  create_table "technicalstaffs", :force => true do |t|
+    t.integer  "teamstat_id"
+    t.integer  "person_id"
+    t.string   "role"
+    t.integer  "updated_by_id"
+    t.integer  "created_by_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "",   :null => false

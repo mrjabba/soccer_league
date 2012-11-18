@@ -8,9 +8,14 @@ class Person < ActiveRecord::Base
   has_many :playerstats
   has_many :rosters
   has_many :teamstats, :through => :rosters
+  has_many :technicalstaffs
 
   POSITIONS = {"" => "", "Forward" => "FW", "Midfielder" => "MF", "Defender" => "DF", "Forward/Midfielder" => "FW/MF", "Midfielder/Defender" => "MF/DF", "Goalkeeper" => "GK"}
-  
+  TECHNICAL_ROLES = {"" => "", "President" => "President", "Technical Director" => "Technical Director",
+               "Head Coach" => "Head Coach", "Assistant Coach" => "Assistant Coach",
+               "Goalkeeper Coach" => "Goalkeeper Coach", "Head Athletic Trainer " => "Head Athletic Trainer",
+              "Assistant Athletic Trainer " => "Assistant Athletic Trainer "}
+
   def name
     "#{self.firstname} #{self.lastname}"
   end

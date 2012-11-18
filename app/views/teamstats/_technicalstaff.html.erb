@@ -1,0 +1,14 @@
+<tr>
+    <td><%= link_to "#{technicalstaff.person.firstname} #{technicalstaff.person.lastname}", "../people/" + technicalstaff.person.id.to_s %></td>
+    <td><%= technicalstaff.role %></td>
+    <td><%= technicalstaff.person.nationality %></td>
+    <% if can? :new, @teamstat %>
+        <td>
+            <%= link_to "Remove", technicalstaff, :method => :delete,
+                        :data => {:confirm => "Remove this person from the staff?"},
+                        :id => "remove_person",
+                        :title => "Remove",
+                        :class => "btn btn-danger" %>
+        </td>
+    <% end %>
+</tr>
