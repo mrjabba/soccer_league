@@ -40,10 +40,6 @@ describe Person do
   it "should require a last name" do
     Person.new(@attr.merge(:lastname => "")).should_not be_valid
   end
-  
-  it "should require a position" do
-    Person.new(@attr.merge(:position => "")).should_not be_valid
-  end
 
   it "should reject positions not in the position list" do
     Person.new(@attr.merge(:position => "coach")).should_not be_valid

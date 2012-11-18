@@ -41,10 +41,10 @@ class Person < ActiveRecord::Base
 
   validates :firstname, :presence => true, :length   => { :maximum => 50 }
   validates :lastname, :presence => true,  :length   => { :maximum => 50 }
-  validates :position, :presence => true
+  #validates :position, allow_blank: true
  
   validates_numericality_of :height, :allow_nil => true, :greater_than_or_equal_to => 1
-  validates_inclusion_of :position, :in => POSITIONS.values, :message => "%{value} is not a valid position"
+  validates_inclusion_of :position, :in => POSITIONS.values, :message => "%{value} is not a valid position",allow_blank: true
  
   def height_meters_inches_required_together
     if !height_feet.blank? && height_inches.blank?

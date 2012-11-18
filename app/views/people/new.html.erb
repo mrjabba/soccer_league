@@ -11,10 +11,6 @@
     <div class="controls"><%= f.text_field :lastname %></div>
   </div>
   <div class="control-group">
-    <%= f.label :position, :class => "control-label" %>
-    <div class="controls"><%= f.select(:position, Person::POSITIONS) %></div>
-  </div>
-  <div class="control-group">
     <%= f.label :birth_date, :class => "control-label" %>
     <div class="controls"><%= f.text_field :birth_date %></div>
   </div>
@@ -33,6 +29,11 @@
   <div class="control-group">
     <%= f.label :birth_city, :class => "control-label" %>
     <div class="controls"><%= f.text_field :birth_city %></div>
+  </div>
+  <div class="alert">If this person is player, what position do they play?</div>
+  <div class="control-group">
+      <%= f.label :position, :class => "control-label" %>
+      <div class="controls"><%= f.select(:position, Person::POSITIONS) %></div>
   </div>
   <div class="form-actions">
     <%= f.submit "Create", :class => "btn" %>
