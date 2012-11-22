@@ -9,7 +9,10 @@
 
   <div class="alert alert-info">This person will be added to the match for <%= @playerstat.team_name %></div>
 
-    <%= f.select :person_id, Person.order("lastname").collect { |t| [ "#{t.firstname} #{t.lastname}", t.id ] } %>
+    <div class="control-group">
+        <%= f.label "Person", :class => "control-label" %>
+        <div class="controls"><%= f.text_field :person_id %></div>
+    </div>
     <%= f.hidden_field :game_id %>
     <%= f.hidden_field :team_id %>
 

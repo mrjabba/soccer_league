@@ -13,7 +13,7 @@ $(function() {
   $(".collapse").collapse();
 
   $(document).ready(function() {
-      $('#technicalstaff_person_id').tokenInput("/people.json", {
+      $('#technicalstaff_person_id,#playerstat_person_id').tokenInput("/people.json", {
           crossDomain: false,
           prePopulate: $('#technicalstaff_person_id').data("pre"),
           theme: "facebook",
