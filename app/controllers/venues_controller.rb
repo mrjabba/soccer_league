@@ -3,8 +3,14 @@ class VenuesController < ApplicationController
   helper_method :sort_column, :sort_direction, :per_page
 
   def index
-    @title = "Venue Repository"
-    @venues = Venue.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => per_page, :page => params[:page])
+    if params[:q]
+      respond_to do |format|
+        format.json { render :json => Venue.fetch_people_by_name_as_array(params[:q])}
+      end
+    else
+      @title = "Venue Repository"
+      @venues = Venue.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => per_page, :page => params[:page])
+    end
   end
 
   def show

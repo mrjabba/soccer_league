@@ -7,7 +7,7 @@
 
     <div class="control-group">
         <%= f.label "Venue", :class => "control-label" %>
-        <div class="controls"><%= f.select :venue_id, Venue.order("name").collect { |t| [ "#{t.name}", t.id ] } %></div>
+        <div class="controls"><%= f.text_field :venue_id %></div>
     </div>
     <div class="form-actions">
         <%= f.submit "Create", :class => "btn" %>
