@@ -18,6 +18,7 @@ class Person < ActiveRecord::Base
 
   has_attached_file :avatar,
       styles: {thumb: '100x100>', medium: '300x300>'}
+  process_in_background :avatar
 
   def name
     "#{self.firstname} #{self.lastname}"

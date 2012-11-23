@@ -12,8 +12,9 @@ gem 'carmen'
 gem 'pg'
 gem 'koala'
 gem 'aws-sdk', '~> 1.7.1'
-gem 'paperclip', '~> 3.3.1'
 gem 'rmagick'
+gem 'resque', "~> 1.22.0"
+gem "delayed_paperclip", "~> 2.5.0.1"
 
 group :development, :test do
   gem 'debugger'
