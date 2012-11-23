@@ -6,9 +6,10 @@
     <div class="alert alert-info">This person will be added to the roster for <%= @teamstat.team_name %></div>
 
     <div class="control-group">
-        <%= f.label "Player", :class => "control-label" %>
-        <div class="controls"><%= f.select :person_id, Person.order("lastname").collect { |t| [ "#{t.firstname} #{t.lastname}", t.id ] } %></div>
+        <%= f.label "Person", :class => "control-label" %>
+        <div class="controls"><%= f.text_field :person_id %></div>
     </div>
+
     <div class="control-group">
         <%= f.label :position, :class => "control-label" %>
         <div class="controls"><%= f.select(:position, Person::POSITIONS) %></div>
