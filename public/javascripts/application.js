@@ -21,11 +21,10 @@ $(function() {
       });
       $('#playinglocation_venue_id').tokenInput("/venues.json", {
           crossDomain: false,
-          prePopulate: $('#technicalstaff_person_id').data("pre"),
+          prePopulate: $('#playinglocation_venue_id').data("pre"),
           theme: "facebook",
           tokenLimit: 1
       });
-
 
       $("#league_supports_games").click(function() {
       if(this.checked) {

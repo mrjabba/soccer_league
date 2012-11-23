@@ -1,0 +1,8 @@
+<script type="text/javascript">
+    $('#game_team1_id,#game_team2_id,#teamstat_team_id').tokenInput("/teams.json?league_id=<%= league_id %>", {
+        crossDomain: false,
+        prePopulate: $('#game_team1_id,#game_team2_id').data("pre"),
+        theme: "facebook",
+        tokenLimit: 1
+    });
+</script>

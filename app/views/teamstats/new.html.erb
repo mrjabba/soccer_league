@@ -6,10 +6,10 @@
 
 <%= form_for [@league, @teamstat], :html => {:class => "well form-horizontal"} do |f| %>
 
-  <div class="control-group">
-    <%= f.label "Team", :class => "control-label" %>
-    <div class="controls"><%= f.select :team_id, Team.order("name").collect { |t| [ t.name, t.id ] } %></div>
-  </div>
+    <div class="control-group">
+        <%= f.label "Team", :class => "control-label" %>
+        <div class="controls"><%= f.text_field :team_id %></div>
+    </div>
 
     <%= f.hidden_field :league_id %>
 
@@ -47,3 +47,4 @@
   <div class="alert">Can't find your team?
     You need to <%= link_to "create your team first", teams_path %>. Then add your team to the league.</div>
 <% end %>
+<%= render 'shared/team_league_search', :league_id => @teamstat.league_id %>
