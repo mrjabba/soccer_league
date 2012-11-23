@@ -32,7 +32,10 @@
             </tr>
         </table>
     </div>
-    <div id="map_canvas" class="span4"></div>
+    <div class="span6">
+        <div id="map_canvas"></div>
+        <a href="https://maps.google.com/maps?q=<%="#{@venue.coordinate_lat},#{@venue.coordinate_long}"%>" target="_blank">Get Directions</a>
+    </div>
 </div>
 <div class="row">
     <div class="span12">
@@ -65,5 +68,6 @@
         }
     </script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%=GOOGLE_MAP_API_KEY%>&sensor=false&callback=venue_map_show"></script>
+
 <% end %>
 
