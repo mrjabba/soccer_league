@@ -7,13 +7,14 @@ You can add, update, and filter for these entities:
 * Organizations (such as Federations or Associations)
 * Leagues (anything from English Premier League to your local pub league)
 * Teams
-* People (Players, Referees, Coaches, and so on)
+* People (Players, Referees, Coaches, and so on), with Avatar support via Amazon S3
 * League Table Editing
 * Game Stat Management
+* Venues (stadia or soccer complexes), with Google Maps API pinpoints
 
 This application also gives you the ability to manage stats. You can configure a league to manage games where league tables are automatically updated from those games. Or, you can choose a simpler approach without game management. This will allow you to simply edit the league table.Game management still needs some work. Your mileage may vary.
 
-This project is being continually improved. There is no official release yet. If you want to use it, feel free to fork it. Contributions are welcome. I have ideas for other features like cataloging venues and stadiums, managing coaches and staff, and adding more roles to handle sharing/collaboration.
+This project is being continually improved. There is no official release yet. If you want to use it, feel free to fork it. Contributions are welcome. I have ideas for other features like favoriting a league (or any entity), image support for venues, and adding more roles to handle sharing/collaboration.
 
 ### Getting Started
 This is a Rails application. If you are new to Ruby or Rails, start [here](http://guides.rubyonrails.org). Currently, I run this on Ruby 1.9.2 with PostgreSQL as the database. See Gemfile for other dependency information.
