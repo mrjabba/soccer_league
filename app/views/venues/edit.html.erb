@@ -1,31 +1,3 @@
 <h2>Edit Venue</h2>
-<%= form_for(@venue, :html => {:class => "well form-horizontal"}) do |f| %>
-  <%= render 'shared/error_messages_venue', :object => f.object %>
-  <div class="control-group">
-    <%= f.label :name, :class => "control-label" %>
-    <div class="controls"><%= f.text_field :name %></div>
-  </div>
-  <div class="control-group">
-    <%= f.label "Year Built", :class => "control-label" %>
-    <div class="controls"><%= f.text_field :built %></div>
-  </div>
-    <div class="control-group">
-        <%= f.label "Coordinates (Latitude)", :class => "control-label" %>
-        <div class="controls"><%= f.text_field :coordinate_lat %></div>
-    </div>
-    <div class="control-group">
-        <%= f.label "Coordinates (Longitude)", :class => "control-label" %>
-        <div class="controls"><%= f.text_field :coordinate_long %></div>
-    </div>
-    <div class="control-group">
-    <%= f.label :surface, :class => "control-label" %>
-    <div class="controls"><%= f.text_field :surface %></div>
-  </div>
-
-
-  <div class="form-actions">
-    <%= f.submit "Update", :class => "btn" %>
-    <%= link_to "Cancel", "/venues/#{@venue.id}", :class => "btn" %>
-  </div>
-<% end %>
+<%= render :partial => "form", :locals => {:save_label => "Update"} %>
 
