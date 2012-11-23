@@ -20,7 +20,7 @@ class Person < ActiveRecord::Base
   has_attached_file :avatar,
       styles: {thumb: '100x100>', medium: '300x300>'}
 
-  validates_format_of :avatar_file_name, :with => %r{\.(jpg|gif|png)$}i, :message => "File must be an image of type (jpg,gif,png)"
+  validates_format_of :avatar_file_name, :with => %r{\.(jpg|gif|png)$}i, :allow_nil=> true, :message => "File must be an image of type (jpg,gif,png)"
   validates_attachment :avatar, :size => { :in => 0..740.kilobytes }
 
   #disable this until we get this working on heroku.
