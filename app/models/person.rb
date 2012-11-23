@@ -18,7 +18,9 @@ class Person < ActiveRecord::Base
 
   has_attached_file :avatar,
       styles: {thumb: '100x100>', medium: '300x300>'}
-  process_in_background :avatar
+
+  #disable this until we get this working on heroku.
+  process_in_background :avatar if Rails.env != 'production'
 
   def name
     "#{self.firstname} #{self.lastname}"
