@@ -1,0 +1,36 @@
+<%= form_for(model, :html => {:class => "well form-horizontal"}) do |f| %>
+    <%= render 'shared/error_messages_league', :object => f.object %>
+    <div class="control-group">
+        <%= f.label :name, :class => "control-label" %>
+        <div class="controls"><%= f.text_field :name %></div>
+    </div>
+    <div class="control-group">
+        <%= f.label :year, :class => "control-label" %>
+        <div class="controls"><%= f.text_field :year %></div>
+    </div>
+    <div class="alert">Indicate whether you want to manage games. If you choose "Support Games",
+        you want to manage individual games and have your league table updated automatically.
+        Leave it unchecked if you would like to manually edit your league table (wins/losses) manually without game management.</div>
+    <div class="control-group">
+        <%= f.label :supports_games, :class => "control-label" %>
+        <div class="controls"><%= f.check_box :supports_games %></div>
+    </div>
+
+    <% !league.supports_games? && unless league.teamstats.empty? %>
+        <table id="teamstats_table" class="table table-condensed">
+            <tr>
+                <th title="Club">Club</th>
+                <th title="Wins">Wins</th>
+                <th title="Losses">Losses</th>
+                <th title="Ties">Ties</th>
+                <th title="Goals For">Goals For</th>
+                <th title="Goals Against">Goals Against</th>
+            </tr>
+            <%= render "teamstat_fields", :f => f %>
+        </table>
+    <% end %>
+    <div class="form-actions">
+        <%= f.submit save_label, :class => "btn" %>
+        <%= link_to "Cancel", leagues_path, :class => "btn" %>
+    </div>
+<% end %>
