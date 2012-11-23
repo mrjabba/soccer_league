@@ -41,6 +41,12 @@
     <%= f.label :avatar, :class => "control-label" %>
   <div class="controls"><%= f.file_field :avatar %></div>
   </div>
+  <% unless @person.new_record? || !@person.avatar? %>
+    <div class="control-group">
+      <%= f.label "Delete existing avatar", :class => "control-label" %>
+      <div class="controls"><%= f.check_box :avatar_delete, :label => 'Delete Avatar' %></div>
+    </div>
+  <% end %>
   <div class="alert">If this person is player, what position do they play?</div>
   <div class="control-group">
     <%= f.label :position, :class => "control-label" %>

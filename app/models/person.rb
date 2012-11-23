@@ -1,8 +1,9 @@
 class Person < ActiveRecord::Base
   include Auditable
-  attr_accessible :firstname, :lastname, :position, :birth_date, :nationality, :birth_city, :birth_nation, :name, :fields, :height_feet, :height_inches, :height_meters, :height, :avatar
+  attr_accessible :firstname, :lastname, :position, :birth_date, :nationality, :birth_city, :birth_nation, :name, :fields, :height_feet, :height_inches, :height_meters, :height, :avatar, :avatar_delete
   attr_accessor  :height_feet, :height_inches, :height_meters
   before_validation :calc_feet_in_meters
+  before_save :destroy_avatar?
   validate :height_meters_inches_required_together
 
   has_many :playerstats
@@ -61,6 +62,14 @@ class Person < ActiveRecord::Base
     end
   end
 
+  def avatar_delete
+    @avatar_delete ||= "0"
+  end
+
+  def avatar_delete=(value)
+    @avatar_delete = value
+  end
+
   def self.search(search)
     if search
       where('UPPER(lastname) LIKE UPPER(?)', "%#{search}%")
@@ -70,6 +79,10 @@ class Person < ActiveRecord::Base
   end
  
   private
+
+  def destroy_avatar?
+    self.avatar.clear if @avatar_delete == "1" && !avatar.dirty?
+  end
 
   def calc_feet_in_meters
       return 0 if height_feet.blank? || height_inches.blank?
