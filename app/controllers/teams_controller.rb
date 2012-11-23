@@ -3,8 +3,14 @@ class TeamsController < ApplicationController
   helper_method :sort_column, :sort_direction, :per_page
 
   def index
-    @title = "Team Repository"
-    @teams = Team.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => per_page, :page => params[:page])
+    if params[:league_id] && params[:q]
+      respond_to do |format|
+        format.json { render :json => Team.fetch_team_by_name_for_league_as_array(params[:league_id], params[:q])}
+      end
+    else
+      @title = "Team Repository"
+      @teams = Team.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => per_page, :page => params[:page])
+    end
   end
 
   def show
