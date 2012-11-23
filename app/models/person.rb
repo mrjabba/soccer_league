@@ -20,6 +20,10 @@ class Person < ActiveRecord::Base
   has_attached_file :avatar,
       styles: {thumb: '100x100>', medium: '300x300>'}
 
+  validates :firstname, :presence => true, :length   => { :maximum => 50 }
+  validates :lastname, :presence => true,  :length   => { :maximum => 50 }
+  validates_numericality_of :height, :allow_nil => true, :greater_than_or_equal_to => 1
+  validates_inclusion_of :position, :in => POSITIONS.values, :message => "%{value} is not a valid position",allow_blank: true
   validates_format_of :avatar_file_name, :with => %r{\.(jpg|gif|png)$}i, :allow_nil=> true, :message => "File must be an image of type (jpg,gif,png)"
   validates_attachment :avatar, :size => { :in => 0..740.kilobytes }
 
@@ -29,9 +33,6 @@ class Person < ActiveRecord::Base
   def name
     "#{self.firstname} #{self.lastname}"
   end
-  
-  validates :firstname, :presence => true, :length   => { :maximum => 50 }
-  validates :lastname, :presence => true, :length   => { :maximum => 50 }
 
   def self.fetch_people_by_first_name_as_array(query)
     Person.where("UPPER(firstname) like UPPER(?)", "%#{query}%").map(&:filter_by_name_hash)
@@ -49,13 +50,6 @@ class Person < ActiveRecord::Base
     self.height
   end
 
-  validates :firstname, :presence => true, :length   => { :maximum => 50 }
-  validates :lastname, :presence => true,  :length   => { :maximum => 50 }
-  #validates :position, allow_blank: true
- 
-  validates_numericality_of :height, :allow_nil => true, :greater_than_or_equal_to => 1
-  validates_inclusion_of :position, :in => POSITIONS.values, :message => "%{value} is not a valid position",allow_blank: true
- 
   def height_meters_inches_required_together
     if !height_feet.blank? && height_inches.blank?
       errors.add(:height_inches, "Inches required when specifying feet")
