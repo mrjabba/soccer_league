@@ -1,0 +1,47 @@
+<%= form_for(@team, :html => {:class => "well form-horizontal"}) do |f| %>
+    <%= render 'shared/error_messages_team', :object => f.object %>
+    <div class="control-group">
+        <%= f.label :name, :class => "control-label" %>
+        <div class="controls"><%= f.text_field :name %></div>
+    </div>
+    <div class="control-group">
+        <%= f.label :address1, :class => "control-label" %>
+        <div class="controls"><%= f.text_field :address1 %></div>
+    </div>
+    <div class="control-group">
+        <%= f.label :address2, :class => "control-label" %>
+        <div class="controls"><%= f.text_field :address2 %></div>
+    </div>
+    <div class="control-group">
+        <%= f.label :city, :class => "control-label" %>
+        <div class="controls"><%= f.text_field :city %></div>
+    </div>
+    <div class="control-group">
+        <%= f.label :state, :class => "control-label" %>
+        <div class="controls"><%= f.text_field :state %></div>
+    </div>
+    <div class="control-group">
+        <%= f.label :zip, :class => "control-label" %>
+        <div class="controls"><%= f.text_field :zip %></div>
+    </div>
+    <div class="control-group">
+        <%= f.label :country, :class => "control-label" %>
+        <div class="controls"><%= f.select(:country, Carmen::countries.unshift(["Choose...", ""]) ) %></div>
+    </div>
+    <div class="control-group">
+        <%= f.label :phone, :class => "control-label" %>
+        <div class="controls"><%= f.text_field :phone %></div>
+    </div>
+    <div class="control-group">
+        <%= f.label :website, :class => "control-label" %>
+        <div class="controls"><%= f.text_field :website %></div>
+    </div>
+    <div class="control-group">
+        <%= f.label :email, :class => "control-label" %>
+        <div class="controls"><%= f.text_field :email %></div>
+    </div>
+    <div class="form-actions">
+        <%= f.submit save_label, :class => "btn" %>
+        <%= link_to "Cancel", teams_path, :class => "btn" %>
+    </div>
+<% end %>
