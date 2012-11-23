@@ -1,4 +1,5 @@
 SoccerleagueApp::Application.routes.draw do
+  mount Resque::Server.new, :at => "/resque"
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   devise_scope :user do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
