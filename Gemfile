@@ -11,6 +11,9 @@ gem 'cancan'
 gem 'carmen'
 gem 'pg'
 gem 'koala'
+gem 'aws-sdk', '~> 1.7.1'
+gem 'paperclip', '~> 3.3.1'
+gem 'rmagick'
 
 group :development, :test do
   gem 'debugger'

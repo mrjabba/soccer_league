@@ -13,7 +13,7 @@
 </div>
 
 <div class="row">
-  <div class="span12">
+  <div class="span8">
     <table class="table table-condensed">
       <tr>
         <th>Position</th>
@@ -32,11 +32,19 @@
         <td><%= @person.height %> m</td>
       <% end %>
     </table>
-
   </div>
+    <div class="span4">
+        <div class="front">
+            <%= link_to @person, class: 'pic-link' do %>
+                <%= image_tag @person.avatar.url(:thumb) %>
+            <% end %>
+        </div>
+    </div>
 </div>
 <div class="row">
   <div class="span12">
+      foo <%= @person.avatar.url(:thumb) %>
+
       <%= render :partial => "shared/audit", :locals => {:auditable => @person} %>
   </div>
 </div>

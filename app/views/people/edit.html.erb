@@ -1,6 +1,6 @@
 <h2>Edit person</h2>
 
-<%= form_for(@person, :html => {:class => "well form-horizontal"}) do |f| %>
+<%= form_for(@person, :html => {:multipart => true, :class => "well form-horizontal"}) do |f| %>
   <%= render 'shared/error_messages_person', :object => f.object %>
   <div class="control-group">
     <%= f.label :firstname, :class => "control-label" %>
@@ -36,6 +36,10 @@
   <div class="control-group">
     <%= f.label :birth_city, :class => "control-label" %>
     <div class="controls"><%= f.text_field :birth_city %></div>
+  </div>
+  <div class="control-group">
+    <%= f.label :avatar, :class => "control-label" %>
+  <div class="controls"><%= f.file_field :avatar %></div>
   </div>
   <div class="alert">If this person is player, what position do they play?</div>
   <div class="control-group">

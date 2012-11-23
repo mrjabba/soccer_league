@@ -1,6 +1,6 @@
 class Person < ActiveRecord::Base
   include Auditable
-  attr_accessible :firstname, :lastname, :position, :birth_date, :nationality, :birth_city, :birth_nation, :name, :fields, :height_feet, :height_inches, :height_meters, :height
+  attr_accessible :firstname, :lastname, :position, :birth_date, :nationality, :birth_city, :birth_nation, :name, :fields, :height_feet, :height_inches, :height_meters, :height, :avatar
   attr_accessor  :height_feet, :height_inches, :height_meters
   before_validation :calc_feet_in_meters
   validate :height_meters_inches_required_together
@@ -15,6 +15,9 @@ class Person < ActiveRecord::Base
                "Head Coach" => "Head Coach", "Assistant Coach" => "Assistant Coach",
                "Goalkeeper Coach" => "Goalkeeper Coach", "Head Athletic Trainer " => "Head Athletic Trainer",
               "Assistant Athletic Trainer " => "Assistant Athletic Trainer "}
+
+  has_attached_file :avatar,
+      styles: {thumb: '100x100>', medium: '300x300>'}
 
   def name
     "#{self.firstname} #{self.lastname}"
