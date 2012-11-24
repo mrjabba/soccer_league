@@ -8,25 +8,25 @@ zh:
     body: 欢迎 Soccer League Manager puts league management into your hands. Currently, this application is under a lot of development and will be changing frequently. Feel free to try it out. Just keep in mind it is not feature complete. And, data will not be saved.
   menu_top:
     home: Home
-    orgs: Organizations
-    leagues: Leagues
-    teams: Teams
-    people: People
-    venues: Venues
+    orgs: 组织
+    leagues: 联盟
+    teams: 团队
+    people: 人
+    venues: 地点
     users: Users
     profile: Profile
     logout: Sign out
-    help: Help
+    help: 帮助
     login: Sign In
     login_facebook: Sign In With Facebook
   menu_bottom:
-    about: About
-    contact: Contact
+    about: 消息
+    contact: 联络
   search: Search
-  team: Team
-  teams: Teams
+  team: 团队
+  teams: 团队
   team_new: New Team
-  name: Name
+  name: 名
   langs:
     de: Deutsch
     el: Ελληνικά
@@ -42,3 +42,13 @@ zh:
     ru: русский язык
     tr: Türkçe
     zh: 中文
+  team_form:
+    address1: 街道1
+    address2: 街道2
+    city: 城市
+    state: 邦
+    zip: 邮政编码
+    country: 国家
+    phone: 电话
+    website: 网站
+    email: Email
