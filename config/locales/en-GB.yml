@@ -1,19 +1,19 @@
-pl:
-  football: piłka nożna
+en-GB:
+  football: Football
   login_form:
     username: Username
     password: Password
     remember_me: Remember me
   home_page:
-    headline: piłka nożna Statistics for All!
-    body: Szukanie! Footy Stats puts league management into your hands. Currently, this application is under a lot of development and will be changing frequently. Feel free to try it out. Just keep in mind it is not feature complete. And, data will not be saved.
+    headline: Football Statistics for All!
+    body: Welcome! Footy Stats puts league management into your hands. Currently, this application is under a lot of development and will be changing frequently. Feel free to try it out. Just keep in mind it is not feature complete. And, data will not be saved.
   menu_top:
     home: Home
-    orgs: Organizacje
-    leagues: Ligi
-    teams: Zespoły
-    people: Ludzie
-    venues: Lokalizacje
+    orgs: Organizations
+    leagues: Leagues
+    teams: Teams
+    people: People
+    venues: Venues
     users: Users
     profile: Profile
     logout: Sign out
@@ -21,13 +21,13 @@ pl:
     login: Sign In
     login_facebook: Sign In With Facebook
   menu_bottom:
-    about: Informacja
-    contact: Kontakt
-  search: Szukanie
-  team: Zespół
-  teams: Zespoły
-  team_new: Nowy Zespół
-  name: Nazwa
+    about: About
+    contact: Contact
+  search: Search
+  team: Team
+  teams: Teams
+  team_new: New Team
+  name: Name
   langs:
     de: Deutsch
     el: Ελληνικά

@@ -1,11 +1,12 @@
 es:
+  football: Fútbol
   login_form:
     username: Nombre de Usuario
     password: Pontraseña
     remember_me: Recuerdame
   home_page:
-    headline: Soccer Status for All!
-    body: Bienvenido! Soccer League Manager puts league management into your hands. Currently, this application is under a lot of development and will be changing frequently. Feel free to try it out. Just keep in mind it is not feature complete. And, data will not be saved.
+    headline: Fútbol Statistics for All!
+    body: Bienvenido! Footy Stats puts league management into your hands. Currently, this application is under a lot of development and will be changing frequently. Feel free to try it out. Just keep in mind it is not feature complete. And, data will not be saved.
   menu_top:
     home: Home
     orgs: Organizations
@@ -31,6 +32,7 @@ es:
     de: Deutsch
     el: Ελληνικά
     en: English
+    en-GB: English
     es: Español
     fr: Français
     it: Italiano
@@ -39,6 +41,7 @@ es:
     nl: Dutch
     pl: Polski
     pt: Português
+    pt-BR: Português
     ru: русский язык
     tr: Türkçe
     zh: 中文

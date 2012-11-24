@@ -9,7 +9,8 @@ module ApplicationHelper
 
   def full_path_no_locale
     return "" if request.fullpath == root_path
-    request.fullpath.to_s[3..-1]
+    request.fullpath.to_s[3..-1] if locale.size == 2
+    request.fullpath.to_s[6..-1] if locale.size == 5
   end
 
   # Return a title on a per-page basis.
