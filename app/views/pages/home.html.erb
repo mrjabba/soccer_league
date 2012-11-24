@@ -1,15 +1,13 @@
 <div class="hero-unit">
-  <h2>Soccer Stats For All!</h2>
-  <p>  Soccer League Manager puts league management into your hands. Currently, this application is under a lot of development and 
-  will be changing frequently. Feel free to try it out. Just keep in mind it is not feature complete. And, data will not be saved.
-</p>
+  <h2><%= t('home_page.headline') %></h2>
+  <p><%= t('home_page.body') %></p>
   <p>
-    <%= link_to "Organizations", organizations_path, :class => "btn btn-primary btn-large" %>
-    <%= link_to "Leagues", leagues_path, :class => "btn btn-primary btn-large" %>
-    <%= link_to "Teams", teams_path, :class => "btn btn-primary btn-large" %>
-    <%= link_to "People", people_path, :class => "btn btn-primary btn-large" %>
+    <%= link_to t('menu_top.orgs'), organizations_path, :class => "btn btn-primary btn-large" %>
+    <%= link_to t('menu_top.leagues'), leagues_path, :class => "btn btn-primary btn-large" %>
+    <%= link_to t('menu_top.teams'), teams_path, :class => "btn btn-primary btn-large" %>
+    <%= link_to t('menu_top.people'), people_path, :class => "btn btn-primary btn-large" %>
     <% if !user_signed_in? %>
-      <%= link_to "Sign up", new_user_registration_path, :class => "btn btn-primary btn-large" %>
+      <%= link_to t('menu_top.login'), new_user_registration_path, :class => "btn btn-primary btn-large" %>
     <% end%>
   </p>
 </div>

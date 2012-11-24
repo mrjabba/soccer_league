@@ -5,13 +5,13 @@
 </ul>
 <% end%>
 
-<h2 class="team">Team: <%= @team.name %></h2>
+<h2 class="team"><%=t :team  %>: <%= @team.name %></h2>
 
 
 <div class="btn-group">
   <% if can? :new, @team %>
       <%= link_to "Edit", "#{@team.id}/edit", :class => "btn"  %>
-      <%= link_to "Add Team", "/teams/new", :class => "btn" %>
+      <%= link_to "Add Team", new_team_path, :class => "btn" %>
   <% end %>
   <%= link_to "All Teams", teams_path, :class => "btn" %>
 </div>
@@ -20,39 +20,39 @@
   <div class="span12">
     <table class="table table-condensed">
       <tr>
-        <th>Address1</th>
+        <th><%=t 'team_form.address1' %></th>
         <td><%= @team.address1 %></td>
       </tr>
       <tr>
-        <th>Address2</th>
+        <th><%=t 'team_form.address2' %></th>
         <td><%= @team.address2 %></td>
       </tr>
       <tr>
-        <th>City</th>
+        <th><%=t 'team_form.city' %></th>
         <td><%= @team.city %></td>
       </tr>
       <tr>
-        <th>State</th>
+        <th><%=t 'team_form.state' %></th>
         <td><%= @team.state %></td>
       </tr>
       <tr>
-        <th>Zip</th>
+        <th><%=t 'team_form.zip' %></th>
         <td><%= @team.zip %></td>
       </tr>
       <tr>
-        <th>Country</th>
+        <th><%=t 'team_form.country' %></th>
         <td><%= @team.country %></td>
       </tr>
       <tr>
-        <th>Phone</th>
+        <th><%=t 'team_form.phone' %></th>
         <td><%= @team.phone %></td>
       </tr>
       <tr>
-        <th>Website</th>
+        <th><%=t 'team_form.website' %></th>
         <td><%= @team.website %></td>
       </tr>
       <tr>
-        <th>Email</th>
+        <th><%=t 'team_form.email' %></th>
         <td><%= @team.email %></td>
       </tr>
     </table>

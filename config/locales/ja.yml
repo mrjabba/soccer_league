@@ -1,0 +1,38 @@
+ja:
+  login_form:
+    username: Username
+    password: パスワード
+    remember_me: Remember me
+  home_page:
+    headline: Soccer Status for All!
+    body: 歓迎 Soccer League Manager puts league management into your hands. Currently, this application is under a lot of development and will be changing frequently. Feel free to try it out. Just keep in mind it is not feature complete. And, data will not be saved.
+  menu_top:
+    home: Home
+    orgs: Organizations
+    leagues: Leagues
+    teams: Teams
+    people: People
+    venues: Venues
+    users: Users
+    profile: Profile
+    logout: Sign out
+    help: Help
+    login: Sign In
+    login_facebook: Sign In With Facebook
+  menu_bottom:
+    about: About
+    contact: Contact
+  search: Search
+  team: Team
+  teams: Teams
+  team_new: New Team
+  name: Name
+  langs:
+    de: Deutsch
+    en: English
+    es: Español
+    fr: Français
+    it: Italiano
+    ja: 日本語
+    pt: Português
+    zh: 中文

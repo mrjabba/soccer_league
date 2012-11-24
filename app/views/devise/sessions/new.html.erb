@@ -2,16 +2,16 @@
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "well form-horizontal"}) do |f| %>
   <div class="control-group">
-    <%= f.label :username, :class => "control-label" %>
+    <%= f.label t('login_form.username'), :class => "control-label" %>
     <div class="controls"><%= f.text_field :username %></div>
   </div>
   <div class="control-group">
-    <%= f.label :password, :class => "control-label" %>
+    <%= f.label t('login_form.password'), :class => "control-label" %>
     <div class="controls"><%= f.password_field :password %></div>
   </div>
   <% if devise_mapping.rememberable? -%>
     <div class="control-group">
-      <%= f.label :remember_me, :class => "control-label" %>
+      <%= f.label t('login_form.remember_me'), :class => "control-label" %>
       <div class="controls"><%= f.check_box :remember_me %></div>
     </div>
   <% end -%>

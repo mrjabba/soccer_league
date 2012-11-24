@@ -3,11 +3,11 @@
 <%= hidden_field_tag :sort, params[:sort] %>
 <table id="teams_table" class="table table-condensed">
 <tr>
-<th title="Name"><%= sortable "name"  %></th>
-<th title="City"><%= sortable "city"  %></th>
-<th title="State"><%= sortable "state"  %></th>
-<th title="Zip"><%= sortable "zip"  %></th>
-<th title="Country"><%= sortable "country"  %></th>
+<th title="Name"><%= sortable "name", t('name')  %></th>
+<th title="City"><%= sortable "city",t('team_form.city')  %></th>
+<th title="State"><%= sortable "state",t('team_form.state')  %></th>
+<th title="Zip"><%= sortable "zip",t('team_form.zip')  %></th>
+<th title="Country"><%= sortable "country",t('team_form.country')  %></th>
 </tr>
 <% for team in @teams%>
 <tr>

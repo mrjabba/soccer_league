@@ -1,0 +1,48 @@
+es:
+  login_form:
+    username: Nombre de Usuario
+    password: Pontraseña
+    remember_me: Recuerdame
+  home_page:
+    headline: Soccer Status for All!
+    body: Bienvenido! Soccer League Manager puts league management into your hands. Currently, this application is under a lot of development and will be changing frequently. Feel free to try it out. Just keep in mind it is not feature complete. And, data will not be saved.
+  menu_top:
+    home: Home
+    orgs: Organizations
+    leagues: Leagues
+    teams: Equipos
+    people: People
+    venues: Venues
+    users: Users
+    profile: Profile
+    logout: Sign out
+    help: Ayudar
+    login: Sign In
+    login_facebook: Sign In With Facebook
+  menu_bottom:
+    about: Sobre
+    contact: Contacto
+  search: Buscar
+  team: Equipo
+  teams: Equipos
+  team_new: Equipo nuevo
+  name: Nombre
+  langs:
+    de: Deutsch
+    en: English
+    es: Español
+    fr: Français
+    it: Italiano
+    ja: 日本語
+    pt: Português
+    zh: 中文
+  team_form:
+    address1: Dirección1
+    address2: Dirección2
+    city: Ciudad
+    state: Estado
+    zip: Zip
+    country: País
+    phone: Teléfono
+    website: Sitio Web
+    email: Email

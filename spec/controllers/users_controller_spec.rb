@@ -9,7 +9,7 @@ describe UsersController do
     describe "for non-signed users" do
       it "should deny access" do
         get :show, :id => user
-        response.should redirect_to(new_user_session_path)
+        response.should redirect_to("/users/sign_in")
         flash[:alert].should =~ /sign in/
       end
     end
@@ -50,7 +50,7 @@ describe UsersController do
     describe "for non-signed users" do
       it "should deny access" do
         get :index
-        response.should redirect_to(new_user_session_path)
+        response.should redirect_to("/users/sign_in")
         flash[:alert].should =~ /sign in/
       end
     end
@@ -98,9 +98,9 @@ describe UsersController do
         get :index
         response.should have_selector("div.pagination")
         response.should have_selector("span.disabled", :content => "Previous")
-        response.should have_selector("a", :href => "/users?page=2", 
+        response.should have_selector("a", :href => "/en/users?page=2",
                                   :content => "2")
-        response.should have_selector("a", :href => "/users?page=2", 
+        response.should have_selector("a", :href => "/en/users?page=2",
                                   :content => "Next")
       end      
     end    

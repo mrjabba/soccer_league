@@ -7,6 +7,11 @@ module ApplicationHelper
     link_to title, params.merge(:sort => column, :direction => direction, :page => nil), :class => css_class
   end
 
+  def full_path_no_locale
+    return "" if request.fullpath == root_path
+    request.fullpath.to_s[3..-1]
+  end
+
   # Return a title on a per-page basis.
   def title
     base_title = "Soccer_League Manager"

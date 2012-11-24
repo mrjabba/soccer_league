@@ -37,7 +37,7 @@ class TeamsController < ApplicationController
   end
 
   def new
-    @title = "New Team"
+    @title = t(:team_new)
     @team = Team.new
   end
 

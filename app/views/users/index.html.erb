@@ -13,7 +13,7 @@
 <%= form_tag users_path, :method => 'get', :remote => true, :id => "users_search", :class => "form-search" do %>
   <p>
     <%= text_field_tag :search, params[:search], :class => "input-medium search-query" %>
-    <%= submit_tag "Search", :class => "btn" %>
+    <%= submit_tag t(:search), :class => "btn" %>
   </p>
 <% end %>
 <div id="users">

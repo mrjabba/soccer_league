@@ -1,0 +1,51 @@
+es:
+  errors:
+    messages:
+      not_found: 'no encontrado'
+      already_confirmed: 'ya ha sido confirmada'
+      not_locked: 'no está bloqueada'
+      expired: "ha caducado, por favor pida uno nuevo"
+      not_saved:
+        one: "1 error evitó guardar este %{resource}:"
+        other: "%{count} errores evitaron guardar este %{resource}:"
+
+  devise:
+    failure:
+      already_authenticated: 'Ya está conectado/a.'
+      unauthenticated: 'Necesita acceder a su cuenta o registrarse antes de continuar.'
+      unconfirmed: 'Necesita confirmar su cuenta antes de continuar.'
+      locked: 'Su cuenta está bloqueada.'
+      invalid: 'Contraseña o Email incorrecto.'
+      invalid_token: 'Token de autenticación incorrecto.'
+      timeout: 'Su sesión ha expirado, por favor acceda de nuevo para continuar.'
+      inactive: 'Su cuenta no ha sido activada.'
+    sessions:
+      signed_in: 'Le ha conectado correctamente.'
+      signed_out: 'Ha salido correctamente.'
+    passwords:
+      send_instructions: 'Recibirá un email con instrucciones para cambiar su contraseña en pocos minutos.'
+      updated: 'Su contraseña ha sido modificada. Ya ha accedido a su cuenta.'
+      send_paranoid_instructions: 'Si su email ya existe en nuestra base de datos, recibirá un enlace para recuperar su contraseña en su correo'
+    confirmations:
+      send_instructions: 'Recibirá un email con instrucciones para confirmar su cuenta en pocos minutos.'
+      send_paranoid_instructions: 'Si su email ya existe en nuestra base de datos, recibirá un email con instrucciones para confirmar su cuenta en pocos minutos.'
+      confirmed: 'Su cuenta ha sido confirmada. Ya ha accedido a su cuenta.'
+    registrations:
+      signed_up: '¡Bienvenido! Le ha registrado correctamente.'
+      inactive_signed_up: 'Le ha registrado correctamente. Sin embargo, no está conectado todavía porque su cuenta está %{reason}.'
+      updated: 'Ha actualizado su cuenta correctamente.'
+      destroyed: '¡Hasta luego! Su cuenta ha sido cancelada. Esperamos verle pronto.'
+    unlocks:
+      send_instructions: 'Recibirá un email con instrucciones para desbloquear su cuenta en pocos minutos.'
+      unlocked: 'Su cuenta ha sido desbloqueada. Ya ha accedido a su cuenta.'
+      send_paranoid_instructions: 'Si su cuenta existe, recibirá un email con instrucciones para desbloquear su cuenta en pocos minutos.'
+    oauth_callbacks:
+      success: 'Ha sido autorizado satisfactoriamente de la cuenta %{kind}.'
+      failure: 'No ha sido autorizado en la cuenta %{kind} porque "%{reason}".'
+    mailer:
+      confirmation_instructions:
+        subject: 'Instrucciones de confirmación'
+      reset_password_instructions:
+        subject: 'Instrucciones para cambiar su contraseña'
+      unlock_instructions:
+        subject: 'Instrucciones para desbloquear su cuenta'

@@ -1,0 +1,39 @@
+pt:
+  errors:
+    messages:
+      not_found: "não encontrado"
+      already_confirmed: "já foi confirmado"
+      not_locked: "não foi bloequeado"
+
+  devise:
+    failure:
+      unauthenticated: 'Para continuar, deve fazer login ou registrar-se.'
+      unconfirmed: 'Antes de continuar, deve confirmar a sua conta.'
+      locked: 'A sua conta está bloqueada.'
+      invalid: 'O endereço de correio electrónico ou a palavra-passe inválido.'
+      invalid_token: 'O token de autentificação não é válido.'
+      timeout: 'A sua sessão expirou, por favor faça login novamente para puder continuar.'
+      inactive: 'A sua conta ainda não foi ativada.'
+    sessions:
+      signed_in: 'Fez login com sucesso.'
+      signed_out: 'Fez logout com sucesso.'
+    passwords:
+      send_instructions: 'Dentro de minutos, receberá uma mensagem electrónica com as instruções de reinicialização da palavra-passe.'
+      updated: 'A sua palavra-passe foi alterada com sucesso. Agora está conetado.'
+    confirmations:
+      send_instructions: 'Dentro de minutos, receberá uma mensagem electrónica com as instruções de confirmação da sua conta.'
+      confirmed: 'A sua conta foi confirmada com sucesso. Agora está conetado.'
+    registrations:
+      signed_up: 'Fez login com sucesso. Se não autorizado, a confirmação foi enviada ao endereço do seu correio electrónico.'
+      updated: 'A sua conta foi atualizada com sucesso.'
+      destroyed: 'Adéus! A sua conta foi cancelada com sucesso. Esperamos vê-lo novamente em breve.'
+    unlocks:
+      send_instructions: 'Dentro de minutos, receberá a mensagem electrónica com as instruções como desbloquear a sua conta.'
+      unlocked: 'A sua conta foi desbloqueada com sucesso. Agora está conetado.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Instruções de confirmação'
+      reset_password_instructions:
+        subject: 'Reinicie as instruções da palavra-passe'
+      unlock_instructions:
+        subject: 'Instruções de desbloqueio'

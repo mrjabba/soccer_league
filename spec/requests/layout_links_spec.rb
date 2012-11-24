@@ -23,8 +23,8 @@ describe "LayoutLinks" do
   end
   
   it "should have a signup page at 'new_user_registration_path'" do
-  	get new_user_registration_path
-  	response.should have_selector('h2', :content => "Sign up")	
+    get "/users/sign_up"
+  	response.should have_selector('h2', :content => "Sign up")
   end
   
   it "should have the right links on the layout" do
@@ -37,8 +37,8 @@ describe "LayoutLinks" do
 	response.should have_selector('title', :content => "Contact")
 	click_link "Home"
 	response.should have_selector('title', :content => "Home")
-	click_link "Sign up"
-	response.should have_selector('h2', :content => "Sign up")
+	click_link "Sign In"
+	response.should have_selector('h2', :content => "Sign in")
 	click_link "People"
 	response.should have_selector('title', :content => "Person Repository")
 	click_link "Teams"
@@ -51,7 +51,7 @@ describe "LayoutLinks" do
     it "should have a signin link" do
       visit root_path
       response.should have_selector("a", :href => new_user_session_path,
-                                          :content => "Sign in")
+                                          :content => "Sign In")
     end
   end
   
@@ -60,14 +60,14 @@ describe "LayoutLinks" do
     before(:each) do
       @user = FactoryGirl.create(:user)
       visit new_user_session_path
-      fill_in :username,   :with => @user.username
-      fill_in :password,  :with => @user.password
+      fill_in "user_username",   :with => @user.username
+      fill_in "user_password",  :with => @user.password
       click_button
     end
     
     it "should have a signout link" do
       visit root_path
-      response.should have_selector("a",:href => destroy_user_session_path, 
+      response.should have_selector("a",:href => "/users/sign_out",
                                           :content => "Sign out") 
     end
   

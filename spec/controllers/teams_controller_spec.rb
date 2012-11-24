@@ -101,12 +101,12 @@ describe TeamsController do
     describe "for non-signed-in users" do
       it "should deny access to 'edit'" do
         get :edit, :id => team
-        response.should redirect_to(new_user_session_path)
+        response.should redirect_to("/users/sign_in")
       end
 
       it "should deny access to 'update'" do
         put :update, :id => team, :team => {}
-        response.should redirect_to(new_user_session_path)
+        response.should redirect_to("/users/sign_in")
       end
     end
   end    

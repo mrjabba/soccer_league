@@ -9,21 +9,34 @@
         <a class="brand" href="#">Soccer League Manager</a>
         <div class="nav-collapse">
           <ul class="nav">
-            <li><%= link_to "Home", root_path %></li>
-            <li><%= link_to "Organizations", organizations_path %></li>
-            <li><%= link_to "Leagues", leagues_path %></li>
-            <li><%= link_to "Teams", teams_path %></li>
-            <li><%= link_to "People", people_path %></li>
-            <li><%= link_to "Venues", venues_path %></li>
+            <li><%= link_to t('menu_top.home'), home_path %></li>
+            <li><%= link_to t('menu_top.orgs'), organizations_path %></li>
+            <li><%= link_to t('menu_top.leagues'), leagues_path %></li>
+            <li><%= link_to t('menu_top.teams'), teams_path %></li>
+            <li><%= link_to t('menu_top.people'), people_path %></li>
+            <li><%= link_to t('menu_top.venues'), venues_path %></li>
             <% if user_signed_in? %>
-              <li><%= link_to "Users", users_path %></li>
-              <li><%= link_to "Profile", edit_user_registration_path %></li>
-              <li><%= link_to "Sign out", destroy_user_session_path %></li>
-            <% else %>
-              <li><%= link_to "Sign in", new_user_session_path %></li>
-                <li><%= link_to image_tag("facebook.png", :alt => "Sign in with facebook"), user_omniauth_authorize_path(:facebook) %></li>
+              <li><%= link_to t('menu_top.users'), users_path %></li>
+              <li><%= link_to t('menu_top.profile'), edit_user_registration_path %></li>
+              <li><%= link_to t('menu_top.logout'), "/users/sign_out" %></li>
+          <% else %>
+              <li><%= link_to t('menu_top.login'), new_user_session_path %></li>
+                <li><%= link_to image_tag("facebook.png", :alt => t('menu_top.login_facebook')), user_omniauth_authorize_path(:facebook) %></li>
           <% end %>
-            <li><%= link_to "Help", help_path %></li>
+            <li><%= link_to t('menu_top.help'), help_path %></li>
+              <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Language<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                      <a href="<%="/de#{full_path_no_locale}" %>"><%= t('langs.de') %></a>
+                      <a href="<%="/en#{full_path_no_locale}" %>"><%= t('langs.en') %></a>
+                      <a href="<%="/es#{full_path_no_locale}" %>"><%= t('langs.es') %></a>
+                      <a href="<%="/fr#{full_path_no_locale}" %>"><%= t('langs.fr') %></a>
+                      <a href="<%="/it#{full_path_no_locale}" %>"><%= t('langs.it') %></a>
+                      <a href="<%="/ja#{full_path_no_locale}" %>"><%= t('langs.ja') %></a>
+                      <a href="<%="/pt#{full_path_no_locale}" %>"><%= t('langs.pt') %></a>
+                      <a href="<%="/zh#{full_path_no_locale}" %>"><%= t('langs.zh') %></a>
+                  </ul>
+              </li>
           </ul>
         </div><!-- /.nav-collapse -->
      </div>

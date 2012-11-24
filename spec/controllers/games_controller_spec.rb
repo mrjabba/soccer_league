@@ -33,7 +33,7 @@ describe GamesController do
       end
 
       it "should redirect to login screen" do
-        response.should redirect_to(new_user_session_path)
+        response.should redirect_to("/users/sign_in")
       end
     end
 
