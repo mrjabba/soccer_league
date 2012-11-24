@@ -1,0 +1,53 @@
+el:
+  login_form:
+    username: Username
+    password: κωδικού πρόσβασης
+    remember_me: Remember me
+  home_page:
+    headline: Soccer Status for All!
+    body: Καλώς Ορίσατε! Soccer League Manager puts league management into your hands. Currently, this application is under a lot of development and will be changing frequently. Feel free to try it out. Just keep in mind it is not feature complete. And, data will not be saved.
+  menu_top:
+    home: Home
+    orgs: οργανώσεις
+    leagues: πρωταθλήματα
+    teams: ομάδες
+    people: άνθρωποι
+    venues: τοποθεσία
+    users: Users
+    profile: Profile
+    logout: Sign out
+    help: Help
+    login: Sign In
+    login_facebook: Sign In With Facebook
+  menu_bottom:
+    about: πληροφορίες
+    contact: επαφή
+  search: αναζήτηση
+  team: ομάδα
+  teams: ομάδες
+  team_new: νέα ομάδα
+  name: όνομα
+  langs:
+    de: Deutsch
+    el: Ελληνικά
+    en: English
+    es: Español
+    fr: Français
+    it: Italiano
+    ja: 日本語
+    ko: 한국어 (韓國語)
+    nl: Dutch
+    pl: Polski
+    pt: Português
+    ru: русский язык
+    zh: 中文
+  team_form:
+    address1: Address1
+    address2: Address2
+    city: πόλη
+    state: πολιτεία
+    zip: Postal Code
+    country: χώρα
+    phone: τηλέφωνο
+    website: δικτυακός τόπος
+    email: Email
