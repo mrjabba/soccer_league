@@ -23,6 +23,9 @@ ru:
   menu_bottom:
     about: информация
     contact: связаться
+  will_paginate:
+    previous_label: '&#8592; предыдущая'
+    next_label: 'следующая &#8594;'
   search: поиск
   team: команда
   teams: Команды

@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.2.7'
 
-gem 'will_paginate', '~> 3.0'
+gem 'will_paginate', '~> 3.0.3'
 gem 'jquery-rails', '>= 1.0.12'
 gem 'devise', '1.5'
 gem 'omniauth-facebook'

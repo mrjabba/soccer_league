@@ -23,6 +23,9 @@ es:
   menu_bottom:
     about: Sobre
     contact: Contacto
+  will_paginate:
+    previous_label: "&#8592; Anterior"
+    next_label: "Siguiente &#8594;"
   search: Buscar
   team: Equipo
   teams: Equipos

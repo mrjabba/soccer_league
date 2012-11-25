@@ -237,4 +237,4 @@ DEPENDENCIES
   rspec-rails (~> 2.8.0)
   simplecov (>= 0.3.5)
   webrat (~> 0.7.3)
-  will_paginate (~> 3.0)
+  will_paginate (~> 3.0.3)
