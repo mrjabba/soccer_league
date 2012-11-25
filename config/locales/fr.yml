@@ -29,7 +29,7 @@ fr:
   search: Recherche
   team: Équipe
   teams: Équipes
-  team_new: New Team
+  team_new: Nouvelle Équipe
   name: Nom
   langs:
     de: Deutsch
@@ -48,3 +48,13 @@ fr:
     ru: русский язык
     tr: Türkçe
     zh: 中文
+  team_form:
+    address1: Adresse1
+    address2: Adresse2
+    city: Ville
+    state: État
+    zip: Code Postal
+    country: Pays
+    phone: Téléphone
+    website: Site Web
+    email: Email
