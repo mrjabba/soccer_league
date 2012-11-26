@@ -6,7 +6,7 @@ class Teamstat < ActiveRecord::Base
   belongs_to :league
   belongs_to :team
 
-  has_many :rosters
+  has_many :rosters, :dependent => :destroy
   has_many :playinglocations, :dependent => :destroy
   has_many :technicalstaffs, :dependent => :destroy
   has_many :people, :through => :rosters

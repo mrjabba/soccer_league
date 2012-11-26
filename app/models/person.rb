@@ -6,10 +6,10 @@ class Person < ActiveRecord::Base
   before_save :destroy_avatar?
   validate :height_meters_inches_required_together
 
-  has_many :playerstats
-  has_many :rosters
+  has_many :playerstats, :dependent => :destroy
+  has_many :rosters, :dependent => :destroy
+  has_many :technicalstaffs, :dependent => :destroy
   has_many :teamstats, :through => :rosters
-  has_many :technicalstaffs
 
   POSITIONS = {"" => "", "Forward" => "FW", "Midfielder" => "MF", "Defender" => "DF", "Forward/Midfielder" => "FW/MF", "Midfielder/Defender" => "MF/DF", "Goalkeeper" => "GK"}
   TECHNICAL_ROLES = {"" => "", "President" => "President", "Technical Director" => "Technical Director",
