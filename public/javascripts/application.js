@@ -47,6 +47,9 @@ $(function() {
           $('#gameWarning').modal();
       }
     });
+    $("#person_thumb").click(function() {
+        $('#personDetail').modal();
+    });
   });
 
 });

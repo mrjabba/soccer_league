@@ -1,44 +1,77 @@
 <ul class="breadcrumb">
-  <li><%= link_to "All People", people_path %><span class="divider">/</span></li>
+  <li><%= link_to t('person_form.all_people'), people_path %><span class="divider">/</span></li>
   <li class="active"><%= @person.firstname %> <%= @person.lastname %></li>
 </ul>
-
-<h1><%= @person.firstname %> <%= @person.lastname %></h1>
-
-<div class="btn-group">
-  <% if can? :new, @person %>
+<div class="row">
+  <div class="span2" id="person_thumb">
+    <a href="#"><%= image_tag @person.avatar.url(:thumb), {"data-toggle" => "modal"}%></a>
+  </div>
+  <div class="span10">
+    <h1><%= @person.firstname %> <%= @person.lastname %></h1>
+    <div class="btn-group">
+      <% if can? :new, @person %>
         <%= link_to "Edit", "#{@person.id}/edit", :class => "btn"  %>
         <%= link_to "Add Person", "/people/new", :class => "btn" %>
-  <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
-
 <div class="row">
   <div class="span8">
+      <table class="table table-condensed">
+          <caption><h3>Career</h3></caption>
+        <% if @person.playerstats.empty? %>
+          <tr>
+              <td>No associations found for this Player.</td>
+          </tr>
+        <% else %>
+            <tr>
+                <td>Coming soon.</td>
+            </tr>
+        <% end %>
+      </table>
+  </div>
+  <div class="span4">
     <table class="table table-condensed">
+      <caption><h3>Personal Information</h3></caption>
       <tr>
-        <th>Position</th>
-        <td><%= @person.position %></td>
+          <th>Position</th>
+          <td><%= @person.position %></td>
       </tr>
       <tr>
-        <th>Birth Date</th>
-        <td><%= @person.birth_date %></td>
+          <th>Birth Date</th>
+          <td><%= @person.birth_date %></td>
       </tr>
       <tr>
-        <th>Nationality</th>
-        <td><%= @person.nationality %></td>
+          <th>Nationality</th>
+          <td><%= @person.nationality %></td>
       </tr>
       <% if @person.height %>
         <th>Height</th>
         <td><%= @person.height %> m</td>
       <% end %>
+      <tr>
+          <th>Birth City</th>
+          <td><%= @person.birth_city %></td>
+      </tr>
+      <tr>
+          <th>Birth Nation</th>
+          <td><%= @person.birth_nation %></td>
+      </tr>
     </table>
   </div>
-    <div class="span4">
-        <div class="front">
-            <%= link_to @person, class: 'pic-link' do %>
-                <%= image_tag @person.avatar.url(:thumb) %>
-            <% end %>
-        </div>
+</div>
+
+<div class="modal hide" id="personDetail">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h1><%= @person.firstname %> <%= @person.lastname %></h1>
+    </div>
+    <div class="modal-body">
+        <%= image_tag @person.avatar.url(:medium) %>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">OK</a>
     </div>
 </div>
 <div class="row">
