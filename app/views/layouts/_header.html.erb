@@ -18,7 +18,7 @@
             <% if user_signed_in? %>
               <li><%= link_to t('menu_top.users'), users_path %></li>
               <li><%= link_to t('menu_top.profile'), edit_user_registration_path %></li>
-              <li><%= link_to t('menu_top.logout'), "/users/sign_out" %></li>
+              <li><%= link_to t('menu_top.logout'), "/#{locale}/users/sign_out" %></li>
           <% else %>
               <li><%= link_to t('menu_top.login'), new_user_session_path %></li>
                 <li><%= link_to image_tag("facebook.png", :alt => t('menu_top.login_facebook')), user_omniauth_authorize_path(:facebook) %></li>

@@ -10,3 +10,4 @@ webrat.log
 .generators
 .DS_Store
 .rakeTasks
+public/system/**

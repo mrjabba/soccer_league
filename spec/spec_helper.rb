@@ -35,4 +35,9 @@ RSpec.configure do |config|
 #    controller.current_user = user
 #  end
 
+  config.before(:all) do
+    puts "before all specs"
+    @params = {:locale => 'en'}
+
+  end
 end

@@ -13,13 +13,13 @@ $(function() {
   $(".collapse").collapse();
 
   $(document).ready(function() {
-      $('#technicalstaff_person_id,#playerstat_person_id,#roster_person_id').tokenInput("/people.json", {
+      $('#technicalstaff_person_id,#playerstat_person_id,#roster_person_id').tokenInput("/en/people.json", {
           crossDomain: false,
           prePopulate: $('#technicalstaff_person_id').data("pre"),
           theme: "facebook",
           tokenLimit: 1
       });
-      $('#playinglocation_venue_id').tokenInput("/venues.json", {
+      $('#playinglocation_venue_id').tokenInput("/en/venues.json", {
           crossDomain: false,
           prePopulate: $('#playinglocation_venue_id').data("pre"),
           theme: "facebook",

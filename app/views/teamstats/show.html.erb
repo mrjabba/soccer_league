@@ -1,5 +1,5 @@
 <ul class="breadcrumb">
-  <li><%= link_to "#{@league.name} (#{@league.year})", "/leagues/#{@league.id}" %><span class="divider">/</span>
+  <li><%= link_to "#{@league.name} (#{@league.year})", league_path(@league) %><span class="divider">/</span>
   </li>
   <li class="active"><%= "#{@teamstat.team.name} Team Information" %></li>
 </ul>
@@ -8,9 +8,10 @@
   <% if can? :new, @teamstat %>
         <%= link_to "Edit Roster", "#{@teamstat.id}/edit", :class => "btn" %>
         <% if can? :new, @game %>
-            <td><%= link_to "Add Player", "/rosters/new?teamstat_id=#{@teamstat.id}", :class => "btn" %></td>
-            <td><%= link_to "Add Staff", "/technicalstaffs/new?teamstat_id=#{@teamstat.id}", :class => "btn" %></td>
-            <td><%= link_to "Add Playing Location", "/playinglocations/new?teamstat_id=#{@teamstat.id}", :class => "btn" %></td>
+
+        <td><%= link_to "Add Player", "/#{locale}/rosters/new?teamstat_id=#{@teamstat.id}", :class => "btn" %></td>
+        <td><%= link_to "Add Staff", "/#{locale}/technicalstaffs/new?teamstat_id=#{@teamstat.id}", :class => "btn" %></td>
+            <td><%= link_to "Add Playing Location", "/#{locale}/playinglocations/new?teamstat_id=#{@teamstat.id}", :class => "btn" %></td>
 <% end %>
         <%= link_to "View Team", team_path(@teamstat.team), :class => "btn" %>
         <%= link_to "Edit Team", edit_team_path(@teamstat.team), :class => "btn" %>

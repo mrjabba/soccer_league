@@ -14,7 +14,7 @@ describe TeamstatsController do
        { :person_tokens => "1,2", :wins => 2 }
       end
 
-      it "should change add a roster of people to the teamstat", :focus => true do
+      it "should change add a roster of people to the teamstat" do
         put :update, :id => teamstat, :teamstat => attr
         teamstat = assigns(:teamstat)
         teamstat.reload
@@ -39,8 +39,9 @@ describe TeamstatsController do
       FactoryGirl.create(:league)
     end
       
-    it "should be successful with a league" do
-      get :new, :league_id => league
+    it "should be successful with a league", :focus => true do
+      #puts "locale is #{I18n.locale} #{@params}"
+      get :new, @params.merge(:league_id => league)
       response.should be_success
     end
 

@@ -1,5 +1,5 @@
 SoccerleagueApp::Application.routes.draw do
-  scope "/:locale" do
+  scope "/:locale", :shallow_path => "(:locale)" do
     devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
     devise_scope :user do
       get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
@@ -32,38 +32,6 @@ SoccerleagueApp::Application.routes.draw do
     match '/about',   :to => 'pages#about'
     match '/help',    :to => 'pages#help'
   end
-
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  devise_scope :user do
-    get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
-  end
-
-  resources :users
-  resources :rosters
-  resources :technicalstaffs
-  resources :playerstats
-  resources :teams
-  resources :people
-  resources :playinglocations
-  resources :venues
-
-  resources :leagues do
-    resources :teamstats, :shallow => true do
-      resources :rosters, :shallow => true
-      resources :technicalstaffs, :shallow => true
-      resources :playinglocations, :shallow => true
-    end
-    resources :games, :shallow => true
-  end
-
-  resources :organizations do
-    resources :leagues, :shallow => true
-  end
-
-  match '/home',    :to => 'pages#home'
-  match '/contact', :to => 'pages#contact'
-  match '/about',   :to => 'pages#about'
-  match '/help',    :to => 'pages#help'
 
   root :to => 'pages#home'
 

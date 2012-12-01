@@ -18,6 +18,7 @@ gem "delayed_paperclip", "~> 2.5.0.1"
 
 group :development, :test do
   gem 'debugger'
+  gem 'sextant'
 end
 
 group :development do
