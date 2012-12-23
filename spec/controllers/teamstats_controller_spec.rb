@@ -39,9 +39,8 @@ describe TeamstatsController do
       FactoryGirl.create(:league)
     end
       
-    it "should be successful with a league", :focus => true do
-      #puts "locale is #{I18n.locale} #{@params}"
-      get :new, @params.merge(:league_id => league)
+    it "should be successful with a league" do
+      get :new, :league_id => league
       response.should be_success
     end
 

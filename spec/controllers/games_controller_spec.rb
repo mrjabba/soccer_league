@@ -33,7 +33,7 @@ describe GamesController do
       end
 
       it "should redirect to login screen" do
-        response.should redirect_to("/users/sign_in")
+        response.should redirect_to(new_user_session_path)
       end
     end
 
@@ -43,7 +43,7 @@ describe GamesController do
         get :edit, :id => @game
       end
 
-      it "should display game edit screen", :focus => true do
+      it "should display game edit screen" do
         response.should be_success
         response.should have_selector("title", :content => "Edit game")
       end

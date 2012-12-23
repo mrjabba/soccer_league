@@ -90,12 +90,12 @@ describe VenuesController do
     describe "for non-signed-in users" do
       it "should deny access to 'edit'" do
         get :edit, :id => venue
-        response.should redirect_to("/users/sign_in")
+        response.should redirect_to(new_user_session_path)
       end
 
       it "should deny access to 'update'" do
         put :update, :id => venue, :venue => {}
-        response.should redirect_to("/users/sign_in")
+        response.should redirect_to(new_user_session_path)
       end
     end
   end    

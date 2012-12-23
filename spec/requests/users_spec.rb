@@ -5,7 +5,7 @@ describe "signup" do
   describe "failure" do
     it "should not make a new user" do
       lambda do
-          visit "/users/sign_up"
+          visit "/#{I18n.locale}/users/sign_up"
           fill_in "Email", :with => ""
           fill_in "Password", :with => ""
           fill_in "Password confirmation", :with => ""
@@ -19,7 +19,7 @@ describe "signup" do
     describe "success" do
       it "should make a new user" do
         lambda do
-          visit "/users/sign_up"
+          visit "/#{I18n.locale}/users/sign_up"
           fill_in "Username", :with => "myuser"
           fill_in "Email", :with => "user@example.com"
           fill_in "Password", :with => "foobar"
@@ -35,7 +35,7 @@ describe "signup" do
   describe "sign in/out" do
     describe "failure" do
       it "should not sign a user in" do
-        visit new_user_session_path
+        visit "/#{I18n.locale}/users/sign_in"
         fill_in "user_username",   :with => ""
         fill_in "user_password",  :with => ""
         click_button
@@ -46,7 +46,7 @@ describe "signup" do
     describe "success" do
       it "should sign a user in and out" do
         user = FactoryGirl.create(:user)
-        visit new_user_session_path
+        visit "/#{I18n.locale}/users/sign_in"
         fill_in "user_username",   :with => user.username
         fill_in "user_password", :with => user.password
         click_button

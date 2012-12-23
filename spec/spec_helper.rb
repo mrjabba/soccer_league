@@ -34,10 +34,30 @@ RSpec.configure do |config|
 #  def test_sign_in(user)
 #    controller.current_user = user
 #  end
+end
 
-  config.before(:all) do
-    puts "before all specs"
-    @params = {:locale => 'en'}
-
+#TODO patching below to allow specs to recognize locale routing
+# remove this as soon as possible. Check again with Rails with 3.3+
+# see http://www.ruby-forum.com/topic/3448797 and
+# http://stackoverflow.com/questions/1987354/how-to-set-locale-default-url-options-for-functional-tests-rails/8920258#8920258
+class ActionController::TestCase
+  module Behavior
+    def process_with_default_locale(action, parameters = nil, session =
+        nil, flash = nil, http_method = 'GET')
+      parameters = { :locale => I18n.default_locale }.merge( parameters || {} )
+      process_without_default_locale(action, parameters, session, flash, http_method)
+    end
+    alias_method_chain :process, :default_locale
   end
+end
+
+module ActionDispatch::Assertions::RoutingAssertions
+  def assert_recognizes_with_default_locale(expected_options, path,
+      extras={}, message=nil)
+    expected_options = { :locale => I18n.default_locale.to_s
+    }.merge(expected_options || {} )
+    assert_recognizes_without_default_locale(expected_options, path,
+                                             extras, message)
+  end
+  alias_method_chain :assert_recognizes, :default_locale
 end

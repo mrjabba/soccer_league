@@ -4,7 +4,7 @@ describe "People" do
 
   before(:each) do
     user = FactoryGirl.create(:user)
-    visit new_user_session_path
+    visit "/#{I18n.locale}/users/sign_in"
     fill_in "user_username",    :with => user.username
     fill_in "user_password", :with => user.password
     click_button

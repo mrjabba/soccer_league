@@ -9,7 +9,7 @@ describe UsersController do
     describe "for non-signed users" do
       it "should deny access" do
         get :show, :id => user
-        response.should redirect_to("/users/sign_in")
+        response.should redirect_to(new_user_session_path)
         flash[:alert].should =~ /sign in/
       end
     end
@@ -50,7 +50,7 @@ describe UsersController do
     describe "for non-signed users" do
       it "should deny access" do
         get :index
-        response.should redirect_to("/users/sign_in")
+        response.should redirect_to(new_user_session_path)
         flash[:alert].should =~ /sign in/
       end
     end

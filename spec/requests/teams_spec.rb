@@ -4,7 +4,7 @@ describe "Teams" do
 
   before(:each) do
     user = FactoryGirl.create(:user)
-    visit new_user_session_path
+    visit "/#{I18n.locale}/users/sign_in"
     fill_in "user_username",    :with => user.username
     fill_in "user_password", :with => user.password
     click_button
@@ -16,11 +16,8 @@ describe "Teams" do
       it "should not make a new team" do
         lambda do
           visit teams_path
-          #TODO FIXME this clck link below shouldn't be working but it does?
-          #click_link "New Team"
-          
-          #click_link "New Person"
-          visit "teams/new"
+
+          visit "/#{I18n.locale}/teams/new"
           response.should have_selector('title', :content => "New Team")
           
           response.should have_selector('title', :content => "New Team")
@@ -37,11 +34,9 @@ describe "Teams" do
       it "should make a new team" do
         lambda do
           visit teams_path
-          #TODO FIXME this clck link below shouldn't be working but it does?
-          #click_link "New Team"
-          
-          visit "teams/new"
-          
+
+          visit "/#{I18n.locale}/teams/new"
+
           response.should have_selector('title', :content => "New Team")
           fill_in "team_name", :with => "FC Whatever"
           fill_in "team_address1", :with => "777 Broadway"

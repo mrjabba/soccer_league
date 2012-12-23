@@ -147,7 +147,7 @@ describe LeaguesController do
        end.should change(League, :count).by(1)
      end
 
-     it "should redirect to the league show page", :focus => true do
+     it "should redirect to the league show page" do
        post :create, :organization_id => organization, :league => attr
        response.should redirect_to(league_path(assigns(:league)))
      end
