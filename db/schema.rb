@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121123044128) do
+ActiveRecord::Schema.define(:version => 20121126025253) do
 
   create_table "games", :force => true do |t|
     t.integer  "team1_id"
@@ -116,6 +116,14 @@ ActiveRecord::Schema.define(:version => 20121123044128) do
     t.integer  "updated_by_id"
     t.integer  "jersey_number"
     t.string   "position"
+    t.integer  "goals"
+    t.integer  "assists"
+    t.integer  "shots"
+    t.integer  "fouls"
+    t.integer  "yellow_cards"
+    t.integer  "red_cards"
+    t.integer  "minutes"
+    t.integer  "saves"
   end
 
   add_index "rosters", ["created_by_id"], :name => "index_rosters_on_created_by_id"

@@ -3,7 +3,16 @@
 <td><%= roster.jersey_number %></td>
 <td><%= (roster.position? ? roster.position : roster.person.position) %></td>
 <td><%= roster.person.nationality %></td>
-<% if can? :new, @teamstat %>
+<td><%= roster.goals %></td>
+<td><%= roster.assists %></td>
+<td><%= roster.shots %></td>
+<td><%= roster.fouls %></td>
+<td><%= roster.yellow_cards %></td>
+<td><%= roster.red_cards %></td>
+<td><%= roster.minutes %></td>
+<td><%= roster.saves %></td>
+
+  <% if can? :new, @teamstat %>
     <td>
         <%= link_to "Remove", roster, :method => :delete,
                     :data => {:confirm => "Remove this person from the roster?"},

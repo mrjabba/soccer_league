@@ -1,0 +1,39 @@
+<% if @rosters && !@rosters.empty? %>
+  <table class="table table-condensed">
+    <caption><h3>Career</h3></caption>
+    <% if @rosters.empty? %>
+      <tr>
+        <td>No associations found for this Player.</td>
+      </tr>
+    <% else %>
+      <tr>
+        <th title="Club">Year</th>
+        <th title="Club">Club</th>
+        <th title="Goals">Goals</th>
+        <th title="Assists">Assists</th>
+        <th title="Shots">Shots</th>
+        <th title="Fouls">Fouls</th>
+        <th title="Cautions">Cautions</th>
+        <th title="Ejections">Ejections</th>
+        <th title="Minutes">Minutes</th>
+        <th title="Saves">Saves</th>
+        <th title="Jersey Number">Jersey</th>
+      </tr>
+      <% @rosters.each do |stat| %>
+        <tr>
+          <td><%=stat.teamstat.league.year %></td>
+          <td><%=stat.teamstat.team.name %></td>
+          <td><%=stat.goals %></td>
+          <td><%=stat.assists %></td>
+          <td><%=stat.shots %></td>
+          <td><%=stat.fouls %></td>
+          <td><%=stat.yellow_cards %></td>
+          <td><%=stat.red_cards %></td>
+          <td><%=stat.minutes %></td>
+          <td><%=stat.saves %></td>
+          <td><%=stat.jersey_number %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+<% end %>

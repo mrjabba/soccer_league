@@ -12,6 +12,16 @@
     <th title="Name">Name</th>
     <th title="Position">Position</th>
     <th title="Jersey Number">Jersey Number</th>
+    <% unless @league.supports_games? %>
+        <th title="Goals">Goals</th>
+        <th title="Assists">Assists</th>
+        <th title="Shots">Shots</th>
+        <th title="Fouls">Fouls</th>
+        <th title="Yellow">Yellow</th>
+        <th title="Red">Red</th>
+        <th title="Min">Min</th>
+        <th title="Saves">Saves</th>
+    <% end %>
     </tr>
       <%= render "roster_fields", :f => f %>
     </table>

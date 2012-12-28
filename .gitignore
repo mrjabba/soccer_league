@@ -11,3 +11,4 @@ webrat.log
 .DS_Store
 .rakeTasks
 public/system/**
+public/system/**

@@ -15,7 +15,6 @@ class PeopleController < ApplicationController
 
   def show
     @person = Person.find(params[:id])
-    @playerstats = Playerstat.find_all_by_person_id(params[:id])
     @title = "View Person | " + @person.firstname + " " + @person.lastname
   end
 
