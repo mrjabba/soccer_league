@@ -1,5 +1,5 @@
 <ul class="breadcrumb">
-  <li><%= link_to "#{@organization.name}", "/organizations/#{@organization.id}" %><span class="divider">/</span></li>
+  <li><%= link_to "#{@organization.name}", organization_path(@organization.id) %><span class="divider">/</span></li>
   <li class="active"><%= "#{@league.name} (#{@league.year})" %></li>
 </ul>
 
