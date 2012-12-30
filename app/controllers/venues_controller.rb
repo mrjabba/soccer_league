@@ -5,7 +5,7 @@ class VenuesController < ApplicationController
   def index
     if params[:q]
       respond_to do |format|
-        format.json { render :json => Venue.fetch_people_by_name_as_array(params[:q])}
+        format.json { render :json => Venue.fetch_venues_by_name_as_array(params[:q])}
       end
     else
       @title = "Venue Repository"

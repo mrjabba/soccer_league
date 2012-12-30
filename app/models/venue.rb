@@ -10,7 +10,7 @@ class Venue < ActiveRecord::Base
                   :length   => { :maximum => 50 },
                   :uniqueness => { :case_sensitive => false }
 
-  def self.fetch_people_by_name_as_array(query)
+  def self.fetch_venues_by_name_as_array(query)
     Venue.where("UPPER(name) like UPPER(?)", "%#{query}%").map(&:filter_by_name_hash)
   end
 
