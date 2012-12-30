@@ -8,12 +8,22 @@ You can add, update, and filter for these entities:
 * Leagues (anything from English Premier League to your local pub league)
 * Teams
 * People (Players, Referees, Coaches, and so on), with Avatar support via Amazon S3
-* League Table Editing
+* League Table Editing (without game magement)
+* Roster Stats Editing (without game magement)
 * Game Stat Management
 * Venues (stadia or soccer complexes), with Google Maps API pinpoints
 
-This application also gives you the ability to manage stats. You can configure a league to manage games where league tables are automatically updated from those games. Or, you can choose a simpler approach without game management. This will allow you to simply edit the league table.Game management still needs some work. Your mileage may vary.
+#### Two Ways to Manage Stats
 
+This application also gives you the ability to manage stats in two ways: with or without game management. 
+
+*Game Management*
+A league configured with game management is intended for a league scorekeeper who needs to track stats closely at the game level. If you choose to manage your league with games (checkbox available on the League edit screen), you can track individual game statistics. The wins/losses/ties roll up to the league table. Game management still needs some work. Your mileage may vary.
+
+*League Management*
+A league configured without game management is intended for the casual fan or perhaps a pub (recreational) league administrator. Without game management, you may simply edit the league table. Additionally, this configuration also enables you to manage a player's stats for a season via the Roster edit screen.
+
+### Contributions Welcome
 This project is being continually improved. There is no official release yet. If you want to use it, feel free to fork it. Contributions are welcome. I have ideas for other features like favoriting a league (or any entity), image support for venues, and adding more roles to handle sharing/collaboration. There is a need to support import/export of data and reports, like a score card in game management. There is also a need for optimization. Work needs to done to ensure that we have enough database indexes, and queries are efficient.
 
 ### Getting Started
