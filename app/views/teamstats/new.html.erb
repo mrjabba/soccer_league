@@ -47,4 +47,19 @@
   <div class="alert">Can't find your team?
     You need to <%= link_to "create your team first", teams_path %>. Then add your team to the league.</div>
 <% end %>
-<%= render 'shared/team_league_search', :league_id => @teamstat.league_id %>
+<script type="text/javascript">
+  $('#teamstat_team_id').tokenInput("/en/teams.json", {
+    crossDomain: false,
+    prePopulate: $('#teamstat_team_id').data("pre"),
+    theme: "facebook",
+    tokenLimit: 1
+  });
+
+  $('#teamstat_person_tokens').tokenInput("/en/people.json", {
+    crossDomain: false,
+    prePopulate: $('#teamstat_person_tokens').data("pre"),
+    theme: "facebook",
+    tokenLimit: 1
+  });
+</script>
+

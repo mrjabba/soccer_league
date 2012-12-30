@@ -23,4 +23,11 @@
     <%= link_to "Cancel", league_games_path, :class => "btn" %>
   </div>
 <% end %>
-<%= render 'shared/team_league_search', :league_id => @game.league_id %>
+<script type="text/javascript">
+  $('#game_team1_id,#game_team2_id').tokenInput("/en/teams.json?league_id=<%= @game.league_id %>", {
+    crossDomain: false,
+    prePopulate: $('#game_team1_id,#game_team2_id').data("pre"),
+    theme: "facebook",
+    tokenLimit: 1
+  });
+</script>

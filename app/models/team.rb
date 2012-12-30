@@ -21,8 +21,12 @@ class Team < ActiveRecord::Base
     teamstat.league if teamstat != nil
   end
 
-  def self.fetch_team_by_name_for_league_as_array(league_id, query)
-  Team.joins(:teamstat).where("league_id = ? AND UPPER(name) like UPPER(?)", "#{league_id}", "%#{query}%").map(&:filter_by_name_hash)
+  def self.fetch_teams_by_name_for_league_as_array(league_id, query)
+    Team.joins(:teamstat).where("league_id = ? AND UPPER(name) like UPPER(?)", "#{league_id}", "%#{query}%").map(&:filter_by_name_hash)
+  end
+
+  def self.fetch_teams_by_name_as_array(query)
+    Team.where("UPPER(name) like UPPER(?)", "%#{query}%").map(&:filter_by_name_hash)
   end
 
   def filter_by_name_hash

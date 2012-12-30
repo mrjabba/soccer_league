@@ -3,9 +3,14 @@ class TeamsController < ApplicationController
   helper_method :sort_column, :sort_direction, :per_page
 
   def index
+    #yuk, extract to TeamFinder
     if params[:league_id] && params[:q]
       respond_to do |format|
-        format.json { render :json => Team.fetch_team_by_name_for_league_as_array(params[:league_id], params[:q])}
+        format.json { render :json => Team.fetch_teams_by_name_for_league_as_array(params[:league_id], params[:q])}
+      end
+    elsif params[:q]
+      respond_to do |format|
+        format.json { render :json => Team.fetch_teams_by_name_as_array(params[:q])}
       end
     else
       @title = "Team Repository"
