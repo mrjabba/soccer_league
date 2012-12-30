@@ -10,16 +10,7 @@ describe TeamstatsController do
     end
 
     describe "success" do
-      let(:attr) do
-       { :person_tokens => "1,2", :wins => 2 }
-      end
-
-      it "should change add a roster of people to the teamstat" do
-        put :update, :id => teamstat, :teamstat => attr
-        teamstat = assigns(:teamstat)
-        teamstat.reload
-        teamstat.rosters.size.should eq(attr[:person_tokens].split(",").size)
-      end
+      let(:attr) {  }
 
       it "should redirect to the teamstat show page" do
         put :update, :id => teamstat, :teamstat => attr
@@ -116,7 +107,7 @@ describe TeamstatsController do
     end
 
     describe "success" do
-      let(:attr) { { :team_id => team } }
+      let(:attr) { { :team_id => team,  :person_tokens => "1,2" } }
 
       it "should redirect to the league show page" do
         post :create, :league_id => league, :teamstat => attr
@@ -127,6 +118,14 @@ describe TeamstatsController do
         post :create, :league_id => league, :teamstat => attr
         flash[:success].should =~ /added/
       end
+
+      it "should change add a roster of people to the teamstat" do
+        post :create, :league_id => league, :teamstat => attr
+        teamstat = assigns(:teamstat)
+        teamstat.reload
+        teamstat.rosters.size.should eq(attr[:person_tokens].split(",").size)
+      end
+
     end
 
     describe "failure" do

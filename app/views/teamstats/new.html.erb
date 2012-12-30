@@ -5,8 +5,9 @@
 </ul>
 
 <%= form_for [@league, @teamstat], :html => {:class => "well form-horizontal"} do |f| %>
+<%= render :partial => "shared/error_messages", :locals => {:model => f.object  } %>
 
-    <div class="control-group">
+  <div class="control-group">
         <%= f.label "Team", :class => "control-label" %>
         <div class="controls"><%= f.text_field :team_id %></div>
     </div>

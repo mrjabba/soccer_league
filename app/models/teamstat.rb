@@ -1,7 +1,9 @@
 class Teamstat < ActiveRecord::Base
   include Auditable
   attr_accessible :rosters_attributes, :wins, :losses, :ties, :goals_for, :goals_against, :team_id, :league_id, :person_tokens, :playinglocations_attributes, :technicalstaffs_attributes
+  attr_accessor :person_tokens
   before_validation :init_stats
+  before_create :convert_person_ids_to_roster_items
 
   belongs_to :league
   belongs_to :team
@@ -22,14 +24,6 @@ class Teamstat < ActiveRecord::Base
 
   def self.fetch_league_table(league_id)
     Teamstat.includes([:team]).find_all_by_league_id(league_id).sort!{|a,b| b.points <=> a.points}
-  end
-
-  def person_tokens=(ids)
-    convert_person_ids_to_roster_items(ids)
-  end
-
-  def person_tokens
-    people.map(&:filter_by_name_hash)
   end
 
   #TODO ensure these are whole numbers?
@@ -63,12 +57,14 @@ class Teamstat < ActiveRecord::Base
 
   private
 
-  def convert_person_ids_to_roster_items(ids)
-    self.rosters.clear
-    ids.split(",").each { |person_id|
-      self.rosters.build(:person_id => person_id,
-                         :created_by_id => created_by_id, :updated_by_id => updated_by_id)
-    }
+  def convert_person_ids_to_roster_items
+    unless person_tokens.blank?
+      self.rosters.clear
+      person_tokens.split(",").each { |person_id|
+        self.rosters.build(:person_id => person_id,
+                           :created_by_id => created_by_id, :updated_by_id => updated_by_id)
+      }
+    end
   end
 
   def init_stats

@@ -33,9 +33,8 @@ class TeamstatsController < ApplicationController
 
   def create
     @league = League.find(params[:league_id])
-    @teamstat = @league.teamstats.build(params[:teamstat])
-    @teamstat.created_by_id = current_user.id
-    @teamstat.updated_by_id = current_user.id
+    @teamstat = @league.teamstats.build(params[:teamstat].merge(:created_by_id => current_user.id,
+                                                                :updated_by_id => current_user.id))
     if @teamstat.save
       flash[:success] = "Team added to league successfully!"
       redirect_to @league
