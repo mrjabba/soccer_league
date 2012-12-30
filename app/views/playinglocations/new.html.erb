@@ -1,7 +1,7 @@
 <h2>New Playing Location</h2>
 
 <%= form_for [@playinglocation.teamstat, @playinglocation], :html => {:class => "well form-horizontal"} do |f| %>
-    <%= render 'shared/error_messages_playinglocation', :object => f.object %>
+  <%= render :partial => "shared/error_messages", :locals => {:model => f.object} %>
     <%= f.hidden_field :teamstat_id %>
     <div class="alert alert-info">This venue will be added to the league for this team: <%= @teamstat.team_name %></div>
 

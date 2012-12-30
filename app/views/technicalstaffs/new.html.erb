@@ -1,7 +1,7 @@
 <h2>New Technical Staff</h2>
 
 <%= form_for [@technicalstaff.teamstat, @technicalstaff], :html => {:class => "well form-horizontal"} do |f| %>
-    <%= render 'shared/error_messages_technicalstaff', :object => f.object %>
+  <%= render :partial => "shared/error_messages", :locals => {:model => f.object} %>
     <%= f.hidden_field :teamstat_id %>
     <div class="alert alert-info">This person will be added as staff for <%= @teamstat.team_name %></div>
 

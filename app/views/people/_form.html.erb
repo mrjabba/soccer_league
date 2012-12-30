@@ -1,5 +1,5 @@
 <%= form_for(model, :html => {:multipart => true, :class => "well form-horizontal"}) do |f| %>
-  <%= render 'shared/error_messages_person', :object => f.object %>
+  <%= render :partial => "shared/error_messages", :locals => {:model => f.object} %>
   <div class="control-group">
     <%= f.label :firstname, :class => "control-label" %>
     <div class="controls"><%= f.text_field :firstname %></div>

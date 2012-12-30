@@ -1,7 +1,7 @@
 <h2>New Roster Entry</h2>
 
 <%= form_for [@roster.teamstat, @roster], :html => {:class => "well form-horizontal"} do |f| %>
-    <%= render 'shared/error_messages_roster', :object => f.object %>
+  <%= render :partial => "shared/error_messages", :locals => {:model => f.object} %>
     <%= f.hidden_field :teamstat_id %>
     <div class="alert alert-info">This person will be added to the roster for <%= @teamstat.team_name %></div>
 
