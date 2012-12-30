@@ -15,9 +15,10 @@ class GamesController < ApplicationController
 
   def create
     @league = League.find(params[:league_id])
-    @game = @league.games.build(params[:game])
-    @game.created_by_id = current_user.id
-    @game.updated_by_id = current_user.id
+
+    @game = @league.games.build(params[:game].merge(:created_by_id => current_user.id,
+                                                     :updated_by_id => current_user.id))
+
     if @game.save
       flash[:success] = "Game added successfully!"
       redirect_to @game

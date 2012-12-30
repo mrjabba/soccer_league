@@ -1,6 +1,6 @@
 class Game < ActiveRecord::Base
   include Auditable
-  attr_accessible :playerstats_attributes, :team1_id, :team2_id, :league_id, :visiting_team_goals, :home_team_goals
+  attr_accessible :playerstats_attributes, :team1_id, :team2_id, :league_id, :visiting_team_goals, :home_team_goals, :completed
   before_create :team_rosters_to_playerstats
   before_update :update_game
   before_destroy :revert_teamstat
@@ -120,15 +120,17 @@ class Game < ActiveRecord::Base
         roster_home = roster_for_team(teamstat_home)
         if roster_home.size > 0
           roster_home.each {|roster|
-            self.playerstats.build(:game_id => self.id, :team_id => self.team2_id, :person_id => roster.person.id)
-           }
+            self.playerstats.build(:game_id => self.id, :team_id => self.team2_id, :person_id => roster.person.id,
+                                   :created_by_id => created_by_id, :updated_by_id => updated_by_id)
+          }
         end
 
         roster_visiting = roster_for_team(teamstat_visiting)
         if roster_visiting.size > 0
             roster_visiting.each {|roster|
-              self.playerstats.build(:game_id => self.id, :team_id => self.team1_id, :person_id => roster.person.id)
-             }
+              self.playerstats.build(:game_id => self.id, :team_id => self.team1_id, :person_id => roster.person.id,
+                                     :created_by_id => created_by_id, :updated_by_id => updated_by_id)
+            }
         end
     end
 
