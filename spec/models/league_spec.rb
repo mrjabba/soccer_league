@@ -3,7 +3,7 @@ require 'spec_helper'
 describe League do
 
   before(:each) do
-    @attr = { :name => "MLS", :year => 2002, :created_by_id => 1, :updated_by_id => 1, :organization_id => 1, :supports_games => true }
+    @attr = { :name => "MLS", :to_year => 2002, :from_year => 2001, :created_by_id => 1, :updated_by_id => 1, :organization_id => 1, :supports_games => true }
   end
 
   it "should create a new instance given valid attributes" do
@@ -19,20 +19,24 @@ describe League do
     League.new(@attr.merge(:name => long_name)).should_not be_valid
   end
 
-  it "should require a year" do
-    League.new(@attr.merge(:year => nil)).should_not be_valid
+  it "should require years" do
+    League.new(@attr.merge(:to_year => nil)).should_not be_valid
+    League.new(@attr.merge(:from_year => nil)).should_not be_valid
   end
 
-  it "should require a year where soccer was played" do
-    League.new(@attr.merge(:year => 1250)).should_not be_valid
+  it "should require years where soccer was played" do
+    League.new(@attr.merge(:from_year => 1250)).should_not be_valid
+    League.new(@attr.merge(:to_year => 1250)).should_not be_valid
   end
 
-  it "should require year be a positive number" do
-    League.new(@attr.merge(:year => -3)).should_not be_valid
+  it "should require years be a positive number" do
+    League.new(@attr.merge(:from_year => -3)).should_not be_valid
+    League.new(@attr.merge(:to_year => -3)).should_not be_valid
   end
 
   it "should require year be a number" do
-    League.new(@attr.merge(:year => "foo")).should_not be_valid
+    League.new(@attr.merge(:from_year => "foo")).should_not be_valid
+    League.new(@attr.merge(:to_year => "foo")).should_not be_valid
   end
 
   it "should require created by id" do

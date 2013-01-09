@@ -73,7 +73,7 @@ describe LeaguesController do
     end
     
     describe "failure" do
-      let(:attr) { { :name => "", :year => nil} }
+      let(:attr) { { :name => "", :from_year => nil} }
 
       it "should render the 'edit' page" do
         put :update, :id => league, :league => attr
@@ -87,14 +87,14 @@ describe LeaguesController do
     end
     
     describe "success" do
-      let!(:attr) { { :name => "Some league name", :year => 2002} }
+      let!(:attr) { { :name => "Some league name", :from_year => 2002} }
 
       it "should change the league's attributes" do
         put :update, :id => league, :league => attr
         league = assigns(:league)
         league.reload
         league.name.should eql(attr[:name])
-        league.year.should eql(attr[:year])
+        league.from_year.should eql(attr[:from_year])
       end
       
       it "should redirect to the league show page" do
@@ -113,7 +113,7 @@ describe LeaguesController do
    let(:organization) { FactoryGirl.create(:organization) }
 
    describe "failure" do
-     let(:attr) { { :name => "", :year => "" } }
+     let(:attr) { { :name => "", :from_year => "" } }
      before(:each) do
        sign_in(FactoryGirl.create(:user))
      end
@@ -136,7 +136,7 @@ describe LeaguesController do
    end
 
    describe "success" do
-     let(:attr) { { :name => "foo", :year => "2010" } }
+     let(:attr) { { :name => "foo", :from_year => "2010", :to_year => "2011" } }
      before(:each) do
        sign_in(FactoryGirl.create(:user))
      end

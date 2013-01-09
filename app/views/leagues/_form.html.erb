@@ -5,10 +5,14 @@
         <div class="controls"><%= f.text_field :name %></div>
     </div>
     <div class="control-group">
-        <%= f.label :year, :class => "control-label" %>
-        <div class="controls"><%= f.text_field :year %></div>
+        <%= f.label :from_year, :class => "control-label" %>
+        <div class="controls"><%= f.text_field :from_year %></div>
     </div>
-    <div class="alert">Indicate whether you want to manage games. If you choose "Support Games",
+  <div class="control-group">
+    <%= f.label :to_year, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :to_year %></div>
+  </div>
+  <div class="alert">Indicate whether you want to manage games. If you choose "Support Games",
         you want to manage individual games and have your league table updated automatically.
         Leave it unchecked if you would like to manually edit your league table (wins/losses) manually without game management.</div>
     <div class="control-group">

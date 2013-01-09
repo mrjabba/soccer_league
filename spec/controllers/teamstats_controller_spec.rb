@@ -54,7 +54,7 @@ describe TeamstatsController do
     it "should have the right title" do
       get :show, :id => roster.teamstat
       response.should have_selector("title",
-          :content => "View Roster | #{roster.teamstat.league.name} | #{roster.teamstat.league.year} | #{roster.teamstat.team.name}")
+          :content => "View Roster | #{roster.teamstat.league.name} | #{roster.teamstat.league.from_year}-#{roster.teamstat.league.to_year} | #{roster.teamstat.team.name}")
     end
   end
 

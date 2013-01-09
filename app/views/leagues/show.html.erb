@@ -1,6 +1,6 @@
 <ul class="breadcrumb">
   <li><%= link_to "#{@organization.name}", organization_path(@organization.id) %><span class="divider">/</span></li>
-  <li class="active"><%= "#{@league.name} (#{@league.year})" %></li>
+  <li class="active"><%= "#{@league.name} (#{@league.from_year}-#{@league.to_year})" %></li>
 </ul>
 
 <div class="btn-group">

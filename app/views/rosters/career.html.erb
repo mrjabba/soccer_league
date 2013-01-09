@@ -7,7 +7,7 @@
       </tr>
     <% else %>
       <tr>
-        <th title="Club">Year</th>
+        <th title="Season">Season</th>
         <th title="Club">Club</th>
         <th title="Goals">Goals</th>
         <th title="Assists">Assists</th>
@@ -21,7 +21,7 @@
       </tr>
       <% @rosters.each do |stat| %>
         <tr>
-          <td><%=stat.teamstat.league.year %></td>
+          <td><%=stat.teamstat.league.from_year %>-<%=stat.teamstat.league.to_year %></td>
           <td><%=stat.teamstat.team.name %></td>
           <td><%=stat.goals %></td>
           <td><%=stat.assists %></td>

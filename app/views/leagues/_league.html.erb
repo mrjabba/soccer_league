@@ -3,13 +3,13 @@
 <table id="leagues_table" class="table table-condensed">
   <tr>
     <th title="Name"><%= sortable "name"  %></th>
-    <th title="Year"><%= sortable "year"  %></th>
+    <th title="Season"><%= sortable "from_year"  %></th>
     <th title="Actions">Actions</th>
   </tr>
   <% for league in @leagues%>
     <tr>
       <td><%= link_to league.name, league %></td>
-      <td><%= league.year %></td>
+      <td><%= league.from_year %>-<%= league.to_year %></td>
       <td>
         <% if can? :new, league %>
           <%= link_to "Delete", league, :method => :delete, :data => {:confirm => "Delete this league: #{league.name}?"},

@@ -1,13 +1,13 @@
 <table id="league_table" class="table table-condensed">
   <tr>
     <th title="Name">Name</th>
-    <th title="Year">Year</th>
+    <th title="Year">Season</th>
     <th title="Actions">Actions</th>
   </tr>
   <% for league in @leagues%>
     <tr>
       <td><%= link_to league.name , league %></td>
-      <td><%= league.year %></td>
+      <td><%= league.from_year %>-<%= league.to_year %></td>
       <td>
         <% if can? :new, league %>
           <%= link_to "Delete", league, :method => :delete, :data => {:confirm => "Delete this league: #{league.name}?"},

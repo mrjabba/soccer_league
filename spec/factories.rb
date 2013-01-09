@@ -83,7 +83,8 @@ end
 
 FactoryGirl.define do
   factory :league do
-    year                 2002
+    from_year                 2002
+    to_year                 2003
     name                 "my soccer league"
     organization { |org|  org.association(:organization) }
     created_by_id 1
