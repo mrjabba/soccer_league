@@ -15,18 +15,18 @@ describe Organization do
 
   it "should reject names that are too long" do
     long_name = "a" * 256
-    long_name_league = Organization.new(@attr.merge(:name => long_name)).should_not be_valid
+    Organization.new(@attr.merge(:name => long_name)).should_not be_valid
   end
 
-  it "should require a year where soccer was played" do
+  it "should require a founded where soccer was played" do
     Organization.new(@attr.merge(:founded => 1250)).should_not be_valid
   end
 
-  it "should require year be a positive number" do
+  it "should require founded be a positive number" do
     Organization.new(@attr.merge(:founded => -3)).should_not be_valid
   end
 
-  it "should require year be a number" do
+  it "should require founded be a number" do
     Organization.new(@attr.merge(:founded => "foo")).should_not be_valid
   end
 
