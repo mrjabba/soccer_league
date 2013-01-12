@@ -5,7 +5,7 @@ describe Roster do
   before(:each) do
     @teamstat = FactoryGirl.create(:teamstat)
     @person = FactoryGirl.create(:person)
-    @attr = { :teamstat_id => @teamstat, :person_id => @person, :created_by_id => 1, :updated_by_id => 1 }
+    @attr = { :teamstat_id => @teamstat.id, :person_id => @person.id, :created_by_id => 1, :updated_by_id => 1 }
   end
 
   it "should create a new instance given valid attributes" do
