@@ -1,12 +1,14 @@
 class League < ActiveRecord::Base
   include Auditable
-  attr_accessible :name, :to_year, :from_year, :games_attributes, :organization_id, :supports_games, :teamstats_attributes
+  attr_accessible :name, :to_year, :from_year, :games_attributes, :organization_id, :supports_games, :teamstats_attributes, :leaguezones_attributes
 
-  has_many :teamstats, :dependent => :destroy
   has_many :games, :dependent => :destroy
+  has_many :leaguezones, :dependent => :destroy
+  has_many :teamstats, :dependent => :destroy
   belongs_to :organization
-  
+
   accepts_nested_attributes_for :games, :reject_if => :all_blank
+  accepts_nested_attributes_for :leaguezones, :reject_if => :all_blank
   accepts_nested_attributes_for :teamstats, :reject_if => :all_blank
 
   validates :name, :presence => true, :length => { :maximum => 50 }
