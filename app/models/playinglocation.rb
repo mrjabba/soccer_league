@@ -8,4 +8,6 @@ class Playinglocation < ActiveRecord::Base
   attr_accessible :teamstat_id, :venue_id
   belongs_to :teamstat
   belongs_to :venue
+  validates :teamstat_id, :presence => true
+  validates :venue_id, :presence => true
 end
