@@ -1,0 +1,31 @@
+<%= form_for(model, :html => {:class => "well form-horizontal"}) do |f| %>
+  <%= render :partial => "shared/error_messages", :locals => {:model => f.object  } %>
+  <div class="control-group">
+    <%= f.label :name, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :name %></div>
+  </div>
+  <div class="control-group">
+    <%= f.label :description, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :description %></div>
+  </div>
+  <div class="control-group">
+    <%= f.label :start_rank, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :start_rank %></div>
+  </div>
+  <div class="control-group">
+    <%= f.label :end_rank, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :end_rank %></div>
+  </div>
+  <div class="control-group">
+    <%= f.label :style, :class => "control-label" %>
+    <div class="controls"><%= f.select(:style, Leaguezone::STYLES) %></div>
+  </div>
+  <div class="form-actions">
+    <%= f.submit save_label, :class => "btn" %>
+    <% if @leaguezone.new_record? %>
+      <%= link_to "Cancel", league_leaguezones_path(@league.id), :class => "btn" %>
+    <% else %>
+      <%= link_to "Cancel", leaguezone_path, :class => "btn" %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,43 @@
+<ul class="breadcrumb">
+  <li><%= link_to "#{@league.name}", league_path(@league.id) %><span class="divider">/</span></li>
+  <li><%= link_to "Zones", league_leaguezones_path(@league.id) %><span class="divider">/</span></li>
+  <li class="active"><%= "#{@leaguezone.name} (#{@leaguezone.start_rank}-#{@leaguezone.end_rank})" %></li>
+</ul>
+
+<div class="btn-group">
+  <% if can? :new, @league %>
+    <%= link_to "Edit", "#{@leaguezone.id}/edit", :class => "btn" %>
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <table class="table table-condensed">
+      <tr>
+        <th><%=t 'leaguezone_form.name' %></th>
+        <td><%= @leaguezone.name %></td>
+      </tr>
+      <tr>
+        <th><%=t 'leaguezone_form.description' %></th>
+        <td><%= @leaguezone.description %></td>
+      </tr>
+      <tr>
+        <th><%=t 'leaguezone_form.start_rank' %></th>
+        <td><%= @leaguezone.start_rank %></td>
+      </tr>
+      <tr>
+        <th><%=t 'leaguezone_form.end_rank' %></th>
+        <td><%= @leaguezone.end_rank %></td>
+      </tr>
+      <tr>
+        <th><%=t 'leaguezone_form.style' %></th>
+        <td><%= @leaguezone.style %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="span12">
+    <%= render :partial => "shared/audit", :locals => {:auditable => @leaguezone} %>
+  </div>
+</div>

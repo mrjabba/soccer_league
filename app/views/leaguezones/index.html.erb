@@ -1,0 +1,39 @@
+<h1>League Zone Management</h1>
+<div class="alert">Leagues may participate in promotion/relegation or may have qualifiers for tournaments based on table rank. Use League Zones to define those ranks.</div>
+
+<ul class="breadcrumb">
+  <li><%= link_to "#{@league.name}", league_path(@league.id) %></li>
+</ul>
+
+<% if can? :new, @league %>
+  <div class="btn-group">
+    <%= link_to t(:zone_new), new_league_leaguezone_path(@league.id), :class => "btn" %>
+  </div>
+<% end %>
+
+<div id="leaguezones">
+  <table id="leaguezones_table" class="table table-condensed">
+    <tr>
+      <th title="Name">Name</th>
+      <th title="Range">Range</th>
+      <th title="Style">Style</th>
+      <th title="Actions">Actions</th>
+    </tr>
+    <% for leaguezone in @leaguezones%>
+      <tr>
+        <td><%= link_to leaguezone.name, leaguezone %></td>
+        <td><%= leaguezone.start_rank %>-<%= leaguezone.end_rank %></td>
+        <td class="<%= leaguezone.style %>"><%= leaguezone.style %></td>
+        <td>
+          <% if can? :new, @league %>
+            <%= link_to "Edit", edit_leaguezone_path(leaguezone.id), :class => "btn" %>
+            <%= link_to "Delete", leaguezone, :method => :delete, :data => {:confirm => "Delete this leaguezone: #{leaguezone.name}?"},
+                        :class => "btn btn-danger",
+                        :title => "Delete #{leaguezone.name}" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end%>
+  </table>
+</div>
+

@@ -29,6 +29,8 @@ en:
   team: Team
   teams: Teams
   team_new: New Team
+  zone_new: New League Zone
+  zone_edit: Edit League Zone
   name: Name
   langs:
     de: Deutsch
@@ -59,3 +61,9 @@ en:
     email: Email
   person_form:
     all_people: All People
+  leaguezone_form:
+    name: Name
+    description: Description
+    start_rank: Start Rank
+    end_rank: End Rank
+    style: Style

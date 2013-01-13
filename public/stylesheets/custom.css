@@ -48,3 +48,7 @@
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
 }
+
+.zone_up {background-color: #aaddaa;}
+.zone_middle {background-color: #aaccff;}
+.zone_down {background-color: #ddaaaa;}

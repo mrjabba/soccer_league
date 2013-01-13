@@ -21,6 +21,7 @@ SoccerleagueApp::Application.routes.draw do
         resources :playinglocations, :shallow => true
       end
       resources :games, :shallow => true
+      resources :leaguezones, :shallow => true
     end
 
     resources :organizations do

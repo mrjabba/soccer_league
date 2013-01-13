@@ -6,6 +6,7 @@
 <div class="btn-group">
       <% if can? :new, @league %>
         <%= link_to "Edit League", "#{@league.id}/edit", :class => "btn" %>
+        <%= link_to "Zones", league_leaguezones_path(@league.id), :class => "btn" %>
         <%= link_to "Add Team", new_league_teamstat_path(@league), :class => "btn" %>
         <% unless @teamstats.size < 2 %>
           <% if @league.supports_games? %>
@@ -24,6 +25,7 @@
   <% unless @teamstats.empty? %>
     <table id="league_table" class="table table-condensed">
     <tr>
+    <th title="Position">Pos</th>
     <th title="Club">Club</th>
     <th title="Points">PTS</th>
     <th title="Games Played">GP</th>
