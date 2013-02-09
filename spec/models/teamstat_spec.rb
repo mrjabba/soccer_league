@@ -93,7 +93,8 @@ describe Teamstat do
   
   describe "calculations" do
     it "should calculate points" do
-      Teamstat.new(@attr.merge(:wins => 3, :ties => 2)).points.should == 11
+      @league = FactoryGirl.create(:league)
+      @league.teamstats.build(@attr.merge(:wins => 3, :ties => 2)).calculate_points.should == 11
     end
 
     it "should calculate games played" do

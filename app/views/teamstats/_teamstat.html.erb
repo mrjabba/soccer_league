@@ -1,7 +1,7 @@
 <tr>
 <%= zone_cell_at_position(@zones,teamstat_counter+1) %>
 <td><%= teamstat.team_name %></td>
-<td><%= teamstat.points %></td>
+<td><%= teamstat.calculate_points %></td>
 <td><%= teamstat.games_played %></td>
 <td><%= teamstat.wins %></td>
 <td><%= teamstat.losses %></td>
@@ -11,7 +11,7 @@
 <td>
   <div class="btn-group">
       <%= link_to "Roster", teamstat_path(teamstat.id), :class => "btn" %>
-      <% unless @league.games_exist %>
+      <% unless @games_exist %>
       <% if can? :new, teamstat %>
           <%= link_to "Remove", teamstat, :method => :delete,
                       :data => {:confirm => "Remove this team?"},

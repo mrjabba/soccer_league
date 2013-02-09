@@ -1,6 +1,7 @@
 class League < ActiveRecord::Base
   include Auditable
-  attr_accessible :name, :to_year, :from_year, :games_attributes, :organization_id, :supports_games, :teamstats_attributes, :leaguezones_attributes
+  attr_accessible :name, :to_year, :from_year, :games_attributes, :organization_id, :supports_games, :calc_points,
+                  :teamstats_attributes, :leaguezones_attributes
 
   has_many :games, :dependent => :destroy
   has_many :leaguezones, :dependent => :destroy
@@ -16,7 +17,7 @@ class League < ActiveRecord::Base
   validates_numericality_of :from_year, :greater_than_or_equal_to => 1800
   validates :organization_id, :presence => true
 
-  def games_exist
+  def games_exist?
     Game.where(:league_id => id).size > 0
   end
 

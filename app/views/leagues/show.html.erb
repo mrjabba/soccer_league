@@ -14,7 +14,7 @@
           <% end %>
         <% end %>
       <% end %>
-      <% if @league.supports_games? && @league.games_exist %>
+      <% if @league.supports_games? && @games_exist %>
         <%= link_to "View Games", league_games_path(@league), :class => "btn" %>
       <% end %>
 </div>
@@ -22,6 +22,7 @@
 <div>
   <div class="alert">Teams in this league: <%= @league.teamstats.count %></div>
   <div class="alert">Supports Games: <%= @league.supports_games? %></div>
+  <div class="alert">Points Auto-Calculated: <%= @league.calc_points? %></div>
   <% unless @teamstats.empty? %>
     <table id="league_table" class="table table-condensed">
     <tr>

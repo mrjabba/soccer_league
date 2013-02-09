@@ -1,6 +1,7 @@
 class Teamstat < ActiveRecord::Base
   include Auditable
-  attr_accessible :rosters_attributes, :wins, :losses, :ties, :goals_for, :goals_against, :team_id, :league_id, :person_tokens, :playinglocations_attributes, :technicalstaffs_attributes
+  attr_accessible :rosters_attributes, :points, :wins, :losses, :ties, :goals_for, :goals_against, :team_id, :league_id,
+                  :person_tokens, :playinglocations_attributes, :technicalstaffs_attributes
   attr_accessor :person_tokens
   before_validation :init_stats
   before_create :convert_person_ids_to_roster_items
@@ -23,7 +24,7 @@ class Teamstat < ActiveRecord::Base
   validates :team_id, :presence => true
 
   def self.fetch_league_table(league_id)
-    Teamstat.includes([:team]).find_all_by_league_id(league_id).sort!{|a,b| b.points <=> a.points}
+    Teamstat.includes([:team]).find_all_by_league_id(league_id).sort!{|a,b| b.calculate_points <=> a.calculate_points}
   end
 
   #TODO ensure these are whole numbers?
@@ -38,10 +39,10 @@ class Teamstat < ActiveRecord::Base
     team_stat.first
   end
 
-  def points
+  def calculate_points
     #TODO do we want to make this formula configurable? tournaments may choose to use a diff calculation on points?
-    wins * 3 + ties
-  end 
+    league.calc_points? ? wins * 3 + ties : points
+  end
   
   def record
     "#{wins}-#{losses}-#{ties}"
@@ -84,7 +85,7 @@ class Teamstat < ActiveRecord::Base
     if goals_against.blank?
       self.goals_against = 0
     end
-    self.games_played = games_played()
-    self.points = points()    
+    self.games_played = games_played
+    self.points = points
   end
 end

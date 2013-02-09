@@ -3,7 +3,7 @@ require 'spec_helper'
 describe League do
 
   before(:each) do
-    @attr = { :name => "MLS", :to_year => 2002, :from_year => 2001, :created_by_id => 1, :updated_by_id => 1, :organization_id => 1, :supports_games => true }
+    @attr = { :name => "MLS", :to_year => 2002, :from_year => 2001, :created_by_id => 1, :updated_by_id => 1, :organization_id => 1, :supports_games => true, :calc_points => true }
   end
 
   it "should create a new instance given valid attributes" do
@@ -49,6 +49,6 @@ describe League do
 
   it "should know if games exist for the league" do
     league = FactoryGirl.create(:game).league
-    league.games_exist.should be_true
+    league.games_exist?.should be_true
   end
 end

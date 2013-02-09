@@ -67,3 +67,9 @@ en:
     start_rank: Start Rank
     end_rank: End Rank
     style: Style
+  league_form:
+    name: Name
+    from_year: From Year
+    to_year: To Year
+    calc_points: Calculate Points
+    supports_games: Supports Games

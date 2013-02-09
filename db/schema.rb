@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130113184122) do
+ActiveRecord::Schema.define(:version => 20130119163600) do
 
   create_table "games", :force => true do |t|
     t.integer  "team1_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20130113184122) do
     t.integer  "organization_id"
     t.boolean  "supports_games",  :default => true
     t.integer  "to_year"
+    t.boolean  "calc_points",     :default => true
   end
 
   add_index "leagues", ["created_by_id"], :name => "index_leagues_on_created_by_id"

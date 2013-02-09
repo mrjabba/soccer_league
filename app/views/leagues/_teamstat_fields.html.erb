@@ -1,6 +1,9 @@
   <%= f.fields_for :teamstats do |c| %>
   <tr>
   <td><%= c.object.team.name %></td>
+<% unless league.calc_points? %>
+  <td><%= c.text_field :points, :class => "span1" %></td>
+<% end %>
   <td><%= c.text_field :wins, :class => "span1" %></td>
   <td><%= c.text_field :losses, :class => "span1" %></td>
   <td><%= c.text_field :ties, :class => "span1" %></td>
