@@ -14,15 +14,11 @@ class Team < ActiveRecord::Base
 
   validates :email, :format => {:with => email_regex}, :allow_blank => true
 
-  has_one    :teamstat #I think I would like teams to have_many teamstats (belonging to multiple leagues)...can we do this?
+  has_many    :teamstats
   has_one    :playerstat
 
-  def league
-    teamstat.league if teamstat != nil
-  end
-
   def self.fetch_teams_by_name_for_league_as_array(league_id, query)
-    Team.joins(:teamstat).where("league_id = ? AND UPPER(name) like UPPER(?)", "#{league_id}", "%#{query}%").map(&:filter_by_name_hash)
+    Team.joins(:teamstats).where("league_id = ? AND UPPER(name) like UPPER(?)", "#{league_id}", "%#{query}%").map(&:filter_by_name_hash)
   end
 
   def self.fetch_teams_by_name_as_array(query)

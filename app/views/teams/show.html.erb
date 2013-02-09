@@ -1,12 +1,9 @@
-<% unless @league == nil %>
 <ul class="breadcrumb">
-  <li><%= link_to "#{@league.name} - #{@league.from_year}-#{@league.to_year}", league_path(@league) %><span class="divider">/</span></li>
+  <li><%= link_to t('team_form.all_teams'), teams_path %><span class="divider">/</span></li>
   <li class="active"><%= @team.name %></li>
 </ul>
-<% end%>
 
 <h2 class="team"><%=t :team  %>: <%= @team.name %></h2>
-
 
 <div class="btn-group">
   <% if can? :new, @team %>
@@ -17,8 +14,12 @@
 </div>
 
 <div class="row">
-  <div class="span12">
+  <div class="span8">
+    <div id="league_history">League history here</div>
+  </div>
+  <div class="span4">
     <table class="table table-condensed">
+      <caption><h3>Contact Information</h3></caption>
       <tr>
         <th><%=t 'team_form.address1' %></th>
         <td><%= @team.address1 %></td>
@@ -63,4 +64,12 @@
     <%= render :partial => "shared/audit", :locals => {:auditable => @team} %>
   </div>
 </div>
+
+<script language="JavaScript">
+  $(document).ready(function() {
+    $.get('/<%=I18n.locale%>/team_league_history/<%=@team.id %>', function(data) {
+      $('#league_history').html(data);
+    });
+  });
+</script>
 

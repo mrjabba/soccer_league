@@ -1,0 +1,27 @@
+<% if @teamstats && !@teamstats.empty? %>
+  <table class="table table-condensed">
+    <caption><h3>League History</h3></caption>
+    <% if @teamstats.empty? %>
+      <tr>
+        <td>No associations found for this Team.</td>
+      </tr>
+    <% else %>
+      <tr>
+        <th title="Season">Season</th>
+        <th title="Points">Points</th>
+        <th title="Wins">Wins</th>
+        <th title="Losses">Losses</th>
+        <th title="Losses">Ties</th>
+      </tr>
+      <% @teamstats.each do |stat| %>
+        <tr>
+          <td><%=link_to "#{stat.league.name} (#{stat.league.from_year}-#{stat.league.to_year})", stat.league %></td>
+          <td><%=stat.points %></td>
+          <td><%=stat.wins %></td>
+          <td><%=stat.losses %></td>
+          <td><%=stat.ties %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+<% end %>

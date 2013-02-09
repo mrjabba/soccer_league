@@ -13,6 +13,7 @@ SoccerleagueApp::Application.routes.draw do
     resources :people
     resources :playinglocations
     resources :venues
+    resources :team_league_history
 
     resources :leagues do
       resources :teamstats, :shallow => true do
