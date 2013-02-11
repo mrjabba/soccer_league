@@ -27,7 +27,7 @@ describe Team do
   it "should require an address1" do
     Team.new(@attr.merge(:address1 => "")).should_not be_valid
   end
-  
+
   it "should reject names that are too long" do
     long_name = "a" * 51
     Team.new(@attr.merge(:name => long_name)).should_not be_valid

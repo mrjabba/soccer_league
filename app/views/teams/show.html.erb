@@ -3,15 +3,22 @@
   <li class="active"><%= @team.name %></li>
 </ul>
 
-<h2 class="team"><%=t :team  %>: <%= @team.name %></h2>
-
-<div class="btn-group">
-  <% if can? :new, @team %>
-      <%= link_to "Edit", "#{@team.id}/edit", :class => "btn"  %>
-      <%= link_to "Add Team", new_team_path, :class => "btn" %>
-  <% end %>
-  <%= link_to "All Teams", teams_path, :class => "btn" %>
+<div class="row">
+  <div class="span2" id="person_thumb">
+    <a href="#"><%= image_tag @team.avatar.url(:thumb), {"data-toggle" => "modal"}%></a>
+  </div>
+  <div class="span10">
+    <h2 class="team"><%=t :team  %>: <%= @team.name %></h2>
+    <div class="btn-group">
+      <% if can? :new, @team %>
+        <%= link_to "Edit", "#{@team.id}/edit", :class => "btn"  %>
+        <%= link_to "Add Team", new_team_path, :class => "btn" %>
+      <% end %>
+      <%= link_to "All Teams", teams_path, :class => "btn" %>
+    </div>
+  </div>
 </div>
+
 
 <div class="row">
   <div class="span8">
@@ -59,6 +66,19 @@
     </table>
   </div>
 </div>
+<div class="modal hide" id="personDetail">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h2 class="team"><%=t :team  %>: <%= @team.name %></h2>
+  </div>
+  <div class="modal-body">
+    <%= image_tag @team.avatar.url(:medium) %>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">OK</a>
+  </div>
+</div>
+
 <div class="row">
   <div class="span12">
     <%= render :partial => "shared/audit", :locals => {:auditable => @team} %>
