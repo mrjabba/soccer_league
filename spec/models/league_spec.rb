@@ -10,42 +10,16 @@ describe League do
     @league = League.create!(@attr)
   end
 
-  it "should require a name" do
-    League.new(@attr.merge(:name => "")).should_not be_valid
-  end
-
-  it "should reject names that are too long" do
-    long_name = "a" * 51
-    League.new(@attr.merge(:name => long_name)).should_not be_valid
-  end
-
-  it "should require years" do
-    League.new(@attr.merge(:to_year => nil)).should_not be_valid
-    League.new(@attr.merge(:from_year => nil)).should_not be_valid
-  end
-
-  it "should require years where soccer was played" do
-    League.new(@attr.merge(:from_year => 1250)).should_not be_valid
-    League.new(@attr.merge(:to_year => 1250)).should_not be_valid
-  end
-
-  it "should require years be a positive number" do
-    League.new(@attr.merge(:from_year => -3)).should_not be_valid
-    League.new(@attr.merge(:to_year => -3)).should_not be_valid
-  end
-
-  it "should require year be a number" do
-    League.new(@attr.merge(:from_year => "foo")).should_not be_valid
-    League.new(@attr.merge(:to_year => "foo")).should_not be_valid
-  end
-
-  it "should require created by id" do
-      League.new(@attr.merge(:created_by_id => nil)).should_not be_valid
-  end
-
-  it "should require updated by id" do
-      League.new(@attr.merge(:updated_by_id => nil)).should_not be_valid
-  end
+  it { should validate_presence_of(:name) }
+  it { should ensure_length_of(:name).is_at_most(50) }
+  it { should validate_presence_of(:to_year) }
+  it { should validate_presence_of(:from_year) }
+  it { should validate_presence_of(:created_by_id) }
+  it { should validate_presence_of(:updated_by_id) }
+  it { should validate_numericality_of(:to_year) }
+  it { should validate_numericality_of(:from_year) }
+  it { should ensure_inclusion_of(:to_year).in_range(1800..2500) }
+  it { should ensure_inclusion_of(:from_year).in_range(1800..2500) }
 
   it "should know if games exist for the league" do
     league = FactoryGirl.create(:game).league

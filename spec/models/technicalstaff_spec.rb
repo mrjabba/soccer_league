@@ -12,6 +12,8 @@ describe Technicalstaff do
     Technicalstaff.create!(@attr)
   end
 
+#  it { should validate_presence_of(:teamstat_id) }
+
   it "should require a teamstat" do
     Technicalstaff.new(@attr.merge(:teamstat_id => "")).should_not be_valid
   end

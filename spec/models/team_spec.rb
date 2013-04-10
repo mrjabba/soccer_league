@@ -8,6 +8,7 @@ describe Team do
               :email => "test@foo.com", :country => "USA", :created_by_id => 1, :updated_by_id => 1 }
   end
 
+
   it "should create a new instance given valid attributes" do
     Team.create!(@attr)
   end
@@ -20,19 +21,12 @@ describe Team do
     Team.new(@attr.merge(:email => "memecom")).should_not be_valid
   end
 
-  it "should require a name" do
-    Team.new(@attr.merge(:name => "")).should_not be_valid
-  end
-  
-  it "should require an address1" do
-    Team.new(@attr.merge(:address1 => "")).should_not be_valid
-  end
+  it { should validate_presence_of(:name) }
+  it { should ensure_length_of(:name).is_at_most(50) }
+  it { should validate_presence_of(:address1) }
+  it { should validate_presence_of(:created_by_id) }
+  it { should validate_presence_of(:updated_by_id) }
 
-  it "should reject names that are too long" do
-    long_name = "a" * 51
-    Team.new(@attr.merge(:name => long_name)).should_not be_valid
-  end
-  
   it "should reject duplicate team names" do
     Team.create!(@attr)
     team_with_duplicate_name = Team.new(@attr)
@@ -44,13 +38,5 @@ describe Team do
     Team.create!(@attr.merge(:name => upcased_name))
     team_with_duplicate_name = Team.new(@attr)
     team_with_duplicate_name.should_not be_valid
-  end
-
-  it "should require created by id" do
-    Team.new(@attr.merge(:created_by_id => nil)).should_not be_valid
-  end
-
-  it "should require updated by id" do
-    Team.new(@attr.merge(:updated_by_id => nil)).should_not be_valid
   end
 end

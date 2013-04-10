@@ -9,11 +9,6 @@ describe Playinglocation do
     Playinglocation.create!(@attr)
   end
 
-  it "should require a venue" do
-    Playinglocation.new(@attr.merge(:venue_id => nil)).should_not be_valid
-  end
-
-  it "should require a teamstat" do
-    Playinglocation.new(@attr.merge(:teamstat_id => nil)).should_not be_valid
-  end
+  it { should validate_presence_of(:venue_id) }
+  it { should validate_presence_of(:teamstat_id) }
 end

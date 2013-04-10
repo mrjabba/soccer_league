@@ -13,8 +13,12 @@ class League < ActiveRecord::Base
   accepts_nested_attributes_for :teamstats, :reject_if => :all_blank
 
   validates :name, :presence => true, :length => { :maximum => 50 }
-  validates_numericality_of :to_year, :greater_than_or_equal_to => 1800
-  validates_numericality_of :from_year, :greater_than_or_equal_to => 1800
+  validates :to_year, :from_year, :presence => true, :length => { :maximum => 50 }
+  validates_numericality_of :to_year, :greater_than_or_equal_to => 1800, :only_integer => true
+  validates_numericality_of :from_year, :greater_than_or_equal_to => 1800, :only_integer => true
+  validates_inclusion_of :to_year, :in => 1800..2500
+  validates_inclusion_of :from_year, :in => 1800..2500
+
   validates :organization_id, :presence => true
 
   def games_exist?

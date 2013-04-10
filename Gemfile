@@ -32,5 +32,6 @@ group :test do
   gem 'factory_girl_rails', '~> 4.1.0'
   gem 'simplecov', '>= 0.3.5', :require => false # Will install simplecov-html as a dependency
   gem 'guard-rspec'
+  gem 'shoulda-matchers'
 end
 

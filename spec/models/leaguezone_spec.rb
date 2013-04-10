@@ -12,28 +12,14 @@ describe Leaguezone do
     Leaguezone.create!(@attr)
   end
 
-  it "should require a league" do
-    Leaguezone.new(@attr.merge(:league_id => nil)).should_not be_valid
-  end
+  it { should validate_presence_of(:league_id) }
+  it { should validate_presence_of(:name) }
+  it { should ensure_length_of(:name).is_at_most(50) }
+  it { should validate_presence_of(:style) }
+  it { should ensure_length_of(:style).is_at_most(50) }
+  it { should validate_presence_of(:start_rank) }
+  it { should validate_presence_of(:end_rank) }
 
-  it "should require a name" do
-    Leaguezone.new(@attr.merge(:name => "")).should_not be_valid
-  end
-
-  it "should require a style" do
-    Leaguezone.new(@attr.merge(:style => "")).should_not be_valid
-  end
-
-  it "should require start_rank" do
-    Leaguezone.new(@attr.merge(:start_rank => nil)).should_not be_valid
-  end
-
-  it "should require end_rank" do
-    Leaguezone.new(@attr.merge(:end_rank => nil)).should_not be_valid
-  end
-
-  it "should require ranks be a positive number" do
-    Leaguezone.new(@attr.merge(:start_rank => -3)).should_not be_valid
-    Leaguezone.new(@attr.merge(:end_rank => -3)).should_not be_valid
-  end
+  it { should validate_numericality_of(:start_rank) }
+  it { should validate_numericality_of(:end_rank) }
 end
