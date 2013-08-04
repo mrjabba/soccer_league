@@ -9,6 +9,18 @@
         <div class="controls"><%= f.text_field :built %></div>
     </div>
     <div class="control-group">
+        <%= f.label :address, :class => "control-label" %>
+        <div class="controls"><%= f.text_area(:address, size: "24x3") %></div>
+    </div>
+    <div class="control-group">
+        <%= f.label :description, :class => "control-label" %>
+        <div class="controls"><%= f.text_area(:description, size: "24x3") %></div>
+    </div>
+    <div class="control-group">
+        <%= f.label :directions, :class => "control-label" %>
+        <div class="controls"><%= f.text_area(:directions, size: "24x3") %></div>
+    </div>
+    <div class="control-group">
         <%= f.label "Coordinates (Latitude)", :class => "control-label" %>
         <div class="controls"><%= f.text_field :coordinate_lat %></div>
     </div>

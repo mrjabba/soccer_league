@@ -1,6 +1,6 @@
 class Venue < ActiveRecord::Base
   include Auditable
-  attr_accessible :name, :built, :coordinate_lat, :coordinate_long, :surface, :playinglocations_attributes
+  attr_accessible :name, :built, :address, :directions, :description, :coordinate_lat, :coordinate_long, :surface, :playinglocations_attributes
 
   has_many :playinglocations, :dependent => :destroy
   accepts_nested_attributes_for :playinglocations, :reject_if => :all_blank
