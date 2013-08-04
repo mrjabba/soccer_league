@@ -27,7 +27,7 @@ end
 
 group :test do
   gem "webrat", "~> 0.7.3"
-  gem "nyan-cat-formatter"
+  gem "fuubar"
   gem 'rspec', '~> 2.8.0'
   gem 'factory_girl_rails', '~> 4.1.0'
   gem 'simplecov', '>= 0.3.5', :require => false # Will install simplecov-html as a dependency
