@@ -1,8 +1,11 @@
 development:
   allow_multiple_leagues: true
+  allow_anonymous_view: true
 
 test:
   allow_multiple_leagues: true
+  allow_anonymous_view: true
 
 production:
   allow_multiple_leagues: true
+  allow_anonymous_view: true

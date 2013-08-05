@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :allow_anonymous_view?
   before_filter :set_locale
   #  include SessionsHelper
   rescue_from CanCan::AccessDenied do |exception|
@@ -24,5 +25,11 @@ class ApplicationController < ActionController::Base
 
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
+  def allow_anonymous_view?
+    unless APP_CONFIG['allow_anonymous_view']
+      authenticate_user!
+    end
   end
 end
