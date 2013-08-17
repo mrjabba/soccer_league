@@ -12,6 +12,10 @@ $(function() {
 
   $(".collapse").collapse();
 
+  function close_modal_focus() {
+      $('#modal-close').focus();
+  }
+
   $(document).ready(function() {
       $('#technicalstaff_person_id,#playerstat_person_id,#roster_person_id').tokenInput("/en/people.json", {
           crossDomain: false,
@@ -38,6 +42,7 @@ $(function() {
           $('#gameWarning .modal-body').append("<p>Game management will be turned ON. This will disable ability to edit teamstats directly.</p>");
           $('#teamstats_table').hide();
           $('#gameWarning').modal();
+          close_modal_focus();
       }
 
       function alert_game_off() {
@@ -45,10 +50,13 @@ $(function() {
           $('#gameWarning .modal-body').append("<p>Game management will be turned OFF. This will enable ability to edit teamstats directly. You will need to save and re-edit.</p>");
           $('#teamstats_table').show();
           $('#gameWarning').modal();
+          close_modal_focus();
       }
+
     });
     $("#person_thumb").click(function() {
         $('#personDetail').modal();
+          close_modal_focus();
     });
   });
 
