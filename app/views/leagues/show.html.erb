@@ -3,7 +3,7 @@
   <li class="active"><%= "#{@league.name} (#{@league.from_year}-#{@league.to_year})" %></li>
 </ul>
 
-<div class="btn-group">
+<div class="btn-toolbar">
       <% if can? :new, @league %>
         <%= link_to "Edit League", "#{@league.id}/edit", :class => "btn" %>
         <%= link_to "Zones", league_leaguezones_path(@league.id), :class => "btn" %>
@@ -19,27 +19,43 @@
       <% end %>
 </div>
 
-<div>
-  <div class="alert">Teams in this league: <%= @league.teamstats.count %></div>
-  <div class="alert">Supports Games: <%= @league.supports_games? %></div>
-  <div class="alert">Points Auto-Calculated: <%= @league.calc_points? %></div>
-  <% unless @teamstats.empty? %>
-    <table id="league_table" class="table table-condensed">
-    <tr>
-    <th title="Position">Pos</th>
-    <th title="Club">Club</th>
-    <th title="Points">PTS</th>
-    <th title="Games Played">GP</th>
-    <th title="Wins">W</th>
-    <th title="Losses">L</th>
-    <th title="Ties">T</th>
-    <th title="Goals For">GF</th>
-    <th title="Goals Against">GA</th>
-    <th title="Actions">Actions</th>
-    </tr>
-      <%= render @teamstats %>
-    </table>
-  <% end %>
+<div class="row-fluid">
+  <ul id="league-tab" class="nav nav-tabs">
+    <li class="active"><a href="#home">Teams</a></li>
+    <li><a href="#map">Map</a></li>
+    <li><a href="#info">Info</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="home">
+      <h4>League Table</h4>
+      <% unless @teamstats.empty? %>
+        <table id="league_table" class="table table-condensed">
+        <tr>
+          <th title="Position">Pos</th>
+          <th title="Club">Club</th>
+          <th title="Points">PTS</th>
+          <th title="Games Played">GP</th>
+          <th title="Wins">W</th>
+          <th title="Losses">L</th>
+          <th title="Ties">T</th>
+          <th title="Goals For">GF</th>
+          <th title="Goals Against">GA</th>
+          <th title="Actions">Actions</th>
+        </tr>
+          <%= render @teamstats %>
+        </table>
+      <% end %>
+    </div>
+    <div class="tab-pane" id="map">
+      <h4>League Map - Coming Soon!</h4>
+    </div>
+    
+    <div class="tab-pane" id="info">
+      <div class="alert">Teams in this league: <%= @league.teamstats.count %></div>
+      <div class="alert">Supports Games: <%= @league.supports_games? %></div>
+      <div class="alert">Points Auto-Calculated: <%= @league.calc_points? %></div>
+    </div>
+  </div>
 </div>
 <div class="row">
   <div class="span12">

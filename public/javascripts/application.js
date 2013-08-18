@@ -58,6 +58,12 @@ $(function() {
         $('#personDetail').modal();
           close_modal_focus();
     });
+
+    $('#league-tab a').click(function (e) {
+      e.preventDefault();
+      $(this).tab('show');
+    });
+
   });
 
 });
