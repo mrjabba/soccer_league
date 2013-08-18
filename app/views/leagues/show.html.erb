@@ -22,10 +22,12 @@
 <div class="row-fluid">
   <ul id="league-tab" class="nav nav-tabs">
     <li class="active"><a href="#home">Teams</a></li>
-    <li><a href="#map">Map</a></li>
     <li><a href="#info">Info</a></li>
+    <% if @league.show_map? && @venues.size > 0 %>
+      <li id="map_tab"><a href="#map">Stadia Map</a></li>
+    <% end %>
   </ul>
-  <div class="tab-content">
+  <div class="tab-content ">
     <div class="tab-pane active" id="home">
       <h4>League Table</h4>
       <% unless @teamstats.empty? %>
@@ -46,14 +48,104 @@
         </table>
       <% end %>
     </div>
-    <div class="tab-pane" id="map">
-      <h4>League Map - Coming Soon!</h4>
-    </div>
-    
     <div class="tab-pane" id="info">
-      <div class="alert">Teams in this league: <%= @league.teamstats.count %></div>
-      <div class="alert">Supports Games: <%= @league.supports_games? %></div>
-      <div class="alert">Points Auto-Calculated: <%= @league.calc_points? %></div>
+      <table class="table table-condensed">
+        <tr>
+          <th>Teams in this league</th>
+          <td><%= @league.teamstats.count %></td>
+        </tr>
+        <tr>
+          <th>Supports Games</th>
+          <td><%= @league.supports_games? %></td>
+        </tr>
+        <tr>
+          <th>Points Auto-Calculated</th>
+          <td><%= @league.calc_points? %></td>
+        </tr>
+        <tr>
+          <th>Show Map</th>
+          <td><%= @league.show_map %></td>
+        </tr>
+        <tr>
+          <th>Coordinates (Latitude)</th>
+          <td><%= @league.coordinate_lat %></td>
+        </tr>
+        <tr>
+          <th>Coordinates (Longitude)</th>
+          <td><%= @league.coordinate_long %></td>
+        </tr>
+        <tr>
+          <th>Map Zoom Level</th>
+          <td><%= @league.zoom_level %></td>
+        </tr>
+      </table>      
+    </div>
+    <div class="tab-pane" id="map">
+      <% if @league.show_map? && @venues.size > 0 %>
+        <h4>League Stadia Map</h4>
+        <div class="row-fluid">
+          <div class="span3">
+            <div class="alert">Locations of stadia/venues for teams in this league.</div>
+            <ul>
+              <% @venues.each do |venue| %>
+                <li><%= venue.name %></li>
+              <% end %>
+            </ul>
+
+          </div>
+          <div class="span9">
+            <div id="map_canvas_large"></div>
+          </div>
+        </div>
+        <script>
+          $(document).ready(function() {
+            $("#map_tab").click(function() {
+                    function venue_map_show() {
+                      var lat1 = <%= @league.coordinate_lat %>;
+                      var long1 = <%= @league.coordinate_long %>;
+                      var zoom = <%= @league.zoom_level %>;
+                      var locations = [
+                        <% @venues.each do |venue| %>
+                          ['<%= venue.name %>',<%= venue.coordinate_lat %>,<%= venue.coordinate_long %>],
+                        <% end %>
+                      ];
+
+                      var mapOptions = {
+                          zoom: zoom,
+                          center: new google.maps.LatLng(lat1, long1),
+                          mapTypeId: google.maps.MapTypeId.ROADMAP
+                      };
+                      var map = new google.maps.Map(document.getElementById("map_canvas_large"), mapOptions);
+                      
+                      var markerOptions = {
+                          position: new google.maps.LatLng(lat1, long1)
+                      };
+                        
+                      var marker = new google.maps.Marker(markerOptions);
+                      marker.setMap(map);
+                        
+                      var infoWindow = new google.maps.InfoWindow();
+                        
+                      for (i = 0; i < locations.length; i++) {  
+                        marker = new google.maps.Marker({
+                          position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                          map: map
+                        });
+
+                        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                          return function() {
+                            infoWindow.setContent(locations[i][0]);
+                            infoWindow.open(map, marker);
+                          }
+                        })(marker, i));
+                      }
+                    }
+                    venue_map_show();
+            });
+          });
+        </script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%=GOOGLE_MAP_API_KEY%>&sensor=false&callback=venue_map_show"></script>
+      <% end %>
     </div>
   </div>
 </div>

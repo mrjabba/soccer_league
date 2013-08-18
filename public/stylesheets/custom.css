@@ -49,6 +49,24 @@
     border-bottom: 1px solid #ccc;
 }
 
+#map_canvas_large {
+    height: 430px;
+    width: 500px;
+    border-color: #d6e9c6;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.form-section {
+    border-left: 1px solid #bbb;
+    border-right: 1px solid #bbb;
+    border-top: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+    margin-bottom: 20px;
+    padding: 7px;
+}
+
 .zone_up {background-color: #aaddaa;}
 .zone_middle {background-color: #aaccff;}
 .zone_down {background-color: #ddaaaa;}

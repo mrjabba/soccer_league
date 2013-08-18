@@ -17,6 +17,7 @@ class LeaguesController < ApplicationController
     @teamstats = Teamstat.fetch_league_table(params[:id])
     @organization = @league.organization
     @title = "View League | " + @league.name
+    @venues = Venue.fetch_venues_for_league(@league.id)
   end
 
   def new

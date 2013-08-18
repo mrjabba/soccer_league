@@ -14,6 +14,10 @@ class Venue < ActiveRecord::Base
     Venue.where("UPPER(name) like UPPER(?)", "%#{query}%").map(&:filter_by_name_hash)
   end
 
+  def self.fetch_venues_for_league(league_id)
+    Venue.joins(playinglocations: [:teamstat]).where(teamstats: {league_id: league_id}).order('name')
+  end
+
   def filter_by_name_hash
     {:id => id, :name => name}
   end

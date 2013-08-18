@@ -1,7 +1,8 @@
 class League < ActiveRecord::Base
   include Auditable
   attr_accessible :name, :to_year, :from_year, :games_attributes, :organization_id, :supports_games, :calc_points,
-                  :teamstats_attributes, :leaguezones_attributes
+                  :teamstats_attributes, :leaguezones_attributes,
+                  :show_map, :coordinate_lat, :coordinate_long, :zoom_level
 
   has_many :games, :dependent => :destroy
   has_many :leaguezones, :dependent => :destroy
@@ -18,6 +19,8 @@ class League < ActiveRecord::Base
   validates_numericality_of :from_year, :greater_than_or_equal_to => 1800, :only_integer => true
   validates_inclusion_of :to_year, :in => 1800..2500
   validates_inclusion_of :from_year, :in => 1800..2500
+  validates_inclusion_of :zoom_level, :in => 0..20
+  validates :zoom_level, numericality: { only_integer: true }
 
   validates :organization_id, :presence => true
 

@@ -1,17 +1,57 @@
 <%= form_for(model, :html => {:class => "well form-horizontal"}) do |f| %>
   <%= render :partial => "shared/error_messages", :locals => {:model => f.object  } %>
-    <div class="control-group">
-        <%= f.label t('league_form.name'), :class => "control-label" %>
-        <div class="controls"><%= f.text_field :name %></div>
+  <div class="form-section">
+    <div class="row-fluid">
+      <div class="span7">
+        <h4>The Basics</h4>
+        <div class="control-group">
+            <%= f.label t('league_form.name'), :class => "control-label" %>
+            <div class="controls"><%= f.text_field :name %></div>
+        </div>
+        <div class="control-group">
+            <%= f.label t('league_form.from_year'), :class => "control-label" %>
+            <div class="controls"><%= f.text_field :from_year %></div>
+        </div>
+        <div class="control-group">
+          <%= f.label t('league_form.to_year'), :class => "control-label" %>
+          <div class="controls"><%= f.text_field :to_year %></div>
+        </div>
+      </div>
+      <div class="span5">
+        <div class="form-actions">
+            <%= f.submit save_label, :class => "btn" %>
+            <%= link_to "Cancel", leagues_path, :class => "btn" %>
+        </div>
+      </div>      
     </div>
-    <div class="control-group">
-        <%= f.label t('league_form.from_year'), :class => "control-label" %>
-        <div class="controls"><%= f.text_field :from_year %></div>
-    </div>
-  <div class="control-group">
-    <%= f.label t('league_form.to_year'), :class => "control-label" %>
-    <div class="controls"><%= f.text_field :to_year %></div>
   </div>
+
+  <div class="form-section">
+    <h4>Map Display Options</h4>
+  <div class="alert">If you have added playing locations for teams in this league, then you can turn on a map that will display all playing locations on the same map in a tab.
+  </div>
+
+    <div class="control-group">
+      <%= f.label "Show Map", :class => "control-label" %>
+      <div class="controls"><%= f.check_box :show_map %></div>
+    </div>
+    <div class="control-group">
+        <%= f.label "Coordinates (Latitude)", :class => "control-label" %>
+        <div class="controls"><%= f.text_field :coordinate_lat %></div>
+    </div>
+    <div class="control-group">
+        <%= f.label "Coordinates (Longitude)", :class => "control-label" %>
+        <div class="controls"><%= f.text_field :coordinate_long %></div>
+    </div>
+    <div class="control-group">
+        <%= f.label "Zoom Level", :class => "control-label" %>
+        <div class="controls"><%= f.text_field :zoom_level %></div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <h4>Auto Calculate Points</h4>
+
   <div class="alert">
     Indicate whether you want to calculate points or if it should be auto-calculated. Currently, auto-calculation
     uses the same formula for all leagues (win = 3 points, tie = 1 point. Soon, you will be able to customize this formula per league.
@@ -21,7 +61,10 @@
     <%= f.label t('league_form.calc_points'), :class => "control-label" %>
     <div class="controls"><%= f.check_box :calc_points %></div>
   </div>
+  </div>
 
+  <div class="form-section">
+    <h4>Support Games</h4>
   <div class="alert">Indicate whether you want to manage games. If you choose "Support Games",
     you want to manage individual games and have your league table updated automatically.
     Leave it unchecked if you would like to manually edit your league table (wins/losses) manually without game management.</div>
@@ -30,7 +73,10 @@
     <div class="controls"><%= f.check_box :supports_games %></div>
   </div>
 
+  </div>
     <% !league.supports_games? && unless league.teamstats.empty? %>
+      <div class="form-section">
+        <h4>Edit League Table</h4>
         <table id="teamstats_table" class="table table-condensed">
             <tr>
                 <th title="Club">Club</th>
@@ -45,7 +91,10 @@
             </tr>
             <%= render :partial => "teamstat_fields", :locals => {:league => league, :f => f } %>
         </table>
+      </div>
     <% end %>
+
+
     <div class="form-actions">
         <%= f.submit save_label, :class => "btn" %>
         <%= link_to "Cancel", leagues_path, :class => "btn" %>
