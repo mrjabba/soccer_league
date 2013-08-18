@@ -3,7 +3,7 @@
     Manage basic venue information for fields and stadia here.</div>
 
 <% if can? :new, @venue %>
-    <div class="btn-group">
+    <div class="btn-toolbar">
         <% if can? :new, @venue %>
             <%= link_to "New Venu", "venues/new", :class => "btn" %>
         <% end %>

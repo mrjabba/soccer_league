@@ -4,7 +4,7 @@
   <li class="active"><%= "#{@organization.name}" %></li>
 </ul>
 
-<div class="btn-group">
+<div class="btn-toolbar">
       <% if can? :new, @organization %>
         <%= link_to "Edit Organization", "#{@organization.id}/edit", :class => "btn" %>
         <%= link_to "New League", new_organization_league_path(@organization), :class => "btn" %>

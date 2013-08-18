@@ -4,7 +4,7 @@
   <li class="active"><%= "#{@leaguezone.name} (#{@leaguezone.start_rank}-#{@leaguezone.end_rank})" %></li>
 </ul>
 
-<div class="btn-group">
+<div class="btn-toolbar">
   <% if can? :new, @league %>
     <%= link_to "Edit", "#{@leaguezone.id}/edit", :class => "btn" %>
   <% end %>

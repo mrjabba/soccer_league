@@ -4,7 +4,7 @@
   <li class="active">All Games</li>
 </ul>
 
-<div class="btn-group">
+<div class="btn-toolbar">
   <% if can? :new, @game %>
       <%= link_to "Create Game", new_league_game_path(@league), :class => "btn" %>
   <% end %>

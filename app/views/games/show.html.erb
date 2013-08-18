@@ -4,7 +4,7 @@
 </ul>
 
 <% if can? :new, @game %>
-<div class="btn-group">
+<div class="btn-toolbar">
     <%= link_to "Manage Game Stats", "#{@game.id}/edit", :class => "btn"  %>
     <%= link_to "Remove", @game, :method => :delete,
                                        :data => {:confirm => "Remove this game?"},

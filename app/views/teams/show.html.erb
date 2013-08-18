@@ -9,7 +9,7 @@
   </div>
   <div class="span10">
     <h2 class="team"><%=t :team  %>: <%= @team.name %></h2>
-    <div class="btn-group">
+    <div class="btn-toolbar">
       <% if can? :new, @team %>
         <%= link_to "Edit", "#{@team.id}/edit", :class => "btn"  %>
         <%= link_to "Add Team", new_team_path, :class => "btn" %>

@@ -2,7 +2,7 @@
 
 <% if can? :new, @user %>
 <div class="alert">Filter Users By Role</div>
-<div class="btn-group">
+<div class="btn-toolbar">
   <%= link_to "Admins", "/users?role=admin", :class => "btn" %>
   <%= link_to "Free", "/users?role=free", :class => "btn" %>
   <%= link_to "Disabled", "/users?role=", :class => "btn" %>

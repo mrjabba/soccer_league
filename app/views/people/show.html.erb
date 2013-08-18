@@ -8,7 +8,7 @@
   </div>
   <div class="span10">
     <h1><%= @person.firstname %> <%= @person.lastname %></h1>
-    <div class="btn-group">
+    <div class="btn-toolbar">
       <% if can? :new, @person %>
         <%= link_to "Edit", "#{@person.id}/edit", :class => "btn"  %>
         <%= link_to "Add Person", new_person_path, :class => "btn" %>

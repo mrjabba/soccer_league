@@ -3,7 +3,7 @@
 Manage basic team profile information here.</div>
 
 <% if can? :new, @team %>
-<div class="btn-group">
+<div class="btn-toolbar">
   <% if can? :new, @person %>
       <%= link_to t(:team_new), "teams/new", :class => "btn" %>
   <% end %>

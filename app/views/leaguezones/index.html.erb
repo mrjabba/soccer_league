@@ -6,7 +6,7 @@
 </ul>
 
 <% if can? :new, @league %>
-  <div class="btn-group">
+  <div class="btn-toolbar">
     <%= link_to t(:zone_new), new_league_leaguezone_path(@league.id), :class => "btn" %>
   </div>
 <% end %>

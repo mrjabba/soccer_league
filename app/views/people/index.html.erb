@@ -1,7 +1,7 @@
 <h1>Person Repository</h1>
 <div class="alert">People careers span often span multiple teams and leagues. Manage basic person profile information here.</div>
 
-<div class="btn-group">
+<div class="btn-toolbar">
   <% if can? :new, @person %>
       <%= link_to "New Person", "people/new", :class => "btn" %>
   <% end %>
