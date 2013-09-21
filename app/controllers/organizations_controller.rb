@@ -8,9 +8,8 @@ class OrganizationsController < ApplicationController
   end
 
   def show
-    @organization = Organization.find(params[:id])
-    @title = "View Organization | " + @organization.name
-    @leagues = @organization.leagues
+    @organization = OrganizationDecorator.new(Organization.find(params[:id]))
+    @title = @organization.title
   end
 
   def new

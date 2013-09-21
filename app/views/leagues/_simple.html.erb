@@ -4,7 +4,7 @@
     <th title="Year">Season</th>
     <th title="Actions">Actions</th>
   </tr>
-  <% for league in @leagues%>
+  <% for league in leagues %>
     <tr>
       <td><%= link_to league.name , league %></td>
       <td><%= league.from_year %>-<%= league.to_year %></td>

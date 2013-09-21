@@ -12,8 +12,8 @@
 </div>
 
 <div>
-<% unless @leagues.empty? %>
-  <%= render :partial => "leagues/simple", :locals => {:leagues => @leagues} %>
+<% unless @organization.leagues.empty? %>
+  <%= render :partial => "leagues/simple", :locals => {:leagues => @organization.leagues} %>
 <% end %>
 </div>
 <div class="row">
