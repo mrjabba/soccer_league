@@ -1,5 +1,5 @@
 <% if model.errors.any? %>
-  <div id="error_explanation">
+  <div id="error_explanation" class="alert alert-error">
     <h2><%= pluralize(model.errors.count, "error") %>
       prohibited this <%= model.class.to_s.underscore.humanize.downcase %>
       from being saved:</h2>
