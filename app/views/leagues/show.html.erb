@@ -1,5 +1,5 @@
 <ul class="breadcrumb">
-  <li><%= link_to "#{@organization.name}", organization_path(@organization.id) %><span class="divider">/</span></li>
+  <li><%= link_to "#{@league.organization_name}", organization_path(@league.organization_id) %><span class="divider">/</span></li>
   <li class="active"><%= "#{@league.name} (#{@league.from_year}-#{@league.to_year})" %></li>
 </ul>
 
@@ -8,13 +8,13 @@
         <%= link_to "Edit League", "#{@league.id}/edit", :class => "btn" %>
         <%= link_to "Zones", league_leaguezones_path(@league.id), :class => "btn" %>
         <%= link_to "Add Team", new_league_teamstat_path(@league), :class => "btn" %>
-        <% unless @teamstats.size < 2 %>
+        <% unless @league.teamstats.size < 2 %>
           <% if @league.supports_games? %>
             <%= link_to "Create Game", new_league_game_path(@league), :class => "btn" %>
           <% end %>
         <% end %>
       <% end %>
-      <% if @league.supports_games? && @games_exist %>
+      <% if @league.supports_games? && @league.games_exist %>
         <%= link_to "View Games", league_games_path(@league), :class => "btn" %>
       <% end %>
 </div>
@@ -23,14 +23,14 @@
   <ul id="league-tab" class="nav nav-tabs">
     <li class="active"><a href="#home">Teams</a></li>
     <li><a href="#info">Info</a></li>
-    <% if @league.show_map? && @venues.size > 0 %>
+    <% if @league.show_map? && @league.venues.size > 0 %>
       <li id="map_tab"><a href="#map">Stadia Map</a></li>
     <% end %>
   </ul>
   <div class="tab-content ">
     <div class="tab-pane active" id="home">
       <h4>League Table</h4>
-      <% unless @teamstats.empty? %>
+      <% unless @league.teamstats.empty? %>
         <table id="league_table" class="table table-condensed">
         <tr>
           <th title="Position">Pos</th>
@@ -44,7 +44,7 @@
           <th title="Goals Against">GA</th>
           <th title="Actions">Actions</th>
         </tr>
-          <%= render @teamstats %>
+          <%= render @league.teamstats %>
         </table>
       <% end %>
     </div>
@@ -81,13 +81,13 @@
       </table>      
     </div>
     <div class="tab-pane" id="map">
-      <% if @league.show_map? && @venues.size > 0 %>
+      <% if @league.show_map? && @league.venues.size > 0 %>
         <h4>League Stadia Map</h4>
         <div class="row-fluid">
           <div class="span3">
             <div class="alert">Locations of stadia/venues for teams in this league.</div>
             <ul>
-              <% @venues.each do |venue| %>
+              <% @league.venues.each do |venue| %>
                 <li><%= venue.name %></li>
               <% end %>
             </ul>
@@ -105,7 +105,7 @@
                       var long1 = <%= @league.coordinate_long %>;
                       var zoom = <%= @league.zoom_level %>;
                       var locations = [
-                        <% @venues.each do |venue| %>
+                        <% @league.venues.each do |venue| %>
                           ['<%= venue.name %>',<%= venue.coordinate_lat %>,<%= venue.coordinate_long %>],
                         <% end %>
                       ];

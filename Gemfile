@@ -16,6 +16,7 @@ gem 'aws-sdk', '~> 1.7.1'
 gem 'rmagick'
 gem 'resque', "~> 1.22.0"
 gem "delayed_paperclip", "~> 2.5.0.1"
+gem 'draper'
 
 group :development, :test do
   gem 'debugger'

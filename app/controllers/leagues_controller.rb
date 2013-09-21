@@ -11,13 +11,8 @@ class LeaguesController < ApplicationController
   end
 
   def show
-    @league = League.find(params[:id])
-    @zones = @league.leaguezones
-    @games_exist = @league.games_exist?
-    @teamstats = Teamstat.fetch_league_table(params[:id])
-    @organization = @league.organization
-    @title = "View League | " + @league.name
-    @venues = Venue.fetch_venues_for_league(@league.id)
+    @league = LeagueDecorator.new(League.find(params[:id]))
+    @title = @league.title
   end
 
   def new
