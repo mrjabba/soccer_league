@@ -1,5 +1,5 @@
 <ul class="breadcrumb">
-  <li><%= link_to "#{@league.name} (#{@league.from_year}-#{@league.to_year})", league_path(@league) %><span class="divider">/</span>
+  <li><%= link_to "#{@teamstat.league.name} (#{@teamstat.league.from_year}-#{@teamstat.league.to_year})", league_path(@teamstat.league) %><span class="divider">/</span>
   </li>
   <li class="active"><%= "#{@teamstat.team.name} Team Information" %></li>
 </ul>
@@ -12,7 +12,7 @@
         <td><%= link_to "Add Player", "/#{locale}/rosters/new?teamstat_id=#{@teamstat.id}", :class => "btn" %></td>
         <td><%= link_to "Add Staff", "/#{locale}/technicalstaffs/new?teamstat_id=#{@teamstat.id}", :class => "btn" %></td>
             <td><%= link_to "Add Playing Location", "/#{locale}/playinglocations/new?teamstat_id=#{@teamstat.id}", :class => "btn" %></td>
-<% end %>
+        <% end %>
         <%= link_to "View Team", team_path(@teamstat.team), :class => "btn" %>
         <%= link_to "Edit Team", edit_team_path(@teamstat.team), :class => "btn" %>
   <% end %>
@@ -24,7 +24,7 @@
 <% if @teamstat.technicalstaffs.empty? %>
     <div class="alert">No staff associated with this roster for this team in this league. To start building a roster, Click Add Staff.</div>
 <% end %>
-<% if @league.supports_games? %>
+<% if @teamstat.league.supports_games? %>
   <div class="alert">The team in this league supports game management. Individual player stats are maintained by editing stats in each game. The results of those stats should be rolled up here (TODO).</div>
 <% else %>
   <div class="alert">The team in this league does not support game management.
@@ -43,7 +43,7 @@
         <th title="Jersey Number">Jersey Number</th>
         <th title="Position">Position</th>
         <th title="Nationality">Nationality</th>
-        <% unless @league.supports_games? %>
+        <% unless @teamstat.league.supports_games? %>
           <th title="Goals">Goals</th>
           <th title="Assists">Assists</th>
           <th title="Shots">Shots</th>

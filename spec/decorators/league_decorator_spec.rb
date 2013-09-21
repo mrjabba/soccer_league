@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'ostruct'
 
 describe LeagueDecorator do
   let(:league) {League.new}
