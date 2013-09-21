@@ -15,7 +15,6 @@ class VenuesController < ApplicationController
 
   def show
     @venue = Venue.find(params[:id]) 
-    #@league = @venue.league
     @title = "View Venue | " + @venue.name
   end
 

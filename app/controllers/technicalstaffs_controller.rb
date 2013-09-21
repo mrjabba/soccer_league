@@ -8,9 +8,6 @@ class TechnicalstaffsController < ApplicationController
   end
 
   def create
-    #puts 'hey'
-    #debugger
-    #puts 'hey'
     @teamstat = Teamstat.find(params[:teamstat_id])
     @technicalstaff = @teamstat.technicalstaffs.build(params[:technicalstaff])
     @technicalstaff.created_by_id = current_user.id
