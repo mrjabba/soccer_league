@@ -54,3 +54,7 @@ body {
 .zone_up {background-color: #aaddaa;}
 .zone_middle {background-color: #aaccff;}
 .zone_down {background-color: #ddaaaa;}
+
+.navbar .brand {
+  font-size: 2.0em;  
+}
