@@ -4,7 +4,15 @@ body {
 }
 
 .nav {
-  font-size: 0.9em;  
+  font-size: 0.9em;
+}
+
+.nav li:hover {
+  background-color: #ddd;
+  border-top-right-radius: 8px;
+  -moz-transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
 }
 
 .success {
@@ -58,3 +66,4 @@ body {
 .navbar .brand {
   font-size: 2.0em;  
 }
+
