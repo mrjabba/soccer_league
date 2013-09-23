@@ -1,3 +1,12 @@
+body {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 1.0em;
+}
+
+.nav {
+  font-size: 0.9em;  
+}
+
 .success {
   background-color: #dff0d8;
   border-color: #d6e9c6;
