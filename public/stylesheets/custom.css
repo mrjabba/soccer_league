@@ -67,3 +67,29 @@ body {
   font-size: 2.0em;  
 }
 
+#audit {
+  background-color: #dddddd;
+  border-color: #ccccdd;
+  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+     -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+}
+
+#audit ul {
+  list-style-type: none;
+}
+
+#audit li {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+#audit li time {
+  margin-bottom: 10px;
+  font-weight: normal;
+}
+#audit button {
+  margin-top: 3px;  
+  margin-bottom: 3px;  
+}
+
