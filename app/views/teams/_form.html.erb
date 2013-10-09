@@ -26,7 +26,7 @@
     </div>
     <div class="control-group">
         <%= f.label t('team_form.country'), :class => "control-label" %>
-        <div class="controls"><%= f.select(:country, Carmen::countries.unshift(["Choose...", ""]) ) %></div>
+        <div class="controls"><%= f.country_select(:country, :priority => %w(US CA), :prompt => "Choose..." ) %></div>
     </div>
     <div class="control-group">
         <%= f.label t('team_form.phone'), :class => "control-label" %>

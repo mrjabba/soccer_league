@@ -14,7 +14,7 @@
   </div>
   <div class="control-group">
     <%= f.label :nationality, :class => "control-label" %>
-    <div class="controls"><%= f.select(:nationality, Carmen::countries.unshift(["Choose...", ""]) ) %></div>
+    <div class="controls"><%= f.country_select(:nationality, :priority => %w(US CA), :prompt => "Choose..." ) %></div>
   </div>
   <div class="control-group">
     <% if current_user.metric %>
@@ -29,7 +29,7 @@
   </div>
   <div class="control-group">
     <%= f.label :birth_nation, :class => "control-label" %>
-    <div class="controls"><%= f.select(:birth_nation, Carmen::countries.unshift(["Choose...", ""]) ) %></div>
+    <div class="controls"><%= f.country_select(:birth_nation, :priority => %w(US CA), :prompt => "Choose..." ) %></div>
   </div>
   <div class="control-group">
     <%= f.label :birth_city, :class => "control-label" %>
