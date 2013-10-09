@@ -1,11 +1,12 @@
 require 'spec_helper'
 
 describe "People" do
+  test_file = File.new("public/images/calendar.png")
 
   before(:each) do
     user = FactoryGirl.create(:user)
     visit "/#{I18n.locale}/users/sign_in"
-    fill_in "user_username",    :with => user.username
+    fill_in "user_username", :with => user.username
     fill_in "user_password", :with => user.password
     click_button
   end
@@ -14,21 +15,15 @@ describe "People" do
     
     describe "failure" do
       it "should not make a new person" do
-        pending "quarantined, broken with paperclip. not sure why."
         lambda do
-        
-          visit people_path
-          response.should have_selector('title', :content => "Person Repository")
-          response.should have_selector('h1', :content => "Person Repository")
-          response.should have_selector('a', :content => "New Person")
-          response.should contain("New Person")
-          #why does it find the selector, but it can't click the lnk. 
-          #click_link "New Person"
-          visit "people/new"
+          visit new_person_path
           response.should have_selector('title', :content => "New Person")
+          response.should have_selector('h2', :content => "New Person")
+          response.should contain("Cancel")
           fill_in "Firstname", :with => ""
           fill_in "LastName", :with => ""
           fill_in "Position", :with => ""
+          fill_in "Avatar", :with => test_file
           click_button "Create"
           response.should render_template('people/new')
           response.should have_selector("div#error_explanation")
@@ -39,26 +34,17 @@ describe "People" do
     describe "success" do
 
       it "should make a new person" do
-        pending "quarantined, broken with paperclip. not sure why."
         lambda do
-          visit people_path
-          #TODO FIXME this clck link below shouldn't be working but it does? 
-          #click_link "New Person"
-          visit "people/new"
-          
+          visit new_person_path
           response.should have_selector('title', :content => "New Person")
           fill_in "Firstname", :with => "Joe"
           fill_in "LastName", :with => "Smith"
           fill_in "Position", :with => Person::POSITIONS.values.last
+          fill_in "Avatar", :with => test_file
           click_button "Create"
           response.should have_selector("div.success", :content => "Person created successfully!")
           response.should render_template('people/new')
-
         end.should change(Person, :count).by(1)
-        
-        #TODO need to combine these 2 somehow to include both add and edit
-        #TODO need to combine these 2 somehow to include both add and edit
-        #TODO need to combine these 2 somehow to include both add and edit
       end
     end
   end

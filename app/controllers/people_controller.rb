@@ -20,7 +20,7 @@ class PeopleController < ApplicationController
 
   def edit
     @person = Person.find(params[:id])
-    @title = "Edit person"
+    @title = "Edit Person"
   end
   
   def update
@@ -30,7 +30,7 @@ class PeopleController < ApplicationController
       flash[:success] = "Person updated."
       redirect_to @person
     else
-      @title = "Edit person"
+      @title = "Edit Person"
       render 'edit'
     end    
   end

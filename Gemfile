@@ -25,6 +25,8 @@ end
 
 group :development do
   gem 'rspec-rails', '~> 2.8.0'
+  gem 'guard-rspec'
+  gem 'rb-fsevent'
 end
 
 group :test do

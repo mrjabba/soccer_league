@@ -166,6 +166,7 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     rake (10.1.0)
+    rb-fsevent (0.9.3)
     rdoc (3.12.2)
       json (~> 1.4)
     redis (3.0.2)
@@ -251,6 +252,7 @@ DEPENDENCIES
   omniauth-facebook
   pg
   rails (= 3.2.14)
+  rb-fsevent
   resque (~> 1.22.0)
   rmagick
   role_model
