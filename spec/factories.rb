@@ -102,6 +102,15 @@ FactoryGirl.define do
 end
 
 FactoryGirl.define do
+  factory :playinglocation do
+    teamstat { |teamstat|  teamstat.association(:teamstat) }
+    venue { |teamstat|  teamstat.association(:venue) }
+    created_by_id 1
+    updated_by_id 1
+  end
+end
+
+FactoryGirl.define do
   factory :playerstat do
     person { |person|  person.association(:person) }
     game { |game|  game.association(:game) }

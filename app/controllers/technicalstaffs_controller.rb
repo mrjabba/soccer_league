@@ -3,12 +3,12 @@ class TechnicalstaffsController < ApplicationController
 
   def new
     @title = "New Technical Staff"
-    @teamstat = Teamstat.find(params[:teamstat_id])
+    @teamstat = Teamstat.find_by_id(params[:teamstat_id]) || not_found
     @technicalstaff = Technicalstaff.new(:teamstat_id => @teamstat.id)
   end
 
   def create
-    @teamstat = Teamstat.find(params[:teamstat_id])
+    @teamstat = Teamstat.find_by_id(params[:teamstat_id]) || not_found
     @technicalstaff = @teamstat.technicalstaffs.build(params[:technicalstaff])
     @technicalstaff.created_by_id = current_user.id
     @technicalstaff.updated_by_id = current_user.id

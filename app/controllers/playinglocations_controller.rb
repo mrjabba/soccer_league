@@ -3,12 +3,12 @@ class PlayinglocationsController < ApplicationController
 
   def new
     @title = "New Playing Location"
-    @teamstat = Teamstat.find(params[:teamstat_id])
+    @teamstat = Teamstat.find_by_id(params[:teamstat_id]) || not_found
     @playinglocation = Playinglocation.new(:teamstat_id => @teamstat.id)
   end
 
   def create
-    @teamstat = Teamstat.find(params[:teamstat_id])
+    @teamstat = Teamstat.find_by_id(params[:teamstat_id]) || not_found
     @playinglocation = @teamstat.playinglocations.build(params[:playinglocation])
     @playinglocation.created_by_id = current_user.id
     @playinglocation.updated_by_id = current_user.id

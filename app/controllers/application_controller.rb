@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
 
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
+
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
   end
