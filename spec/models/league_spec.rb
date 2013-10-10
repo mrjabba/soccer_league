@@ -25,4 +25,30 @@ describe League do
     league = FactoryGirl.create(:game).league
     league.games_exist?.should be_true
   end
+
+  describe 'custom finders' do
+    let(:search) { 'some'}
+    describe 'leagues do not exist' do
+      describe 'search' do
+        it 'return an empty result' do
+          League.search(search).count.should == 0
+        end
+      end
+    end
+
+    describe 'leagues exist' do
+      before do
+        @league = FactoryGirl.create(:league)
+        league_other = FactoryGirl.create(:league)
+      end
+
+      describe 'search' do
+        it 'returns leagues based on name search' do
+          result = League.search(search)
+          result.count.should == 2
+          result.first.should == @league
+        end
+      end
+    end
+  end
 end

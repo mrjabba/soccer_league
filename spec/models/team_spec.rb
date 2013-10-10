@@ -39,4 +39,46 @@ describe Team do
     team_with_duplicate_name = Team.new(@attr)
     team_with_duplicate_name.should_not be_valid
   end
+
+  describe 'custom finders' do
+    let(:search) { 'some'}
+    describe 'teams do not exist' do
+      describe 'search' do
+        it 'return an empty result' do
+          Team.search(search).count.should == 0
+        end
+      end
+
+      describe 'fetch_teams_by_name_as_array' do
+        it 'returns an empty array with no match' do
+          Team.fetch_teams_by_name_as_array('zzz').should == []
+        end
+      end
+    end
+
+    describe 'teams exist' do
+      before do
+        @team = FactoryGirl.create(:team)
+        team_other = FactoryGirl.create(:team)
+      end
+
+      describe 'search' do
+        it 'returns teams based on name search' do
+          result = Team.search(search)
+          result.count.should == 2
+          result.first.should == @team
+        end
+      end
+
+      describe 'fetch_teams_by_name_as_array' do
+        it 'returns expected hash with match' do
+          result = Team.fetch_teams_by_name_as_array(search)
+          result.size.should == 2
+          result.first[:name].should == @team.name
+          result.first[:id].should == @team.id
+        end
+      end
+    end
+  end
+
 end

@@ -12,7 +12,7 @@ end
 
 FactoryGirl.define do
   sequence :name do |n|
-    "some Team FC-#{n}"
+    "some name-#{n}"
   end
 end
 
@@ -23,9 +23,15 @@ FactoryGirl.define do
 end
 
 FactoryGirl.define do
+  sequence :venue_name do |n|
+    "stadium #{n}"
+  end
+end
+
+FactoryGirl.define do
   factory :user do
-    username               FactoryGirl.generate(:username)
-    email                  FactoryGirl.generate(:email)
+    username {generate(:username)}
+    email {generate(:email)}
     password              "foobar"
     password_confirmation "foobar"
     roles                  [:admin]
@@ -47,7 +53,7 @@ end
 
 FactoryGirl.define do
   factory :team do
-    name                  "Austin FC"
+    name {generate(:name)}
     address1                  "123 Main St."
     address2                  "Apt A"
     city                  "Austin"
@@ -84,7 +90,7 @@ FactoryGirl.define do
   factory :league do
     from_year                 2002
     to_year                 2003
-    name                 "my soccer league"
+    name {generate(:name)}
     organization { |org|  org.association(:organization) }
     created_by_id 1
     updated_by_id 1
@@ -162,7 +168,7 @@ FactoryGirl.define do
 
   FactoryGirl.define do
     factory :venue do
-      name                  "my soccer field"
+      name {generate(:venue_name)}
       coordinate_lat "51.481667"
       coordinate_long "-0.191111"
       surface "grass"

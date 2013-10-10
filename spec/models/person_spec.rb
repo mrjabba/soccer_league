@@ -53,4 +53,30 @@ describe Person do
     person = Person.create!(@attr)
     Person.fetch_people_by_first_name_as_array(@attr[:firstname].downcase).should eql([{:id => person.id, :name => person.name}])
   end
+
+  describe 'custom finders' do
+    let(:search) { 'van'}
+    describe 'people do not exist' do
+      describe 'search' do
+        it 'return an empty result' do
+          Person.search(search).count.should == 0
+        end
+      end
+    end
+
+    describe 'people exist' do
+      before do
+        @person = FactoryGirl.create(:person)
+        person_other = FactoryGirl.create(:person)
+      end
+
+      describe 'search' do
+        it 'returns people based on name search' do
+          result = Person.search(search)
+          result.count.should == 2
+          result.first.should == @person
+        end
+      end
+    end
+  end
 end
