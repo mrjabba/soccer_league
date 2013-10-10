@@ -7,6 +7,7 @@ SoccerleagueApp::Application.routes.draw do
 
     resources :users
     resources :rosters
+    resources :careers
     resources :technicalstaffs
     resources :playerstats
     resources :teams

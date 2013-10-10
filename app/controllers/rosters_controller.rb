@@ -5,24 +5,17 @@ class RostersController < ApplicationController
 
   def new
     @title = "New Roster Item"
-    @teamstat = Teamstat.find(params[:teamstat_id])
+    @teamstat = Teamstat.find_by_id(params[:teamstat_id]) || not_found
     @roster = Roster.new(:teamstat_id => @teamstat.id)
   end
 
   def show
-    #TODO will be a choice between this (for game management)
-    # and a new Career model
-    if params[:career]
-      @rosters = Roster.find_all_by_person_id(params[:id])
-      render "career", :layout => false
-    else
-      @rosters = Roster.find(params[:id])
-      @title = "View Roster"
-    end
+    @roster = Roster.find_by_id(params[:id]) || not_found
+    @title = "View Roster"
   end
 
   def create
-    @teamstat = Teamstat.find(params[:teamstat_id])
+    @teamstat = Teamstat.find_by_id(params[:teamstat_id]) || not_found
     @roster = @teamstat.rosters.build(params[:roster])
     @roster.created_by_id = current_user.id
     @roster.updated_by_id = current_user.id

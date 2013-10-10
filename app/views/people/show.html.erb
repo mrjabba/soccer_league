@@ -71,7 +71,7 @@
 
 <script language="JavaScript">
   $(document).ready(function() {
-    $.get('/<%=I18n.locale%>/rosters/<%=@person.id %>?career=1', function(data) {
+    $.get('/<%=I18n.locale%>/careers/<%=@person.id %>', function(data) {
       $('#career').html(data);
     });
   });

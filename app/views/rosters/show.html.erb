@@ -1,0 +1,9 @@
+<ul class="breadcrumb">
+  <li><%= link_to "#{@roster.teamstat.team.name}", teamstat_path(@roster.teamstat_id) %><span class="divider">/</span></li>
+  <li class="active">Roster item</li>
+</ul>
+
+<div class="row">
+  <div class="span3">Person: </div>
+  <div class="span3"><%= "#{@roster.person.firstname} #{@roster.person.lastname}" %></div>
+</div>
