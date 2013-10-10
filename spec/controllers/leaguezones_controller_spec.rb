@@ -171,7 +171,7 @@ describe LeaguezonesController do
        end.should change(Leaguezone, :count).by(-1)
      end
 
-     it "should redirect to the organization show page" do
+     it "should redirect to the league/leaguezone show page" do
        league_id = @leaguezone.league_id
        delete :destroy, :id => @leaguezone
        response.should redirect_to(league_leaguezones_path(league_id))

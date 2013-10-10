@@ -88,7 +88,7 @@ describe TechnicalstaffsController do
        end.should change(Technicalstaff, :count).by(-1)
      end
 
-     it "should redirect to the organization show page" do
+     it "should redirect to the playinglocation show page" do
        teamstat_id = @technicalstaff.teamstat_id
        delete :destroy, :id => @technicalstaff
        response.should redirect_to(teamstat_path(teamstat_id))

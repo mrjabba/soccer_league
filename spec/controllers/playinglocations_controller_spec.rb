@@ -19,99 +19,34 @@ describe PlayinglocationsController do
       response.should have_selector("title", :content => "New Playing Location")
     end
   end
-  
-  # describe "PUT 'update'" do
-  #   let(:venue) do
-  #     sign_in FactoryGirl.create(:user)
-  #     FactoryGirl.create(:venue)
-  #   end
-
-  #   describe "failure" do
-  #     let(:attr) do
-  #       { :name => "", :address1 => ""}
-  #     end
-      
-  #     it "should render the 'edit' page" do
-  #       put :update, :id => venue, :venue => attr
-  #       response.should render_template('edit')        
-  #     end
-      
-  #     it "should have the right title" do
-  #       put :update, :id => venue, :venue => attr
-  #       response.should have_selector("title", :content => "Edit Venue")
-  #     end
-  #   end
-
-  #   describe "success" do
-  #     let(:attr) do
-  #        { :name => "my stadium", :built => "1984"}
-  #     end
-      
-  #     it "should change the venue's attributes" do
-  #       put :update, :id => venue, :venue => attr
-  #       venue = assigns(:venue)
-  #       venue.reload
-  #       venue.name.should eql(attr[:name])
-  #       venue.built.should eql(attr[:built])
-  #     end
-      
-  #     it "should redirect to the venue show page" do
-  #       put :update, :id => venue, :venue => attr
-  #       response.should redirect_to(venue_path(venue))
-  #     end
-      
-  #     it "should have a flash message" do
-  #       put :update, :id => venue, :venue => attr
-  #       flash[:success].should =~ /updated/
-  #     end
-  #   end
-  # end
-
-  # describe "authentication of venue edit/update pages" do
-  #   let(:venue) do
-  #     FactoryGirl.create(:venue)
-  #   end
-
-  #   describe "for non-signed-in users" do
-  #     it "should deny access to 'edit'" do
-  #       get :edit, :id => venue
-  #       response.should redirect_to(new_user_session_path)
-  #     end
-
-  #     it "should deny access to 'update'" do
-  #       put :update, :id => venue, :venue => {}
-  #       response.should redirect_to(new_user_session_path)
-  #     end
-  #   end
-  # end    
-
-  # describe "GET 'show'" do
-  #   let(:venue) do
-  #     FactoryGirl.create(:venue)
-  #   end
-    
-  #   it "should be successful" do
-  #     get :show, :id => venue
-  #     response.should be_success
-  #   end
-    
-  #   it "should find the right venue" do
-  #     get :show, :id => venue
-  #     assigns(:venue).should == venue
-  #   end
-    
-  #   it "should have the right title" do
-  #     get :show, :id => venue
-  #     response.should have_selector("title", :content => venue.name)
-  #   end
-    
-  #   it "should include the venue's name" do
-  #     get :show, :id => venue
-  #     response.should have_selector("h2", :content => venue.name)
-  #   end
-  # end
 
   describe "POST 'create'" do
+    describe 'success' do
+      let(:venue) { FactoryGirl.create(:venue)}
+      let(:teamstat) { FactoryGirl.create(:teamstat)}
+      let(:attr) { {:venue_id => venue.id, :teamstat_id => teamstat.id} }
+      before(:each) do
+        sign_in(FactoryGirl.create(:user))
+      end
+
+      it "should create a playinglocation" do
+        lambda do
+          post :create, :teamstat_id => teamstat, :playinglocation => attr
+        end.should change(Playinglocation, :count).by(1)
+      end
+
+      it "should redirect to the teamstat show page" do
+          post :create, :teamstat_id => teamstat, :playinglocation => attr
+        response.should redirect_to(teamstat_path(assigns(:teamstat)))
+      end
+
+      it "should have a flash message" do
+          post :create, :teamstat_id => teamstat, :playinglocation => attr
+        flash[:success].should =~ /Playing location created successfully!/
+      end
+    
+    end
+
     describe "failure" do
      let(:attr) { {} }
      before(:each) do
@@ -137,4 +72,26 @@ describe PlayinglocationsController do
       end
     end
   end
+
+  describe "DELETE 'destroy'" do
+    before(:each) do
+      @playinglocation = FactoryGirl.create(:playinglocation)
+      sign_in(FactoryGirl.create(:user))
+    end
+
+    describe "success" do
+      it "should destroy the playinglocation" do
+        lambda do
+          delete :destroy, :id => @playinglocation
+        end.should change(Playinglocation, :count).by(-1)
+      end
+
+      it "should redirect to the teamstat show page" do
+        teamstat_id = @playinglocation.teamstat_id
+        delete :destroy, :id => @playinglocation
+        response.should redirect_to(teamstat_path(teamstat_id))
+      end
+    end
+  end
+
 end
