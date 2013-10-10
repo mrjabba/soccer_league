@@ -3,7 +3,7 @@
   <li class="active"><%= "Edit #{@teamstat.team_name} Roster" %></li>
 </ul>
 
-<h3>Add some people to the roster</h3>
+<header><h1>Edit Roster</h1></header>
 <p>
   <%= form_for(@teamstat, :html => {:class => "well form-horizontal"}) do |f| %>
   <% unless @teamstat.rosters.empty? %>

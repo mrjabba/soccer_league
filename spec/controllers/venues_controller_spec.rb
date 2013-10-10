@@ -129,7 +129,7 @@ describe VenuesController do
     
     it "should include the venue's name" do
       get :show, :id => venue
-      response.should have_selector("h2", :content => venue.name)
+      response.should have_selector("h1", :content => venue.name)
     end
   end
 

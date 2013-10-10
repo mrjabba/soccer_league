@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "LayoutLinks" do
 
   it "should have a Home page at '/'" do
-    get '/'
+    get root_path
     response.should have_selector('title', :content => "Home")
   end
 
@@ -24,27 +24,27 @@ describe "LayoutLinks" do
   
   it "should have a signup page at 'new_user_registration_path'" do
     get "/#{I18n.locale}/users/sign_up"
-  	response.should have_selector('h2', :content => "Sign up")
+    response.should have_selector('h1', :content => "Sign up")
   end
   
   it "should have the right links on the layout" do
-	visit root_path
-	click_link "About"
-	response.should have_selector('title', :content => "About")
-	click_link "Help"
-	response.should have_selector('title', :content => "Help")
-	click_link "Contact"
-	response.should have_selector('title', :content => "Contact")
-	click_link "Home"
-	response.should have_selector('title', :content => "Home")
-	click_link "Sign In"
-	response.should have_selector('h2', :content => "Sign in")
-	click_link "People"
-	response.should have_selector('title', :content => "Person Repository")
-	click_link "Teams"
-	response.should have_selector('title', :content => "Team Repository")
-	click_link "Leagues"
-	response.should have_selector('title', :content => "League Management")
+    visit root_path
+    click_link "About"
+    response.should have_selector('title', :content => "About")
+    click_link "Help"
+    response.should have_selector('title', :content => "Help")
+    click_link "Contact"
+    response.should have_selector('title', :content => "Contact")
+    click_link "Home"
+    response.should have_selector('title', :content => "Home")
+    click_link "Sign In"
+    response.should have_selector('h1', :content => "Sign in")
+    click_link "People"
+    response.should have_selector('title', :content => "Person Repository")
+    click_link "Teams"
+    response.should have_selector('title', :content => "Team Repository")
+    click_link "Leagues"
+    response.should have_selector('title', :content => "League Management")
   end
   
   describe "when not signed in" do

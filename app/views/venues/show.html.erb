@@ -1,9 +1,9 @@
-<h2 class="venue">Venue: <%= @venue.name %></h2>
+<header><h1>Venue: <%= @venue.name %></h1></header>
 
 <div class="btn-toolbar">
     <% if can? :new, @venue %>
         <%= link_to "Edit", "#{@venue.id}/edit", :class => "btn"  %>
-        <%= link_to "Add Venue", "/venues/new", :class => "btn" %>
+        <%= link_to "Add Venue", new_venue_path, :class => "btn" %>
     <% end %>
     <%= link_to "All Venues", venues_path, :class => "btn" %>
 </div>
