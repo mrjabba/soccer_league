@@ -32,7 +32,7 @@ describe PeopleController do
     
     it "should have the right title" do
       get :edit, :id => person
-      response.should have_selector("title", :content => "Edit person")
+      response.should have_selector("title", :content => "Edit Person")
     end
   end
 
@@ -52,7 +52,7 @@ describe PeopleController do
       
       it "should have the right title" do
         put :update, :id => person, :person => attr
-        response.should have_selector("title", :content => "Edit person")
+        response.should have_selector("title", :content => "Edit Person")
       end
     end
     
@@ -196,9 +196,5 @@ describe PeopleController do
           flash[:success].should =~ /Person created successfully/
         end
       end
-  end
-  
-  describe "DELETE 'destroy'" do
-    it "should require special admin role"
   end
 end
