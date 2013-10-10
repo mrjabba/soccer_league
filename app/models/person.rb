@@ -5,6 +5,7 @@ class Person < ActiveRecord::Base
   before_validation :calc_feet_in_meters
   before_save :destroy_avatar?
   validate :height_meters_inches_required_together
+  validate :at_least_one_name
 
   has_many :playerstats, :dependent => :destroy
   has_many :rosters, :dependent => :destroy
@@ -20,8 +21,8 @@ class Person < ActiveRecord::Base
   has_attached_file :avatar,
       styles: {thumb: '100x100>', medium: '300x300>'}
 
-  validates :firstname, :presence => true, :length   => { :maximum => 50 }
-  validates :lastname, :presence => true,  :length   => { :maximum => 50 }
+  validates :firstname, :length   => { :maximum => 50 }
+  validates :lastname, :length   => { :maximum => 50 }
   validates_numericality_of :height, :allow_nil => true, :greater_than_or_equal_to => 1
   validates_inclusion_of :position, :in => POSITIONS.values, :message => "%{value} is not a valid position",allow_blank: true
   validates_format_of :avatar_file_name, :with => %r{\.(jpg|gif|png)$}i, :allow_nil=> true, :message => "File must be an image of type (jpg,gif,png)"
@@ -31,7 +32,14 @@ class Person < ActiveRecord::Base
   process_in_background :avatar if Rails.env != 'production'
 
   def name
-    "#{self.firstname} #{self.lastname}"
+    case
+    when self.firstname.blank?
+      self.lastname
+    when self.lastname.blank?
+      self.firstname
+    else
+      "#{self.firstname} #{self.lastname}"
+    end
   end
 
   def self.fetch_people_by_first_name_as_array(query)
@@ -75,6 +83,12 @@ class Person < ActiveRecord::Base
     end
   end
  
+  def at_least_one_name
+    if (self.firstname.blank? && self.lastname.blank?)
+        errors[:base] << ("Please choose at least one name (first or last)")
+    end
+  end
+
   private
 
   def destroy_avatar?

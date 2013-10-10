@@ -9,7 +9,7 @@
 </tr>
 <% for person in @people %>
 <tr>
-  <td><%= link_to "#{person.lastname}, #{person.firstname}", person %></td>
+  <td><%= link_to "#{person.name}", person %></td>
   <td><%= person.position %></td>
   <td><%= person.nationality %></td>
 </tr>

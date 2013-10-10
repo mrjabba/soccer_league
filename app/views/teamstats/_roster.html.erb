@@ -1,5 +1,5 @@
 <tr>
-<td><%= link_to "#{roster.person.firstname} #{roster.person.lastname}", "../people/" + roster.person.id.to_s %></td>
+<td><%= link_to "#{roster.person.name}", "../people/" + roster.person.id.to_s %></td>
 <td><%= roster.jersey_number %></td>
 <td><%= (roster.position? ? roster.position : roster.person.position) %></td>
 <td><%= roster.person.nationality %></td>

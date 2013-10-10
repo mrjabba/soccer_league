@@ -33,27 +33,42 @@ describe Person do
     Person.create!(@attr)
   end
 
-  it { should validate_presence_of(:firstname) }
   it { should ensure_length_of(:firstname).is_at_most(50) }
-  it { should validate_presence_of(:lastname) }
   it { should ensure_length_of(:lastname).is_at_most(50) }
   it { should validate_presence_of(:created_by_id) }
   it { should validate_presence_of(:updated_by_id) }
 
+ it "should reject no name" do
+    Person.new(@attr.merge(:firstname => "", :lastname => "")).should_not be_valid
+  end
  
  it "should reject positions not in the position list" do
     Person.new(@attr.merge(:position => "coach")).should_not be_valid
   end
   
-  it "should display a full name" do
-    Person.new(@attr).name.should eql("#{@attr[:firstname]} #{@attr[:lastname]}")
-  end
-
   it "should return an array of id/name pairs" do
     person = Person.create!(@attr)
     Person.fetch_people_by_first_name_as_array(@attr[:firstname].downcase).should eql([{:id => person.id, :name => person.name}])
   end
 
+  describe 'name' do
+    it "should display a full name" do
+      Person.new(@attr).name.should eql("#{@attr[:firstname]} #{@attr[:lastname]}")
+    end
+
+    describe 'when no first name' do
+      it "should display last name" do
+        Person.new(@attr.merge(:firstname => "")).name.should eql(@attr[:lastname])
+      end
+    end
+
+    describe 'when no last name' do
+      it "should display first name" do
+        Person.new(@attr.merge(:lastname => "")).name.should eql(@attr[:firstname])
+      end
+    end
+  end
+  
   describe 'custom finders' do
     let(:search) { 'van'}
     describe 'people do not exist' do
