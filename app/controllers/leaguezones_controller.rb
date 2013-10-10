@@ -4,18 +4,18 @@ class LeaguezonesController < ApplicationController
 
   def index
     @title = "All Leaguezones"
-    @league = League.find(params[:league_id])
+    @league = League.find_by_id(params[:league_id]) || not_found
     @leaguezones = @league.leaguezones.paginate(:page => params[:page])
   end
 
   def new
     @title = "New Leaguezone"
-    @league = League.find(params[:league_id])
+    @league = League.find_by_id(params[:league_id]) || not_found
     @leaguezone = Leaguezone.new(:league_id => @league.id)
   end
 
   def create
-    @league = League.find(params[:league_id])
+    @league = League.find_by_id(params[:league_id]) || not_found
 
     @leaguezone = @league.leaguezones.build(params[:leaguezone].merge(:created_by_id => current_user.id,
                                                     :updated_by_id => current_user.id))
@@ -30,13 +30,13 @@ class LeaguezonesController < ApplicationController
   end
 
   def edit
-    @leaguezone = Leaguezone.find(params[:id])
+    @leaguezone = Leaguezone.find_by_id(params[:id]) || not_found
     @league = @leaguezone.league
     @title = "Edit leaguezone"
   end
 
   def update
-    @leaguezone = Leaguezone.find(params[:id])
+    @leaguezone = Leaguezone.find_by_id(params[:id]) || not_found
     @leaguezone.updated_by_id = current_user.id
 
     if @leaguezone.update_attributes(params[:leaguezone])
@@ -49,13 +49,13 @@ class LeaguezonesController < ApplicationController
   end
 
   def show
-    @leaguezone = Leaguezone.find(params[:id])
+    @leaguezone = Leaguezone.find_by_id(params[:id]) || not_found
     @league = @leaguezone.league
     @title = "View Leaguezone | #{@league.name} | #{@leaguezone.name}"
   end
 
   def destroy
-    @leaguezone = Leaguezone.find(params[:id])
+    @leaguezone = Leaguezone.find_by_id(params[:id]) || not_found
     @leaguezone.destroy
     redirect_to league_leaguezones_path(@leaguezone.league)
   end

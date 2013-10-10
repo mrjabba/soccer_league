@@ -80,13 +80,25 @@ FactoryGirl.define do
   end
 end
 
-
 FactoryGirl.define do
   factory :league do
     from_year                 2002
     to_year                 2003
     name                 "my soccer league"
     organization { |org|  org.association(:organization) }
+    created_by_id 1
+    updated_by_id 1
+  end
+end
+
+FactoryGirl.define do
+  factory :leaguezone do
+    name                 "relegation"
+    description          "description"
+    start_rank                 18
+    end_rank                 20
+    style                "foo"
+    league { |league|  league.association(:league) }
     created_by_id 1
     updated_by_id 1
   end
