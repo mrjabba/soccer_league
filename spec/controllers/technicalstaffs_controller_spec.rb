@@ -21,11 +21,37 @@ describe TechnicalstaffsController do
   end
 
   describe "POST 'create'" do
+    describe 'success' do
+      let(:person) { FactoryGirl.create(:person)}
+      let(:teamstat) { FactoryGirl.create(:teamstat)}
+      let(:attr) { {:person_id => person.id, :teamstat_id => teamstat.id, :role => "Manager"} }
+      before(:each) do
+        sign_in(FactoryGirl.create(:user))
+      end
+
+      it "should create a technicalstaff" do
+        lambda do
+          post :create, :teamstat_id => teamstat, :technicalstaff => attr
+        end.should change(Technicalstaff, :count).by(1)
+      end
+
+      it "should redirect to the teamstat show page" do
+        post :create, :teamstat_id => teamstat, :technicalstaff => attr
+        response.should redirect_to(teamstat_path(assigns(:teamstat)))
+      end
+
+      it "should have a flash message" do
+        post :create, :teamstat_id => teamstat, :technicalstaff => attr
+        flash[:success].should =~ /Staff created successfully/
+      end
+    
+    end
+
     describe "failure" do
-     let(:attr) { {} }
-     before(:each) do
-       sign_in(FactoryGirl.create(:user))
-     end
+      let(:attr) { {} }
+      before(:each) do
+        sign_in(FactoryGirl.create(:user))
+      end
 
       describe 'when no teamstat' do
         let(:person) { FactoryGirl.create(:person) }
@@ -45,5 +71,29 @@ describe TechnicalstaffsController do
         end
       end
     end
+
+
   end
+
+ describe "DELETE 'destroy'" do
+   before(:each) do
+     @technicalstaff = FactoryGirl.create(:technicalstaff)
+     sign_in(FactoryGirl.create(:user))
+   end
+
+   describe "success" do
+     it "should destroy the technicalstaff" do
+       lambda do
+         delete :destroy, :id => @technicalstaff
+       end.should change(Technicalstaff, :count).by(-1)
+     end
+
+     it "should redirect to the organization show page" do
+       teamstat_id = @technicalstaff.teamstat_id
+       delete :destroy, :id => @technicalstaff
+       response.should redirect_to(teamstat_path(teamstat_id))
+     end
+   end
+ end
+
 end

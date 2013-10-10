@@ -142,6 +142,16 @@ FactoryGirl.define do
 end
 
 FactoryGirl.define do
+  factory :technicalstaff do
+    person { |person|  person.association(:person, :lastname => FactoryGirl.generate(:lastname)) }
+    teamstat { |teamstat|  teamstat.association(:teamstat) }
+    role "manager"
+    created_by_id 1
+    updated_by_id 1
+  end
+end
+
+FactoryGirl.define do
   factory :game do
     league { |league|  league.association(:league) }
     visiting_team { |visiting_team|  visiting_team.association(:team, :name => FactoryGirl.generate(:name))  }
