@@ -4,7 +4,8 @@ describe GamesController do
  render_views
 
 # it "why arent there failing tests here for adding updated_by_id?"
-  
+  let(:user) { FactoryGirl.create(:user) }
+
   describe "GET 'index'" do
     before(:each) do
       @league = FactoryGirl.create(:league)
@@ -39,7 +40,7 @@ describe GamesController do
 
     describe "authenticated user" do 
       before(:each) do
-        sign_in(FactoryGirl.create(:user))
+        sign_in(user)
         get :edit, :id => @game
       end
 
@@ -75,7 +76,7 @@ describe GamesController do
     
     describe "authenticated user" do
       before(:each) do
-        sign_in(FactoryGirl.create(:user))
+        sign_in(user)
         get :show, :id => @game
       end
       
@@ -89,7 +90,7 @@ describe GamesController do
   describe "GET 'new'" do
     before(:each) do
       @league = FactoryGirl.create(:league)
-      sign_in(FactoryGirl.create(:user, :email => FactoryGirl.generate(:email)))
+      sign_in(user)
     end
   
     describe "success" do
@@ -116,7 +117,7 @@ describe GamesController do
       @teamstat_visitor = FactoryGirl.create(:teamstat)
       @teamstat_visitor.team = @team_visiting
      
-      sign_in(FactoryGirl.create(:user, :email => FactoryGirl.generate(:email)))
+      sign_in(user)
     end
 
     describe "success" do
@@ -171,7 +172,7 @@ describe GamesController do
   describe "DELETE 'destroy'" do
     before(:each) do
       @game = FactoryGirl.create(:game)
-      sign_in(FactoryGirl.create(:user, :email => FactoryGirl.generate(:email)))
+      sign_in(user)
     end
     
     describe "success" do
