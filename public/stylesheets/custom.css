@@ -132,3 +132,8 @@ section header {
   border-top-left-radius: 8px;
   margin-bottom: 5px;
 }
+
+#pagination-section .page_info {
+  margin: 0 auto;
+}
+

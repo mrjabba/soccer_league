@@ -7,7 +7,6 @@
   <% end %>
 </div>
 
-<%= will_paginate %>
 <table id="organizations_table" class="table table-condensed">
 <tr>
 <th title="Name">Name</th>
@@ -16,4 +15,4 @@
 </tr>
   <%= render @organizations %>
 </table>
-<%= will_paginate %>
+<%= render :partial => "shared/pagination", :locals => {:model => @organizations} %>

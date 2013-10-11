@@ -18,5 +18,4 @@
 </tr>
 <% end%>
 </table>
-<div class="page_info"><%= page_entries_info @users %></div>
-<%= will_paginate %>
+<%= render :partial => "shared/pagination", :locals => {:model => @users} %>

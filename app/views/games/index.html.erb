@@ -9,7 +9,6 @@
       <%= link_to "Create Game", new_league_game_path(@league), :class => "btn" %>
   <% end %>
 </div>
-<%= will_paginate %>
 <table id="games_table" class="table table-condensed">
 <tr>
 <th title="Game">Game</th>
@@ -17,4 +16,4 @@
 </tr>
   <%= render @games %>
 </table>
-<%= will_paginate %>
+<%= render :partial => "shared/pagination", :locals => {:model => @games} %>
