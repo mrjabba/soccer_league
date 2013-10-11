@@ -1,6 +1,6 @@
   <%= f.fields_for :playerstats do |c| %>
   <tr>
-  <td><%= c.object.team.name %></td>
+  <td><%= c.object.team_name %></td>
   <td><%= c.object.person.firstname %> <%= c.object.person.lastname %></td>
   <td><%= c.text_field :goals, :class => "span1" %></td>
   <td><%= c.text_field :assists, :class => "span1" %></td>

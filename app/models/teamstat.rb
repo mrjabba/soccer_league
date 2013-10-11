@@ -34,6 +34,18 @@ class Teamstat < ActiveRecord::Base
   validates_numericality_of :goals_for, :greater_than_or_equal_to => 0
   validates_numericality_of :goals_against, :greater_than_or_equal_to => 0
 
+  def team_name
+    team.name
+  end
+
+  def self.fetch_teams_by_name_for_league_as_array(league_id, query)
+    Teamstat.joins(:team).where("league_id = ? AND UPPER(name) like UPPER(?)", "#{league_id}", "%#{query}%").map(&:filter_by_team_name_hash)
+  end
+
+  def filter_by_team_name_hash
+    {:id => id, :name => team.name}
+  end
+
   def self.teamstat_for_league(league_id, team_id)
     team_stat = where("league_id = ? AND team_id = ?", league_id, team_id )
     team_stat.first

@@ -1,6 +1,15 @@
 class TeamstatsController < ApplicationController
   before_filter :authenticate_user!, :except => [:show]
 
+  def index
+    #yuk, extract to TeamFinder
+    if params[:league_id] && params[:q]
+      respond_to do |format|
+        format.json { render :json => Teamstat.fetch_teams_by_name_for_league_as_array(params[:league_id], params[:q])}
+      end
+    end
+  end
+
   def new
     @title = "New Teamstat"
     @league = League.find(params[:league_id])

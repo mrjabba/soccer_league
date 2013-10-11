@@ -1,6 +1,6 @@
 <tr>
-<td><%= link_to playerstat.team.name, "../teams/" + playerstat.team.id.to_s %> </td>
-<td><%= link_to "#{playerstat.person.firstname} #{playerstat.person.lastname}", "../people/" + playerstat.person.id.to_s %> </td>
+<td><%= link_to playerstat.team_name, team_path(playerstat.teamstat.team) %> </td>
+<td><%= link_to playerstat.person.name, person_path(playerstat.person.id) %> </td>
 <td><%= playerstat.goals %></td>
 <td><%= playerstat.assists %></td>
 <td><%= playerstat.shots %></td>

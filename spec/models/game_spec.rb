@@ -17,7 +17,7 @@ describe Game do
     @person_visiting_2 = FactoryGirl.create(:person)
     
     @created_by_id = 1
-    @attr = { :league_id => @league.id, :team1_id => @teamstat_visiting.team.id, :team2_id => @teamstat_home.team.id, :created_by_id => @created_by_id, :updated_by_id => 1 }
+    @attr = { :league_id => @league.id, :teamstat1_id => @teamstat_visiting.id, :teamstat2_id => @teamstat_home.id, :created_by_id => @created_by_id, :updated_by_id => 1 }
   end
 
   it "should create a new instance given valid attributes" do
@@ -25,7 +25,7 @@ describe Game do
   end
 
   it "should validate visiting and home team are not the same id" do
-    Game.new(@attr.merge(:team1_id => 1, :team2_id => 1)).should_not be_valid
+    Game.new(@attr.merge(:teamstat1_id => 1, :teamstat2_id => 1)).should_not be_valid
   end
 
   it "should require created by id" do
@@ -52,10 +52,10 @@ describe Game do
       @game = Game.create!(@attr)
 
       #shouldn't we just mock playerstat here?
-      @playerstat_1 = Playerstat.create!(:game_id => @game.id, :person_id => @person_home_1.id, :team_id => @teamstat_home.team.id, :goals => 1, :created_by_id => @created_by_id, :updated_by_id => 1)
-      @playerstat_2 = Playerstat.create!(:game_id => @game.id, :person_id => @person_home_2.id, :team_id => @teamstat_home.team.id, :goals => 2, :created_by_id => @created_by_id, :updated_by_id => 1)
-      @playerstat_3 = Playerstat.create!(:game_id => @game.id, :person_id => @person_visiting_1.id, :team_id => @teamstat_visiting.team.id, :goals => 0, :created_by_id => @created_by_id, :updated_by_id => 1)
-      @playerstat_4 = Playerstat.create!(:game_id => @game.id, :person_id => @person_visiting_2.id, :team_id => @teamstat_visiting.team.id, :goals => 0, :created_by_id => @created_by_id, :updated_by_id => 1)
+      @playerstat_1 = Playerstat.create!(:game_id => @game.id, :person_id => @person_home_1.id, :teamstat_id => @teamstat_home.id, :goals => 1, :created_by_id => @created_by_id, :updated_by_id => 1)
+      @playerstat_2 = Playerstat.create!(:game_id => @game.id, :person_id => @person_home_2.id, :teamstat_id => @teamstat_home.id, :goals => 2, :created_by_id => @created_by_id, :updated_by_id => 1)
+      @playerstat_3 = Playerstat.create!(:game_id => @game.id, :person_id => @person_visiting_1.id, :teamstat_id => @teamstat_visiting.id, :goals => 0, :created_by_id => @created_by_id, :updated_by_id => 1)
+      @playerstat_4 = Playerstat.create!(:game_id => @game.id, :person_id => @person_visiting_2.id, :teamstat_id => @teamstat_visiting.id, :goals => 0, :created_by_id => @created_by_id, :updated_by_id => 1)
 
       #refresh game to get playerstats (better way to do this?)
       @game = Game.find_by_id(@game.id)
@@ -167,11 +167,11 @@ describe Game do
       end
 
       it "should have the right associated teams" do
-        @game.home_team.id.should == @teamstat_home.team.id
-        @game.home_team.should == @teamstat_home.team
+        @game.home_team.id.should == @teamstat_home.id
+        @game.home_team.should == @teamstat_home
 
-        @game.visiting_team.id.should == @teamstat_visiting.team.id
-        @game.visiting_team.should == @teamstat_visiting.team
+        @game.visiting_team.id.should == @teamstat_visiting.id
+        @game.visiting_team.should == @teamstat_visiting
       end
 
       it "should have an associated playerstat aka roster" do

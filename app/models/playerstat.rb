@@ -1,15 +1,15 @@
 class Playerstat < ActiveRecord::Base
   include Auditable
-  attr_accessible :jersey_number, :goals, :assists, :shots, :fouls, :yellow_cards, :red_cards, :minutes, :saves, :game_id, :person_id, :team_id
+  attr_accessible :jersey_number, :goals, :assists, :shots, :fouls, :yellow_cards, :red_cards, :minutes, :saves, :game_id, :person_id, :teamstat_id
   before_validation :init_stats
   before_save :init_stats
 
   belongs_to :person
-  belongs_to :team
+  belongs_to :teamstat
   belongs_to :game
 
   validates :game_id, :presence => true
-  validates :team_id, :presence => true
+  validates :teamstat_id, :presence => true
   validates :person_id, :presence => true
 
   #TODO ensure these are whole numbers?
@@ -24,7 +24,7 @@ class Playerstat < ActiveRecord::Base
   validates_numericality_of :saves, :greater_than_or_equal_to => 0
 
   def team_name
-    team ? team.name : "unknown"
+    teamstat.team_name
   end
 
   private

@@ -67,9 +67,9 @@ describe GamesController do
       end
       
       it "should include the both teams in a table and the title" do
-        response.should have_selector("title", :content => "#{@game.visiting_team.name} at #{@game.home_team.name}")
-        response.should have_selector("td", :content => @game.visiting_team.name)
-        response.should have_selector("td", :content => @game.home_team.name)
+        response.should have_selector("title", :content => "#{@game.visiting_team_name} at #{@game.home_team_name}")
+        response.should have_selector("td", :content => @game.visiting_team_name)
+        response.should have_selector("td", :content => @game.home_team_name)
       end
     end
     
@@ -153,7 +153,7 @@ describe GamesController do
     describe "failure" do
       before(:each) do
         @league = FactoryGirl.create(:league)
-        @attr = { :team1_id => nil } 
+        @attr = { :teamstat1_id => nil } 
       end
 
       it "should render the 'edit' page" do

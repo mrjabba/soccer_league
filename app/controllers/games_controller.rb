@@ -54,8 +54,8 @@ class GamesController < ApplicationController
   end
 
   def show
-    @game = Game.find(params[:id]) 
-    @title = "View Game | #{@game.visiting_team.name} at #{@game.home_team.name}" 
+    @game = GameDecorator.new(Game.find(params[:id]))
+    @title = @game.title
   end
 
   def destroy

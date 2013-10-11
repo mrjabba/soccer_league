@@ -11,17 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130818215148) do
+ActiveRecord::Schema.define(:version => 20131011172549) do
 
   create_table "games", :force => true do |t|
-    t.integer  "team1_id"
-    t.integer  "team2_id"
-    t.integer  "league_id"
     t.boolean  "completed",     :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
+    t.integer  "league_id"
+    t.integer  "teamstat1_id"
+    t.integer  "teamstat2_id"
   end
 
   add_index "games", ["created_by_id"], :name => "index_games_on_created_by_id"
@@ -29,19 +29,19 @@ ActiveRecord::Schema.define(:version => 20130818215148) do
 
   create_table "leagues", :force => true do |t|
     t.string   "name"
-    t.integer  "from_year"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
     t.integer  "organization_id"
     t.boolean  "supports_games",  :default => true
-    t.integer  "to_year"
     t.boolean  "calc_points",     :default => true
     t.string   "coordinate_lat"
     t.string   "coordinate_long"
     t.integer  "zoom_level",      :default => 5
     t.boolean  "show_map",        :default => false
+    t.integer  "from_year"
+    t.integer  "to_year"
   end
 
   add_index "leagues", ["created_by_id"], :name => "index_leagues_on_created_by_id"
@@ -107,14 +107,13 @@ ActiveRecord::Schema.define(:version => 20130818215148) do
     t.datetime "updated_at"
     t.integer  "jersey_number"
     t.integer  "game_id"
-    t.integer  "team_id"
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
+    t.integer  "teamstat_id"
   end
 
   add_index "playerstats", ["created_by_id"], :name => "index_playerstats_on_created_by_id"
   add_index "playerstats", ["person_id"], :name => "index_playerstats_on_player_id"
-  add_index "playerstats", ["team_id"], :name => "index_playerstats_on_team_id"
   add_index "playerstats", ["updated_by_id"], :name => "index_playerstats_on_updated_by_id"
 
   create_table "playinglocations", :force => true do |t|

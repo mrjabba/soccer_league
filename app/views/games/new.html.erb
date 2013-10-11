@@ -10,12 +10,12 @@
     <%= f.hidden_field :league_id %>
     <div class="control-group">
       <%= f.label :visiting_team, :class => "control-label" %>
-      <div class="controls"><%= f.text_field :team1_id %></div>
+      <div class="controls"><%= f.text_field :teamstat1_id %></div>
   </div>
 
   <div class="control-group">
       <%= f.label :home_team, :class => "control-label" %>
-      <div class="controls"><%= f.text_field :team2_id %></div>
+      <div class="controls"><%= f.text_field :teamstat2_id %></div>
   </div>
 
   <div class="form-actions">
@@ -24,9 +24,9 @@
   </div>
 <% end %>
 <script type="text/javascript">
-  $('#game_team1_id,#game_team2_id').tokenInput("/en/teams.json?league_id=<%= @game.league_id %>", {
+  $('#game_teamstat1_id,#game_teamstat2_id').tokenInput("/en/leagues/<%= @game.league_id %>/teamstats.json?", {
     crossDomain: false,
-    prePopulate: $('#game_team1_id,#game_team2_id').data("pre"),
+    prePopulate: $('#game_teamstat1_id,#game_teamstat2_id').data("pre"),
     theme: "facebook",
     tokenLimit: 1
   });

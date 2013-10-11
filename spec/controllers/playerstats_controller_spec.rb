@@ -5,18 +5,18 @@ describe PlayerstatsController do
 
   describe "GET 'new'" do
     let(:game) { FactoryGirl.create(:game) }
-    let(:team) { FactoryGirl.create(:team) }
+    let(:teamstat) { FactoryGirl.create(:teamstat) }
     before(:each) do
       sign_in(FactoryGirl.create(:user))
     end
       
-    it "should be successful with a game and a team" do
-      get :new, :game_id => game, :team_id => team
+    it "should be successful with a game and a teamstat" do
+      get :new, :game_id => game, :teamstat_id => teamstat
       response.should be_success
     end
 
     it "should have the right title" do
-      get :new, :game_id => game, :team_id => team
+      get :new, :game_id => game, :teamstat_id => teamstat
       response.should have_selector("title", :content => "New Playerstat")
     end
   end
@@ -43,7 +43,7 @@ describe PlayerstatsController do
 
   describe "POST 'create'" do
     let(:game) { FactoryGirl.create(:game) }
-    let(:team) { FactoryGirl.create(:team) }
+    let(:teamstat) { FactoryGirl.create(:teamstat) }
     let(:person) { FactoryGirl.create(:person) }
 
     before(:each) do
@@ -51,7 +51,7 @@ describe PlayerstatsController do
     end
 
     describe "success" do
-      let(:attr) { { :game_id => game, :team_id => team, :person_id => person } }
+      let(:attr) { { :game_id => game, :teamstat_id => teamstat, :person_id => person } }
 
       it "should redirect to the game show page" do
         post :create, :playerstat => attr
@@ -65,7 +65,7 @@ describe PlayerstatsController do
     end
 
     describe "failure" do
-      let(:attr) { { :game_id => game, :team_id => team } }
+      let(:attr) { { :game_id => game, :teamstat_id => teamstat } }
 
       it "should render the 'new' page" do
         post :create, :playerstat => attr

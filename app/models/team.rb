@@ -21,10 +21,6 @@ class Team < ActiveRecord::Base
   #disable this until we get this working on heroku.
   process_in_background :avatar if Rails.env != 'production'
 
-  def self.fetch_teams_by_name_for_league_as_array(league_id, query)
-    Team.joins(:teamstats).where("league_id = ? AND UPPER(name) like UPPER(?)", "#{league_id}", "%#{query}%").map(&:filter_by_name_hash)
-  end
-
   def self.fetch_teams_by_name_as_array(query)
     Team.where("UPPER(name) like UPPER(?)", "%#{query}%").map(&:filter_by_name_hash)
   end

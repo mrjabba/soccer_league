@@ -132,7 +132,7 @@ FactoryGirl.define do
   factory :playerstat do
     person { |person|  person.association(:person) }
     game { |game|  game.association(:game) }
-    team { |team|  team.association(:team) }
+    teamstat { |teamstat|  teamstat.association(:teamstat) }
     created_by_id 1
     updated_by_id 1
   end
@@ -160,8 +160,8 @@ end
 FactoryGirl.define do
   factory :game do
     league { |league|  league.association(:league) }
-    visiting_team { |visiting_team|  visiting_team.association(:team, :name => FactoryGirl.generate(:name))  }
-    home_team { |home_team|  home_team.association(:team, :name => FactoryGirl.generate(:name))  }
+    visiting_team { |visiting_team|  visiting_team.association(:teamstat)}
+    home_team { |home_team|  home_team.association(:teamstat)}
     created_by_id 1
     updated_by_id 1
   end
