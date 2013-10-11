@@ -3,7 +3,6 @@ require 'spec_helper'
 describe GamesController do
  render_views
 
-# it "why arent there failing tests here for adding updated_by_id?"
   let(:user) { FactoryGirl.create(:user) }
 
   describe "GET 'index'" do
@@ -109,46 +108,31 @@ describe GamesController do
   describe "POST 'create'" do
     before(:each) do
       @league = FactoryGirl.create(:league)
-      @team_home = FactoryGirl.create(:team)
-      @team_visiting = FactoryGirl.create(:team, :name => FactoryGirl.generate(:name))
- 
       @teamstat_home = FactoryGirl.create(:teamstat)
-      @teamstat_home.team = @team_home
       @teamstat_visitor = FactoryGirl.create(:teamstat)
-      @teamstat_visitor.team = @team_visiting
-     
       sign_in(user)
     end
 
     describe "success" do
       before(:each) do
-      
-=begin        
-       @attr = { :league_id => @league, :team1_id => @team_home, :team2_id => @team_visiting } 
-        take a break. frustrating thing is that the code seems to work
-        but the test doesnt oops..what can we do to to fix this?
-=end        
+        @attr = { :league_id => @league, :teamstat1_id => @teamstat_home, :teamstat2_id => @teamstat_visitor } 
       end
-=begin
+
       it "should redirect to the game show page" do
-        #puts "the test attrs is #{@attr}"
-        post :create, :game => @attr
-         response.should redirect_to(game_path(Game.first.id))
+        post :create, :league_id => @league.id, :game => @attr
+        response.should redirect_to(game_path(Game.first.id))
       end
-=end
-=begin
+
       it "should create a game" do
         lambda do
-          post :create, :game => @attr
+          post :create, :league_id => @league.id, :game => @attr
         end.should change(Game, :count).by(1)
       end
 
       it "should have a flash message" do
-        post :create, :game => @attr
+        post :create, :league_id => @league.id, :game => @attr
         flash[:success].should =~ /added/
       end
-=end
-
     end
 
     describe "failure" do
