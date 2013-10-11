@@ -3,7 +3,7 @@
   <li><%= link_to "#{@teamstat.team_name} Roster", teamstat_path(@teamstat.id) %></li>
 </ul>
 
-<header><h1>Edit Roster</h1></header>
+<%=header_title("Edit Roster")%>
 <p>
   <%= form_for(@teamstat, :html => {:class => "well form-horizontal"}) do |f| %>
   <% unless @teamstat.rosters.empty? %>

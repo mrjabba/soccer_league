@@ -1,4 +1,4 @@
-<header><h1>Venue: <%= @venue.name %></h1></header>
+<%=header_title("Venue: #{@venue.name}")%>
 
 <div class="btn-toolbar">
     <% if can? :new, @venue %>

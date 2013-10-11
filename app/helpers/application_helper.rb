@@ -23,6 +23,10 @@ module ApplicationHelper
     end
   end
 
+  def header_title(content)
+    content_tag(:header, content_tag(:h1, content))
+  end
+
   def zone_cell_at_position(zones, position)
     zone = Leaguezone.find_zone_by_position(zones, position)
     zone.nil? ? content_tag(:td, position) : content_tag(:td, position, {:class => zone.style, :title => zone.name})

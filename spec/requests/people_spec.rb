@@ -18,7 +18,7 @@ describe "People" do
         lambda do
           visit new_person_path
           response.should have_selector('title', :content => "New Person")
-          response.should have_selector('h2', :content => "New Person")
+          response.should have_selector('h1', :content => "New Person")
           response.should contain("Cancel")
           fill_in "Firstname", :with => ""
           fill_in "LastName", :with => ""

@@ -1,2 +1,2 @@
-<h2><%= @title %></h2>
+<%=header_title(@title)%>
 <%= render :partial => "form", :locals => {:model => @person, :person => @person, :save_label => "Create"} %>
