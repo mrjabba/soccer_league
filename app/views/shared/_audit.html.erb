@@ -2,9 +2,9 @@
   <button class="btn btn-inverse" data-toggle="collapse" data-target="#audit_toggle">Audit </button>
   <div id="audit_toggle" class="collapse in">
       <ul>
-        <li>Creator: <%= link_to auditable.creator_name, "/users/#{auditable.creator_id}" %></li>
+        <li>Creator: <%= link_to auditable.creator_name, user_path(auditable.creator_id) %></li>
         <li>Created: <%= time_tag auditable.created_at %></li>
-        <li>Last Editor: <%= link_to auditable.updator_name, "/users/#{auditable.updator_id}" %></li>
+        <li>Last Editor: <%= link_to auditable.updator_name, user_path(auditable.updator_id) %></li>
         <li>Updated: <%= time_tag auditable.updated_at %></li>
       </ul>
   </div>

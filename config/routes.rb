@@ -16,6 +16,12 @@ SoccerleagueApp::Application.routes.draw do
     resources :venues
     resources :team_league_history
 
+    resources :games do
+      resources :teamstats do
+        resources :playerstats, :shallow => true
+      end
+    end
+
     resources :leagues do
       resources :teamstats, :shallow => true do
         resources :rosters, :shallow => true

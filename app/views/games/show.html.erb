@@ -5,7 +5,7 @@
 
 <% if can? :new, @game %>
 <div class="btn-toolbar">
-    <%= link_to "Manage Game Stats", "#{@game.id}/edit", :class => "btn"  %>
+    <%= link_to "Manage Game Stats", edit_game_path(@game.id), :class => "btn"  %>
     <%= link_to "Remove", @game, :method => :delete,
                                        :data => {:confirm => "Remove this game?"},
                                        :id => "remove_game",
@@ -20,7 +20,7 @@
     <td><%= @game.visiting_team_name %></td>
     <td><%= @game.visiting_team_goals %></td>
     <% if can? :new, @game %>
-      <td><%= link_to "Add Person", "/#{I18n.locale}/playerstats/new?game_id=#{@game.id}&teamstat_id=#{@game.visiting_team.id}", :class => "btn" %></td>
+      <td><%= link_to "Add Person", new_game_teamstat_playerstat_path(@game.id, @game.visiting_team.id), :class => "btn" %></td>
     <% end %>
   </tr>
   <tr>
@@ -28,7 +28,7 @@
     <td><%= @game.home_team_name %></td>
     <td><%= @game.home_team_goals %></td>
     <% if can? :new, @game %>
-      <td><%= link_to "Add Person", "/#{I18n.locale}/playerstats/new?game_id=#{@game.id}&teamstat_id=#{@game.home_team.id}", :class => "btn" %></td>
+      <td><%= link_to "Add Person", new_game_teamstat_playerstat_path(@game.id, @game.home_team.id), :class => "btn" %></td>
     <% end %>
   </tr>
   </table>

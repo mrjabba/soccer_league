@@ -1,6 +1,6 @@
 <ul class="breadcrumb">
-  <li><%= link_to "#{@league.name} (#{@league.from_year}-#{@league.to_year})", "/leagues/#{@league.id}" %><span class="divider">/</span></li>
-  <li class="active"><%= "Edit #{@teamstat.team_name} Roster" %></li>
+  <li><%= link_to "#{@league.name} (#{@league.from_year}-#{@league.to_year})", league_path(@league.id) %><span class="divider">/</span></li>
+  <li><%= link_to "#{@teamstat.team_name} Roster", teamstat_path(@teamstat.id) %></li>
 </ul>
 
 <header><h1>Edit Roster</h1></header>
@@ -28,7 +28,7 @@
   <% end %>
     <div class="form-actions">
       <%= f.submit "Update Roster", :class => "btn" %>
-      <%= link_to "Cancel", "/teamstats/#{@teamstat.id}", :class => "btn" %>
+      <%= link_to "Cancel", teamstat_path(@teamstat.id), :class => "btn" %>
     </div>
   <% end %>
 </p>

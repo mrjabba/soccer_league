@@ -1,5 +1,5 @@
 <ul class="breadcrumb">
-  <li><%= link_to "View Game", "/games/#{@game.id}"  %><span class="divider">/</span></li>
+  <li><%= link_to "View Game", game_path(@game.id)  %><span class="divider">/</span></li>
   <li class="active"><%= "Edit Game: #{@game.visiting_team_name} at #{@game.home_team_name}" %></li>
 </ul>
 
@@ -34,6 +34,6 @@
   <% end %>
   <div class="form-actions">
     <%= f.submit "Update", :class => "btn" %>
-    <%= link_to "Cancel", "/games/#{@game.id}", :class => "btn" %>
+    <%= link_to "Cancel", game_path(@game.id), :class => "btn" %>
   </div>
 <% end %>
