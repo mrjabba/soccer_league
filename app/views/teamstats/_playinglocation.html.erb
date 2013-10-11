@@ -1,5 +1,5 @@
 <tr>
-    <td><%= link_to "#{playinglocation.venue.name}", "../venues/" + playinglocation.venue.id.to_s %></td>
+    <td><%= link_to "#{playinglocation.venue.name}", venue_path(playinglocation.venue.id) %></td>
     <% if can? :new, @teamstat %>
         <td>
             <%= link_to "Remove", playinglocation, :method => :delete,

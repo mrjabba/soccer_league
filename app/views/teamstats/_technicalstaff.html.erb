@@ -1,5 +1,5 @@
 <tr>
-    <td><%= link_to "#{technicalstaff.person.firstname} #{technicalstaff.person.lastname}", "../people/" + technicalstaff.person.id.to_s %></td>
+    <td><%= link_to "#{technicalstaff.person.firstname} #{technicalstaff.person.lastname}", person_path(technicalstaff.person.id) %></td>
     <td><%= technicalstaff.role %></td>
     <td><%= technicalstaff.person.nationality %></td>
     <% if can? :new, @teamstat %>

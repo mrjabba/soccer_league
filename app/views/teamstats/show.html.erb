@@ -9,9 +9,9 @@
         <%= link_to "Edit Roster", "#{@teamstat.id}/edit", :class => "btn" %>
         <% if can? :new, @game %>
 
-        <td><%= link_to "Add Player", "/#{locale}/rosters/new?teamstat_id=#{@teamstat.id}", :class => "btn" %></td>
-        <td><%= link_to "Add Staff", "/#{locale}/technicalstaffs/new?teamstat_id=#{@teamstat.id}", :class => "btn" %></td>
-            <td><%= link_to "Add Playing Location", "/#{locale}/playinglocations/new?teamstat_id=#{@teamstat.id}", :class => "btn" %></td>
+        <td><%= link_to "Add Player", new_teamstat_roster_path(@teamstat.id), :class => "btn" %></td>
+        <td><%= link_to "Add Staff", new_teamstat_technicalstaff_path(@teamstat.id), :class => "btn" %></td>
+        <td><%= link_to "Add Playing Location", new_teamstat_playinglocation_path(@teamstat.id), :class => "btn" %></td>
         <% end %>
         <%= link_to "View Team", team_path(@teamstat.team), :class => "btn" %>
         <%= link_to "Edit Team", edit_team_path(@teamstat.team), :class => "btn" %>
