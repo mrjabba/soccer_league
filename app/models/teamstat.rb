@@ -24,7 +24,8 @@ class Teamstat < ActiveRecord::Base
   validates :team_id, :presence => true
 
   def self.fetch_league_table(league_id)
-    Teamstat.includes([:team]).find_all_by_league_id(league_id).sort!{|a,b| b.calculate_points <=> a.calculate_points}
+    Teamstat.includes(:team, :league).find_all_by_league_id(league_id).sort!{|a,
+        b| b.calculate_points <=> a.calculate_points}
   end
 
   #TODO ensure these are whole numbers?
