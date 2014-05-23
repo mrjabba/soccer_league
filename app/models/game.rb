@@ -33,10 +33,12 @@ class Game < ActiveRecord::Base
   
   def visiting_team_goals
     calculate_goals(self.teamstat1_id)
+    #self.goals1_id
   end
  
   def home_team_goals
     calculate_goals(self.teamstat2_id)
+    #self.goals2_id
   end
 
   def home_team_name

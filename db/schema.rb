@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131011172549) do
+ActiveRecord::Schema.define(:version => 20140426040037) do
 
   create_table "games", :force => true do |t|
     t.boolean  "completed",     :default => false
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(:version => 20131011172549) do
     t.integer  "league_id"
     t.integer  "teamstat1_id"
     t.integer  "teamstat2_id"
+    t.integer  "goals1_id",     :default => 0
+    t.integer  "goals2_id",     :default => 0
   end
 
   add_index "games", ["created_by_id"], :name => "index_games_on_created_by_id"
